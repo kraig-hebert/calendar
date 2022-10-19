@@ -8,13 +8,11 @@ const appSettingsSlice = createSlice({
   name: 'appSettings',
   initialState,
   reducers: {
-    drawerCloseSelected(state, action) {
-      const drawerOpen = action.payload;
-      state.drawerOpen = drawerOpen;
+    drawerCloseSelected(state) {
+      state.drawerOpen = false;
     },
-    drawerOpenSelected(state, action) {
-      const drawerOpen = action.payload;
-      state.drawerOpen = drawerOpen;
+    drawerOpenSelected(state) {
+      state.drawerOpen = true;
     },
   },
 });
