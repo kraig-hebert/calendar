@@ -2,7 +2,6 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
   main: {
-    backgroundColor: 'blue',
     width: '100%',
     padding: {
       top: '10px',
@@ -11,7 +10,7 @@ export const useStyles = createUseStyles({
   },
   hamburger: {
     fontSize: '1.5rem',
-    color: '#fff',
+    color: '#000',
     cursor: 'pointer',
   },
 });
