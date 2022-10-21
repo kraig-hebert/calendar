@@ -9,17 +9,21 @@ const DrawerCalendar = (props) => {
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const numberOfDaysInMonth = getDaysInMonth(date);
   const dayNumber = date.getDate();
+
+  const checkIfCurrentDay = (i) => {
+    if (dayNumber === i) return classes.currentDay;
+    else return undefined;
+  };
+
   const renderedCalendar = days.map((day, index) => (
     <div key={index}>{day}</div>
   ));
   for (let i = 1; i <= numberOfDaysInMonth; i++) {
-    if (dayNumber === i)
-      renderedCalendar.push(
-        <div key={i + 7} className={classes.currentDay}>
-          {i}
-        </div>
-      );
-    else renderedCalendar.push(<div key={i + 7}>{i}</div>);
+    renderedCalendar.push(
+      <div key={i + 7} className={checkIfCurrentDay(i)}>
+        {i}
+      </div>
+    );
   }
   return <div className={classes.calendar}>{renderedCalendar}</div>;
 };
