@@ -9,8 +9,8 @@ export const useStyles = createUseStyles({
     },
   },
   hamburger: {
-    fontSize: '1.5rem',
-    color: '#000',
+    fontSize: '2rem',
+    color: 'rgb(7,82,18)',
     cursor: 'pointer',
   },
 });

@@ -1,31 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import useSideDrawerToggle from '../../utils/useSideDrawerToggle';
 
-import {
-  drawerCloseSelected,
-  selectDrawerOpen,
-} from '../../reducers/appSettings';
+import DrawerCalendar from './drawerCalendar/DrawerCalendar';
+
+import { selectDrawerOpen } from '../../reducers/appSettings';
+import { format } from 'date-fns';
 
 const SideDrawer = () => {
   const drawerOpen = useSelector(selectDrawerOpen);
-  const [styles, setStyles] = useState({ display: 'block' });
-  const classes = useStyles(styles);
+  const classes = useStyles();
   const toggleSideDrawer = useSideDrawerToggle(false);
+  const date = new Date();
+  const month = format(date, 'MMMM y');
 
-  useEffect(() => {
-    if (drawerOpen) setStyles({ display: 'block' });
-    else setStyles({ display: 'none' });
-  }, [drawerOpen]);
   return (
-    <div className={classes.drawerContainer}>
-      <AiFillCloseCircle
-        className={classes.closeIcon}
-        onClick={(e) => toggleSideDrawer()}
-      />
-    </div>
+    <>
+      {drawerOpen && (
+        <div className={classes.drawerContainer}>
+          <div className={classes.iconContainer}>
+            <AiFillCloseCircle
+              className={classes.closeIcon}
+              onClick={toggleSideDrawer}
+            />
+          </div>
+          <p className={classes.monthName}>{month}</p>
+          <DrawerCalendar date={date} />
+        </div>
+      )}
+    </>
   );
 };
 
