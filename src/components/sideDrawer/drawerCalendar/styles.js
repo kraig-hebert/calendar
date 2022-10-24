@@ -4,10 +4,10 @@ export const useStyles = createUseStyles({
   calendar: {
     marginTop: '10px',
     width: '90%',
-    height: '250px',
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
     gridTemplateRows: 'repeat(7, 30px)',
+    marginBottom: '20px',
     '& div': {
       display: 'flex',
       justifyContent: 'center',

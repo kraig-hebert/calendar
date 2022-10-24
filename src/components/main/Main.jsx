@@ -8,14 +8,14 @@ import useSideDrawerToggle from '../../utils/useSideDrawerToggle';
 const Main = () => {
   const classes = useStyles();
   const drawerOpen = useSelector(selectDrawerOpen);
-  const toggleSideDrawer = useSideDrawerToggle(true);
+  const toggleSideDrawerOpen = useSideDrawerToggle(true);
 
   return (
     <main className={classes.main}>
       {!drawerOpen && (
         <GiHamburgerMenu
           className={classes.hamburger}
-          onClick={(e) => toggleSideDrawer()}
+          onClick={toggleSideDrawerOpen}
         />
       )}
     </main>
