@@ -11,7 +11,7 @@ function App() {
       flexDirection: 'column',
       height: '100vh',
     },
-    mainContainer: {
+    bottomContainer: {
       display: 'flex',
       height: '100%',
     },
@@ -21,7 +21,7 @@ function App() {
   return (
     <div className={classes.appContainer}>
       <Header />
-      <div className={classes.mainContainer}>
+      <div className={classes.bottomContainer}>
         <SideDrawer />
         <Main />
       </div>

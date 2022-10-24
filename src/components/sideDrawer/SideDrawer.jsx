@@ -7,15 +7,18 @@ import useSideDrawerToggle from '../../utils/useSideDrawerToggle';
 import DrawerCalendar from './drawerCalendar/DrawerCalendar';
 import DefaultDrawerAccordion from './defaultDrawerAccordion/DefaultDrawerAccordion';
 
-import { selectDrawerOpen } from '../../reducers/appSettings';
+import {
+  selectCurrentDate,
+  selectDrawerOpen,
+} from '../../reducers/appSettings';
 import { format } from 'date-fns';
 import CustomerDrawerAccordion from './customDrawerAccordion/CustomerDrawerAccordion';
 
 const SideDrawer = () => {
   const drawerOpen = useSelector(selectDrawerOpen);
+  const date = useSelector(selectCurrentDate);
   const classes = useStyles();
   const toggleSideDrawerClosed = useSideDrawerToggle(false);
-  const date = new Date();
   const month = format(date, 'MMMM y');
 
   return (

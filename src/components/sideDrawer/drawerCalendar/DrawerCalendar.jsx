@@ -1,11 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
-import PropTypes from 'prop-types';
 import { getDay, getDaysInMonth, setDate } from 'date-fns';
+import { selectCurrentDate } from '../../../reducers/appSettings';
 
 const DrawerCalendar = (props) => {
-  const { date } = props;
   const classes = useStyles();
+  const date = useSelector(selectCurrentDate);
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const numberOfDaysInMonth = getDaysInMonth(date); // returns number of days in month
   const dayNumber = date.getDate(); //  returns numer of day of the month
@@ -44,10 +45,6 @@ const DrawerCalendar = (props) => {
   };
 
   return <div className={classes.calendar}>{assembleCalendar()}</div>;
-};
-
-DrawerCalendar.propTypes = {
-  date: PropTypes.instanceOf(Date),
 };
 
 export default DrawerCalendar;
