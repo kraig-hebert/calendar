@@ -7,7 +7,7 @@ export const useStyles = createUseStyles({
     height: '250px',
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
-    gridTemplateRows: 'repeat(6, 30px)',
+    gridTemplateRows: 'repeat(7, 30px)',
     '& div': {
       display: 'flex',
       justifyContent: 'center',
