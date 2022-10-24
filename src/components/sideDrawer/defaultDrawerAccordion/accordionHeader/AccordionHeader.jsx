@@ -2,21 +2,24 @@ import React from 'react';
 import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 
-import { AiOutlineMinusSquare, AiOutlinePlusSquare } from 'react-icons/ai';
+import { FaAngleRight, FaAngleDown } from 'react-icons/fa';
 
 const AccordionHeader = (props) => {
   const classes = useStyles();
   const { calendarAccordionOpen, setCalendarAccordionOpen } = props;
   return (
-    <div
-      className={classes.header}
-      onClick={(e) => setCalendarAccordionOpen(!calendarAccordionOpen)}
-    >
+    <div className={classes.header}>
       <span>Calendars</span>
       {calendarAccordionOpen ? (
-        <AiOutlineMinusSquare className={classes.icon} />
+        <FaAngleDown
+          className={classes.icon}
+          onClick={(e) => setCalendarAccordionOpen(!calendarAccordionOpen)}
+        />
       ) : (
-        <AiOutlinePlusSquare className={classes.icon} />
+        <FaAngleRight
+          className={classes.icon}
+          onClick={(e) => setCalendarAccordionOpen(!calendarAccordionOpen)}
+        />
       )}
     </div>
   );

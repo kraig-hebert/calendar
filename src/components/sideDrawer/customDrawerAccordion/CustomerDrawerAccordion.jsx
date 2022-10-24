@@ -3,7 +3,7 @@ import AccordionBody from './accordionBody/AccordionBody';
 import AccordionHeader from './accordionHeader/AccordionHeader';
 import { useStyles } from './styles';
 
-const DrawerAccordian = () => {
+const CustomerDrawerAccordion = () => {
   const classes = useStyles();
   const [calendarAccordionOpen, setCalendarAccordionOpen] = useState(true);
 
@@ -18,4 +18,4 @@ const DrawerAccordian = () => {
   );
 };
 
-export default DrawerAccordian;
+export default CustomerDrawerAccordion;

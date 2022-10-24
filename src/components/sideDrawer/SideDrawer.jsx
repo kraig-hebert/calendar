@@ -5,10 +5,11 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import useSideDrawerToggle from '../../utils/useSideDrawerToggle';
 
 import DrawerCalendar from './drawerCalendar/DrawerCalendar';
-import DrawerAccordian from './drawerAccordian/DrawerAccordian';
+import DefaultDrawerAccordion from './defaultDrawerAccordion/DefaultDrawerAccordion';
 
 import { selectDrawerOpen } from '../../reducers/appSettings';
 import { format } from 'date-fns';
+import CustomerDrawerAccordion from './customDrawerAccordion/CustomerDrawerAccordion';
 
 const SideDrawer = () => {
   const drawerOpen = useSelector(selectDrawerOpen);
@@ -29,7 +30,8 @@ const SideDrawer = () => {
           </div>
           <p className={classes.monthName}>{month}</p>
           <DrawerCalendar date={date} />
-          <DrawerAccordian />
+          <DefaultDrawerAccordion />
+          <CustomerDrawerAccordion />
         </div>
       )}
     </>

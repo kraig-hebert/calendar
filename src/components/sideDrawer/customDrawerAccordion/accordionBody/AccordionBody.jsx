@@ -6,7 +6,7 @@ import CalendarList from './calendarList/CalendarList';
 const AccordionBody = (props) => {
   const { showAccordion } = props;
   const setAccordionHeight = () => {
-    if (showAccordion) return '120px';
+    if (showAccordion) return '60px';
     else return '0px';
   };
   const classes = useStyles({ height: setAccordionHeight() });
@@ -18,7 +18,7 @@ const AccordionBody = (props) => {
 };
 
 AccordionBody.propTypes = {
-  height: PropTypes.bool,
+  showAccordion: PropTypes.bool,
 };
 
 export default AccordionBody;
