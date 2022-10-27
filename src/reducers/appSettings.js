@@ -2,7 +2,8 @@ import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   drawerOpen: true,
-  currentDate: new Date(),
+  currentDate: new Date().toJSON(),
+  currentCalendarSpread: 'month',
 };
 
 const appSettingsSlice = createSlice({
@@ -15,13 +16,18 @@ const appSettingsSlice = createSlice({
     drawerOpenSelected(state) {
       state.drawerOpen = true;
     },
+    navLinkSelected(state, action) {
+      const link = action.payload;
+      state.currentCalendarSpread = link;
+    },
   },
 });
 
 // selectors
 export const selectDrawerOpen = (state) => state.appSettings.drawerOpen;
-export const selectCurrentDate = (state) => state.appSettings.currentDate;
+export const selectCurrentDate = (state) =>
+  new Date(state.appSettings.currentDate);
 
-export const { drawerCloseSelected, drawerOpenSelected } =
+export const { drawerCloseSelected, drawerOpenSelected, navLinkSelected } =
   appSettingsSlice.actions;
 export default appSettingsSlice.reducer;

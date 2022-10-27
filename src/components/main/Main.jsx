@@ -9,6 +9,7 @@ import {
 } from '../../reducers/appSettings';
 import useSideDrawerToggle from '../../utils/useSideDrawerToggle';
 import { format } from 'date-fns';
+import MonthCalendar from './calendarTypes/monthCalendar/MonthCalendar';
 
 const Main = () => {
   const classes = useStyles();
@@ -27,6 +28,7 @@ const Main = () => {
         </button>
         <h2 className={classes.headerDate}>{date}</h2>
       </div>
+      <MonthCalendar />
 
       {!drawerOpen && (
         <GiHamburgerMenu
