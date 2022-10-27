@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
-import { getDay, getDaysInMonth, setDate } from 'date-fns';
+import { getDay, getDaysInMonth } from 'date-fns';
 import { selectCurrentDate } from '../../../reducers/appSettings';
 
-const DrawerCalendar = (props) => {
+const DrawerCalendar = () => {
   const classes = useStyles();
   const date = useSelector(selectCurrentDate);
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];

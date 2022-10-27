@@ -3,6 +3,7 @@ import { createUseStyles } from 'react-jss';
 export const useStyles = createUseStyles({
   main: {
     width: '100%',
+    height: '100%',
     position: 'relative',
   },
   mainHeader: {
@@ -10,7 +11,7 @@ export const useStyles = createUseStyles({
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: '2rem',
-    height: '60px',
+    height: '7%',
   },
   headerButton: {
     width: '40px',
