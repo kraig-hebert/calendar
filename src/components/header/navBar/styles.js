@@ -11,4 +11,7 @@ export const useStyles = createUseStyles({
       },
     },
   },
+  selectedLink: {
+    color: 'rgb(120,255,140)',
+  },
 });
