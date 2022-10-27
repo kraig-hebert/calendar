@@ -9,7 +9,7 @@ const DrawerCalendar = () => {
   const date = useSelector(selectCurrentDate);
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const numberOfDaysInMonth = getDaysInMonth(date); // returns number of days in month
-  const dayNumber = date.getDate(); //  returns numer of day of the month
+  const dayNumber = date.getDate(); //  returns number of day of the month
 
   const checkIfCurrentDay = (i) => {
     if (dayNumber === i) return classes.currentDay;

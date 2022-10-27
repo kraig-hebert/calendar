@@ -10,9 +10,8 @@ const NavBar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const currentCalendarSpread = useSelector(selectCurrentCalendarSpread);
-  const setStyle = (calendar) => {
-    if (currentCalendarSpread === calendar) return classes.selectedLink;
-  };
+  const setStyle = (calendar) =>
+    currentCalendarSpread === calendar ? classes.selectedLink : undefined;
   return (
     <nav>
       <ul className={classes.linkList}>
