@@ -27,6 +27,8 @@ const appSettingsSlice = createSlice({
 export const selectDrawerOpen = (state) => state.appSettings.drawerOpen;
 export const selectCurrentDate = (state) =>
   new Date(state.appSettings.currentDate);
+export const selectCurrentCalendarSpread = (state) =>
+  state.appSettings.currentCalendarSpread;
 
 export const { drawerCloseSelected, drawerOpenSelected, navLinkSelected } =
   appSettingsSlice.actions;
