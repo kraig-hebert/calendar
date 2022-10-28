@@ -3,19 +3,21 @@ import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 import { getDay, getDaysInMonth } from 'date-fns';
 
-import { useSelector } from 'react-redux';
-import { selectCurrentDate } from '../../../reducers/appSettings';
-
 const SmallMonthCalendar = (props) => {
   const classes = useStyles();
-  const { month, year } = props;
+  const { month, year, date } = props;
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const numberOfDaysInMonth = getDaysInMonth(new Date(year, month, 1)); // returns number of days in month
 
-  //   const checkIfCurrentDay = (i) => {
-  //     if (dayNumber === i) return classes.currentDay;
-  //     else return undefined;
-  //   };
+  const checkIfCurrentDay = (i) => {
+    if (
+      date.getDate() === i &&
+      date.getMonth() === month &&
+      date.getFullYear() === year
+    )
+      return classes.currentDay;
+    else return undefined;
+  };
 
   // returns day of week to start the first day of month on
   const calendarStartDay = () => getDay(new Date(year, month, 1));
@@ -26,7 +28,11 @@ const SmallMonthCalendar = (props) => {
       renderedCalendar.push(<div key={i + 7}></div>);
     }
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
-      renderedCalendar.push(<div key={i + 6 + startDayOfMonth}>{i}</div>);
+      renderedCalendar.push(
+        <div key={i + 6 + startDayOfMonth} className={checkIfCurrentDay(i)}>
+          {i}
+        </div>
+      );
     }
     return renderedCalendar;
   };
@@ -42,7 +48,9 @@ const SmallMonthCalendar = (props) => {
 };
 
 SmallMonthCalendar.propTypes = {
-  month: PropTypes.string,
+  month: PropTypes.number,
+  year: PropTypes.number,
+  date: PropTypes.instanceOf(Date),
 };
 
 export default SmallMonthCalendar;
