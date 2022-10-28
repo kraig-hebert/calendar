@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 export const useStyles = createUseStyles({
   calendar: {
     marginTop: '10px',
-    width: '90%',
+    width: '80%',
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
     gridTemplateRows: 'repeat(7, 30px)',
@@ -14,7 +14,11 @@ export const useStyles = createUseStyles({
       alignItems: 'center',
       width: '30px',
       height: '30px',
-      cursor: 'default',
+      '&:hover': {
+        borderRadius: '50%',
+        backgroundColor: 'rgb(120,255,140)',
+        cursor: 'pointer',
+      },
     },
   },
   currentDay: {

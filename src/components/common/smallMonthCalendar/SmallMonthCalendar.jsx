@@ -49,7 +49,7 @@ const SmallMonthCalendar = (props) => {
 
 /* 
 You must send the month and year of the month you want to build
-The date is the current date used make currentDate background green 
+The date is the current date used to check currentDate for background green 
 */
 SmallMonthCalendar.propTypes = {
   month: PropTypes.number,
