@@ -3,7 +3,6 @@ import SmallMonthCalendar from '../../../common/smallMonthCalendar/SmallMonthCal
 import { useStyles } from './styles';
 import { useSelector } from 'react-redux';
 import { selectCurrentDate } from '../../../../reducers/appSettings';
-import { render } from '@testing-library/react';
 
 const YearCalendar = () => {
   const monthNames = [
@@ -16,7 +15,7 @@ const YearCalendar = () => {
     'July',
     'August',
     'September',
-    'Ocrober',
+    'October',
     'November',
     'December',
   ];
@@ -26,8 +25,9 @@ const YearCalendar = () => {
 
   const renderedCalendarWithName = monthNames.map((month, index) => {
     return (
-      <div key={index}>
+      <div key={index} className={classes.miniCalendar}>
         <p>{month}</p>
+        <div className={classes.bottomBorder}></div>
         <SmallMonthCalendar
           year={selectedYear}
           month={index}

@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import useSideDrawerToggle from '../../utils/useSideDrawerToggle';
-
-import DrawerCalendar from './drawerCalendar/DrawerCalendar';
+import SmallMonthCalendar from '../common/smallMonthCalendar/SmallMonthCalendar';
 import DefaultDrawerAccordion from './defaultDrawerAccordion/DefaultDrawerAccordion';
 
 import {
@@ -32,7 +31,11 @@ const SideDrawer = () => {
             />
           </div>
           <p className={classes.monthName}>{month}</p>
-          <DrawerCalendar date={date} />
+          <SmallMonthCalendar
+            year={date.getFullYear()}
+            month={date.getMonth()}
+            date={date}
+          />
           <DefaultDrawerAccordion />
           <CustomerDrawerAccordion />
         </div>
