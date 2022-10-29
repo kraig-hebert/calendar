@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SmallMonthCalendar from '../../../common/smallMonthCalendar/SmallMonthCalendar';
 import { useStyles } from './styles';
 import { useSelector } from 'react-redux';
@@ -21,7 +21,7 @@ const YearCalendar = () => {
   ];
   const classes = useStyles();
   const currentDate = useSelector(selectCurrentDate);
-  const [selectedYear, seteSelectedYear] = useState(currentDate.getFullYear());
+  const today = new Date();
 
   const renderedCalendarWithName = monthNames.map((month, index) => {
     return (
@@ -29,9 +29,9 @@ const YearCalendar = () => {
         <p>{month}</p>
         <div className={classes.bottomBorder}></div>
         <SmallMonthCalendar
-          year={selectedYear}
+          year={currentDate.getFullYear()}
           month={index}
-          date={currentDate}
+          date={today}
         />
       </div>
     );

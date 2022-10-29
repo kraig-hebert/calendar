@@ -20,6 +20,10 @@ const appSettingsSlice = createSlice({
       const link = action.payload;
       state.currentCalendarSpread = link;
     },
+    mainHeaderButtonClicked(state, action) {
+      const newDate = action.payload;
+      state.currentDate = newDate.toJSON();
+    },
   },
 });
 
@@ -30,6 +34,10 @@ export const selectCurrentDate = (state) =>
 export const selectCurrentCalendarSpread = (state) =>
   state.appSettings.currentCalendarSpread;
 
-export const { drawerCloseSelected, drawerOpenSelected, navLinkSelected } =
-  appSettingsSlice.actions;
+export const {
+  drawerCloseSelected,
+  drawerOpenSelected,
+  navLinkSelected,
+  mainHeaderButtonClicked,
+} = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;

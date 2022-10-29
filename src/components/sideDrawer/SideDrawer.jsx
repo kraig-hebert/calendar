@@ -15,7 +15,7 @@ import CustomerDrawerAccordion from './customDrawerAccordion/CustomerDrawerAccor
 
 const SideDrawer = () => {
   const drawerOpen = useSelector(selectDrawerOpen);
-  const date = useSelector(selectCurrentDate);
+  const date = new Date();
   const classes = useStyles();
   const toggleSideDrawerClosed = useSideDrawerToggle(false);
   const month = format(date, 'MMMM y');

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useStyles } from './styles';
+import { addYears } from 'date-fns';
+import { CgArrowLeftR, CgArrowRightR } from 'react-icons/cg';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { AiOutlineLeftCircle, AiOutlineRightCircle } from 'react-icons/ai';
 import {
   selectDrawerOpen,
-  selectCurrentDate,
   selectCurrentCalendarSpread,
+  mainHeaderButtonClicked,
+  selectCurrentDate,
 } from '../../reducers/appSettings';
 import useSideDrawerToggle from '../../utils/useSideDrawerToggle';
-import { format, startOfWeek, endOfWeek, addMonths } from 'date-fns';
+import useCalendarHeaderDate from '../../utils/useCalendarHeaderDate';
 import MonthCalendar from './calendarTypes/monthCalendar/MonthCalendar';
 import DayCalendar from './calendarTypes/dayCalendar/DayCalendar';
 import WeekCalendar from './calendarTypes/weekCalendar/WeekCalendar';
@@ -18,12 +20,25 @@ import ScheduleCalendar from './calendarTypes/scheduleCalendar/ScheduleCalendar'
 
 const Main = () => {
   const classes = useStyles();
-  const date = useSelector(selectCurrentDate);
+  const dispatch = useDispatch();
   const drawerOpen = useSelector(selectDrawerOpen);
+  const currentDate = useSelector(selectCurrentDate);
   const currentCalendarSpread = useSelector(selectCurrentCalendarSpread);
   const toggleSideDrawerOpen = useSideDrawerToggle(true);
+  const calendarHeaderDate = useCalendarHeaderDate();
 
-  const [headerDate, setHeaderDate] = useState(format(date, 'MMMM y')); // format: January 2022
+  const handleLeftClick = () => {
+    switch (currentCalendarSpread) {
+      case 'year':
+        dispatch(mainHeaderButtonClicked(addYears(currentDate, -1)));
+    }
+  };
+  const handleRightClick = () => {
+    switch (currentCalendarSpread) {
+      case 'year':
+        dispatch(mainHeaderButtonClicked(addYears(currentDate, 1)));
+    }
+  };
 
   const renderCalendar = () => {
     switch (currentCalendarSpread) {
@@ -40,45 +55,18 @@ const Main = () => {
     }
   };
 
-  const getWeekFormat = () =>
-    `${format(startOfWeek(date), 'MMM d, y')} - ${format(
-      endOfWeek(date),
-      'MMMM d, y'
-    )}`;
-
-  const getScheduleFormat = () =>
-    `${format(date, 'MMM y')} - ${format(addMonths(date, 6), 'MMM y')}`;
-
-  useEffect(() => {
-    switch (currentCalendarSpread) {
-      case 'day':
-        setHeaderDate(format(date, 'MMMM d, y'));
-        break;
-      case 'week':
-        setHeaderDate(getWeekFormat());
-        break;
-      case 'month':
-        setHeaderDate(format(date, 'MMMM y'));
-        break;
-      case 'year':
-        setHeaderDate(format(date, 'y'));
-        break;
-      case 'schedule':
-        setHeaderDate(getScheduleFormat());
-        break;
-    }
-  }, [currentCalendarSpread]);
-
   return (
     <main className={classes.main}>
       <div className={classes.mainHeader}>
-        <button className={classes.headerButton}>
-          <AiOutlineLeftCircle />
-        </button>
-        <button className={classes.headerButton}>
-          <AiOutlineRightCircle />
-        </button>
-        <h2 className={classes.headerDate}>{headerDate}</h2>
+        <CgArrowLeftR
+          className={classes.headerIconButton}
+          onClick={handleLeftClick}
+        />
+        <CgArrowRightR
+          className={classes.headerIconButton}
+          onClick={handleRightClick}
+        />
+        <h2 className={classes.headerDate}>{calendarHeaderDate}</h2>
       </div>
       {renderCalendar()}
       {!drawerOpen && (
