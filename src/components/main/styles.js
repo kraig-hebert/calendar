@@ -21,8 +21,9 @@ export const useStyles = createUseStyles({
     height: '30px',
     cursor: 'pointer',
     borderRadius: '10px',
+    backgroundColor: 'rgb(120,255,140)',
     '&:hover': {
-      backgroundColor: 'rgb(120,255,140)',
+      backgroundColor: 'rgb(120,255,0)',
     },
   },
   headerDate: {
