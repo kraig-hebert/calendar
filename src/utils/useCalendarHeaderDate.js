@@ -12,7 +12,7 @@ const useCalendarHeaderDate = () => {
   const currentCalendarSpread = useSelector(selectCurrentCalendarSpread);
 
   const headerFormat = {
-    day: format(date, 'MMMM d, y'),
+    day: format(date, 'EEEE MMMM d, y'),
     week: `${format(startOfWeek(date), 'MMM d, y')} - ${format(
       endOfWeek(date),
       'MMMM d, y'

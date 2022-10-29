@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useStyles } from './styles';
-import { addYears } from 'date-fns';
+import { addDays, addYears } from 'date-fns';
 import { CgArrowLeftR, CgArrowRightR } from 'react-icons/cg';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import {
@@ -29,14 +29,22 @@ const Main = () => {
 
   const handleLeftClick = () => {
     switch (currentCalendarSpread) {
+      case 'day':
+        dispatch(mainHeaderButtonClicked(addDays(currentDate, -1)));
+        break;
       case 'year':
         dispatch(mainHeaderButtonClicked(addYears(currentDate, -1)));
+        break;
     }
   };
   const handleRightClick = () => {
     switch (currentCalendarSpread) {
+      case 'day':
+        dispatch(mainHeaderButtonClicked(addDays(currentDate, 1)));
+        break;
       case 'year':
         dispatch(mainHeaderButtonClicked(addYears(currentDate, 1)));
+        break;
     }
   };
 
