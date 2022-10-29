@@ -30,20 +30,20 @@ const Main = () => {
   const handleLeftClick = () => {
     switch (currentCalendarSpread) {
       case 'day':
-        dispatch(mainHeaderButtonClicked(addDays(currentDate, -1)));
+        dispatch(mainHeaderButtonClicked(addDays(currentDate, -1)).toJSON());
         break;
       case 'year':
-        dispatch(mainHeaderButtonClicked(addYears(currentDate, -1)));
+        dispatch(mainHeaderButtonClicked(addYears(currentDate, -1).toJSON()));
         break;
     }
   };
   const handleRightClick = () => {
     switch (currentCalendarSpread) {
       case 'day':
-        dispatch(mainHeaderButtonClicked(addDays(currentDate, 1)));
+        dispatch(mainHeaderButtonClicked(addDays(currentDate, 1).toJSON()));
         break;
       case 'year':
-        dispatch(mainHeaderButtonClicked(addYears(currentDate, 1)));
+        dispatch(mainHeaderButtonClicked(addYears(currentDate, 1).toJSON()));
         break;
     }
   };

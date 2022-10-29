@@ -1,13 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 import { getDay, getDaysInMonth } from 'date-fns';
+import { miniCalendarDaySelected } from '../../../reducers/appSettings';
 
 const SmallMonthCalendar = (props) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const { month, year, date } = props;
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const numberOfDaysInMonth = getDaysInMonth(new Date(year, month, 1)); // returns number of days in month
+
+  const handleDayClick = (e, day) => {
+    dispatch(miniCalendarDaySelected(new Date(year, month, day).toJSON()));
+  };
 
   const checkIfCurrentDay = (i) => {
     if (
@@ -29,7 +36,11 @@ const SmallMonthCalendar = (props) => {
     }
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
       renderedCalendar.push(
-        <div key={i + 6 + startDayOfMonth} className={checkIfCurrentDay(i)}>
+        <div
+          key={i + 6 + startDayOfMonth}
+          className={checkIfCurrentDay(i)}
+          onClick={(e) => handleDayClick(e, i)}
+        >
           {i}
         </div>
       );
@@ -49,7 +60,7 @@ const SmallMonthCalendar = (props) => {
 
 /* 
 You must send the month and year of the month you want to build
-The date is the current date used to check currentDate for background green 
+The date is the today used to check currentDate for background green 
 */
 SmallMonthCalendar.propTypes = {
   month: PropTypes.number,

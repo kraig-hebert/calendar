@@ -22,7 +22,12 @@ const appSettingsSlice = createSlice({
     },
     mainHeaderButtonClicked(state, action) {
       const newDate = action.payload;
-      state.currentDate = newDate.toJSON();
+      state.currentDate = newDate;
+    },
+    miniCalendarDaySelected(state, action) {
+      const newDate = action.payload;
+      state.currentDate = newDate;
+      state.currentCalendarSpread = 'day';
     },
   },
 });
@@ -39,5 +44,6 @@ export const {
   drawerOpenSelected,
   navLinkSelected,
   mainHeaderButtonClicked,
+  miniCalendarDaySelected,
 } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;
