@@ -2,7 +2,6 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
   yearCalendar: {
-    position: 'relative',
     display: 'grid',
     height: '100%',
     gridTemplateColumns: 'repeat(4, 1fr)',

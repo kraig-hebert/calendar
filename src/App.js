@@ -14,6 +14,7 @@ function App() {
     bottomContainer: {
       display: 'flex',
       height: '100%',
+      marginTop: '50px',
     },
   });
   const classes = useStyles();

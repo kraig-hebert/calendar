@@ -76,7 +76,7 @@ const Main = () => {
         />
         <h2 className={classes.headerDate}>{calendarHeaderDate}</h2>
       </div>
-      {renderCalendar()}
+      <div className={classes.calendarContainer}>{renderCalendar()}</div>
       {!drawerOpen && (
         <GiHamburgerMenu
           className={classes.hamburger}

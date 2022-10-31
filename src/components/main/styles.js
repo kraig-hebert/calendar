@@ -6,7 +6,8 @@ export const useStyles = createUseStyles({
     height: '100%',
     position: 'relative',
     display: 'grid',
-    gridTemplateRows: '7% 93%',
+    gridTemplateRows: '7% auto',
+    overflow: 'hidden',
   },
   mainHeader: {
     justifySelf: 'center',
