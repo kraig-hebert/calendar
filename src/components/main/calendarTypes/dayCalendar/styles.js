@@ -6,13 +6,12 @@ export const useStyles = createUseStyles({
     flexDirection: 'column',
     alignItems: 'center',
     paddingTop: '10px',
-    overflow: 'scroll',
   },
   timeBlock: {
     display: 'block',
     position: 'relative',
     width: '90%',
-    height: '40px',
+    height: '35px',
     border: '1px solid #000',
     '&:not(:last-of-type)': {
       borderBottom: '0',
