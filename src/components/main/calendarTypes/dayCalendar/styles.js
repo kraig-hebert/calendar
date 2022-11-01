@@ -11,7 +11,7 @@ export const useStyles = createUseStyles({
     display: 'block',
     position: 'relative',
     width: '90%',
-    height: '35px',
+    height: '33px',
     border: '1px solid #000',
     '&:not(:last-of-type)': {
       borderBottom: '0',
@@ -20,7 +20,7 @@ export const useStyles = createUseStyles({
   time: {
     display: 'block',
     position: 'absolute',
-    left: '-35px',
-    bottom: '-5px',
+    right: '101%',
+    top: '-5px',
   },
 });

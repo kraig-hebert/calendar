@@ -11,10 +11,10 @@ export const useStyles = createUseStyles({
   mainHeader: {
     justifySelf: 'center',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     fontSize: '2rem',
-    width: '100%',
+    width: '90%',
   },
   headerIconButton: {
     width: '30px',

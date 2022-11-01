@@ -30,7 +30,7 @@ const Main = () => {
   const handleLeftClick = () => {
     switch (currentCalendarSpread) {
       case 'day':
-        dispatch(mainHeaderButtonClicked(addDays(currentDate, -1)).toJSON());
+        dispatch(mainHeaderButtonClicked(addDays(currentDate, -1).toJSON()));
         break;
       case 'year':
         dispatch(mainHeaderButtonClicked(addYears(currentDate, -1).toJSON()));
