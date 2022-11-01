@@ -49,6 +49,7 @@ const Main = () => {
   };
 
   const renderCalendar = () => {
+    console.log(currentCalendarSpread);
     switch (currentCalendarSpread) {
       case 'day':
         return <DayCalendar />;

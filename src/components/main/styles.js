@@ -38,4 +38,9 @@ export const useStyles = createUseStyles({
     left: '10px',
     top: '10px',
   },
+  calendarContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+  },
 });

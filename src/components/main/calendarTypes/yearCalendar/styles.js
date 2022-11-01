@@ -4,6 +4,7 @@ export const useStyles = createUseStyles({
   yearCalendar: {
     display: 'grid',
     height: '100%',
+    width: '100%',
     gridTemplateColumns: 'repeat(4, 1fr)',
     gridTemplateRows: 'repeat(3, 1fr)',
     '& p': {
