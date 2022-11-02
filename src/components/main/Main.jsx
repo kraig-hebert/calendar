@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Routes, Route } from 'react-router-dom';
 import { useStyles } from './styles';
 import { addDays, addYears } from 'date-fns';
 import { CgArrowLeftR, CgArrowRightR } from 'react-icons/cg';
@@ -48,22 +49,6 @@ const Main = () => {
     }
   };
 
-  const renderCalendar = () => {
-    console.log(currentCalendarSpread);
-    switch (currentCalendarSpread) {
-      case 'day':
-        return <DayCalendar />;
-      case 'week':
-        return <WeekCalendar />;
-      case 'month':
-        return <MonthCalendar />;
-      case 'year':
-        return <YearCalendar />;
-      case 'schedule':
-        return <ScheduleCalendar />;
-    }
-  };
-
   return (
     <main className={classes.main}>
       <div className={classes.mainHeader}>
@@ -77,7 +62,16 @@ const Main = () => {
         />
         <h2 className={classes.headerDate}>{calendarHeaderDate}</h2>
       </div>
-      <div className={classes.calendarContainer}>{renderCalendar()}</div>
+      <div className={classes.calendarContainer}>
+        <Routes>
+          <Route path="/" element={<YearCalendar />} />
+          <Route path="/day" element={<DayCalendar />} />
+          <Route path="/week" element={<WeekCalendar />} />
+          <Route path="/month" element={<MonthCalendar />} />
+          <Route path="/year" element={<YearCalendar />} />
+          <Route path="/schedule" element={<ScheduleCalendar />} />
+        </Routes>
+      </div>
       {!drawerOpen && (
         <GiHamburgerMenu
           className={classes.hamburger}
