@@ -3,7 +3,6 @@ import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 
 const DayCalendarColumn = (props) => {
-  const { width, displayTime, calendarWidth } = props;
   const classes = useStyles(props);
   let renderedTimeBlocks = new Array();
 
@@ -42,6 +41,7 @@ DayCalendarColumn.propTypes = {
   width: PropTypes.string,
   displayTime: PropTypes.bool,
   calendarWidth: PropTypes.string,
+  borderRight: PropTypes.bool,
 };
 
 export default DayCalendarColumn;

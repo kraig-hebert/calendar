@@ -33,6 +33,9 @@ const Main = () => {
       case 'day':
         dispatch(mainHeaderButtonClicked(addDays(currentDate, -1).toJSON()));
         break;
+      case 'week':
+        dispatch(mainHeaderButtonClicked(addDays(currentDate, -7).toJSON()));
+        break;
       case 'year':
         dispatch(mainHeaderButtonClicked(addYears(currentDate, -1).toJSON()));
         break;
@@ -43,6 +46,10 @@ const Main = () => {
       case 'day':
         dispatch(mainHeaderButtonClicked(addDays(currentDate, 1).toJSON()));
         break;
+      case 'week':
+        dispatch(mainHeaderButtonClicked(addDays(currentDate, 7).toJSON()));
+        break;
+
       case 'year':
         dispatch(mainHeaderButtonClicked(addYears(currentDate, 1).toJSON()));
         break;

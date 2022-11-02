@@ -3,11 +3,14 @@ import DayCalendarColumn from '../../../common/dayCalendarColumn/DayCalendarColu
 
 const DayCalendar = () => {
   return (
-    <DayCalendarColumn
-      blockWidth="100%"
-      displayTime={true}
-      calendarWidth="90%"
-    />
+    <>
+      <DayCalendarColumn
+        blockWidth="100%"
+        displayTime={true}
+        calendarWidth="90%"
+        borderRight={true}
+      />
+    </>
   );
 };
 

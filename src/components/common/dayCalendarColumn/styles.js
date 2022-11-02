@@ -14,6 +14,7 @@ export const useStyles = createUseStyles({
     width: props.blockWidth,
     height: '33px',
     border: '1px solid #000',
+    borderRight: props.borderRight,
     '&:not(:last-of-type)': {
       borderBottom: '0',
     },
