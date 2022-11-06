@@ -42,7 +42,13 @@ const MonthCalendar = () => {
     const startDayOfMonth = getDay(
       new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
     );
-    console.log(startDayOfMonth, currentDate);
+    const lastDayOfMonth = getDay(
+      new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        numberOfDaysInMonth
+      )
+    );
     for (let i = 0; i < startDayOfMonth; i++) {
       renderedCalendar.push(<div key={i + 7}></div>);
     }
@@ -56,6 +62,9 @@ const MonthCalendar = () => {
           {i}
         </div>
       );
+    }
+    for (let i = lastDayOfMonth + 1; i < 7; i++) {
+      renderedCalendar.push(<div key={i + 40}></div>);
     }
 
     return renderedCalendar;

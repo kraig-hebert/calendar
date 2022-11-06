@@ -6,7 +6,7 @@ export const useStyles = createUseStyles({
     width: '80%',
     height: '98%',
     display: 'grid',
-    gridTemplateRows: '75px auto',
+    gridTemplateRows: '30px auto',
     marginBottom: '20px',
   },
   calendarHeader: {
@@ -18,9 +18,13 @@ export const useStyles = createUseStyles({
       justifySelf: 'center',
       justifyContent: 'center',
       alignItems: 'center',
+      height: '100%',
+      width: '100%',
       border: '1px solid #000',
-      width: '30px',
-      height: '30px',
+      borderRight: '0',
+      '&:last-of-type': {
+        borderRight: '1px solid #000',
+      },
     },
   },
   calendarBody: {
@@ -32,8 +36,13 @@ export const useStyles = createUseStyles({
       justifySelf: 'center',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '30px',
-      height: '30px',
+      width: '100%',
+      height: '100%',
+      borderBottom: '1px solid #000',
+      borderLeft: '1px solid #000',
+      '&:nth-of-type(7n), &:last-of-type': {
+        borderRight: '1px solid #000',
+      },
       '&:hover': {
         borderRadius: '50%',
         backgroundColor: 'rgb(120,255,140)',
