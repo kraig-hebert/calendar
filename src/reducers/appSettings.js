@@ -3,7 +3,7 @@ import { createSelector, createSlice } from '@reduxjs/toolkit';
 const initialState = {
   drawerOpen: true,
   currentDate: new Date().toJSON(),
-  currentCalendarSpread: 'month',
+  currentCalendarSpread: 'year',
 };
 
 const appSettingsSlice = createSlice({
@@ -24,7 +24,7 @@ const appSettingsSlice = createSlice({
       const newDate = action.payload;
       state.currentDate = newDate;
     },
-    miniCalendarDaySelected(state, action) {
+    calendarDaySelected(state, action) {
       const newDate = action.payload;
       state.currentDate = newDate;
       state.currentCalendarSpread = 'day';
@@ -44,6 +44,6 @@ export const {
   drawerOpenSelected,
   navLinkSelected,
   mainHeaderButtonClicked,
-  miniCalendarDaySelected,
+  calendarDaySelected,
 } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;

@@ -20,7 +20,6 @@ const WeekCalendar = () => {
       />
     );
   });
-  console.log(renderedDayColumns);
 
   return <div className={classes.weekCalendar}>{renderedDayColumns}</div>;
 };

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 import { getDay, getDaysInMonth } from 'date-fns';
-import { miniCalendarDaySelected } from '../../../reducers/appSettings';
+import { calendarDaySelected } from '../../../reducers/appSettings';
 
 const SmallMonthCalendar = (props) => {
   const classes = useStyles();
@@ -13,7 +13,7 @@ const SmallMonthCalendar = (props) => {
   const numberOfDaysInMonth = getDaysInMonth(new Date(year, month, 1)); // returns number of days in month
 
   const handleDayClick = (e, day) => {
-    dispatch(miniCalendarDaySelected(new Date(year, month, day).toJSON()));
+    dispatch(calendarDaySelected(new Date(year, month, day).toJSON()));
   };
 
   const checkIfCurrentDay = (i) => {
@@ -26,11 +26,8 @@ const SmallMonthCalendar = (props) => {
     else return undefined;
   };
 
-  // returns day of week to start the first day of month on
-  const calendarStartDay = () => getDay(new Date(year, month, 1));
-
   const setDatesOnCalendar = (renderedCalendar) => {
-    const startDayOfMonth = calendarStartDay();
+    const startDayOfMonth = getDay(new Date(year, month, 1));
     for (let i = 0; i < startDayOfMonth; i++) {
       renderedCalendar.push(<div key={i + 7}></div>);
     }

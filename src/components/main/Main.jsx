@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 import { useStyles } from './styles';
-import { addDays, addYears } from 'date-fns';
+import { addDays, addMonths, addYears } from 'date-fns';
 import { CgArrowLeftR, CgArrowRightR } from 'react-icons/cg';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import {
@@ -36,6 +36,9 @@ const Main = () => {
       case 'week':
         dispatch(mainHeaderButtonClicked(addDays(currentDate, -7).toJSON()));
         break;
+      case 'month':
+        dispatch(mainHeaderButtonClicked(addMonths(currentDate, -1).toJSON()));
+        break;
       case 'year':
         dispatch(mainHeaderButtonClicked(addYears(currentDate, -1).toJSON()));
         break;
@@ -49,7 +52,9 @@ const Main = () => {
       case 'week':
         dispatch(mainHeaderButtonClicked(addDays(currentDate, 7).toJSON()));
         break;
-
+      case 'month':
+        dispatch(mainHeaderButtonClicked(addMonths(currentDate, 1).toJSON()));
+        break;
       case 'year':
         dispatch(mainHeaderButtonClicked(addYears(currentDate, 1).toJSON()));
         break;

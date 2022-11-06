@@ -22,6 +22,10 @@ export const useStyles = createUseStyles({
     '& div:nth-of-type(2)': {
       textAlign: 'right',
     },
+    '& a': {
+      textDecoration: 'none',
+      color: '#fff',
+    },
   },
   nav: {
     width: '100%',
