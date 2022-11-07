@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 export const useStyles = createUseStyles({
   monthCalendar: {
     marginTop: '10px',
-    width: '80%',
+    width: '95%',
     height: '98%',
     display: 'grid',
     gridTemplateRows: '30px auto',
