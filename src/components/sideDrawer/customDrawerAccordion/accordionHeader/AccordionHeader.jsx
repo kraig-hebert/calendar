@@ -2,17 +2,33 @@ import React from 'react';
 import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 
-import { FaAngleRight, FaAngleDown, FaPlus } from 'react-icons/fa';
+import { FaAngleRight, FaAngleDown, FaPlus, FaMinus } from 'react-icons/fa';
 
 const AccordionHeader = (props) => {
   const classes = useStyles();
-  const { calendarAccordionOpen, setCalendarAccordionOpen } = props;
+  const {
+    calendarAccordionOpen,
+    setCalendarAccordionOpen,
+    calendarFormVisible,
+    setCalendarFormVisible,
+  } = props;
 
   return (
     <div className={classes.header}>
       <span>My Calendars</span>
       <div className={classes.iconGroup}>
-        <FaPlus className={classes.shrunkIcon} />
+        {calendarFormVisible ? (
+          <FaPlus
+            className={classes.shrunkIcon}
+            onClick={(e) => setCalendarFormVisible(!calendarFormVisible)}
+          />
+        ) : (
+          <FaMinus
+            className={classes.shrunkIcon}
+            onClick={(e) => setCalendarFormVisible(!calendarFormVisible)}
+          />
+        )}
+
         {calendarAccordionOpen ? (
           <FaAngleDown
             className={classes.icon}
@@ -32,6 +48,8 @@ const AccordionHeader = (props) => {
 AccordionHeader.propTypes = {
   calendarAccordionOpen: PropTypes.bool,
   setCalendarAccordionOpen: PropTypes.func,
+  calendarFormVisible: PropTypes.bool,
+  setCalendarFormVisible: PropTypes.func,
 };
 
 export default AccordionHeader;

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import AccordionBody from './accordionBody/AccordionBody';
 import AccordionHeader from './accordionHeader/AccordionHeader';
 import { useStyles } from './styles';
+import PropTypes from 'prop-types';
 
-const CustomerDrawerAccordion = () => {
+const CustomerDrawerAccordion = (props) => {
+  const { setCalendarFormVisible, calendarFormVisible } = props;
   const classes = useStyles();
   const [calendarAccordionOpen, setCalendarAccordionOpen] = useState(true);
 
@@ -12,10 +14,17 @@ const CustomerDrawerAccordion = () => {
       <AccordionHeader
         calendarAccordionOpen={calendarAccordionOpen}
         setCalendarAccordionOpen={setCalendarAccordionOpen}
+        calendarFormVisible={calendarFormVisible}
+        setCalendarFormVisible={setCalendarFormVisible}
       />
       <AccordionBody showAccordion={calendarAccordionOpen} />
     </div>
   );
+};
+
+CustomerDrawerAccordion.propTypes = {
+  calendarFormVisible: PropTypes.bool,
+  setCalendaFormVisible: PropTypes.func,
 };
 
 export default CustomerDrawerAccordion;

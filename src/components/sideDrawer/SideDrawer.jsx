@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import { AiFillCloseCircle } from 'react-icons/ai';
@@ -12,6 +12,7 @@ import {
 } from '../../reducers/appSettings';
 import { format } from 'date-fns';
 import CustomerDrawerAccordion from './customDrawerAccordion/CustomerDrawerAccordion';
+import NewCalendarForm from './newCalendarForm/NewCalendarForm';
 
 const SideDrawer = () => {
   const drawerOpen = useSelector(selectDrawerOpen);
@@ -19,6 +20,7 @@ const SideDrawer = () => {
   const classes = useStyles();
   const toggleSideDrawerClosed = useSideDrawerToggle(false);
   const month = format(date, 'MMMM y');
+  const [calendarFormVisible, setCalendarFormVisible] = useState(true);
 
   return (
     <>
@@ -37,7 +39,11 @@ const SideDrawer = () => {
             date={date}
           />
           <DefaultDrawerAccordion />
-          <CustomerDrawerAccordion />
+          <CustomerDrawerAccordion
+            calendarFormVisible={calendarFormVisible}
+            setCalendarFormVisible={setCalendarFormVisible}
+          />
+          <NewCalendarForm calendarFormVisible={calendarFormVisible} />
         </div>
       )}
     </>
