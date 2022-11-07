@@ -50,16 +50,17 @@ const MonthCalendar = () => {
       )
     );
     for (let i = 0; i < startDayOfMonth; i++) {
-      renderedCalendar.push(<div key={i + 7}></div>);
+      renderedCalendar.push(<div key={i}></div>);
     }
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
       renderedCalendar.push(
-        <div
-          key={i + 6 + startDayOfMonth}
-          className={checkIfCurrentDay(i)}
-          onClick={(e) => handleDayClick(e, i)}
-        >
-          {i}
+        <div key={i + startDayOfMonth}>
+          <span
+            className={checkIfCurrentDay(i)}
+            onClick={(e) => handleDayClick(e, i)}
+          >
+            {i}
+          </span>
         </div>
       );
     }
