@@ -14,16 +14,25 @@ export const useStyles = createUseStyles({
       alignItems: 'center',
       width: '30px',
       height: '30px',
+    },
+    '& a': {
+      textDecoration: 'none',
+      color: '#000',
+      cursor: 'pointer',
+      display: 'grid',
+      width: '30px',
+      height: '30px',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: '50%',
       '&:hover': {
-        borderRadius: '50%',
         backgroundColor: 'rgb(120,255,140)',
-        cursor: 'pointer',
       },
     },
   },
   currentDay: {
     backgroundColor: 'rgb(7,82,18)',
-    color: 'white',
+    color: 'white !important',
     borderRadius: '50%',
   },
 });

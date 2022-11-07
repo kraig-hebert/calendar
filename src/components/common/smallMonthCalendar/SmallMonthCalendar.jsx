@@ -4,6 +4,8 @@ import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 import { getDay, getDaysInMonth } from 'date-fns';
 import { calendarDaySelected } from '../../../reducers/appSettings';
+import { Link } from 'react-router-dom';
+import DayCalendar from '../../main/calendarTypes/dayCalendar/DayCalendar';
 
 const SmallMonthCalendar = (props) => {
   const classes = useStyles();
@@ -35,10 +37,15 @@ const SmallMonthCalendar = (props) => {
       renderedCalendar.push(
         <div
           key={i + 6 + startDayOfMonth}
-          className={checkIfCurrentDay(i)}
           onClick={(e) => handleDayClick(e, i)}
         >
-          {i}
+          <Link
+            to="/day"
+            element={<DayCalendar />}
+            className={checkIfCurrentDay(i)}
+          >
+            {i}
+          </Link>
         </div>
       );
     }

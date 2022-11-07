@@ -45,6 +45,10 @@ export const useStyles = createUseStyles({
       '&:nth-of-type(7n), &:last-of-type': {
         borderRight: '1px solid #000',
       },
+      '& a': {
+        textDecoration: 'none',
+        color: '#000',
+      },
       '& span': {
         display: 'grid',
         width: '40px',

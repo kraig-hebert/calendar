@@ -29,6 +29,11 @@ const appSettingsSlice = createSlice({
       state.currentDate = newDate;
       state.currentCalendarSpread = 'day';
     },
+    calendarMonthSelected(state, action) {
+      const newDate = action.payload;
+      state.currentDate = newDate;
+      state.currentCalendarSpread = 'month';
+    },
   },
 });
 
@@ -45,5 +50,6 @@ export const {
   navLinkSelected,
   mainHeaderButtonClicked,
   calendarDaySelected,
+  calendarMonthSelected,
 } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;

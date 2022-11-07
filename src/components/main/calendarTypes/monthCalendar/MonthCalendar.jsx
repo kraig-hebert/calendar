@@ -6,13 +6,15 @@ import {
   calendarDaySelected,
 } from '../../../../reducers/appSettings';
 import { getDay, getDaysInMonth } from 'date-fns';
+import { Link } from 'react-router-dom';
+import DayCalendar from '../dayCalendar/DayCalendar';
 
 const MonthCalendar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const currentDate = useSelector(selectCurrentDate);
   const today = new Date();
-  const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const numberOfDaysInMonth = getDaysInMonth(currentDate);
 
   const handleDayClick = (e, day) => {
@@ -55,12 +57,14 @@ const MonthCalendar = () => {
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
       renderedCalendar.push(
         <div key={i + startDayOfMonth}>
-          <span
-            className={checkIfCurrentDay(i)}
-            onClick={(e) => handleDayClick(e, i)}
-          >
-            {i}
-          </span>
+          <Link to="/day" element={<DayCalendar />}>
+            <span
+              className={checkIfCurrentDay(i)}
+              onClick={(e) => handleDayClick(e, i)}
+            >
+              {i}
+            </span>
+          </Link>
         </div>
       );
     }
