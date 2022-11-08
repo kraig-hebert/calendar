@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CalendarList from './calendarList/CalendarList';
 
 const AccordionBody = (props) => {
-  const { showAccordion } = props;
+  const { showAccordion, calendarFormVisible } = props;
   const setAccordionHeight = () => {
     if (showAccordion) return '60px';
     else return '0px';
@@ -19,6 +19,7 @@ const AccordionBody = (props) => {
 
 AccordionBody.propTypes = {
   showAccordion: PropTypes.bool,
+  calendarFormVisible: PropTypes.bool,
 };
 
 export default AccordionBody;

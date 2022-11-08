@@ -8,6 +8,7 @@ export const useStyles = createUseStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   iconContainer: {
     display: 'flex',

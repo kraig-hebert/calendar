@@ -7,5 +7,6 @@ export const useStyles = createUseStyles({
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
+    position: 'relative',
   },
 });

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import AccordionBody from './accordionBody/AccordionBody';
 import AccordionHeader from './accordionHeader/AccordionHeader';
+import NewCalendarForm from '../newCalendarForm/NewCalendarForm';
+
 import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 
@@ -17,7 +19,11 @@ const CustomerDrawerAccordion = (props) => {
         calendarFormVisible={calendarFormVisible}
         setCalendarFormVisible={setCalendarFormVisible}
       />
-      <AccordionBody showAccordion={calendarAccordionOpen} />
+      <AccordionBody
+        showAccordion={calendarAccordionOpen}
+        calendarFormVisible={calendarFormVisible}
+      />
+      <NewCalendarForm calendarFormVisible={calendarFormVisible} />
     </div>
   );
 };

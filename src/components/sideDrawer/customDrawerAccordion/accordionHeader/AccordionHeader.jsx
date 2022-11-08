@@ -18,12 +18,12 @@ const AccordionHeader = (props) => {
       <span>My Calendars</span>
       <div className={classes.iconGroup}>
         {calendarFormVisible ? (
-          <FaPlus
+          <FaMinus
             className={classes.shrunkIcon}
             onClick={(e) => setCalendarFormVisible(!calendarFormVisible)}
           />
         ) : (
-          <FaMinus
+          <FaPlus
             className={classes.shrunkIcon}
             onClick={(e) => setCalendarFormVisible(!calendarFormVisible)}
           />

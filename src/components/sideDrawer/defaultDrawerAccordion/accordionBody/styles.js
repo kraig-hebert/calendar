@@ -8,5 +8,6 @@ export const useStyles = createUseStyles({
     width: '85%',
     borderBottomLeftRadius: '10px',
     borderBottomRightRadius: '10px',
+    borderTop: '1px solid #fff',
   },
 });

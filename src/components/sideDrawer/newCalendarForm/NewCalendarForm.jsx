@@ -5,11 +5,15 @@ import PropTypes from 'prop-types';
 const NewCalendarForm = (props) => {
   const { calendarFormVisible } = props;
   const setCalendarFormVisible = () => {
-    if (calendarFormVisible) return 'block';
-    else return 'none';
+    if (calendarFormVisible) return '175px';
+    else return '0';
   };
-  const classes = useStyles({ display: setCalendarFormVisible() });
-  return <div className={classes.newCalendarForm}>NewCalendarForm</div>;
+  const classes = useStyles({ height: setCalendarFormVisible() });
+  return (
+    <div className={classes.newCalendarForm}>
+      <p>Add New Calendar</p>
+    </div>
+  );
 };
 
 NewCalendarForm.propTypes = {

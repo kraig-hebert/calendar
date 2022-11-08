@@ -12,7 +12,6 @@ import {
 } from '../../reducers/appSettings';
 import { format } from 'date-fns';
 import CustomerDrawerAccordion from './customDrawerAccordion/CustomerDrawerAccordion';
-import NewCalendarForm from './newCalendarForm/NewCalendarForm';
 
 const SideDrawer = () => {
   const drawerOpen = useSelector(selectDrawerOpen);
@@ -20,7 +19,7 @@ const SideDrawer = () => {
   const classes = useStyles();
   const toggleSideDrawerClosed = useSideDrawerToggle(false);
   const month = format(date, 'MMMM y');
-  const [calendarFormVisible, setCalendarFormVisible] = useState(true);
+  const [calendarFormVisible, setCalendarFormVisible] = useState(false);
 
   return (
     <>
@@ -43,7 +42,6 @@ const SideDrawer = () => {
             calendarFormVisible={calendarFormVisible}
             setCalendarFormVisible={setCalendarFormVisible}
           />
-          <NewCalendarForm calendarFormVisible={calendarFormVisible} />
         </div>
       )}
     </>
