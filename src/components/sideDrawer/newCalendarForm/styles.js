@@ -13,8 +13,8 @@ export const useStyles = createUseStyles({
     height: props.height,
     transition: '.25s',
     borderTop: '1px solid #fff',
-    borderBottomLeftRadius: '5px',
-    borderBottomRightRadius: '5px',
+    borderBottomLeftRadius: '10px',
+    borderBottomRightRadius: '10px',
     overflow: 'hidden',
     backgroundColor: 'rgb(120,255,140)',
     '& h2': {
@@ -49,13 +49,19 @@ export const useStyles = createUseStyles({
     width: '180px',
     height: '100px',
   },
-  filter: {
-    alignSelf: 'center',
-    justifySelf: 'center',
-    display: 'flex',
-    width: '25px',
-    height: '25px',
-    borderRadius: '50%',
-    backgroundColor: 'black',
+  saveButton: {
+    width: '100px',
+    height: '30px',
+    backgroundColor: 'rgb(7,82,18)',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    marginBottom: '10px',
+    '&:hover': {
+      opacity: '.80',
+    },
+    '& h3': {
+      color: '#fff',
+    },
   },
 });
