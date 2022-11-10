@@ -23,7 +23,10 @@ const CustomerDrawerAccordion = (props) => {
         showAccordion={calendarAccordionOpen}
         calendarFormVisible={calendarFormVisible}
       />
-      <NewCalendarForm calendarFormVisible={calendarFormVisible} />
+      <NewCalendarForm
+        calendarFormVisible={calendarFormVisible}
+        setCalendarFormVisible={setCalendarFormVisible}
+      />
     </div>
   );
 };

@@ -1,0 +1,38 @@
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
+import { useStyles } from './styles';
+
+const CheckBox = (props) => {
+  const { checkBoxBackgroundColor, checkColor } = props;
+  const [checked, setChecked] = useState(false);
+  const setStyles = () => {
+    if (checked) {
+      return {
+        checkBoxBackgroundColor: checkBoxBackgroundColor,
+        checkColor: checkColor,
+      };
+    } else {
+      return {
+        checkBoxBackgroundColor: 'rgb(225, 226, 227)',
+        checkColor: 'rgb(225, 226, 227)',
+      };
+    }
+  };
+  const classes = useStyles(setStyles());
+
+  return (
+    <span
+      className={classes.checkBox}
+      onClick={(e) => {
+        setChecked((prev) => !prev);
+      }}
+    ></span>
+  );
+};
+
+CheckBox.propTypes = {
+  checkBoxBackgroundColor: PropTypes.string,
+  checkColor: PropTypes.string,
+};
+export default CheckBox;

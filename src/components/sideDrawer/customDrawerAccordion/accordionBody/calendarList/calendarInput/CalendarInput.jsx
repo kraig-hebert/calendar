@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { useStyles } from './styles';
+import CheckBox from '../../../../../common/checkBox/CheckBox';
 
 const CalendarInput = (props) => {
-  const { title, classes } = props;
-  const [checked, setChecked] = useState(true);
+  const classes = useStyles();
+  const { title, checkBoxBackgroundColor, checkColor } = props;
   return (
     <div className={classes.inputContainer}>
-      <input
-        type="checkbox"
-        id={title}
-        name={title}
-        value={title}
-        checked={checked}
-        className={classes.checkBox}
-        onChange={(e) => setChecked(e.target.checked)}
+      <CheckBox
+        checkBoxBackgroundColor={checkBoxBackgroundColor}
+        checkColor={checkColor}
       />
       <span className={classes.label}>
         {title.charAt(0).toUpperCase() + title.slice(1)}
@@ -23,6 +20,7 @@ const CalendarInput = (props) => {
 };
 CalendarInput.propTypes = {
   title: PropTypes.string,
-  styles: PropTypes.object,
+  checkBoxBackgroundColor: PropTypes.string,
+  checkColor: PropTypes.string,
 };
 export default CalendarInput;

@@ -47,7 +47,7 @@ export const useStyles = createUseStyles({
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
     width: '180px',
-    height: '100px',
+    height: '40px',
   },
   saveButton: {
     width: '100px',

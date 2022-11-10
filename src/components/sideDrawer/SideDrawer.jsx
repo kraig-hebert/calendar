@@ -6,10 +6,7 @@ import useSideDrawerToggle from '../../utils/useSideDrawerToggle';
 import SmallMonthCalendar from '../common/smallMonthCalendar/SmallMonthCalendar';
 import DefaultDrawerAccordion from './defaultDrawerAccordion/DefaultDrawerAccordion';
 
-import {
-  selectCurrentDate,
-  selectDrawerOpen,
-} from '../../reducers/appSettings';
+import { selectDrawerOpen } from '../../reducers/appSettings';
 import { format } from 'date-fns';
 import CustomerDrawerAccordion from './customDrawerAccordion/CustomerDrawerAccordion';
 

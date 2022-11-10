@@ -4,6 +4,8 @@ const initialState = {
   drawerOpen: true,
   currentDate: new Date().toJSON(),
   currentCalendarSpread: 'year',
+  availableColorFilters: ['blue', 'green', 'red', 'orange'],
+  customCalendars: {},
 };
 
 const appSettingsSlice = createSlice({
@@ -34,6 +36,10 @@ const appSettingsSlice = createSlice({
       state.currentDate = newDate;
       state.currentCalendarSpread = 'month';
     },
+    newCalendarAdded(state, action) {
+      const newCalendar = action.payload;
+      state.customCalendars[newCalendar.id] = newCalendar;
+    },
   },
 });
 
@@ -43,6 +49,18 @@ export const selectCurrentDate = (state) =>
   new Date(state.appSettings.currentDate);
 export const selectCurrentCalendarSpread = (state) =>
   state.appSettings.currentCalendarSpread;
+export const selectAvailableColorFilters = (state) =>
+  state.appSettings.availableColorFilters;
+export const selectCustomCalendarsEntities = (state) =>
+  state.appSettings.customCalendars;
+
+export const selectCustomCalendars = createSelector(
+  selectCustomCalendarsEntities,
+  (entities) =>
+    Object.values(entities).map((calendar) => {
+      return { ...calendar };
+    })
+);
 
 export const {
   drawerCloseSelected,
@@ -51,5 +69,6 @@ export const {
   mainHeaderButtonClicked,
   calendarDaySelected,
   calendarMonthSelected,
+  newCalendarAdded,
 } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;

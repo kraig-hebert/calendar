@@ -1,14 +1,21 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectCustomCalendars } from '../../../../../reducers/appSettings';
 import CalendarInput from './calendarInput/CalendarInput';
-import { useStyles } from './styles';
 
 const CalendarList = () => {
-  const classes = useStyles();
-  const customCalendars = ['work', 'workouts'];
-  const renderedCalendarList = customCalendars.map((calendar, index) => {
-    return <CalendarInput title={calendar} classes={classes} key={index} />;
+  const customCalendars = useSelector(selectCustomCalendars);
+  const renderedCalendarList = customCalendars.map((calendar) => {
+    return (
+      <CalendarInput
+        title={calendar.title}
+        key={calendar.id}
+        checkBoxBackgroundColor="#000"
+        checkColor="yellow"
+      />
+    );
   });
-  return <div>{renderedCalendarList}</div>;
+  return <>{renderedCalendarList}</>;
 };
 
 export default CalendarList;

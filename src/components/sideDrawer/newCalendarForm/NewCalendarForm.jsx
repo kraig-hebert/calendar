@@ -1,26 +1,42 @@
 import React, { useState } from 'react';
 import { useStyles } from './styles';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectAvailableColorFilters,
+  newCalendarAdded,
+  selectCustomCalendars,
+} from '../../../reducers/appSettings';
 
 const NewCalendarForm = (props) => {
-  const { calendarFormVisible } = props;
+  const dispatch = useDispatch();
+  const { calendarFormVisible, setCalendarFormVisible } = props;
   const [inputValue, setInputValue] = useState('');
-  const setCalendarFormVisible = () => {
-    if (calendarFormVisible) return '250px';
+  const [selectedFilter, setSelectedFilter] = useState(new Object());
+  const setFormHeight = () => {
+    if (calendarFormVisible) return '200px';
     else return '0';
   };
-  const classes = useStyles({ height: setCalendarFormVisible() });
+  const classes = useStyles({ height: setFormHeight() });
+  const availableColorFilters = useSelector(selectAvailableColorFilters);
+  const customCalendars = useSelector(selectCustomCalendars);
 
-  const colors = [
-    'black',
-    'yellow',
-    'red',
-    'blue',
-    'pink',
-    'brown',
-    'green',
-    'orange',
-  ];
+  // return next available id
+  const getID = (calendarList) =>
+    calendarList.length ? calendarList[calendarList.length - 1].id + 1 : 1;
+
+  const handleSave = (e) => {
+    setInputValue('');
+    setCalendarFormVisible(false);
+    setTimeout(() => {
+      const newCalendar = {
+        id: getID(customCalendars),
+        title: inputValue,
+      };
+      dispatch(newCalendarAdded(newCalendar));
+    }, 250);
+  };
+
   const setStyle = (color) => {
     return {
       alignSelf: 'center',
@@ -33,10 +49,9 @@ const NewCalendarForm = (props) => {
     };
   };
 
-  const renderedFilters = colors.map((color, index) => (
+  const renderedFilters = availableColorFilters.map((color, index) => (
     <div key={index} style={setStyle(color)}></div>
   ));
-  console.log(renderedFilters);
   return (
     <div className={classes.newCalendarForm}>
       <h2>Add New Calendar</h2>
@@ -50,7 +65,7 @@ const NewCalendarForm = (props) => {
       />
       <p>Select Filter Color:</p>
       <div className={classes.filtersContainer}>{renderedFilters}</div>
-      <button className={classes.saveButton}>
+      <button className={classes.saveButton} onClick={(e) => handleSave(e)}>
         <h3>Save</h3>
       </button>
     </div>
@@ -59,6 +74,7 @@ const NewCalendarForm = (props) => {
 
 NewCalendarForm.propTypes = {
   calendarFormVisible: PropTypes.bool,
+  setCalendarFormVisible: PropTypes.func,
 };
 
 export default NewCalendarForm;
