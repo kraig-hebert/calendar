@@ -4,15 +4,32 @@ import { useStyles } from './styles';
 
 const CalendarList = () => {
   const classes = useStyles();
-  const defaultCalendars = ['holidays', 'birthdays', 'reminders', 'tasks'];
+  const defaultCalendars = [
+    {
+      title: 'Holidays',
+      filter: 'pink',
+    },
+    {
+      title: 'Birthdays',
+      filter: 'yellow',
+    },
+    {
+      title: 'Events',
+      filter: 'lightseagreen',
+    },
+    {
+      title: 'Reminders',
+      filter: 'peru',
+    },
+  ];
   const renderedCalendarList = defaultCalendars.map((calendar, index) => {
     return (
       <CalendarInput
-        title={calendar}
+        title={calendar.title}
         classes={classes}
         key={index}
-        checkBoxBackgroundColor="#000"
-        checkColor="yellow"
+        checkBoxBackgroundColor={calendar.filter}
+        checkColor="#000"
       />
     );
   });
