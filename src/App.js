@@ -3,20 +3,10 @@ import { createUseStyles } from 'react-jss';
 import Header from './components/header/Header';
 import SideDrawer from './components/sideDrawer/SideDrawer';
 import Main from './components/main/Main';
+import { useStyles } from './styles';
+import NewEventModal from './components/common/modals/newEventModal/NewEventModal';
 
 function App() {
-  const useStyles = createUseStyles({
-    appContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      height: '100vh',
-    },
-    bottomContainer: {
-      display: 'flex',
-      height: '100%',
-      marginTop: '50px',
-    },
-  });
   const classes = useStyles();
 
   return (
@@ -26,6 +16,7 @@ function App() {
         <SideDrawer />
         <Main />
       </div>
+      <NewEventModal />
     </div>
   );
 }

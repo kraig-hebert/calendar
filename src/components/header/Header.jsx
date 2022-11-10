@@ -5,6 +5,7 @@ import NavBar from './navBar/NavBar';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { mainHeaderButtonClicked } from '../../reducers/appSettings';
+import { addEventButtonClicked } from '../../reducers/appSettings';
 
 const Header = () => {
   const classes = useStyles();
@@ -21,7 +22,10 @@ const Header = () => {
       </div>
       <NavBar />
       <div>
-        <FaCalendarPlus className={classes.plusIcon} />
+        <FaCalendarPlus
+          className={classes.plusIcon}
+          onClick={(e) => dispatch(addEventButtonClicked())}
+        />
       </div>
     </header>
   );

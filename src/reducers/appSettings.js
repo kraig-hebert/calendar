@@ -2,6 +2,7 @@ import { createSelector, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   drawerOpen: true,
+  newEventModalOpen: false,
   currentDate: new Date().toJSON(),
   currentCalendarSpread: 'year',
   availableColorFilters: ['blue', 'green', 'red', 'orange'],
@@ -43,6 +44,9 @@ const appSettingsSlice = createSlice({
         (filter) => filter !== newCalendar.filter
       );
     },
+    addEventButtonClicked(state) {
+      state.newEventModalOpen = true;
+    },
   },
 });
 
@@ -56,6 +60,8 @@ export const selectAvailableColorFilters = (state) =>
   state.appSettings.availableColorFilters;
 export const selectCustomCalendarsEntities = (state) =>
   state.appSettings.customCalendars;
+export const selectNewEventModalOpen = (state) =>
+  state.appSettings.newEventModalOpen;
 
 export const selectCustomCalendars = createSelector(
   selectCustomCalendarsEntities,
@@ -73,5 +79,6 @@ export const {
   calendarDaySelected,
   calendarMonthSelected,
   newCalendarAdded,
+  addEventButtonClicked,
 } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;
