@@ -12,7 +12,7 @@ const NewCalendarForm = (props) => {
   const dispatch = useDispatch();
   const { calendarFormVisible, setCalendarFormVisible } = props;
   const [inputValue, setInputValue] = useState('');
-  const [selectedFilter, setSelectedFilter] = useState(new Object());
+  const [selectedFilter, setSelectedFilter] = useState('');
   const setFormHeight = () => {
     if (calendarFormVisible) return '200px';
     else return '0';
@@ -27,11 +27,13 @@ const NewCalendarForm = (props) => {
 
   const handleSave = (e) => {
     setInputValue('');
+    setSelectedFilter('');
     setCalendarFormVisible(false);
     setTimeout(() => {
       const newCalendar = {
         id: getID(customCalendars),
         title: inputValue,
+        filter: selectedFilter,
       };
       dispatch(newCalendarAdded(newCalendar));
     }, 250);
@@ -46,11 +48,18 @@ const NewCalendarForm = (props) => {
       height: '25px',
       borderRadius: '50%',
       backgroundColor: color,
+      border: '2px solid #000',
+      borderStyle: color === selectedFilter ? 'solid' : 'none',
+      opacity: color !== selectedFilter ? '0.5' : '1',
     };
   };
 
   const renderedFilters = availableColorFilters.map((color, index) => (
-    <div key={index} style={setStyle(color)}></div>
+    <div
+      key={index}
+      style={setStyle(color)}
+      onClick={(e) => setSelectedFilter(color)}
+    ></div>
   ));
   return (
     <div className={classes.newCalendarForm}>

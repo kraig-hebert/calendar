@@ -39,6 +39,9 @@ const appSettingsSlice = createSlice({
     newCalendarAdded(state, action) {
       const newCalendar = action.payload;
       state.customCalendars[newCalendar.id] = newCalendar;
+      state.availableColorFilters = state.availableColorFilters.filter(
+        (filter) => filter !== newCalendar.filter
+      );
     },
   },
 });

@@ -5,13 +5,14 @@ import CalendarInput from './calendarInput/CalendarInput';
 
 const CalendarList = () => {
   const customCalendars = useSelector(selectCustomCalendars);
+  console.log(customCalendars);
   const renderedCalendarList = customCalendars.map((calendar) => {
     return (
       <CalendarInput
         title={calendar.title}
         key={calendar.id}
-        checkBoxBackgroundColor="#000"
-        checkColor="yellow"
+        checkBoxBackgroundColor={calendar.filter}
+        checkColor="#fff"
       />
     );
   });
