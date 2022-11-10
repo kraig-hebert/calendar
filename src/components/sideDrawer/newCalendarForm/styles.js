@@ -60,6 +60,10 @@ export const useStyles = createUseStyles({
     '&:hover': {
       opacity: '.80',
     },
+    '&:disabled': {
+      cursor: 'default',
+      opacity: '0.5',
+    },
     '& h3': {
       color: '#fff',
     },

@@ -5,7 +5,7 @@ import { useStyles } from './styles';
 
 const CheckBox = (props) => {
   const { checkBoxBackgroundColor, checkColor } = props;
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(true);
   const setStyles = () => {
     if (checked) {
       return {

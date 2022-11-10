@@ -74,7 +74,11 @@ const NewCalendarForm = (props) => {
       />
       <p>Select Filter Color:</p>
       <div className={classes.filtersContainer}>{renderedFilters}</div>
-      <button className={classes.saveButton} onClick={(e) => handleSave(e)}>
+      <button
+        className={classes.saveButton}
+        onClick={(e) => handleSave(e)}
+        disabled={!selectedFilter | !inputValue}
+      >
         <h3>Save</h3>
       </button>
     </div>
