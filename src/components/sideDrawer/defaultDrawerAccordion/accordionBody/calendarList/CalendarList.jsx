@@ -1,27 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import CalendarInput from './calendarInput/CalendarInput';
+import { selectDefaultCalendars } from '../../../../../reducers/appSettings';
 import { useStyles } from './styles';
 
 const CalendarList = () => {
   const classes = useStyles();
-  const defaultCalendars = [
-    {
-      title: 'Holidays',
-      filter: 'pink',
-    },
-    {
-      title: 'Birthdays',
-      filter: 'yellow',
-    },
-    {
-      title: 'Events',
-      filter: 'lightseagreen',
-    },
-    {
-      title: 'Reminders',
-      filter: 'peru',
-    },
-  ];
+  const defaultCalendars = useSelector(selectDefaultCalendars);
   const renderedCalendarList = defaultCalendars.map((calendar, index) => {
     return (
       <CalendarInput

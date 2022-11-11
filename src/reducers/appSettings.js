@@ -7,6 +7,24 @@ const initialState = {
   currentCalendarSpread: 'year',
   availableColorFilters: ['blue', 'green', 'red', 'orange'],
   customCalendars: {},
+  defaultCalendars: [
+    {
+      title: 'Holidays',
+      filter: 'pink',
+    },
+    {
+      title: 'Birthdays',
+      filter: 'yellow',
+    },
+    {
+      title: 'Events',
+      filter: 'lightseagreen',
+    },
+    {
+      title: 'Reminders',
+      filter: 'peru',
+    },
+  ],
 };
 
 const appSettingsSlice = createSlice({
@@ -47,7 +65,7 @@ const appSettingsSlice = createSlice({
     addEventButtonClicked(state) {
       state.newEventModalOpen = true;
     },
-    closeEventModalClicked(state) {
+    eventModalClosed(state) {
       state.newEventModalOpen = false;
     },
   },
@@ -65,6 +83,8 @@ export const selectCustomCalendarsEntities = (state) =>
   state.appSettings.customCalendars;
 export const selectNewEventModalOpen = (state) =>
   state.appSettings.newEventModalOpen;
+export const selectDefaultCalendars = (state) =>
+  state.appSettings.defaultCalendars;
 
 export const selectCustomCalendars = createSelector(
   selectCustomCalendarsEntities,
@@ -83,6 +103,6 @@ export const {
   calendarMonthSelected,
   newCalendarAdded,
   addEventButtonClicked,
-  closeEventModalClicked,
+  eventModalClosed,
 } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;
