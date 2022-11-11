@@ -47,6 +47,9 @@ const appSettingsSlice = createSlice({
     addEventButtonClicked(state) {
       state.newEventModalOpen = true;
     },
+    closeEventModalClicked(state) {
+      state.newEventModalOpen = false;
+    },
   },
 });
 
@@ -80,5 +83,6 @@ export const {
   calendarMonthSelected,
   newCalendarAdded,
   addEventButtonClicked,
+  closeEventModalClicked,
 } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;
