@@ -37,18 +37,18 @@ export const useStyles = createUseStyles({
   }),
   iconContainer: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     backgroundColor: 'rgb(120,255,140)',
     width: '100%',
     borderTopRightRadius: '20px',
     borderTopLeftRadius: '20px',
     borderBottom: '1px solid rgb(7,82,18)',
   },
-  closeIcon: {
+  icon: {
     cursor: 'pointer',
-    fontSize: '1.75rem',
+    fontSize: '2rem',
     color: 'rgb(7,82,18)',
-    margin: '5px',
+    margin: '10px',
   },
   titleInput: {
     marginTop: '25px',
@@ -110,7 +110,7 @@ export const useStyles = createUseStyles({
     padding: '5px',
     border: '1px solid rgb(7,82,18)',
     borderRadius: '10px',
-    width: '50%',
+    width: '60%',
     height: '35px',
     fontSize: '1.75rem',
     color: 'rgb(7,82,18)',
