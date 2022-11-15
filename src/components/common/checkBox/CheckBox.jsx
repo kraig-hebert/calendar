@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { useStyles } from './styles';
 
 const CheckBox = (props) => {
-  const { checkBoxBackgroundColor, checkColor } = props;
-  const [checked, setChecked] = useState(true);
+  const { checkBoxBackgroundColor, checkColor, startChecked } = props;
+  const [checked, setChecked] = useState(startChecked);
   const setStyles = () => {
     if (checked) {
       return {
@@ -34,5 +34,6 @@ const CheckBox = (props) => {
 CheckBox.propTypes = {
   checkBoxBackgroundColor: PropTypes.string,
   checkColor: PropTypes.string,
+  startChecked: PropTypes.bool,
 };
 export default CheckBox;

@@ -1,10 +1,5 @@
 import { createUseStyles } from 'react-jss';
 
-const getColumns = (calendarListLength) => {
-  if (calendarListLength) return `repeat(${calendarListLength}, 1fr)`;
-  else return 'repeat(4,1fr)';
-};
-
 export const useStyles = createUseStyles({
   '@keyframes fadeIn': {
     from: { opacity: '0', zIndex: '-1' },
@@ -39,27 +34,11 @@ export const useStyles = createUseStyles({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    '& input': {
-      margin: '25px',
-      padding: '5px',
-      border: '1px solid rgb(7,82,18)',
-      borderRadius: '2px',
-      width: '80%',
-      height: '35px',
-      fontSize: '1.75rem',
-      '&:active, &:focus': {
-        outline: 'none',
-      },
-      '&::placeholder': {
-        paddingLeft: '10px',
-        color: 'rgb(7,82,18)',
-      },
-    },
   }),
   iconContainer: {
     display: 'flex',
     justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0,0,0,0.1)',
+    backgroundColor: 'rgb(120,255,140)',
     width: '100%',
     borderTopRightRadius: '20px',
     borderTopLeftRadius: '20px',
@@ -67,14 +46,31 @@ export const useStyles = createUseStyles({
   },
   closeIcon: {
     cursor: 'pointer',
-    fontSize: '2rem',
+    fontSize: '1.75rem',
     color: 'rgb(7,82,18)',
-    margin: '10px',
+    margin: '5px',
+  },
+  titleInput: {
+    marginTop: '25px',
+    padding: '5px',
+    border: '1px solid rgb(7,82,18)',
+    borderRadius: '10px',
+    width: '80%',
+    height: '35px',
+    fontSize: '1.75rem',
+    '&:active, &:focus': {
+      outline: 'none',
+    },
+    '&::placeholder': {
+      paddingLeft: '10px',
+      color: 'rgb(7,82,18)',
+    },
   },
   defaultCalendarRow: {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
     height: '50px',
+    marginTop: '10px',
     width: '80%',
     '& span': {
       justifySelf: 'center',
@@ -85,6 +81,7 @@ export const useStyles = createUseStyles({
     display: 'grid',
     gridTemplateColumns: `repeat(${props.calendarListLength}, 1fr)`,
     height: '50px',
+    marginBottom: '10px',
     width: '80%',
     '& span': {
       justifySelf: 'center',
@@ -95,8 +92,34 @@ export const useStyles = createUseStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    fontSize: '1.25rem',
     '& span': {
       marginLeft: '10px',
+    },
+  },
+  timeContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '200px',
+  },
+  dateInput: {
+    margin: '10px 0',
+    padding: '5px',
+    border: '1px solid rgb(7,82,18)',
+    borderRadius: '10px',
+    width: '50%',
+    height: '35px',
+    fontSize: '1.75rem',
+    color: 'rgb(7,82,18)',
+    '&::-webkit-calendar-picker-indicator': {
+      filter: 'invert(1)',
+      cursor: 'pointer',
+    },
+    '&:active, &:focus': {
+      outline: 'none',
     },
   },
 });
