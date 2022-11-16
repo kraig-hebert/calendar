@@ -32,7 +32,7 @@ export const useStyles = createUseStyles({
   calendarBody: {
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
-    '& div': {
+    '& > div': {
       display: 'flex',
       alignSelf: 'center',
       justifySelf: 'center',
@@ -57,13 +57,14 @@ export const useStyles = createUseStyles({
         alignItems: 'center',
         justifyContent: 'center',
         '&:hover': {
-          borderRadius: '50%',
           backgroundColor: 'rgb(120,255,140)',
           cursor: 'pointer',
         },
       },
     },
   },
+  calendarDay: {},
+  eventsContainer: {},
   currentDay: {
     backgroundColor: 'rgb(7,82,18)',
     color: 'white',

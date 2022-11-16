@@ -11,6 +11,7 @@ import {
   mainHeaderButtonClicked,
   selectCurrentDate,
 } from '../../reducers/appSettings';
+import { selectEvents } from '../../reducers/eventsSlice';
 import useSideDrawerToggle from '../../utils/useSideDrawerToggle';
 import useCalendarHeaderDate from '../../utils/useCalendarHeaderDate';
 import MonthCalendar from './calendarTypes/monthCalendar/MonthCalendar';
@@ -27,6 +28,7 @@ const Main = () => {
   const currentCalendarSpread = useSelector(selectCurrentCalendarSpread);
   const toggleSideDrawerOpen = useSideDrawerToggle(true);
   const calendarHeaderDate = useCalendarHeaderDate();
+  const events = useSelector(selectEvents);
 
   const handleLeftClick = () => {
     switch (currentCalendarSpread) {
@@ -79,7 +81,7 @@ const Main = () => {
           <Route path="/" element={<YearCalendar />} />
           <Route path="/day" element={<DayCalendar />} />
           <Route path="/week" element={<WeekCalendar />} />
-          <Route path="/month" element={<MonthCalendar />} />
+          <Route path="/month" element={<MonthCalendar events={events} />} />
           <Route path="/year" element={<YearCalendar />} />
           <Route path="/schedule" element={<ScheduleCalendar />} />
         </Routes>

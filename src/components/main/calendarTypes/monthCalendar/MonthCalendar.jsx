@@ -8,8 +8,10 @@ import {
 import { getDay, getDaysInMonth } from 'date-fns';
 import { Link } from 'react-router-dom';
 import DayCalendar from '../dayCalendar/DayCalendar';
+import PropTypes from 'prop-types';
 
-const MonthCalendar = () => {
+const MonthCalendar = (props) => {
+  const { events } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
   const currentDate = useSelector(selectCurrentDate);
@@ -39,6 +41,8 @@ const MonthCalendar = () => {
     else return undefined;
   };
 
+  const renderEvents = (i) => {};
+
   const assembleCalendar = () => {
     let renderedCalendar = new Array();
     const startDayOfMonth = getDay(
@@ -56,14 +60,15 @@ const MonthCalendar = () => {
     }
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
       renderedCalendar.push(
-        <div key={i + startDayOfMonth}>
-          <Link to="/day" element={<DayCalendar />}>
+        <div key={i + startDayOfMonth} className={classes.calendarDay}>
+          <Link to="/day" element={<DayCalendar events={events} />}>
             <span
               className={checkIfCurrentDay(i)}
               onClick={(e) => handleDayClick(e, i)}
             >
               {i}
             </span>
+            <div className={classes.eventsContainer}>{renderEvents(i)}</div>
           </Link>
         </div>
       );
@@ -84,6 +89,10 @@ const MonthCalendar = () => {
       <div className={classes.calendarBody}>{assembleCalendar()}</div>
     </div>
   );
+};
+
+MonthCalendar.propTypes = {
+  events: PropTypes.array,
 };
 
 export default MonthCalendar;
