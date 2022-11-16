@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001/';
+const API_URL = 'http://localhost:3001/events';
 
 export const get = async () => {
   const response = await fetch(API_URL, {
@@ -11,7 +11,7 @@ export const get = async () => {
 };
 
 export const post = async (eventObject) => {
-  const response = fetch(API_URL + 'events', {
+  const response = fetch(API_URL, {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',

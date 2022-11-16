@@ -21,21 +21,32 @@ const NewEventModal = () => {
   const [inputValue, setInputValue] = useState('');
   const [selectedSwitch, setSelectedSwitch] = useState('all-day');
   const [singleDate, setSingleDate] = useState(format(new Date(), 'yyyy-L-dd'));
-  const [startDate, setStartDate] = useState(
+  const [startTime, setStartTime] = useState(
     format(new Date(), 'yyyy-L-dd') + 'T12:00'
   );
-  const [endDate, setEndDate] = useState(
+  const [endTime, setEndTime] = useState(
     format(new Date(), 'yyyy-L-dd') + 'T12:00'
   );
 
   const handleSave = () => {
-    const newEvent = {
-      title: inputValue,
-      filter: 'green',
-      singleDate: singleDate,
-      allDay: true,
-    };
-    dispatch(saveNewEvent(newEvent));
+    if (selectedSwitch === 'all-day') {
+      const newEvent = {
+        title: inputValue,
+        filter: 'green',
+        singleDate: singleDate,
+        allDay: true,
+      };
+      dispatch(saveNewEvent(newEvent));
+    } else {
+      const newEvent = {
+        title: inputValue,
+        filter: 'yellow',
+        startTime: startTime,
+        endTime: endTime,
+        allDay: false,
+      };
+      dispatch(saveNewEvent(newEvent));
+    }
   };
 
   const setStyles = () => {
@@ -123,8 +134,8 @@ const NewEventModal = () => {
                 name="start-date"
                 id="start-date"
                 className={classes.dateInput}
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
               />
               <p>End Time</p>
               <input
@@ -132,8 +143,8 @@ const NewEventModal = () => {
                 name="end-date"
                 id="end-date"
                 className={classes.dateInput}
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
               />
             </>
           )}

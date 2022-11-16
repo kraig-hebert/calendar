@@ -13,6 +13,11 @@ const initialState = {
 const getID = (eventList) =>
   eventList.length ? eventList[eventList.length - 1].id + 1 : 2;
 
+export const fetchEvents = createAsyncThunk(
+  'events/fetchEvents',
+  async () => await client.get()
+);
+
 export const saveNewEvent = createAsyncThunk(
   'events/saveNewEvent',
   async (newEvent, { getState }) => {
@@ -21,7 +26,6 @@ export const saveNewEvent = createAsyncThunk(
       ...newEvent,
       id: getID(Object.values(state.events.entities)),
     };
-    console.log(newEventWithID);
     const response = await client.post(newEventWithID);
     if (response.status === 201) return newEventWithID;
   }
@@ -32,13 +36,43 @@ const eventsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(saveNewEvent.fulfilled, (state, action) => {
-      const newEvent = action.payload;
-      state.entities[newEvent.id] = newEvent;
-    });
+    builder
+      .addCase(fetchEvents.fulfilled, (state, action) => {
+        const newEvents = new Object();
+        const eventList = action.payload;
+        eventList.forEach((event) => {
+          newEvents[event.id] = event;
+        });
+        state.entities = newEvents;
+      })
+      .addCase(saveNewEvent.fulfilled, (state, action) => {
+        const newEvent = action.payload;
+        state.entities[newEvent.id] = newEvent;
+      });
   },
 });
 
 export const {} = eventsSlice.actions;
+
+export const selectEventEntities = (state) => state.events.entities;
+
+export const selectEvents = createSelector(selectEventEntities, (events) => {
+  const sortedEventListWithDateObjects = Object.values(events)
+    .map((event) => {
+      if (event.allDay)
+        return {
+          ...event,
+          singleDate: new Date(event.singleDate),
+        };
+      else
+        return {
+          ...event,
+          startTime: new Date(event.startTime),
+          endTime: new Date(event.endTime),
+        };
+    })
+    .sort((eventA, eventB) => eventA.startTime - eventB.startTime);
+  return sortedEventListWithDateObjects;
+});
 
 export default eventsSlice.reducer;

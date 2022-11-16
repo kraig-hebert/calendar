@@ -13,12 +13,7 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <div>
-        <Link
-          to="/"
-          onClick={dispatch(mainHeaderButtonClicked(new Date().toJSON()))}
-        >
-          <span>Calendar</span>
-        </Link>
+        <span>Calendar</span>
       </div>
       <NavBar />
       <div>
