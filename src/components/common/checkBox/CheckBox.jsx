@@ -21,14 +21,11 @@ const CheckBox = (props) => {
   };
   const classes = useStyles(setStyles());
 
-  return (
-    <span
-      className={classes.checkBox}
-      onClick={(e) => {
-        setChecked((prev) => !prev);
-      }}
-    ></span>
-  );
+  const handleClick = (e) => {
+    setChecked((prev) => !prev);
+  };
+
+  return <span className={classes.checkBox} onClick={handleClick}></span>;
 };
 
 CheckBox.propTypes = {

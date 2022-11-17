@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectNewEventModalOpen,
@@ -12,11 +12,11 @@ import { useStyles } from './styles';
 import { AiFillCloseCircle, AiFillSave } from 'react-icons/ai';
 import CheckBox from '../../checkBox/CheckBox';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
+import EventCalendars from './eventCalendars/EventCalendars';
 
 const NewEventModal = () => {
   const dispatch = useDispatch();
   const newEventModalOpen = useSelector(selectNewEventModalOpen);
-  const defaultCalendars = useSelector(selectDefaultCalendars);
   const customCalendars = useSelector(selectCustomCalendars);
   const [inputValue, setInputValue] = useState('');
   const [selectedSwitch, setSelectedSwitch] = useState('all-day');
@@ -56,7 +56,6 @@ const NewEventModal = () => {
         animation: '$fadeIn',
         zIndex: '2',
         opactity: '1',
-        calendarListLength: customCalendars.length,
       };
     else
       return {
@@ -64,23 +63,10 @@ const NewEventModal = () => {
         animation: '$fadeOut',
         zIndex: '-1',
         opacity: '0',
-        calendarListLength: customCalendars.length,
       };
   };
 
   const classes = useStyles(setStyles());
-  const renderedDefaultCalendars = defaultCalendars.map((calendar, index) => (
-    <div key={index} className={classes.calendar}>
-      <CheckBox checkBoxBackgroundColor={calendar.filter} checkColor="#000" />
-      <span>{calendar.title}</span>
-    </div>
-  ));
-  const renderedCustomCalendars = customCalendars.map((calendar, index) => (
-    <div key={index} className={classes.calendar}>
-      <CheckBox checkBoxBackgroundColor={calendar.filter} checkColor="#fff" />
-      <span>{calendar.title}</span>
-    </div>
-  ));
 
   return (
     <div className={classes.modal}>
@@ -101,14 +87,7 @@ const NewEventModal = () => {
           className={classes.titleInput}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <div className={classes.defaultCalendarRow}>
-          {renderedDefaultCalendars}
-        </div>
-        {renderedCustomCalendars.length > 0 && (
-          <div className={classes.customCalendarRow}>
-            {renderedCustomCalendars}
-          </div>
-        )}
+        <EventCalendars />
         <SwitchSelectors
           selectedSwitch={selectedSwitch}
           setSelectedSwitch={setSelectedSwitch}
