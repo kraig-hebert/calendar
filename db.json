@@ -37,6 +37,13 @@
       "endTime": "2022-11-24T12:00",
       "allDay": false,
       "id": 6
+    },
+    {
+      "title": "October",
+      "filter": "Holidays",
+      "singleDate": "2022-10-17",
+      "allDay": true,
+      "id": 7
     }
   ]
 }

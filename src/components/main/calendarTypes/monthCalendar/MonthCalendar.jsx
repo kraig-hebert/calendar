@@ -5,6 +5,7 @@ import {
   selectCurrentDate,
   calendarDaySelected,
 } from '../../../../reducers/appSettings';
+import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
 import { getDay, getDaysInMonth } from 'date-fns';
 import { Link } from 'react-router-dom';
 import DayCalendar from '../dayCalendar/DayCalendar';
@@ -15,6 +16,9 @@ const MonthCalendar = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const currentDate = useSelector(selectCurrentDate);
+  console.log(events);
+  const monthFilteredEvents = useSelector(selectMonthFilteredEvents);
+  console.log(monthFilteredEvents);
   const today = new Date();
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const numberOfDaysInMonth = getDaysInMonth(currentDate);

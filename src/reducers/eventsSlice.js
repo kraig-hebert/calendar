@@ -4,6 +4,7 @@ import {
   createAsyncThunk,
 } from '@reduxjs/toolkit';
 import * as client from '../api/client';
+import { selectCurrentDate } from './appSettings';
 
 const initialState = {
   entities: {},
@@ -74,5 +75,20 @@ export const selectEvents = createSelector(selectEventEntities, (events) => {
     .sort((eventA, eventB) => eventA.startTime - eventB.startTime);
   return sortedEventListWithDateObjects;
 });
+
+export const selectMonthFilteredEvents = createSelector(
+  selectEvents,
+  selectCurrentDate,
+  (events, currentDate) => {
+    console.log(events, currentDate);
+    const filteredEvents = events.filter(
+      (event) =>
+        (new Date(event.startTime).getMonth() |
+          new Date(event.singleDate).getMonth()) ===
+        currentDate.getMonth()
+    );
+    return filteredEvents;
+  }
+);
 
 export default eventsSlice.reducer;
