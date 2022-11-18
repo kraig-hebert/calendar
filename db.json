@@ -15,16 +15,6 @@
       "singleDate": "2022-11-15T05:00:00.000Z",
       "allDay": true,
       "id": 3
-    },
-    {
-      "title": "1Test",
-      "filter": "Reminders",
-      "color": "#000",
-      "startTime": "2022-11-15T05:00:00.000Z",
-      "endTime": "2022-11-15T05:00:00.000Z",
-      "allDay": false,
-      "id": 4
     }
-
   ]
 }

@@ -74,4 +74,7 @@ export const useStyles = createUseStyles({
     color: 'white',
     borderRadius: '50%',
   },
+  eventInfo: {
+    margin: '1px 3px',
+  },
 });

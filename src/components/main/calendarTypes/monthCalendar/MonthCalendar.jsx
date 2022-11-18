@@ -7,7 +7,7 @@ import {
   selectAllCalendars,
 } from '../../../../reducers/appSettings';
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
-import { getDay, getDaysInMonth } from 'date-fns';
+import { getDay, getDaysInMonth, format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import DayCalendar from '../dayCalendar/DayCalendar';
 import PropTypes from 'prop-types';
@@ -63,13 +63,12 @@ const MonthCalendar = (props) => {
       (calendar) => event.filter === calendar.title
     );
     return {
-      display: 'grid',
-      justifyContent: 'center',
+      display: 'flex',
+      justifyContent: 'flex-start',
       alignItems: 'center',
       height: '20px',
       backgroundColor: calendar[0].filter,
       color: event.color,
-      margin: '1px 0',
     };
   };
   const renderEvents = (i) => {
@@ -78,14 +77,16 @@ const MonthCalendar = (props) => {
         (event.hasOwnProperty('startTime') && event.startTime.getDate() === i) |
         (event.hasOwnProperty('singleDate') && event.singleDate.getDate() === i)
     );
-    const list = todaysEventsList.map((event, index) => {
+    return todaysEventsList.map((event, index) => {
       return (
         <div style={setEventStyles(event)} key={index}>
-          {event.title}
+          <div className={classes.eventInfo}>
+            {format(event.singleDate, 'hh:mm aaa')} -
+          </div>
+          <div className={classes.eventInfo}> {event.title}</div>
         </div>
       );
     });
-    return list;
   };
 
   const assembleCalendar = () => {
