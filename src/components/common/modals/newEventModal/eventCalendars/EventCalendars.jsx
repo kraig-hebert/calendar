@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useStyles } from './styles';
 import { useSelector } from 'react-redux';
 import {
@@ -7,24 +8,24 @@ import {
 } from '../../../../../reducers/appSettings';
 import CheckBox from './checkbox/CheckBox';
 
-const EventCalendars = () => {
+const EventCalendars = (props) => {
+  const { selectedCalendar, setSelectedCalendar } = props;
   const defaultCalendars = useSelector(selectDefaultCalendars);
   const customCalendars = useSelector(selectCustomCalendars);
-  const [selectedCheck, setSelectedCheck] = useState('Holidays');
-  const handleClick = (e, calendarTitle) => setSelectedCheck(calendarTitle);
+  const handleClick = (e, calendar) => setSelectedCalendar(calendar);
   const classes = useStyles({ calendarListLength: customCalendars.length });
   const setStyles = (calendar, checkColor) => {
-    if (calendar.title === selectedCheck) {
+    if (calendar.title === selectedCalendar.title) {
       return {
         checkBoxBackgroundColor: calendar.filter,
         checkColor: checkColor,
-        onClick: (e) => handleClick(e, calendar.title),
+        onClick: (e) => handleClick(e, calendar),
       };
     } else {
       return {
         checkBoxBackgroundColor: 'rgb(225, 226, 227)',
         checkColor: 'rgb(225, 226, 227)',
-        onClick: (e) => handleClick(e, calendar.title),
+        onClick: (e) => handleClick(e, calendar),
       };
     }
   };
@@ -54,6 +55,11 @@ const EventCalendars = () => {
       )}
     </>
   );
+};
+
+EventCalendars.propTypes = {
+  selectedCalendar: PropTypes.object,
+  setSelectedCalendar: PropTypes.func,
 };
 
 export default EventCalendars;

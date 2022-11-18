@@ -1,25 +1,17 @@
 {
   "events": [
     {
-      "id": 1,
-      "title": "Vermont Trip",
-      "filter": "Events",
-      "startTime": "2022-11-05T16:00:00.000Z",
-      "endTime": "2022-11-05T17:00:00.000Z",
-      "allDay": false
-    },
-    {
-      "title": "Test",
-      "filter": "green",
-      "singleDate": "2022-11-15",
+      "title": "Testfffffds",
+      "filter": "Birthdays",
+      "singleDate": "2022-11-17",
       "allDay": true,
       "id": 2
     },
     {
-      "title": "Tester",
-      "filter": "yellow",
-      "startTime": "2022-11-15T12:00",
-      "endTime": "2022-11-15T12:00",
+      "title": "ffffffff",
+      "filter": "Holidays",
+      "startTime": "2022-11-17T12:00",
+      "endTime": "2022-11-17T12:00",
       "allDay": false,
       "id": 3
     }

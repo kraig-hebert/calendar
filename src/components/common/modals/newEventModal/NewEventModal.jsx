@@ -3,23 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectNewEventModalOpen,
   eventModalClosed,
-  selectDefaultCalendars,
-  selectCustomCalendars,
 } from '../../../../reducers/appSettings';
 import { saveNewEvent } from '../../../../reducers/eventsSlice';
 import { format } from 'date-fns';
 import { useStyles } from './styles';
 import { AiFillCloseCircle, AiFillSave } from 'react-icons/ai';
-import CheckBox from '../../checkBox/CheckBox';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
 
 const NewEventModal = () => {
   const dispatch = useDispatch();
   const newEventModalOpen = useSelector(selectNewEventModalOpen);
-  const customCalendars = useSelector(selectCustomCalendars);
   const [inputValue, setInputValue] = useState('');
   const [selectedSwitch, setSelectedSwitch] = useState('all-day');
+  const [selectedCalendar, setSelectedCalendar] = useState(new Object());
   const [singleDate, setSingleDate] = useState(format(new Date(), 'yyyy-L-dd'));
   const [startTime, setStartTime] = useState(
     format(new Date(), 'yyyy-L-dd') + 'T12:00'
@@ -32,7 +29,7 @@ const NewEventModal = () => {
     if (selectedSwitch === 'all-day') {
       const newEvent = {
         title: inputValue,
-        filter: 'green',
+        filter: selectedCalendar.title,
         singleDate: singleDate,
         allDay: true,
       };
@@ -40,7 +37,7 @@ const NewEventModal = () => {
     } else {
       const newEvent = {
         title: inputValue,
-        filter: 'yellow',
+        filter: selectedCalendar.title,
         startTime: startTime,
         endTime: endTime,
         allDay: false,
@@ -87,7 +84,10 @@ const NewEventModal = () => {
           className={classes.titleInput}
           onChange={(e) => setInputValue(e.target.value)}
         />
-        <EventCalendars />
+        <EventCalendars
+          selectedCalendar={selectedCalendar}
+          setSelectedCalendar={setSelectedCalendar}
+        />
         <SwitchSelectors
           selectedSwitch={selectedSwitch}
           setSelectedSwitch={setSelectedSwitch}
