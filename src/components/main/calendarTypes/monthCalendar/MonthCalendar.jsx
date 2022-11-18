@@ -59,11 +59,9 @@ const MonthCalendar = (props) => {
     else return undefined;
   };
   const setEventStyles = (event) => {
-    console.log(event);
     const calendar = allCalendars.filter(
       (calendar) => event.filter === calendar.title
     );
-    console.log(calendar);
     return {
       display: 'grid',
       justifyContent: 'center',
@@ -71,6 +69,7 @@ const MonthCalendar = (props) => {
       height: '20px',
       backgroundColor: calendar[0].filter,
       color: event.color,
+      margin: '1px 0',
     };
   };
   const renderEvents = (i) => {

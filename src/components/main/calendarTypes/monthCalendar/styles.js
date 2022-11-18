@@ -66,7 +66,7 @@ export const useStyles = createUseStyles({
     },
   }),
   eventsContainer: {
-    width: '100%',
+    width: '95%',
     height: '100%',
   },
   currentDay: {
