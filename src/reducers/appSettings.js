@@ -4,7 +4,7 @@ const initialState = {
   drawerOpen: true,
   newEventModalOpen: false,
   currentDate: new Date().toJSON(),
-  currentCalendarSpread: 'year',
+  currentCalendarSpread: 'month',
   availableColorFilters: ['blue', 'green', 'red', 'orange'],
   customCalendars: {},
   defaultCalendars: [

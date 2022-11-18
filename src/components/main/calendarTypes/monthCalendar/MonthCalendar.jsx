@@ -12,13 +12,28 @@ import DayCalendar from '../dayCalendar/DayCalendar';
 import PropTypes from 'prop-types';
 
 const MonthCalendar = (props) => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const currentDate = useSelector(selectCurrentDate);
   const monthFilteredEvents = useSelector(selectMonthFilteredEvents);
   const today = new Date();
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const numberOfDaysInMonth = getDaysInMonth(currentDate);
+  const startDayOfMonth = getDay(
+    new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
+  );
+  const lastDayOfMonth = getDay(
+    new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      numberOfDaysInMonth
+    )
+  );
+
+  const getRows = () => {
+    if (numberOfDaysInMonth > 29 && startDayOfMonth > 4) return 6;
+    else return 5;
+  };
+  const classes = useStyles({ rows: getRows() });
 
   const handleDayClick = (e, day) => {
     dispatch(
@@ -57,22 +72,13 @@ const MonthCalendar = (props) => {
 
   const assembleCalendar = () => {
     let renderedCalendar = new Array();
-    const startDayOfMonth = getDay(
-      new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
-    );
-    const lastDayOfMonth = getDay(
-      new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
-        numberOfDaysInMonth
-      )
-    );
+
     for (let i = 0; i < startDayOfMonth; i++) {
       renderedCalendar.push(<div key={i}></div>);
     }
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
       renderedCalendar.push(
-        <div key={i + startDayOfMonth} className={classes.calendarDay}>
+        <div key={i + startDayOfMonth}>
           <Link to="/day" element={<DayCalendar />}>
             <span
               className={checkIfCurrentDay(i)}

@@ -78,7 +78,7 @@ const Main = () => {
       </div>
       <div className={classes.calendarContainer}>
         <Routes>
-          <Route path="/" element={<YearCalendar />} />
+          <Route path="/" element={<MonthCalendar />} />
           <Route path="/day" element={<DayCalendar />} />
           <Route path="/week" element={<WeekCalendar />} />
           <Route path="/month" element={<MonthCalendar />} />

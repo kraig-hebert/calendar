@@ -1,49 +1,30 @@
 {
   "events": [
     {
-      "title": "Testfffffds",
+      "title": "Teat",
       "filter": "Birthdays",
-      "singleDate": "2022-11-17",
-      "allDay": true,
+      "startTime": "2022-11-17T12:00",
+      "endTime": "2022-11-17T12:00",
+      "allDay": false,
       "id": 2
     },
     {
-      "title": "ffffffff",
-      "filter": "Holidays",
-      "startTime": "2022-11-17T12:00",
-      "endTime": "2022-11-17T12:00",
-      "allDay": false,
+      "title": "ffffff",
+      "singleDate": "2022-11-17",
+      "allDay": true,
       "id": 3
     },
     {
-      "title": "Another one",
-      "filter": "Holidays",
-      "startTime": "2022-11-17T12:00",
-      "endTime": "2022-11-17T12:00",
-      "allDay": false,
+      "title": "ffffff",
+      "singleDate": "2022-11-17",
+      "allDay": true,
       "id": 4
     },
     {
-      "title": "Tert",
-      "filter": "Holidays",
+      "title": "fasdfsdf",
       "singleDate": "2022-11-17",
       "allDay": true,
       "id": 5
-    },
-    {
-      "title": "Absdfgdsfg",
-      "filter": "Reminders",
-      "startTime": "2022-11-17T12:00",
-      "endTime": "2022-11-24T12:00",
-      "allDay": false,
-      "id": 6
-    },
-    {
-      "title": "October",
-      "filter": "Holidays",
-      "singleDate": "2022-10-17",
-      "allDay": true,
-      "id": 7
     }
   ]
 }

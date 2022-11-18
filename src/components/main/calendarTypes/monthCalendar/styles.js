@@ -29,18 +29,17 @@ export const useStyles = createUseStyles({
       },
     },
   },
-  calendarBody: {
+  calendarBody: (props) => ({
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
+    gridTemplateRows: `repeat(${props.rows}, 1fr)`,
+    height: 'inherit',
     '& > div': {
       display: 'flex',
       flexDirection: 'column',
-      alignSelf: 'center',
-      justifySelf: 'center',
       justifyContent: 'flex-start',
       alignItems: 'center',
       width: '100%',
-      height: '100%',
       borderBottom: '1px solid #000',
       borderLeft: '1px solid #000',
       '&:nth-of-type(7n), &:last-of-type': {
@@ -52,8 +51,8 @@ export const useStyles = createUseStyles({
       },
       '& span': {
         display: 'grid',
-        width: '40px',
-        height: '40px',
+        width: '30px',
+        height: '30px',
         marginTop: '10px',
         alignItems: 'center',
         justifyContent: 'center',
@@ -64,8 +63,14 @@ export const useStyles = createUseStyles({
         },
       },
     },
+  }),
+  eventsContainer: {
+    width: '100%',
+    height: '100%',
+    '& > div': {
+      height: '20px',
+    },
   },
-  eventsContainer: {},
   currentDay: {
     backgroundColor: 'rgb(7,82,18)',
     color: 'white',
