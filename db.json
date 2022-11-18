@@ -14,6 +14,29 @@
       "endTime": "2022-11-17T12:00",
       "allDay": false,
       "id": 3
+    },
+    {
+      "title": "Another one",
+      "filter": "Holidays",
+      "startTime": "2022-11-17T12:00",
+      "endTime": "2022-11-17T12:00",
+      "allDay": false,
+      "id": 4
+    },
+    {
+      "title": "Tert",
+      "filter": "Holidays",
+      "singleDate": "2022-11-17",
+      "allDay": true,
+      "id": 5
+    },
+    {
+      "title": "Absdfgdsfg",
+      "filter": "Reminders",
+      "startTime": "2022-11-17T12:00",
+      "endTime": "2022-11-24T12:00",
+      "allDay": false,
+      "id": 6
     }
   ]
 }

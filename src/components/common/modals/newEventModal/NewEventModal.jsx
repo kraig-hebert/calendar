@@ -25,6 +25,16 @@ const NewEventModal = () => {
     format(new Date(), 'yyyy-L-dd') + 'T12:00'
   );
 
+  const clearModal = () => {
+    dispatch(eventModalClosed());
+    setInputValue('');
+    setSelectedSwitch('all-day');
+    setSelectedCalendar(new Object());
+    setSingleDate(format(new Date(), 'yyyy-L-dd'));
+    setStartTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
+    setEndTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
+  };
+
   const handleSave = () => {
     if (selectedSwitch === 'all-day') {
       const newEvent = {
@@ -34,6 +44,7 @@ const NewEventModal = () => {
         allDay: true,
       };
       dispatch(saveNewEvent(newEvent));
+      clearModal();
     } else {
       const newEvent = {
         title: inputValue,
@@ -43,6 +54,7 @@ const NewEventModal = () => {
         allDay: false,
       };
       dispatch(saveNewEvent(newEvent));
+      clearModal();
     }
   };
 
