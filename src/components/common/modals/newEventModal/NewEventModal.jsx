@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectNewEventModalOpen,
   eventModalClosed,
+  selectDefaultCalendarTitles,
 } from '../../../../reducers/appSettings';
 import { saveNewEvent } from '../../../../reducers/eventsSlice';
 import { format } from 'date-fns';
@@ -14,6 +15,7 @@ import EventCalendars from './eventCalendars/EventCalendars';
 const NewEventModal = () => {
   const dispatch = useDispatch();
   const newEventModalOpen = useSelector(selectNewEventModalOpen);
+  const defaultCalendarTitles = useSelector(selectDefaultCalendarTitles);
   const [inputValue, setInputValue] = useState('');
   const [selectedSwitch, setSelectedSwitch] = useState('all-day');
   const [selectedCalendar, setSelectedCalendar] = useState(new Object());
@@ -47,11 +49,17 @@ const NewEventModal = () => {
     ).toJSON();
   };
 
+  const setColor = () => {
+    if (defaultCalendarTitles.includes(selectedCalendar.title)) return '#000';
+    else return '#fff';
+  };
+
   const handleSave = () => {
     if (selectedSwitch === 'all-day') {
       const newEvent = {
         title: inputValue,
         filter: selectedCalendar.title,
+        color: setColor(),
         singleDate: setDate(),
         allDay: true,
       };
@@ -61,6 +69,7 @@ const NewEventModal = () => {
       const newEvent = {
         title: inputValue,
         filter: selectedCalendar.title,
+        color: setColor(),
         startTime: new Date(startTime).toJSON(),
         endTime: new Date(endTime).toJSON(),
         allDay: false,

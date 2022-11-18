@@ -1,4 +1,5 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
+import de from 'date-fns/esm/locale/de/index.js';
 
 const initialState = {
   drawerOpen: true,
@@ -92,6 +93,24 @@ export const selectCustomCalendars = createSelector(
     Object.values(entities).map((calendar) => {
       return { ...calendar };
     })
+);
+
+export const selectDefaultCalendarTitles = createSelector(
+  selectDefaultCalendars,
+  (defaultCalendars) => {
+    return defaultCalendars.map((calendar) => calendar.title);
+  }
+);
+
+export const selectAllCalendars = createSelector(
+  selectDefaultCalendars,
+  selectCustomCalendars,
+  (defaultCalendars, customCalendars) => {
+    let calendarList = new Array();
+    defaultCalendars.forEach((calendar) => calendarList.push(calendar));
+    customCalendars.forEach((calendar) => calendarList.push(calendar));
+    return calendarList;
+  }
 );
 
 export const {

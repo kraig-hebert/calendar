@@ -68,13 +68,6 @@ export const useStyles = createUseStyles({
   eventsContainer: {
     width: '100%',
     height: '100%',
-    '& > div': {
-      display: 'grid',
-      justifyContent: 'center',
-      alignItems: 'center',
-      height: '20px',
-      backgroundColor: 'red',
-    },
   },
   currentDay: {
     backgroundColor: 'rgb(7,82,18)',

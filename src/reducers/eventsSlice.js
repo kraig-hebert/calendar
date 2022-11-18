@@ -12,7 +12,7 @@ const initialState = {
 
 // return next available id
 const getID = (eventList) =>
-  eventList.length ? eventList[eventList.length - 1].id + 1 : 2;
+  eventList.length ? eventList[eventList.length - 1].id + 1 : 1;
 
 export const fetchEvents = createAsyncThunk(
   'events/fetchEvents',

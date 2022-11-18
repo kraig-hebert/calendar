@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectCurrentDate,
   calendarDaySelected,
+  selectAllCalendars,
 } from '../../../../reducers/appSettings';
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
 import { getDay, getDaysInMonth } from 'date-fns';
@@ -15,6 +16,7 @@ const MonthCalendar = (props) => {
   const dispatch = useDispatch();
   const currentDate = useSelector(selectCurrentDate);
   const monthFilteredEvents = useSelector(selectMonthFilteredEvents);
+  const allCalendars = useSelector(selectAllCalendars);
   const today = new Date();
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const numberOfDaysInMonth = getDaysInMonth(currentDate);
@@ -56,7 +58,21 @@ const MonthCalendar = (props) => {
       return classes.currentDay;
     else return undefined;
   };
-
+  const setEventStyles = (event) => {
+    console.log(event);
+    const calendar = allCalendars.filter(
+      (calendar) => event.filter === calendar.title
+    );
+    console.log(calendar);
+    return {
+      display: 'grid',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: '20px',
+      backgroundColor: calendar[0].filter,
+      color: event.color,
+    };
+  };
   const renderEvents = (i) => {
     const todaysEventsList = monthFilteredEvents.filter(
       (event) =>
@@ -64,7 +80,11 @@ const MonthCalendar = (props) => {
         (event.hasOwnProperty('singleDate') && event.singleDate.getDate() === i)
     );
     const list = todaysEventsList.map((event, index) => {
-      return <div key={index}>{event.title}</div>;
+      return (
+        <div style={setEventStyles(event)} key={index}>
+          {event.title}
+        </div>
+      );
     });
     return list;
   };

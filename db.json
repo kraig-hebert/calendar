@@ -1,4 +1,37 @@
 {
   "events": [
+    {
+      "title": "Test",
+      "filter": "Holidays",
+      "color": "#000",
+      "singleDate": "2022-11-18T05:00:00.000Z",
+      "allDay": true,
+      "id": 1
+    },
+    {
+      "title": "Please Work",
+      "filter": "Test",
+      "color": "#fff",
+      "singleDate": "2022-11-18T05:00:00.000Z",
+      "allDay": true,
+      "id": 2
+    },
+    {
+      "title": "15h",
+      "filter": "Reminders",
+      "color": "#000",
+      "singleDate": "2022-11-15T05:00:00.000Z",
+      "allDay": true,
+      "id": 3
+    },
+    {
+      "title": "Test Second",
+      "filter": "second Customer",
+      "color": "#fff",
+      "startTime": "2022-11-15T17:00:00.000Z",
+      "endTime": "2022-11-18T17:00:00.000Z",
+      "allDay": false,
+      "id": 4
+    }
   ]
 }
