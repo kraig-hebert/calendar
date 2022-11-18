@@ -58,6 +58,7 @@ export const useStyles = createUseStyles({
         justifyContent: 'center',
         marginBottom: '10px',
         '&:hover': {
+          borderRadius: '50%',
           backgroundColor: 'rgb(120,255,140)',
           cursor: 'pointer',
         },
@@ -68,7 +69,11 @@ export const useStyles = createUseStyles({
     width: '100%',
     height: '100%',
     '& > div': {
+      display: 'grid',
+      justifyContent: 'center',
+      alignItems: 'center',
       height: '20px',
+      backgroundColor: 'red',
     },
   },
   currentDay: {

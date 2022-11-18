@@ -58,21 +58,20 @@ export const {} = eventsSlice.actions;
 export const selectEventEntities = (state) => state.events.entities;
 
 export const selectEvents = createSelector(selectEventEntities, (events) => {
-  const sortedEventListWithDateObjects = Object.values(events)
-    .map((event) => {
-      if (event.allDay)
-        return {
-          ...event,
-          singleDate: new Date(event.singleDate),
-        };
-      else
-        return {
-          ...event,
-          startTime: new Date(event.startTime),
-          endTime: new Date(event.endTime),
-        };
-    })
-    .sort((eventA, eventB) => eventA.startTime - eventB.startTime);
+  const sortedEventListWithDateObjects = Object.values(events).map((event) => {
+    if (event.allDay)
+      return {
+        ...event,
+        singleDate: new Date(event.singleDate),
+      };
+    else
+      return {
+        ...event,
+        startTime: new Date(event.startTime),
+        endTime: new Date(event.endTime),
+      };
+  });
+
   return sortedEventListWithDateObjects;
 });
 
@@ -82,8 +81,9 @@ export const selectMonthFilteredEvents = createSelector(
   (events, currentDate) => {
     const filteredEvents = events.filter(
       (event) =>
-        (new Date(event.startTime).getMonth() |
-          new Date(event.singleDate).getMonth()) ===
+        ((event.hasOwnProperty('startTime') && event.startTime.getMonth()) |
+          (event.hasOwnProperty('singleDate') &&
+            event.singleDate.getMonth())) ===
         currentDate.getMonth()
     );
     return filteredEvents;

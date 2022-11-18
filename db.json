@@ -1,30 +1,4 @@
 {
   "events": [
-    {
-      "title": "Teat",
-      "filter": "Birthdays",
-      "startTime": "2022-11-17T12:00",
-      "endTime": "2022-11-17T12:00",
-      "allDay": false,
-      "id": 2
-    },
-    {
-      "title": "ffffff",
-      "singleDate": "2022-11-17",
-      "allDay": true,
-      "id": 3
-    },
-    {
-      "title": "ffffff",
-      "singleDate": "2022-11-17",
-      "allDay": true,
-      "id": 4
-    },
-    {
-      "title": "fasdfsdf",
-      "singleDate": "2022-11-17",
-      "allDay": true,
-      "id": 5
-    }
   ]
 }

@@ -37,13 +37,22 @@ const NewEventModal = () => {
       setEndTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
     }, 500);
   };
+  const setDate = () => {
+    console.log(singleDate);
+    const datePartsList = singleDate.split('-');
+    return new Date(
+      datePartsList[0],
+      datePartsList[1] - 1,
+      datePartsList[2]
+    ).toJSON();
+  };
 
   const handleSave = () => {
     if (selectedSwitch === 'all-day') {
       const newEvent = {
         title: inputValue,
         filter: selectedCalendar.title,
-        singleDate: singleDate,
+        singleDate: setDate(),
         allDay: true,
       };
       dispatch(saveNewEvent(newEvent));
@@ -52,8 +61,8 @@ const NewEventModal = () => {
       const newEvent = {
         title: inputValue,
         filter: selectedCalendar.title,
-        startTime: startTime,
-        endTime: endTime,
+        startTime: new Date(startTime).toJSON(),
+        endTime: new Date(endTime).toJSON(),
         allDay: false,
       };
       dispatch(saveNewEvent(newEvent));

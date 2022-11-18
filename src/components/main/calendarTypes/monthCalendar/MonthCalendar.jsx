@@ -60,9 +60,8 @@ const MonthCalendar = (props) => {
   const renderEvents = (i) => {
     const todaysEventsList = monthFilteredEvents.filter(
       (event) =>
-        (new Date(event.startTime).getDate() |
-          new Date(event.singleDate).getDate()) ===
-        i
+        (event.hasOwnProperty('startTime') && event.startTime.getDate() === i) |
+        (event.hasOwnProperty('singleDate') && event.singleDate.getDate() === i)
     );
     const list = todaysEventsList.map((event, index) => {
       return <div key={index}>{event.title}</div>;
