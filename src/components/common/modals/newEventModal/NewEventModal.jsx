@@ -27,12 +27,15 @@ const NewEventModal = () => {
 
   const clearModal = () => {
     dispatch(eventModalClosed());
-    setInputValue('');
-    setSelectedSwitch('all-day');
-    setSelectedCalendar(new Object());
-    setSingleDate(format(new Date(), 'yyyy-L-dd'));
-    setStartTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
-    setEndTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
+    // set delay to match $fadeOut time so reset isn't visible
+    setTimeout(() => {
+      setInputValue('');
+      setSelectedSwitch('all-day');
+      setSelectedCalendar(new Object());
+      setSingleDate(format(new Date(), 'yyyy-L-dd'));
+      setStartTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
+      setEndTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
+    }, 5000);
   };
 
   const handleSave = () => {
@@ -82,10 +85,7 @@ const NewEventModal = () => {
       <div className={classes.modalContent}>
         <div className={classes.iconContainer}>
           <AiFillSave className={classes.icon} onClick={handleSave} />
-          <AiFillCloseCircle
-            className={classes.icon}
-            onClick={(e) => dispatch(eventModalClosed())}
-          />
+          <AiFillCloseCircle className={classes.icon} onClick={clearModal} />
         </div>
         <input
           type="text"
