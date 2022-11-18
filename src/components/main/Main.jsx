@@ -81,7 +81,7 @@ const Main = () => {
           <Route path="/" element={<YearCalendar />} />
           <Route path="/day" element={<DayCalendar />} />
           <Route path="/week" element={<WeekCalendar />} />
-          <Route path="/month" element={<MonthCalendar events={events} />} />
+          <Route path="/month" element={<MonthCalendar />} />
           <Route path="/year" element={<YearCalendar />} />
           <Route path="/schedule" element={<ScheduleCalendar />} />
         </Routes>

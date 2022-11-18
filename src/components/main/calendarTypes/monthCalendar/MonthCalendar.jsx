@@ -12,13 +12,10 @@ import DayCalendar from '../dayCalendar/DayCalendar';
 import PropTypes from 'prop-types';
 
 const MonthCalendar = (props) => {
-  const { events } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
   const currentDate = useSelector(selectCurrentDate);
-  console.log(events);
   const monthFilteredEvents = useSelector(selectMonthFilteredEvents);
-  console.log(monthFilteredEvents);
   const today = new Date();
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const numberOfDaysInMonth = getDaysInMonth(currentDate);
@@ -45,7 +42,18 @@ const MonthCalendar = (props) => {
     else return undefined;
   };
 
-  const renderEvents = (i) => {};
+  const renderEvents = (i) => {
+    const todaysEventsList = monthFilteredEvents.filter(
+      (event) =>
+        (new Date(event.startTime).getDate() |
+          new Date(event.singleDate).getDate()) ===
+        i
+    );
+    const list = todaysEventsList.map((event, index) => {
+      return <div key={index}>{event.title}</div>;
+    });
+    return list;
+  };
 
   const assembleCalendar = () => {
     let renderedCalendar = new Array();
@@ -65,15 +73,15 @@ const MonthCalendar = (props) => {
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
       renderedCalendar.push(
         <div key={i + startDayOfMonth} className={classes.calendarDay}>
-          <Link to="/day" element={<DayCalendar events={events} />}>
+          <Link to="/day" element={<DayCalendar />}>
             <span
               className={checkIfCurrentDay(i)}
               onClick={(e) => handleDayClick(e, i)}
             >
               {i}
             </span>
-            <div className={classes.eventsContainer}>{renderEvents(i)}</div>
           </Link>
+          <div className={classes.eventsContainer}>{renderEvents(i)}</div>
         </div>
       );
     }
@@ -95,8 +103,6 @@ const MonthCalendar = (props) => {
   );
 };
 
-MonthCalendar.propTypes = {
-  events: PropTypes.array,
-};
+MonthCalendar.propTypes = {};
 
 export default MonthCalendar;

@@ -34,10 +34,11 @@ export const useStyles = createUseStyles({
     gridTemplateColumns: 'repeat(7, 1fr)',
     '& > div': {
       display: 'flex',
+      flexDirection: 'column',
       alignSelf: 'center',
       justifySelf: 'center',
-      justifyContent: 'center',
-      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
       width: '100%',
       height: '100%',
       borderBottom: '1px solid #000',
@@ -56,6 +57,7 @@ export const useStyles = createUseStyles({
         marginTop: '10px',
         alignItems: 'center',
         justifyContent: 'center',
+        marginBottom: '10px',
         '&:hover': {
           backgroundColor: 'rgb(120,255,140)',
           cursor: 'pointer',
@@ -63,7 +65,6 @@ export const useStyles = createUseStyles({
       },
     },
   },
-  calendarDay: {},
   eventsContainer: {},
   currentDay: {
     backgroundColor: 'rgb(7,82,18)',

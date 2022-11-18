@@ -80,7 +80,6 @@ export const selectMonthFilteredEvents = createSelector(
   selectEvents,
   selectCurrentDate,
   (events, currentDate) => {
-    console.log(events, currentDate);
     const filteredEvents = events.filter(
       (event) =>
         (new Date(event.startTime).getMonth() |
