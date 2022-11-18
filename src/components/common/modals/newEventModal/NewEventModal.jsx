@@ -35,7 +35,7 @@ const NewEventModal = () => {
       setSingleDate(format(new Date(), 'yyyy-L-dd'));
       setStartTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
       setEndTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
-    }, 5000);
+    }, 500);
   };
 
   const handleSave = () => {
