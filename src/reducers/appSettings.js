@@ -1,4 +1,8 @@
-import { createSelector, createSlice } from '@reduxjs/toolkit';
+import {
+  createSelector,
+  createSlice,
+  createAsyncThunk,
+} from '@reduxjs/toolkit';
 import de from 'date-fns/esm/locale/de/index.js';
 
 const initialState = {
@@ -28,6 +32,22 @@ const initialState = {
   ],
 };
 
+export const getCustomCalendars = createAsyncThunk(
+  'appSettings/getCustomCalenars',
+  async () => JSON.parse(localStorage.getItem('customCalendars'))
+);
+
+export const addNewCalendar = createAsyncThunk(
+  'appSettings/addNewCalendar',
+  async (calendar) => {
+    console.log('here');
+    let customCalendars = JSON.parse(localStorage.getItem('customCalendars'));
+    customCalendars.push(calendar);
+    localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
+    return calendar;
+  }
+);
+
 const appSettingsSlice = createSlice({
   name: 'appSettings',
   initialState,
@@ -56,19 +76,26 @@ const appSettingsSlice = createSlice({
       state.currentDate = newDate;
       state.currentCalendarSpread = 'month';
     },
-    newCalendarAdded(state, action) {
-      const newCalendar = action.payload;
-      state.customCalendars[newCalendar.id] = newCalendar;
-      state.availableColorFilters = state.availableColorFilters.filter(
-        (filter) => filter !== newCalendar.filter
-      );
-    },
     addEventButtonClicked(state) {
       state.newEventModalOpen = true;
     },
     eventModalClosed(state) {
       state.newEventModalOpen = false;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCustomCalendars.fulfilled, (state, action) => {
+        const customCalendars = action.payload;
+        state.customCalendars = customCalendars;
+      })
+      .addCase(addNewCalendar.fulfilled, (state, action) => {
+        const newCalendar = action.payload;
+        state.customCalendars[newCalendar.id] = newCalendar;
+        state.availableColorFilters = state.availableColorFilters.filter(
+          (filter) => filter !== newCalendar.filter
+        );
+      });
   },
 });
 
@@ -120,7 +147,6 @@ export const {
   mainHeaderButtonClicked,
   calendarDaySelected,
   calendarMonthSelected,
-  newCalendarAdded,
   addEventButtonClicked,
   eventModalClosed,
 } = appSettingsSlice.actions;

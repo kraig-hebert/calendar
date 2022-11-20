@@ -4,11 +4,13 @@ import { Provider, useSelector } from 'react-redux';
 import store from './app/store';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import { getCustomCalendars } from './reducers/appSettings';
 import { fetchEvents } from './reducers/eventsSlice';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 store.dispatch(fetchEvents());
+store.dispatch(getCustomCalendars());
 root.render(
   <BrowserRouter>
     <Provider store={store}>

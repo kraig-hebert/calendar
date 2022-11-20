@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectAvailableColorFilters,
-  newCalendarAdded,
+  addNewCalendar,
   selectCustomCalendars,
 } from '../../../reducers/appSettings';
 
@@ -35,7 +35,7 @@ const NewCalendarForm = (props) => {
         title: inputValue,
         filter: selectedFilter,
       };
-      dispatch(newCalendarAdded(newCalendar));
+      dispatch(addNewCalendar(newCalendar));
     }, 250);
   };
 

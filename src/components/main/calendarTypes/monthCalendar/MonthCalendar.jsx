@@ -78,14 +78,22 @@ const MonthCalendar = (props) => {
         (event.hasOwnProperty('singleDate') && event.singleDate.getDate() === i)
     );
     return todaysEventsList.map((event, index) => {
-      return (
-        <div style={setEventStyles(event)} key={index}>
-          <div className={classes.eventInfo}>
-            {format(event.singleDate, 'hh:mm aaa')} -
+      if (event.allDay)
+        return (
+          <div style={setEventStyles(event)} key={index}>
+            <div className={classes.eventInfo}>All Day -</div>
+            <div className={classes.eventInfo}> {event.title}</div>
           </div>
-          <div className={classes.eventInfo}> {event.title}</div>
-        </div>
-      );
+        );
+      else
+        return (
+          <div style={setEventStyles(event)} key={index}>
+            <div className={classes.eventInfo}>
+              {format(event.startTime, 'hh:mm aaa')} -
+            </div>
+            <div className={classes.eventInfo}> {event.title}</div>
+          </div>
+        );
     });
   };
 
