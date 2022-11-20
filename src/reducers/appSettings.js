@@ -48,23 +48,27 @@ export const addNewCalendar = createAsyncThunk(
   }
 );
 
+export const deleteCustomCalendar = createAsyncThunk(
+  'appSettings/deleteCustomCalendar',
+  async (title, { getState }) => {
+    const state = getState();
+    const customCalendars = Object.values(
+      state.appSettings.customCalendars
+    ).filter((calendar) => calendar.title !== title);
+    localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
+    return customCalendars;
+  }
+);
+
 export const setCustomFilters = createAsyncThunk(
   'appSettings/setCustomFilters',
   async () => {
-    console.log('test');
-
     const customCalendars = JSON.parse(localStorage.getItem('customCalendars'));
     const usedFilters = customCalendars.map((calendar) => calendar.filter);
-    console.log(usedFilters);
     return initialState.availableColorFilters.filter(
       (filter) => !usedFilters.includes(filter)
     );
   }
-);
-
-export const deleteCustomCalendar = createAsyncThunk(
-  'appSettings/deleteCustomCalendar',
-  async () => {}
 );
 
 const appSettingsSlice = createSlice({
@@ -101,6 +105,10 @@ const appSettingsSlice = createSlice({
     eventModalClosed(state) {
       state.newEventModalOpen = false;
     },
+    filterReturned(state, action) {
+      const filter = action.payload;
+      state.availableColorFilters.push(filter);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -114,6 +122,10 @@ const appSettingsSlice = createSlice({
         state.availableColorFilters = state.availableColorFilters.filter(
           (filter) => filter !== newCalendar.filter
         );
+      })
+      .addCase(deleteCustomCalendar.fulfilled, (state, action) => {
+        const customCalendars = action.payload;
+        state.customCalendars = customCalendars;
       })
       .addCase(setCustomFilters.fulfilled, (state, action) => {
         const availableFilters = action.payload;
@@ -173,5 +185,6 @@ export const {
   calendarMonthSelected,
   addEventButtonClicked,
   eventModalClosed,
+  filterReturned,
 } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;

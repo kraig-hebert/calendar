@@ -7,48 +7,6 @@
       "singleDate": "2022-11-18T05:00:00.000Z",
       "allDay": true,
       "id": 1
-    },
-    {
-      "title": "15h",
-      "filter": "Reminders",
-      "color": "#000",
-      "singleDate": "2022-11-15T05:00:00.000Z",
-      "allDay": true,
-      "id": 3
-    },
-    {
-      "title": "Friends Wedding",
-      "filter": "Events",
-      "color": "#000",
-      "startTime": "2022-11-19T17:00:00.000Z",
-      "endTime": "2022-11-19T20:00:00.000Z",
-      "allDay": false,
-      "id": 4
-    },
-    {
-      "title": "Test",
-      "filter": "Events",
-      "color": "#000",
-      "singleDate": "2022-11-20T05:00:00.000Z",
-      "allDay": true,
-      "id": 5
-    },
-    {
-      "title": "Test Custom",
-      "filter": "Test",
-      "color": "#fff",
-      "singleDate": "2022-11-20T05:00:00.000Z",
-      "allDay": true,
-      "id": 6
-    },
-    {
-      "title": "Another Test",
-      "filter": "Another",
-      "color": "#fff",
-      "startTime": "2022-11-20T19:00:00.000Z",
-      "endTime": "2022-11-20T22:00:00.000Z",
-      "allDay": false,
-      "id": 7
     }
   ]
 }
