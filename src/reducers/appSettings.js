@@ -3,7 +3,7 @@ import {
   createSlice,
   createAsyncThunk,
 } from '@reduxjs/toolkit';
-import de from 'date-fns/esm/locale/de/index.js';
+import { useDispatch } from 'react-redux';
 
 const initialState = {
   drawerOpen: true,
@@ -39,13 +39,32 @@ export const getCustomCalendars = createAsyncThunk(
 
 export const addNewCalendar = createAsyncThunk(
   'appSettings/addNewCalendar',
-  async (calendar) => {
-    console.log('here');
-    let customCalendars = JSON.parse(localStorage.getItem('customCalendars'));
+  async (calendar, { getState }) => {
+    const state = getState();
+    let customCalendars = Object.values(state.appSettings.customCalendars);
     customCalendars.push(calendar);
     localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
     return calendar;
   }
+);
+
+export const setCustomFilters = createAsyncThunk(
+  'appSettings/setCustomFilters',
+  async () => {
+    console.log('test');
+
+    const customCalendars = JSON.parse(localStorage.getItem('customCalendars'));
+    const usedFilters = customCalendars.map((calendar) => calendar.filter);
+    console.log(usedFilters);
+    return initialState.availableColorFilters.filter(
+      (filter) => !usedFilters.includes(filter)
+    );
+  }
+);
+
+export const deleteCustomCalendar = createAsyncThunk(
+  'appSettings/deleteCustomCalendar',
+  async () => {}
 );
 
 const appSettingsSlice = createSlice({
@@ -95,6 +114,10 @@ const appSettingsSlice = createSlice({
         state.availableColorFilters = state.availableColorFilters.filter(
           (filter) => filter !== newCalendar.filter
         );
+      })
+      .addCase(setCustomFilters.fulfilled, (state, action) => {
+        const availableFilters = action.payload;
+        state.availableColorFilters = availableFilters;
       });
   },
 });
@@ -141,6 +164,7 @@ export const selectAllCalendars = createSelector(
 );
 
 export const {
+  customFiltersSet,
   drawerCloseSelected,
   drawerOpenSelected,
   navLinkSelected,

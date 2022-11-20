@@ -8,8 +8,23 @@ export const useStyles = createUseStyles({
     fontSize: '1rem',
     padding: '5px',
     backgroundColor: 'rgb(120,255,140)',
+    position: 'relative',
     '&:hover': {
       backgroundColor: 'rgb(120,255,100)',
+    },
+    '&:hover > div': {
+      display: 'block',
+      cursor: 'pointer',
+    },
+  },
+  optionsContainer: {
+    display: 'none',
+    position: 'absolute',
+    right: '15px',
+    top: '25%',
+    color: 'rgb(7,82,18)',
+    '& *': {
+      margin: 'auto 5px',
     },
   },
   label: {
