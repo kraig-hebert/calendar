@@ -58,6 +58,23 @@
       "endTime": "2022-11-20T11:00:00.000Z",
       "allDay": false,
       "id": 8
+    },
+    {
+      "title": "2am Test",
+      "filter": "Birthdays",
+      "color": "#000",
+      "startTime": "2022-11-20T07:00:00.000Z",
+      "endTime": "2022-11-20T08:00:00.000Z",
+      "allDay": false,
+      "id": 9
+    },
+    {
+      "title": "BearHole 10k",
+      "filter": "Races",
+      "color": "#fff",
+      "singleDate": "2022-11-21T05:00:00.000Z",
+      "allDay": true,
+      "id": 10
     }
   ]
 }

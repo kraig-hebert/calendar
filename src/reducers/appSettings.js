@@ -8,8 +8,8 @@ import { useDispatch } from 'react-redux';
 const initialState = {
   drawerOpen: true,
   newEventModalOpen: false,
-  currentDate: new Date().toJSON(),
-  currentCalendarSpread: 'month',
+  currentDate: new Date(2022, 10, 20).toJSON(),
+  currentCalendarSpread: 'day',
   availableColorFilters: ['blue', 'green', 'red', 'orange'],
   customCalendars: {},
   defaultCalendars: [
