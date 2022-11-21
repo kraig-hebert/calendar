@@ -1,35 +1,57 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { useStyles } from './styles';
-import { selectAllCalendars } from '../../../reducers/appSettings';
-import PropTypes from 'prop-types';
+import React, { useRef, useLayoutEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useStyles } from "./styles";
+import { selectAllCalendars } from "../../../reducers/appSettings";
+import PropTypes from "prop-types";
+import { differenceInHours } from "date-fns";
 
 const DayCalendarColumn = (props) => {
   const { dayFilteredEvents } = props;
+  const ref = useRef();
   const classes = useStyles(props);
   const renderedTimeBlocks = new Array();
   const allCalendars = useSelector(selectAllCalendars);
-
+  const [calendarWidth, setCalendarWidth] = useState();
   const allDayEventsList = dayFilteredEvents.allDay;
   const timedEventsList = dayFilteredEvents.timed;
+
+  const calculateHeight = (event) => {
+    const diff = differenceInHours(event.endTime, event.startTime);
+    const height = diff * 30 + (diff - 1);
+    return `${height}px`;
+  };
 
   const setStyle = (event) => {
     const calendar = allCalendars.filter(
       (calendar) => event.filter === calendar.title
     );
-    return {
-      backgroundColor: calendar.length ? calendar[0].filter : 'none',
-      color: event.color,
-    };
+    if (event.allDay) {
+      return {
+        display: "grid",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: calendar.length ? calendar[0].filter : "none",
+        height: "20px",
+        width: calendarWidth,
+        color: event.color,
+      };
+    } else {
+      return {
+        position: "absolute",
+        backgroundColor: calendar.length ? calendar[0].filter : "none",
+        color: event.color,
+        height: calculateHeight(event),
+        zIndex: "5",
+      };
+    }
   };
   const renderedAllDayEvents = allDayEventsList.map((event) => (
     <div key={event.id} style={setStyle(event)}>
-      {event.title}
+      <p>{event.title}</p>
     </div>
   ));
 
   const renderTimedEvents = (time) => {
-    console.log(time);
     const renderedTimedEvents = timedEventsList
       .filter((event) => event.startTime.getHours() === time)
       .map((event) => (
@@ -37,7 +59,6 @@ const DayCalendarColumn = (props) => {
           {event.title}
         </div>
       ));
-    console.log(renderedTimedEvents);
     return renderedTimedEvents;
   };
 
@@ -74,8 +95,11 @@ const DayCalendarColumn = (props) => {
       </div>
     );
   }
+  useLayoutEffect(() => {
+    setCalendarWidth(ref.current.offsetWidth);
+  }, []);
   return (
-    <div className={classes.dayCalendar}>
+    <div className={classes.dayCalendar} ref={ref}>
       <div className={classes.allDayEvents}>{renderedAllDayEvents}</div>
       <div className={classes.timeBlocks}>{renderedTimeBlocks}</div>
     </div>
