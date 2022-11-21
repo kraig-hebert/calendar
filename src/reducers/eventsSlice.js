@@ -14,6 +14,18 @@ const initialState = {
 const getID = (eventList) =>
   eventList.length ? eventList[eventList.length - 1].id + 1 : 1;
 
+const groupFilteredEvents = (filteredEvents) => {
+  const eventsDict = {
+    allDay: new Array(),
+    timed: new Array(),
+  };
+  filteredEvents.forEach((event) => {
+    if (event.allDay) eventsDict.allDay.push(event);
+    else eventsDict.timed.push(event);
+  });
+  return eventsDict;
+};
+
 export const fetchEvents = createAsyncThunk(
   'events/fetchEvents',
   async () => await client.get()
@@ -103,7 +115,7 @@ export const selectMonthFilteredEvents = createSelector(
             event.singleDate.getMonth())) ===
         currentDate.getMonth()
     );
-    return filteredEvents;
+    return groupFilteredEvents(filteredEvents);
   }
 );
 

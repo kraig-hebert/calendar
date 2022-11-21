@@ -72,11 +72,14 @@ const MonthCalendar = (props) => {
     };
   };
   const renderEvents = (i) => {
-    const todaysEventsList = monthFilteredEvents.filter(
-      (event) =>
-        (event.hasOwnProperty('startTime') && event.startTime.getDate() === i) |
-        (event.hasOwnProperty('singleDate') && event.singleDate.getDate() === i)
+    const allDayEventsList = monthFilteredEvents.allDay.filter(
+      (event) => event.singleDate.getDate() === i
     );
+    const timedEventsList = monthFilteredEvents.timed
+      .filter((event) => event.startTime.getDate() === i)
+      .sort((eventA, eventB) => eventA.startTime - eventB.startTime);
+
+    const todaysEventsList = allDayEventsList.concat(timedEventsList);
     return todaysEventsList.map((event, index) => {
       if (event.allDay)
         return (
