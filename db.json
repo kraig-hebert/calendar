@@ -40,6 +40,24 @@
       "singleDate": "2022-11-20T05:00:00.000Z",
       "allDay": true,
       "id": 6
+    },
+    {
+      "title": "Midnight Test",
+      "filter": "Birthdays",
+      "color": "#000",
+      "startTime": "2022-11-20T05:00:00.000Z",
+      "endTime": "2022-11-20T07:00:00.000Z",
+      "allDay": false,
+      "id": 7
+    },
+    {
+      "title": "Last Test",
+      "filter": "Holidays",
+      "color": "#000",
+      "startTime": "2022-11-20T09:00:00.000Z",
+      "endTime": "2022-11-20T11:00:00.000Z",
+      "allDay": false,
+      "id": 8
     }
   ]
 }

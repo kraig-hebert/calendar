@@ -28,9 +28,23 @@ const DayCalendarColumn = (props) => {
     </div>
   ));
 
+  const renderTimedEvents = (time) => {
+    console.log(time);
+    const renderedTimedEvents = timedEventsList
+      .filter((event) => event.startTime.getHours() === time)
+      .map((event) => (
+        <div key={event.id} style={setStyle(event)}>
+          {event.title}
+        </div>
+      ));
+    console.log(renderedTimedEvents);
+    return renderedTimedEvents;
+  };
+
   // add midnight to column
   renderedTimeBlocks.push(
     <div className={classes.timeBlock} key={1}>
+      {renderTimedEvents(0)}
       <div className={classes.time}>mid</div>
     </div>
   );
@@ -38,6 +52,7 @@ const DayCalendarColumn = (props) => {
   for (let i = 1; i < 12; i++) {
     renderedTimeBlocks.push(
       <div className={classes.timeBlock} key={i + 1}>
+        {renderTimedEvents(i)}
         <div className={classes.time}>{`${i}am`}</div>
       </div>
     );
@@ -45,13 +60,16 @@ const DayCalendarColumn = (props) => {
   // add noon to the column
   renderedTimeBlocks.push(
     <div className={classes.timeBlock} key={13}>
+      {renderTimedEvents(12)}
+
       <div className={classes.time}>noon</div>
     </div>
   );
   // add 1pm through midnight to the column
-  for (let i = 1; i < 12; i++) {
+  for (let i = 13; i < 24; i++) {
     renderedTimeBlocks.push(
       <div className={classes.timeBlock} key={i + 13}>
+        {renderTimedEvents(i)}
         <div className={classes.time}>{`${i}pm`}</div>
       </div>
     );
