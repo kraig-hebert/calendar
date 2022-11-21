@@ -36,8 +36,8 @@ export const deleteCalendarEvents = createAsyncThunk(
   'events/deleteCalendarEvents',
   async (title, { getState }) => {
     const state = getState();
-    Object.values(state.events.entities).forEach((event) => {
-      if (event.filter === title) client.remove(event.id);
+    Object.values(state.events.entities).forEach(async (event) => {
+      if (event.filter === title) await client.remove(event.id);
     });
     return title;
   }
@@ -61,9 +61,9 @@ const eventsSlice = createSlice({
         const newEvent = action.payload;
         state.entities[newEvent.id] = newEvent;
       })
-      .addCase(deleteCalendarEvents, (state, action) => {
+      .addCase(deleteCalendarEvents.fulfilled, (state, action) => {
         const title = action.payload;
-        state.entities = state.entities.filter(
+        state.entities = Object.values(state.entities).filter(
           (event) => event.filter !== title
         );
       });

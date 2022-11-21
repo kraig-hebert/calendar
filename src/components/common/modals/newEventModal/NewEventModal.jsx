@@ -40,7 +40,6 @@ const NewEventModal = () => {
     }, 500);
   };
   const setDate = () => {
-    console.log(singleDate);
     const datePartsList = singleDate.split('-');
     return new Date(
       datePartsList[0],
