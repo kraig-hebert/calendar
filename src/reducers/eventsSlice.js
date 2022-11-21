@@ -14,18 +14,6 @@ const initialState = {
 const getID = (eventList) =>
   eventList.length ? eventList[eventList.length - 1].id + 1 : 1;
 
-const groupFilteredEvents = (filteredEvents) => {
-  const eventsDict = {
-    allDay: new Array(),
-    timed: new Array(),
-  };
-  filteredEvents.forEach((event) => {
-    if (event.allDay) eventsDict.allDay.push(event);
-    else eventsDict.timed.push(event);
-  });
-  return eventsDict;
-};
-
 export const fetchEvents = createAsyncThunk(
   'events/fetchEvents',
   async () => await client.get()
@@ -103,6 +91,33 @@ export const selectEvents = createSelector(selectEventEntities, (events) => {
 
   return sortedEventListWithDateObjects;
 });
+
+const groupFilteredEvents = (filteredEvents) => {
+  const eventsDict = {
+    allDay: new Array(),
+    timed: new Array(),
+  };
+  filteredEvents.forEach((event) => {
+    if (event.allDay) eventsDict.allDay.push(event);
+    else eventsDict.timed.push(event);
+  });
+  return eventsDict;
+};
+
+export const selectDayFilteredEvents = createSelector(
+  selectEvents,
+  selectCurrentDate,
+  (events, currentDate) => {
+    const filteredEvents = events.filter(
+      (event) =>
+        ((event.hasOwnProperty('startTime') && event.startTime.getDate()) |
+          (event.hasOwnProperty('singleDate') &&
+            event.singleDate.getDate())) ===
+        currentDate.getDate()
+    );
+    return groupFilteredEvents(filteredEvents);
+  }
+);
 
 export const selectMonthFilteredEvents = createSelector(
   selectEvents,

@@ -32,6 +32,14 @@
       "endTime": "2022-11-20T17:00:00.000Z",
       "allDay": false,
       "id": 5
+    },
+    {
+      "title": "All Day Bruh",
+      "filter": "Reminders",
+      "color": "#000",
+      "singleDate": "2022-11-20T05:00:00.000Z",
+      "allDay": true,
+      "id": 6
     }
   ]
 }

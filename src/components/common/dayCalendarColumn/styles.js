@@ -8,11 +8,13 @@ export const useStyles = createUseStyles({
     paddingTop: '10px',
     width: props.calendarWidth,
   }),
+  allDayEvents: {},
+  timeBlocks: { width: '100%' },
   timeBlock: (props) => ({
     display: 'block',
     position: 'relative',
     width: props.blockWidth,
-    height: '33px',
+    height: '30px',
     border: '1px solid #000',
     borderRight: props.borderRight,
     '&:not(:last-of-type)': {
