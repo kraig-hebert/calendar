@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001/events';
+const API_URL = 'http://localhost:3001/events/';
 
 export const get = async () => {
   const response = await fetch(API_URL, {
@@ -18,6 +18,13 @@ export const post = async (eventObject) => {
     },
     method: 'POST',
     body: JSON.stringify(eventObject),
+  });
+  return response;
+};
+
+export const remove = async (id) => {
+  const response = await fetch(API_URL + id, {
+    method: 'DELETE',
   });
   return response;
 };

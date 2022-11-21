@@ -67,7 +67,7 @@ const MonthCalendar = (props) => {
       justifyContent: 'flex-start',
       alignItems: 'center',
       height: '20px',
-      backgroundColor: calendar[0].filter,
+      backgroundColor: calendar.length ? calendar[0].filter : 'none',
       color: event.color,
     };
   };

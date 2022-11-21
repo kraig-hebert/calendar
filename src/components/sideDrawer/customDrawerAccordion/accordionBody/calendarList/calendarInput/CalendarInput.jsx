@@ -8,6 +8,7 @@ import {
   deleteCustomCalendar,
   filterReturned,
 } from '../../../../../../reducers/appSettings';
+import { deleteCalendarEvents } from '../../../../../../reducers/eventsSlice';
 
 const CalendarInput = (props) => {
   const { title, checkBoxBackgroundColor, checkColor } = props;
@@ -17,6 +18,7 @@ const CalendarInput = (props) => {
   const handleDelete = () => {
     dispatch(filterReturned(checkBoxBackgroundColor));
     dispatch(deleteCustomCalendar(title));
+    dispatch(deleteCalendarEvents(title));
   };
   const editCustomCalendar = () => {};
 
