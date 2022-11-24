@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import * as client from '../api/client';
 import { selectCurrentDate } from './appSettings';
+import { isSameWeek, getDay } from 'date-fns';
 
 const initialState = {
   entities: {},
@@ -116,6 +117,29 @@ export const selectDayFilteredEvents = createSelector(
         currentDate.getDate()
     );
     return groupFilteredEvents(filteredEvents);
+  }
+);
+
+export const selectWeekFilteredEvents = createSelector(
+  selectEvents,
+  selectCurrentDate,
+  (events, currentDate) => {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const filteredEventsByDay = new Object();
+    const filteredEvents = events.filter((event) => {
+      if (event.hasOwnProperty('startTime')) {
+        if (isSameWeek(event.startTime, currentDate)) return true;
+      } else if (isSameWeek(event.singleDate, currentDate)) return true;
+    });
+    days.forEach((day, index) => {
+      const dayEvents = filteredEvents.filter((event) => {
+        if (event.hasOwnProperty('startTime')) {
+          if (getDay(event.startTime) === index) return true;
+        } else if (getDay(event.singleDate) === index) return true;
+      });
+      filteredEventsByDay[days[index]] = groupFilteredEvents(dayEvents);
+    });
+    return filteredEventsByDay;
   }
 );
 

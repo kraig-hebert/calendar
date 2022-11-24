@@ -75,6 +75,14 @@
       "singleDate": "2022-11-21T05:00:00.000Z",
       "allDay": true,
       "id": 10
+    },
+    {
+      "title": "4tg",
+      "filter": "Races",
+      "color": "#fff",
+      "singleDate": "2022-11-20T05:00:00.000Z",
+      "allDay": true,
+      "id": 11
     }
   ]
 }

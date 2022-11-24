@@ -12,8 +12,10 @@ const DayCalendarColumn = (props) => {
   const renderedTimeBlocks = new Array();
   const allCalendars = useSelector(selectAllCalendars);
   const [calendarWidthValue, setCalendarWidthValue] = useState();
+  const [scrollbarWidth, setScrollbarWidth] = useState();
   const allDayEventsList = dayFilteredEvents.allDay;
   const timedEventsList = dayFilteredEvents.timed;
+  console.log(scrollbarWidth);
 
   const calculateHeight = (event) => {
     const diff = differenceInHours(event.endTime, event.startTime);
@@ -34,6 +36,7 @@ const DayCalendarColumn = (props) => {
         height: '20px',
         width: calendarWidthValue,
         color: event.color,
+        borderRadius: '5px',
       };
     } else {
       return {
@@ -41,7 +44,7 @@ const DayCalendarColumn = (props) => {
         backgroundColor: calendar.length ? calendar[0].filter : 'none',
         color: event.color,
         height: calculateHeight(event),
-        width: calendarWidthValue,
+        width: calendarWidthValue - scrollbarWidth,
         zIndex: '2',
       };
     }
@@ -83,7 +86,6 @@ const DayCalendarColumn = (props) => {
   renderedTimeBlocks.push(
     <div className={classes.timeBlock} key={13}>
       {renderTimedEvents(12)}
-
       <div className={classes.time}>noon</div>
     </div>
   );
@@ -98,6 +100,8 @@ const DayCalendarColumn = (props) => {
   }
   useLayoutEffect(() => {
     setCalendarWidthValue(ref.current.offsetWidth);
+    console.log(window.innerWidth, window.document.body.clientWidth, window);
+    setScrollbarWidth(window.innerWidth - window.document.body.clientWidth);
   }, []);
   return (
     <div className={classes.dayCalendar} ref={ref}>
@@ -110,6 +114,7 @@ const DayCalendarColumn = (props) => {
 DayCalendarColumn.propTypes = {
   dayFilteredEvents: PropTypes.object,
   width: PropTypes.string,
+  height: PropTypes.string,
   displayTime: PropTypes.bool,
   calendarWidth: PropTypes.string,
   borderRight: PropTypes.bool,
