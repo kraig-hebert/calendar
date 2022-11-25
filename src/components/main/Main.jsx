@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useStyles } from './styles';
-import { addDays, addMonths, addYears } from 'date-fns';
+import { addDays, addMonths, addYears, format } from 'date-fns';
 import { CgArrowLeftR, CgArrowRightR } from 'react-icons/cg';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import {
@@ -22,6 +22,7 @@ import ScheduleCalendar from './calendarTypes/scheduleCalendar/ScheduleCalendar'
 const Main = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const drawerOpen = useSelector(selectDrawerOpen);
   const currentDate = useSelector(selectCurrentDate);
   const currentCalendarSpread = useSelector(selectCurrentCalendarSpread);
@@ -43,22 +44,33 @@ const Main = () => {
         dispatch(mainHeaderButtonClicked(addYears(currentDate, -1).toJSON()));
         break;
     }
+    navigate(`/${currentCalendarSpread}/${format(currentDate, 'MM-dd-yy')}`);
   };
   const handleRightClick = () => {
+    let newDate;
     switch (currentCalendarSpread) {
       case 'day':
-        dispatch(mainHeaderButtonClicked(addDays(currentDate, 1).toJSON()));
+        newDate = addDays(currentDate, 1);
+        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
+        navigate(`/day/${format(newDate, 'MM-dd-yy')}`);
         break;
       case 'week':
-        dispatch(mainHeaderButtonClicked(addDays(currentDate, 7).toJSON()));
+        newDate = addDays(currentDate, 7);
+        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
+        navigate(`/week/${format(newDate, 'MM-dd-yy')}`);
         break;
       case 'month':
-        dispatch(mainHeaderButtonClicked(addMonths(currentDate, 1).toJSON()));
+        newDate = addMonths(currentDate, 1);
+        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
+        navigate(`/month/${format(newDate, 'MM-dd-yy')}`);
         break;
       case 'year':
-        dispatch(mainHeaderButtonClicked(addYears(currentDate, 1).toJSON()));
+        newDate = addYears(currentDate, 1);
+        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
+        navigate(`/year/${format(newDate, 'MM-dd-yy')}`);
         break;
     }
+    navigate(`/${currentCalendarSpread}/${format(currentDate, 'MM-dd-yy')}`);
   };
 
   return (
@@ -77,11 +89,11 @@ const Main = () => {
       <div className={classes.calendarContainer}>
         <Routes>
           <Route path="/" element={<MonthCalendar />} />
-          <Route path="/day" element={<DayCalendar />} />
-          <Route path="/week" element={<WeekCalendar />} />
-          <Route path="/month" element={<MonthCalendar />} />
-          <Route path="/year" element={<YearCalendar />} />
-          <Route path="/schedule" element={<ScheduleCalendar />} />
+          <Route path="/day/:date" element={<DayCalendar />} />
+          <Route path="/week/:date" element={<WeekCalendar />} />
+          <Route path="/month/:date" element={<MonthCalendar />} />
+          <Route path="/year/:date" element={<YearCalendar />} />
+          <Route path="/schedule/:date" element={<ScheduleCalendar />} />
         </Routes>
       </div>
       {!drawerOpen && (

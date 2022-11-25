@@ -12,10 +12,8 @@ const DayCalendarColumn = (props) => {
   const renderedTimeBlocks = new Array();
   const allCalendars = useSelector(selectAllCalendars);
   const [calendarWidthValue, setCalendarWidthValue] = useState();
-  const [scrollbarWidth, setScrollbarWidth] = useState();
   const allDayEventsList = dayFilteredEvents.allDay;
   const timedEventsList = dayFilteredEvents.timed;
-  console.log(scrollbarWidth);
 
   const calculateHeight = (event) => {
     const diff = differenceInHours(event.endTime, event.startTime);
@@ -44,7 +42,7 @@ const DayCalendarColumn = (props) => {
         backgroundColor: calendar.length ? calendar[0].filter : 'none',
         color: event.color,
         height: calculateHeight(event),
-        width: calendarWidthValue - scrollbarWidth,
+        width: calendarWidthValue,
         zIndex: '2',
       };
     }
@@ -99,9 +97,8 @@ const DayCalendarColumn = (props) => {
     );
   }
   useLayoutEffect(() => {
+    console.log(ref.current.offsetWidth);
     setCalendarWidthValue(ref.current.offsetWidth);
-    console.log(window.innerWidth, window.document.body.clientWidth, window);
-    setScrollbarWidth(window.innerWidth - window.document.body.clientWidth);
   }, []);
   return (
     <div className={classes.dayCalendar} ref={ref}>
