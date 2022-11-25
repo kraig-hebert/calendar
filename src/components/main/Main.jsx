@@ -30,21 +30,29 @@ const Main = () => {
   const calendarHeaderDate = useCalendarHeaderDate();
 
   const handleLeftClick = () => {
+    let newDate;
     switch (currentCalendarSpread) {
       case 'day':
-        dispatch(mainHeaderButtonClicked(addDays(currentDate, -1).toJSON()));
+        newDate = addDays(currentDate, -1);
+        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
+        navigate(`/day/${format(newDate, 'MM-dd-yy')}`);
         break;
       case 'week':
-        dispatch(mainHeaderButtonClicked(addDays(currentDate, -7).toJSON()));
+        newDate = addDays(currentDate, -7);
+        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
+        navigate(`/week/${format(newDate, 'MM-dd-yy')}`);
         break;
       case 'month':
-        dispatch(mainHeaderButtonClicked(addMonths(currentDate, -1).toJSON()));
+        newDate = addMonths(currentDate, -1);
+        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
+        navigate(`/month/${format(newDate, 'MM-dd-yy')}`);
         break;
       case 'year':
-        dispatch(mainHeaderButtonClicked(addYears(currentDate, -1).toJSON()));
+        newDate = addYears(currentDate, -1);
+        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
+        navigate(`/year/${format(newDate, 'MM-dd-yy')}`);
         break;
     }
-    navigate(`/${currentCalendarSpread}/${format(currentDate, 'MM-dd-yy')}`);
   };
   const handleRightClick = () => {
     let newDate;
@@ -70,7 +78,6 @@ const Main = () => {
         navigate(`/year/${format(newDate, 'MM-dd-yy')}`);
         break;
     }
-    navigate(`/${currentCalendarSpread}/${format(currentDate, 'MM-dd-yy')}`);
   };
 
   return (
