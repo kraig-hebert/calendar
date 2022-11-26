@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { getDay, getDaysInMonth, format } from 'date-fns';
 import { calendarDaySelected } from '../../../reducers/appSettings';
-import { Link } from 'react-router-dom';
-import DayCalendar from '../../main/calendarTypes/dayCalendar/DayCalendar';
 
 const SmallMonthCalendar = (props) => {
   const classes = useStyles();

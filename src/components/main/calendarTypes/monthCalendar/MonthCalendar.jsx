@@ -1,24 +1,24 @@
-import React from "react";
-import { useStyles } from "./styles";
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import { useStyles } from './styles';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   selectCurrentDate,
   calendarDaySelected,
   selectAllCalendars,
-} from "../../../../reducers/appSettings";
-import { selectMonthFilteredEvents } from "../../../../reducers/eventsSlice";
-import { getDay, getDaysInMonth, format } from "date-fns";
-import { Link } from "react-router-dom";
-import DayCalendar from "../dayCalendar/DayCalendar";
-import PropTypes from "prop-types";
+} from '../../../../reducers/appSettings';
+import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
+import { getDay, getDaysInMonth, format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const MonthCalendar = (props) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const currentDate = useSelector(selectCurrentDate);
   const monthFilteredEvents = useSelector(selectMonthFilteredEvents);
   const allCalendars = useSelector(selectAllCalendars);
   const today = new Date();
-  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const numberOfDaysInMonth = getDaysInMonth(currentDate);
   const startDayOfMonth = getDay(
     new Date(currentDate.getFullYear(), currentDate.getMonth(), 1)
@@ -38,15 +38,13 @@ const MonthCalendar = (props) => {
   const classes = useStyles({ rows: getRows() });
 
   const handleDayClick = (e, day) => {
-    dispatch(
-      calendarDaySelected(
-        new Date(
-          currentDate.getFullYear(),
-          currentDate.getMonth(),
-          day
-        ).toJSON()
-      )
+    const newDate = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day
     );
+    dispatch(calendarDaySelected(newDate.toJSON()));
+    navigate(`/day/${format(newDate, 'MM-dd-yy')}`);
   };
 
   const checkIfCurrentDay = (i) => {
@@ -63,11 +61,11 @@ const MonthCalendar = (props) => {
       (calendar) => event.filter === calendar.title
     );
     return {
-      display: "flex",
-      justifyContent: "flex-start",
-      alignItems: "center",
-      height: "20px",
-      backgroundColor: calendar.length ? calendar[0].filter : "none",
+      display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
+      height: '20px',
+      backgroundColor: calendar.length ? calendar[0].filter : 'none',
       color: event.color,
     };
   };
@@ -92,7 +90,7 @@ const MonthCalendar = (props) => {
         return (
           <div style={setEventStyles(event)} key={index}>
             <div className={classes.eventInfo}>
-              {format(event.startTime, "hh:mm aaa")} -
+              {format(event.startTime, 'hh:mm aaa')} -
             </div>
             <div className={classes.eventInfo}>{event.title}</div>
           </div>
@@ -109,14 +107,12 @@ const MonthCalendar = (props) => {
     for (let i = 1; i <= numberOfDaysInMonth; i++) {
       renderedCalendar.push(
         <div key={i + startDayOfMonth}>
-          <Link to="/day" element={<DayCalendar />}>
-            <span
-              className={checkIfCurrentDay(i)}
-              onClick={(e) => handleDayClick(e, i)}
-            >
-              {i}
-            </span>
-          </Link>
+          <span
+            className={checkIfCurrentDay(i)}
+            onClick={(e) => handleDayClick(e, i)}
+          >
+            {i}
+          </span>
           <div className={classes.eventsContainer}>{renderEvents(i)}</div>
         </div>
       );

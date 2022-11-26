@@ -1,4 +1,12 @@
 {
   "events": [
+    {
+      "title": "Chess",
+      "filter": "Events",
+      "color": "#000",
+      "singleDate": "2022-11-26T05:00:00.000Z",
+      "allDay": true,
+      "id": 1
+    }
   ]
 }
