@@ -52,7 +52,6 @@ const NewEventModal = () => {
     if (defaultCalendarTitles.includes(selectedCalendar.title)) return '#000';
     else return '#fff';
   };
-
   const handleSave = () => {
     if (selectedSwitch === 'all-day') {
       const newEvent = {
@@ -78,21 +77,53 @@ const NewEventModal = () => {
     }
   };
 
-  const setStyles = () => {
+  const setModalStyles = () => {
     if (newEventModalOpen)
       return {
-        display: 'flex',
         animation: '$fadeIn',
         zIndex: '2',
         opactity: '1',
       };
     else
       return {
-        display: 'none',
         animation: '$fadeOut',
         zIndex: '-1',
         opacity: '0',
       };
+  };
+  const setDateContainerStyles = () => {
+    if (selectedSwitch === 'all-day')
+      return {
+        dateContainer: {
+          animation: '$dateMoveIn',
+          zIndex: '2',
+          opactity: '1',
+        },
+        dateTimeContainer: {
+          animation: '$dateTimeMoveOut',
+          zIndex: '-1',
+          opacity: '0',
+        },
+      };
+    else
+      return {
+        dateContainer: {
+          animation: '$dateMoveOut',
+          zIndex: '-1',
+          opacity: '0',
+        },
+        dateTimeContainer: {
+          animation: '$dateTimeMoveIn',
+          zIndex: '2',
+          opactity: '1',
+        },
+      };
+  };
+  const setStyles = () => {
+    const props = new Object();
+    props.modal = setModalStyles();
+    props.dateInputs = setDateContainerStyles();
+    return props;
   };
 
   const classes = useStyles(setStyles());
@@ -122,8 +153,8 @@ const NewEventModal = () => {
           setSelectedSwitch={setSelectedSwitch}
         />
         <div className={classes.timeContainer}>
-          {selectedSwitch === 'all-day' ? (
-            <>
+          <div className={classes.dateContainer}>
+            <div className={classes.dateInputContainer}>
               <p>Date</p>
               <input
                 type="date"
@@ -133,29 +164,32 @@ const NewEventModal = () => {
                 value={singleDate}
                 onChange={(e) => setSingleDate(e.target.value)}
               />
-            </>
-          ) : (
-            <>
+            </div>
+          </div>
+          <div className={classes.dateTimeContainer}>
+            <div className={classes.dateInputContainer}>
               <p>Start Time</p>
               <input
                 type="datetime-local"
                 name="start-date"
                 id="start-date"
-                className={classes.dateInput}
+                className={classes.dateTimeInput}
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
               />
+            </div>
+            <div className={classes.dateInputContainer}>
               <p>End Time</p>
               <input
                 type="datetime-local"
                 name="end-date"
                 id="end-date"
-                className={classes.dateInput}
+                className={classes.dateTimeInput}
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
               />
-            </>
-          )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
