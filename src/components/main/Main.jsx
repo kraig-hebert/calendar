@@ -29,53 +29,40 @@ const Main = () => {
   const toggleSideDrawerOpen = useSideDrawerToggle(true);
   const calendarHeaderDate = useCalendarHeaderDate();
 
+  const executeClickAction = (newDate) => {
+    dispatch(mainHeaderButtonClicked(newDate.toJSON()));
+    navigate(`/${currentCalendarSpread}/${format(newDate, 'MM-dd-yy')}`);
+  };
+
   const handleLeftClick = () => {
-    let newDate;
     switch (currentCalendarSpread) {
       case 'day':
-        newDate = addDays(currentDate, -1);
-        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
-        navigate(`/day/${format(newDate, 'MM-dd-yy')}`);
+        executeClickAction(addDays(currentDate, -1));
         break;
       case 'week':
-        newDate = addDays(currentDate, -7);
-        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
-        navigate(`/week/${format(newDate, 'MM-dd-yy')}`);
+        executeClickAction(addDays(currentDate, -7));
         break;
       case 'month':
-        newDate = addMonths(currentDate, -1);
-        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
-        navigate(`/month/${format(newDate, 'MM-dd-yy')}`);
+        executeClickAction(addMonths(currentDate, -1));
         break;
       case 'year':
-        newDate = addYears(currentDate, -1);
-        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
-        navigate(`/year/${format(newDate, 'MM-dd-yy')}`);
+        executeClickAction(addYears(currentDate, -1));
         break;
     }
   };
   const handleRightClick = () => {
-    let newDate;
     switch (currentCalendarSpread) {
       case 'day':
-        newDate = addDays(currentDate, 1);
-        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
-        navigate(`/day/${format(newDate, 'MM-dd-yy')}`);
+        executeClickAction(addDays(currentDate, 1));
         break;
       case 'week':
-        newDate = addDays(currentDate, 7);
-        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
-        navigate(`/week/${format(newDate, 'MM-dd-yy')}`);
+        executeClickAction(addDays(currentDate, 7));
         break;
       case 'month':
-        newDate = addMonths(currentDate, 1);
-        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
-        navigate(`/month/${format(newDate, 'MM-dd-yy')}`);
+        executeClickAction(addMonths(currentDate, 1));
         break;
       case 'year':
-        newDate = addYears(currentDate, 1);
-        dispatch(mainHeaderButtonClicked(newDate.toJSON()));
-        navigate(`/year/${format(newDate, 'MM-dd-yy')}`);
+        executeClickAction(addYears(currentDate, 1));
         break;
     }
   };

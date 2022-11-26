@@ -97,7 +97,6 @@ const DayCalendarColumn = (props) => {
     );
   }
   useLayoutEffect(() => {
-    console.log(ref.current.offsetWidth);
     setCalendarWidthValue(ref.current.offsetWidth);
   }, []);
   return (

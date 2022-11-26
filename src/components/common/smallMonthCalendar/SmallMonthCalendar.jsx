@@ -2,7 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useStyles } from './styles';
 import PropTypes from 'prop-types';
-import { getDay, getDaysInMonth } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
+import { getDay, getDaysInMonth, format } from 'date-fns';
 import { calendarDaySelected } from '../../../reducers/appSettings';
 import { Link } from 'react-router-dom';
 import DayCalendar from '../../main/calendarTypes/dayCalendar/DayCalendar';
@@ -10,12 +11,15 @@ import DayCalendar from '../../main/calendarTypes/dayCalendar/DayCalendar';
 const SmallMonthCalendar = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { month, year, date } = props;
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const numberOfDaysInMonth = getDaysInMonth(new Date(year, month, 1)); // returns number of days in month
 
   const handleDayClick = (e, day) => {
-    dispatch(calendarDaySelected(new Date(year, month, day).toJSON()));
+    const newDate = new Date(year, month, day);
+    dispatch(calendarDaySelected(newDate.toJSON()));
+    navigate(`/day/${format(newDate, 'MM-dd-yy')}`);
   };
 
   const checkIfCurrentDay = (i) => {
@@ -25,7 +29,7 @@ const SmallMonthCalendar = (props) => {
       date.getFullYear() === year
     )
       return classes.currentDay;
-    else return undefined;
+    else return classes.notCurrentDay;
   };
 
   const setDatesOnCalendar = (renderedCalendar) => {
@@ -38,14 +42,9 @@ const SmallMonthCalendar = (props) => {
         <div
           key={i + 6 + startDayOfMonth}
           onClick={(e) => handleDayClick(e, i)}
+          className={checkIfCurrentDay(i)}
         >
-          <Link
-            to="/day"
-            element={<DayCalendar />}
-            className={checkIfCurrentDay(i)}
-          >
-            {i}
-          </Link>
+          {i}
         </div>
       );
     }
