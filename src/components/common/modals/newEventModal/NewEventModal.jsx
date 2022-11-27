@@ -101,7 +101,7 @@ const NewEventModal = () => {
           width: '100%',
         },
         dateTimeContainer: {
-          animation: '$dateTimeMoveOut',
+          animation: '$dateMoveOut',
           zIndex: '-1',
           opacity: '0',
           width: '0%',
@@ -116,7 +116,7 @@ const NewEventModal = () => {
           width: '0%',
         },
         dateTimeContainer: {
-          animation: '$dateTimeMoveIn',
+          animation: '$dateMoveIn',
           zIndex: '2',
           opactity: '1',
           width: '100%',
@@ -177,7 +177,7 @@ const NewEventModal = () => {
                 type="datetime-local"
                 name="start-date"
                 id="start-date"
-                className={classes.dateTimeInput}
+                className={classes.dateInput}
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
               />
@@ -188,7 +188,7 @@ const NewEventModal = () => {
                 type="datetime-local"
                 name="end-date"
                 id="end-date"
-                className={classes.dateTimeInput}
+                className={classes.dateInput}
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
               />
