@@ -16,6 +16,32 @@
       "endTime": "2022-11-26T19:00:00.000Z",
       "allDay": false,
       "id": 2
+    },
+    {
+      "title": "World Cup",
+      "filter": "Runs",
+      "color": "#fff",
+      "singleDate": "2022-11-27T05:00:00.000Z",
+      "allDay": true,
+      "id": 3
+    },
+    {
+      "title": "Deck Chess",
+      "filter": "Chess",
+      "color": "#fff",
+      "startTime": "2022-11-27T13:00:00.000Z",
+      "endTime": "2022-11-27T16:00:00.000Z",
+      "allDay": false,
+      "id": 4
+    },
+    {
+      "title": "BearHole 10 Miles",
+      "filter": "Runs",
+      "color": "#fff",
+      "startTime": "2022-11-27T17:00:00.000Z",
+      "endTime": "2022-11-27T20:00:00.000Z",
+      "allDay": false,
+      "id": 5
     }
   ]
 }

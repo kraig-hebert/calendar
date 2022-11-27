@@ -14,6 +14,7 @@ export const useStyles = createUseStyles({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '60%',
+    marginTop: '10px',
     '& p': {
       fontSize: '1.25rem',
       marginRight: '10px',

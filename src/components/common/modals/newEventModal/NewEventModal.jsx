@@ -133,17 +133,17 @@ const NewEventModal = () => {
       <div className={classes.modalContent}>
         <div className={classes.iconContainer}>
           <AiFillSave className={classes.icon} onClick={handleSave} />
+          <input
+            type="text"
+            name="title"
+            id="title"
+            value={inputValue}
+            placeholder="Title"
+            className={classes.titleInput}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
           <AiFillCloseCircle className={classes.icon} onClick={clearModal} />
         </div>
-        <input
-          type="text"
-          name="title"
-          id="title"
-          value={inputValue}
-          placeholder="Title"
-          className={classes.titleInput}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
         <EventCalendars
           selectedCalendar={selectedCalendar}
           setSelectedCalendar={setSelectedCalendar}

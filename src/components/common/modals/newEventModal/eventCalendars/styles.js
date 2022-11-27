@@ -1,28 +1,22 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
-  defaultCalendarRow: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    height: '50px',
-    marginTop: '10px',
-    width: '80%',
+  calendarRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    width: '100%',
+    backgroundColor: 'rgb(120,255,140)',
+    marginBottom: '10px',
+    borderBottom: '1px solid rgb(7,82,18)',
+    '& div': {
+      margin: '10px',
+    },
     '& span': {
       justifySelf: 'center',
       alignSelf: 'center',
     },
   },
-  customCalendarRow: (props) => ({
-    display: 'grid',
-    gridTemplateColumns: `repeat(${props.calendarListLength}, 1fr)`,
-    height: '50px',
-    marginBottom: '10px',
-    width: '80%',
-    '& span': {
-      justifySelf: 'center',
-      alignSelf: 'center',
-    },
-  }),
   calendar: {
     display: 'flex',
     justifyContent: 'center',

@@ -36,7 +36,7 @@ const SwitchSelectors = (props) => {
 };
 
 SwitchSelectors.propTypes = {
-  selectedSwitch: PropTypes.string,
+  selectedSwitch: PropTypes.bool,
   setSelectedSwitch: PropTypes.func,
 };
 

@@ -37,7 +37,7 @@ const EventCalendars = (props) => {
     </div>
   ));
   const renderedCustomCalendars = customCalendars.map((calendar, index) => (
-    <div key={index} className={classes.calendar}>
+    <div key={index + 4} className={classes.calendar}>
       <CheckBox {...setStyles(calendar, '#fff')} />
       <span>{calendar.title}</span>
     </div>
@@ -45,14 +45,10 @@ const EventCalendars = (props) => {
 
   return (
     <>
-      <div className={classes.defaultCalendarRow}>
+      <div className={classes.calendarRow}>
         {renderedDefaultCalendars}
+        {renderedCustomCalendars.length > 0 && renderedCustomCalendars}
       </div>
-      {renderedCustomCalendars.length > 0 && (
-        <div className={classes.customCalendarRow}>
-          {renderedCustomCalendars}
-        </div>
-      )}
     </>
   );
 };
