@@ -52,6 +52,7 @@ export const useStyles = createUseStyles({
     backgroundColor: 'rgba(7,82,18,.5)',
     borderRadius: '34px',
     transition: '.5s',
+    cursor: 'pointer',
     '&:before': {
       position: 'absolute',
       content: '""',
@@ -62,6 +63,7 @@ export const useStyles = createUseStyles({
       backgroundColor: 'rgb(7,82,18)',
       borderRadius: '50%',
       transition: '.75s',
+      cursor: 'pointer',
     },
   },
 });

@@ -2,12 +2,14 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
   '@keyframes fadeIn': {
-    from: { opacity: '0', zIndex: '-1' },
-    to: { opacity: '1', zIndex: '2' },
+    '0%': { opacity: '0', zIndex: '-1' },
+    '50%': { opacity: '0', zIndex: '2' },
+    '100%': { opacity: '1', zIndex: '2' },
   },
   '@keyframes fadeOut': {
-    from: { opacity: '1', zIndex: '2' },
-    to: { opacity: '0', zIndex: '-1' },
+    '0%': { opacity: '1', zIndex: '2' },
+    '50%': { opacity: '0', zIndex: '2' },
+    '100%': { opacticy: '0', zIndex: '-1' },
   },
   '@keyframes dateMoveIn': {
     '0%': { opacity: '0', width: '0' },
@@ -36,9 +38,11 @@ export const useStyles = createUseStyles({
     width: '30%',
     border: '1px solid rgb(7,82,18)',
     borderRadius: '20px',
+    zIndex: props.modal.zIndex,
+
     opacity: props.modal.opacity,
     animationName: props.modal.animation,
-    animationDuration: '.5s',
+    animationDuration: '.55s',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
