@@ -1,30 +1,46 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
+  '@keyframes fadeIn': {
+    from: { backgroundColor: '#fff' },
+    to: { backgroundColor: 'rgb(120,255,140)' },
+  },
+  '@keyframes fadeOut': {
+    from: { backgroundColor: 'rgb(120,255,140)' },
+    to: { backgroundColor: '#fff' },
+  },
   switchContainer: {
     display: 'flex',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    width: '80%',
-    marginBottom: '10px',
+    width: '60%',
     '& p': {
       fontSize: '1.25rem',
       marginRight: '10px',
     },
     '& label': {
       position: 'relative',
-      width: '50px',
+      width: '40px',
       height: '15px',
     },
     '& input': {
       opacity: '0',
       width: '0',
       height: '0',
-      '& + span': { backgroundColor: 'rgb(7,82,18)' },
       '&:checked + span:before': {
-        transform: 'translateX(20px)',
+        transform: 'translateX(30px)',
       },
     },
+  },
+  activeEventType: {
+    backgroundColor: 'rgb(120,255,140)',
+    animation: '$fadeIn',
+    animationDuration: '.75s',
+  },
+  inActiveEventType: {
+    backgroundColor: '#fff',
+    animation: '$fadeOut',
+    animationDuration: '.75s',
   },
   slider: {
     position: 'absolute',
@@ -32,19 +48,17 @@ export const useStyles = createUseStyles({
     left: '0',
     right: '0',
     bottom: '0',
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    border: '1px solid #000',
+    backgroundColor: 'rgba(7,82,18,.5)',
     borderRadius: '34px',
-    transition: '.75s',
+    transition: '.5s',
     '&:before': {
       position: 'absolute',
       content: '""',
       height: '20px',
       width: '20px',
-      left: '4px',
-      bottom: '-25%',
-      backgroundColor: 'rgb(120,255,140)',
-      border: '1px solid #000',
+      left: '-5px',
+      bottom: '-15%',
+      backgroundColor: 'rgb(7,82,18)',
       borderRadius: '50%',
       transition: '.75s',
     },

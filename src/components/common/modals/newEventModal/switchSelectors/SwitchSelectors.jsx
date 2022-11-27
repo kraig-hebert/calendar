@@ -7,18 +7,30 @@ const SwitchSelectors = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.switchContainer}>
-      <p>All Day Event</p>
+      <p
+        className={
+          !selectedSwitch ? classes.activeEventType : classes.inActiveEventType
+        }
+      >
+        All Day Event
+      </p>
       <label htmlFor="all-day">
         <input
           type="checkbox"
           name="all-day"
           id="all-day"
-          checked={selectedSwitch === true && true}
+          checked={selectedSwitch && true}
           onChange={(e) => setSelectedSwitch((prev) => !prev)}
         />
         <span className={classes.slider}></span>
       </label>
-      <p>Timed Event</p>
+      <p
+        className={
+          selectedSwitch ? classes.activeEventType : classes.inActiveEventType
+        }
+      >
+        Timed Event
+      </p>
     </div>
   );
 };
