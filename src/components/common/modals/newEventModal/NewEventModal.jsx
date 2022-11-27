@@ -17,7 +17,7 @@ const NewEventModal = () => {
   const newEventModalOpen = useSelector(selectNewEventModalOpen);
   const defaultCalendarTitles = useSelector(selectDefaultCalendarTitles);
   const [inputValue, setInputValue] = useState('');
-  const [selectedSwitch, setSelectedSwitch] = useState('all-day');
+  const [selectedSwitch, setSelectedSwitch] = useState(false);
   const [selectedCalendar, setSelectedCalendar] = useState(new Object());
   const [singleDate, setSingleDate] = useState(format(new Date(), 'yyyy-L-dd'));
   const [startTime, setStartTime] = useState(
@@ -53,7 +53,7 @@ const NewEventModal = () => {
     else return '#fff';
   };
   const handleSave = () => {
-    if (selectedSwitch === 'all-day') {
+    if (selectedSwitch === false) {
       const newEvent = {
         title: inputValue,
         filter: selectedCalendar.title,
@@ -92,7 +92,7 @@ const NewEventModal = () => {
       };
   };
   const setDateContainerStyles = () => {
-    if (selectedSwitch === 'all-day')
+    if (selectedSwitch === false)
       return {
         dateContainer: {
           animation: '$dateMoveIn',

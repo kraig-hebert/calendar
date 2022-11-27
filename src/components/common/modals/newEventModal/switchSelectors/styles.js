@@ -1,16 +1,11 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
-  switchSelectorsContainer: {
+  switchContainer: {
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '80%',
-  },
-  switchContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     marginBottom: '10px',
     '& p': {
       fontSize: '1.25rem',
@@ -19,13 +14,13 @@ export const useStyles = createUseStyles({
     '& label': {
       position: 'relative',
       width: '50px',
-      height: '25px',
+      height: '15px',
     },
     '& input': {
       opacity: '0',
       width: '0',
       height: '0',
-      '&:checked + span': { backgroundColor: 'rgb(120,255,140)' },
+      '& + span': { backgroundColor: 'rgb(7,82,18)' },
       '&:checked + span:before': {
         transform: 'translateX(20px)',
       },
@@ -40,17 +35,18 @@ export const useStyles = createUseStyles({
     backgroundColor: 'rgba(0,0,0,0.1)',
     border: '1px solid #000',
     borderRadius: '34px',
-    transition: '.4s',
+    transition: '.75s',
     '&:before': {
       position: 'absolute',
       content: '""',
       height: '20px',
       width: '20px',
       left: '4px',
-      bottom: '1px',
-      backgroundColor: 'rgb(7,82,18)',
+      bottom: '-25%',
+      backgroundColor: 'rgb(120,255,140)',
+      border: '1px solid #000',
       borderRadius: '50%',
-      transition: '.4s',
+      transition: '.75s',
     },
   },
 });

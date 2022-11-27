@@ -98,7 +98,7 @@ export const useStyles = createUseStyles({
   }),
   dateTimeContainer: (props) => ({
     position: 'absolute',
-    right: '0',
+    left: '0',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
