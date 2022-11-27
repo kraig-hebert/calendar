@@ -7,6 +7,15 @@
       "singleDate": "2022-11-26T05:00:00.000Z",
       "allDay": true,
       "id": 1
+    },
+    {
+      "title": "Bearhole",
+      "filter": "Runs",
+      "color": "#fff",
+      "startTime": "2022-11-26T17:00:00.000Z",
+      "endTime": "2022-11-26T19:00:00.000Z",
+      "allDay": false,
+      "id": 2
     }
   ]
 }

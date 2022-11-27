@@ -98,11 +98,13 @@ const NewEventModal = () => {
           animation: '$dateMoveIn',
           zIndex: '2',
           opactity: '1',
+          width: '100%',
         },
         dateTimeContainer: {
           animation: '$dateTimeMoveOut',
           zIndex: '-1',
           opacity: '0',
+          width: '0%',
         },
       };
     else
@@ -111,11 +113,13 @@ const NewEventModal = () => {
           animation: '$dateMoveOut',
           zIndex: '-1',
           opacity: '0',
+          width: '0%',
         },
         dateTimeContainer: {
           animation: '$dateTimeMoveIn',
           zIndex: '2',
           opactity: '1',
+          width: '100%',
         },
       };
   };
