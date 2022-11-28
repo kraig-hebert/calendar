@@ -76,7 +76,7 @@ export const useStyles = createUseStyles({
     },
     '&::placeholder': {
       paddingLeft: '10px',
-      color: 'rgb(7,82,18)',
+      color: '#000',
     },
   },
   timeContainer: {
