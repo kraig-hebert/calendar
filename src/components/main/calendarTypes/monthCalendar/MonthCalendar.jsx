@@ -69,6 +69,11 @@ const MonthCalendar = (props) => {
       color: event.color,
     };
   };
+  const setEventTitleLength = (title) => {
+    const newTitle = title.slice(0, 12).trim();
+    if (newTitle === title) return newTitle;
+    else return `${newTitle}...`;
+  };
   const renderEvents = (i) => {
     const allDayEventsList = monthFilteredEvents.allDay.filter(
       (event) => event.singleDate.getDate() === i
@@ -83,7 +88,9 @@ const MonthCalendar = (props) => {
         return (
           <div style={setEventStyles(event)} key={index}>
             <div className={classes.eventInfo}>All Day -</div>
-            <div className={classes.eventInfo}>{event.title}</div>
+            <div className={classes.eventInfo}>
+              {setEventTitleLength(event.title)}
+            </div>
           </div>
         );
       else
@@ -92,7 +99,9 @@ const MonthCalendar = (props) => {
             <div className={classes.eventInfo}>
               {format(event.startTime, 'hh:mm aaa')} -
             </div>
-            <div className={classes.eventInfo}>{event.title}</div>
+            <div className={classes.eventInfo}>
+              {setEventTitleLength(event.title)}
+            </div>
           </div>
         );
     });
