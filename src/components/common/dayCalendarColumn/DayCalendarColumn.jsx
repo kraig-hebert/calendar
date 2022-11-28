@@ -35,6 +35,7 @@ const DayCalendarColumn = (props) => {
         width: calendarWidthValue,
         color: event.color,
         borderRadius: '5px',
+        cursor: 'pointer',
       };
     } else {
       return {
@@ -44,6 +45,7 @@ const DayCalendarColumn = (props) => {
         height: calculateHeight(event),
         width: calendarWidthValue,
         zIndex: '2',
+        cursor: 'pointer',
       };
     }
   };

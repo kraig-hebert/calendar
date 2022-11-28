@@ -67,6 +67,7 @@ const MonthCalendar = (props) => {
       height: '20px',
       backgroundColor: calendar.length ? calendar[0].filter : 'none',
       color: event.color,
+      cursor: 'pointer',
     };
   };
   const setEventTitleLength = (title) => {
