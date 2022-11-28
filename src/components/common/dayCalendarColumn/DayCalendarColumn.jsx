@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useStyles } from './styles';
 import { selectAllCalendars } from '../../../reducers/appSettings';
 import PropTypes from 'prop-types';
-import { differenceInHours } from 'date-fns';
+import { differenceInHours, format } from 'date-fns';
 
 const DayCalendarColumn = (props) => {
   const { dayFilteredEvents } = props;
@@ -53,12 +53,16 @@ const DayCalendarColumn = (props) => {
     </div>
   ));
 
+  const renderEventTime = (event) =>
+    `${format(event.startTime, 'haaa')} - ${format(event.endTime, 'haaa')}`;
+
   const renderTimedEvents = (time) => {
     const renderedTimedEvents = timedEventsList
       .filter((event) => event.startTime.getHours() === time)
       .map((event) => (
         <div key={event.id} style={setStyle(event)}>
-          {event.title}
+          <p>{event.title}</p>
+          <p>{renderEventTime(event)}</p>
         </div>
       ));
     return renderedTimedEvents;
