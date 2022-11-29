@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   header: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -9,7 +9,7 @@ export const useStyles = createUseStyles({
       right: '10px',
     },
     alignItems: 'center',
-    backgroundColor: 'rgb(7,82,18)',
+    backgroundColor: theme.primary.main,
     width: '80%',
     height: '40px',
     color: '#fff',
@@ -19,9 +19,9 @@ export const useStyles = createUseStyles({
   icon: {
     fontSize: '1.5rem',
     fontWeight: '800',
-    color: 'rgb(120,255,100)',
+    color: theme.secondary.main,
     '&:hover': {
       cursor: 'pointer',
     },
   },
-});
+}));

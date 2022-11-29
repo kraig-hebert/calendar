@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   calendar: {
     marginTop: '10px',
     width: '80%',
@@ -18,8 +18,8 @@ export const useStyles = createUseStyles({
     },
   },
   currentDay: {
-    backgroundColor: 'rgb(7,82,18)',
-    color: 'white !important',
+    backgroundColor: theme.primary.main,
+    color: theme.light.main + ' !important',
     borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
@@ -29,7 +29,7 @@ export const useStyles = createUseStyles({
     cursor: 'pointer',
     borderRadius: '50%',
     '&:hover': {
-      backgroundColor: 'rgb(120,255,140)',
+      backgroundColor: theme.secondary.main,
     },
   },
   notCurrentDay: {
@@ -41,7 +41,7 @@ export const useStyles = createUseStyles({
     cursor: 'pointer',
     borderRadius: '50%',
     '&:hover': {
-      backgroundColor: 'rgb(120,255,140)',
+      backgroundColor: theme.secondary.main,
     },
   },
-});
+}));

@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   checkBox: (props) => ({
     height: '16px',
     width: '16px',
@@ -8,7 +8,7 @@ export const useStyles = createUseStyles({
     position: 'relative',
     borderRadius: '3px',
     transition: '.3s',
-    border: '1px solid #000',
+    border: '1px solid ' + theme.light.main,
     '&:after': {
       position: 'absolute',
       content: '""',
@@ -34,4 +34,4 @@ export const useStyles = createUseStyles({
         },
      */
   }),
-});
+}));

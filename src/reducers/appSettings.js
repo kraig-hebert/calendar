@@ -3,7 +3,6 @@ import {
   createSlice,
   createAsyncThunk,
 } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
 
 const initialState = {
   drawerOpen: true,

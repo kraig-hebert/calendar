@@ -7,10 +7,6 @@ export const useStyles = createUseStyles({
     width: '100%',
     fontSize: '1rem',
     padding: '5px',
-    backgroundColor: 'rgb(120,255,140)',
-    '&:hover': {
-      backgroundColor: 'rgb(120,255,100)',
-    },
   },
   label: {
     marginLeft: '10px',

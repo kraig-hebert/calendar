@@ -1,18 +1,18 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   inputContainer: {
     display: 'flex',
     alignItems: 'center',
     width: '100%',
     fontSize: '1rem',
     padding: '5px',
-    backgroundColor: 'rgb(120,255,140)',
+    backgroundColor: theme.secondary.main,
     '&:hover': {
-      backgroundColor: 'rgb(120,255,100)',
+      backgroundColor: theme.secondary.halfAlpha,
     },
   },
   label: {
     marginLeft: '10px',
   },
-});
+}));

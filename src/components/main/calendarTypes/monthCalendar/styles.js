@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   monthCalendar: {
     marginTop: '10px',
     width: '95%',
@@ -20,12 +20,12 @@ export const useStyles = createUseStyles({
       alignItems: 'center',
       height: '100%',
       width: '100%',
-      border: '1px solid #000',
-      backgroundColor: 'rgb(7,82,18)',
-      color: '#fff',
+      border: '1px solid ' + theme.dark.main,
+      backgroundColor: theme.primary.main,
+      color: theme.light.main,
       borderRight: '0',
       '&:last-of-type': {
-        borderRight: '1px solid #000',
+        borderRight: '1px solid ' + theme.light.main,
       },
     },
   },
@@ -40,10 +40,10 @@ export const useStyles = createUseStyles({
       justifyContent: 'flex-start',
       alignItems: 'center',
       width: '100%',
-      borderBottom: '1px solid rgba(0,0,0,0.5)',
-      borderLeft: '1px solid rgba(0,0,0,0.5)',
+      borderBottom: '1px solid ' + theme.dark.halfAlpha,
+      borderLeft: '1px solid ' + theme.dark.halfAlpha,
       '&:nth-of-type(7n), &:last-of-type': {
-        borderRight: '1px solid rgba(0,0,0,0.5)',
+        borderRight: '1px solid ' + theme.dark.halfAlpha,
       },
       '& span': {
         display: 'grid',
@@ -55,7 +55,7 @@ export const useStyles = createUseStyles({
         marginBottom: '10px',
         '&:hover': {
           borderRadius: '50%',
-          backgroundColor: 'rgb(120,255,140)',
+          backgroundColor: theme.secondary.main,
           cursor: 'pointer',
         },
       },
@@ -69,11 +69,11 @@ export const useStyles = createUseStyles({
     },
   },
   currentDay: {
-    backgroundColor: 'rgb(7,82,18)',
-    color: 'white',
+    backgroundColor: theme.primary.main,
+    color: theme.light.main,
     borderRadius: '50%',
   },
   eventInfo: {
     margin: '0 3px',
   },
-});
+}));

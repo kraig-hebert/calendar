@@ -1,9 +1,9 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   drawerContainer: {
     width: '300px',
-    borderRight: '1px solid rgb(7,82,18)',
+    borderRight: '1px solid ' + theme.primary.main,
     paddingTop: '10px',
     display: 'flex',
     flexDirection: 'column',
@@ -21,11 +21,11 @@ export const useStyles = createUseStyles({
     left: '225px',
     paddingRight: '10px',
     fontSize: '2rem',
-    color: 'rgb(7,82,18)',
+    color: theme.primary.main,
   },
   monthName: {
     textAlign: 'center',
     marginTop: '10px',
     fontSize: '1.5rem',
   },
-});
+}));

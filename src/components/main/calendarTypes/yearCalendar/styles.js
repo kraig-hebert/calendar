@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   yearCalendar: {
     display: 'grid',
     height: '100%',
@@ -18,24 +18,23 @@ export const useStyles = createUseStyles({
     justifyContent: 'center',
   },
   monthName: {
-    backgroundColor: 'rgb(120,255,140)',
+    backgroundColor: theme.secondary.main,
     display: 'block',
     height: '100%',
     width: '50%',
     textAlign: 'center',
     textDecoration: 'none',
-    color: '#000',
+    color: theme.dark.main,
     '&:hover': {
-      backgroundColor: 'rgb(7,82,18)',
-      color: '#fff',
+      backgroundColor: theme.primary.main,
+      color: theme.light.main,
       cursor: 'pointer',
     },
   },
-
   bottomBorder: {
     display: 'block',
     height: '1px',
-    backgroundColor: 'black',
+    backgroundColor: theme.dark.main,
     width: '50%',
   },
-});
+}));

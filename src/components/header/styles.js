@@ -1,12 +1,12 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   header: {
     position: 'fixed',
     width: '100%',
     height: '50px',
-    backgroundColor: 'rgb(7,82,18)',
-    boxShadow: '2px 0px 5px 2px #000000',
+    backgroundColor: theme.primary.main,
+    boxShadow: '2px 0px 5px 2px ' + theme.dark.main,
     fontSize: '1.5rem',
     color: '#fff',
     display: 'flex',
@@ -24,7 +24,7 @@ export const useStyles = createUseStyles({
     },
     '& a': {
       textDecoration: 'none',
-      color: '#fff',
+      color: theme.light.main,
     },
   },
   nav: {
@@ -41,4 +41,4 @@ export const useStyles = createUseStyles({
       fontSize: '2.5rem',
     },
   },
-});
+}));

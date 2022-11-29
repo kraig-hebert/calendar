@@ -1,13 +1,13 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   '@keyframes fadeIn': {
-    from: { backgroundColor: '#fff' },
-    to: { backgroundColor: 'rgb(120,255,140)' },
+    from: { backgroundColor: theme.light.main },
+    to: { backgroundColor: theme.secondary.main },
   },
   '@keyframes fadeOut': {
-    from: { backgroundColor: 'rgb(120,255,140)' },
-    to: { backgroundColor: '#fff' },
+    from: { backgroundColor: theme.secondary.main },
+    to: { backgroundColor: theme.light.main },
   },
   switchContainer: {
     display: 'flex',
@@ -34,12 +34,12 @@ export const useStyles = createUseStyles({
     },
   },
   activeEventType: {
-    backgroundColor: 'rgb(120,255,140)',
+    backgroundColor: theme.secondary.main,
     animation: '$fadeIn',
     animationDuration: '.75s',
   },
   inActiveEventType: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.light.main,
     animation: '$fadeOut',
     animationDuration: '.75s',
   },
@@ -49,7 +49,7 @@ export const useStyles = createUseStyles({
     left: '0',
     right: '0',
     bottom: '0',
-    backgroundColor: 'rgba(7,82,18,.5)',
+    backgroundColor: theme.primary.halfAlpha,
     borderRadius: '34px',
     transition: '.5s',
     cursor: 'pointer',
@@ -60,10 +60,10 @@ export const useStyles = createUseStyles({
       width: '20px',
       left: '-5px',
       bottom: '-15%',
-      backgroundColor: 'rgb(7,82,18)',
+      backgroundColor: theme.primary.main,
       borderRadius: '50%',
       transition: '.75s',
       cursor: 'pointer',
     },
   },
-});
+}));

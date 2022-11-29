@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   newCalendarForm: (props) => ({
     position: 'absolute',
     top: '100%',
@@ -12,22 +12,22 @@ export const useStyles = createUseStyles({
     width: '80%',
     height: props.height,
     transition: '.25s',
-    borderTop: '1px solid #fff',
+    borderTop: '1px solid ' + theme.light.main,
     borderBottomLeftRadius: '10px',
     borderBottomRightRadius: '10px',
     overflow: 'hidden',
-    backgroundColor: 'rgb(120,255,140)',
+    backgroundColor: theme.secondary.main,
     '& h2': {
       paddingTop: '10px',
-      color: '#fff',
-      backgroundColor: 'rgb(7,82,18)',
+      color: theme.light.main,
+      backgroundColor: theme.primary.main,
       textAlign: 'center',
       height: '20px',
       width: '100%',
     },
     '& input': {
       padding: '5px',
-      border: '1px solid rgb(7,82,18)',
+      border: '1px solid ' + theme.primary.main,
       borderRadius: '2px',
       width: '175px',
       height: '20px',
@@ -35,7 +35,7 @@ export const useStyles = createUseStyles({
         outline: 'none',
       },
       '&::placeholder': {
-        color: 'rgb(7,82,18)',
+        color: theme.primary.main,
       },
     },
     '& p': {
@@ -52,7 +52,7 @@ export const useStyles = createUseStyles({
   saveButton: {
     width: '100px',
     height: '30px',
-    backgroundColor: 'rgb(7,82,18)',
+    backgroundColor: theme.primary.main,
     border: 'none',
     borderRadius: '5px',
     cursor: 'pointer',
@@ -65,7 +65,7 @@ export const useStyles = createUseStyles({
       opacity: '0.5',
     },
     '& h3': {
-      color: '#fff',
+      color: theme.light.main,
     },
   },
-});
+}));

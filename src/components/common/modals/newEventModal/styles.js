@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   '@keyframes fadeIn': {
     '0%': { opacity: '0', zIndex: '-1' },
     '50%': { opacity: '0', zIndex: '2' },
@@ -33,10 +33,10 @@ export const useStyles = createUseStyles({
     animationDuration: '.5s',
   }),
   modalContent: (props) => ({
-    backgroundColor: '#fff',
+    backgroundColor: theme.light.main,
     margin: 'auto',
     width: '30%',
-    border: '1px solid rgb(7,82,18)',
+    border: '1px solid ' + theme.primary.main,
     borderRadius: '20px',
     zIndex: props.modal.zIndex,
 
@@ -51,22 +51,22 @@ export const useStyles = createUseStyles({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'rgb(7,82,18)',
+    backgroundColor: theme.primary.main,
     width: '100%',
     borderTopRightRadius: '20px',
     borderTopLeftRadius: '20px',
-    borderBottom: '1px solid rgb(7,82,18)',
+    borderBottom: '1px solid ' + theme.primary.main,
     padding: '10px 0',
   },
   icon: {
     cursor: 'pointer',
     fontSize: '2rem',
-    color: 'rgb(120,255,140)',
+    color: theme.secondary.main,
     margin: '10px',
   },
   titleInput: {
     padding: '5px 15px',
-    border: '1px solid rgb(7,82,18)',
+    border: '1px solid ' + theme.primary.main,
     borderRadius: '10px',
     width: '60%',
     height: '35px',
@@ -76,7 +76,7 @@ export const useStyles = createUseStyles({
     },
     '&::placeholder': {
       paddingLeft: '10px',
-      color: '#000',
+      color: theme.dark.main,
     },
   },
   timeContainer: {
@@ -118,13 +118,13 @@ export const useStyles = createUseStyles({
     justifyContent: 'center',
     width: '100%',
     '& p': {
-      color: 'rgb(7,82,18)',
+      color: theme.primary.main,
     },
   },
   dateInput: {
     margin: '10px 0',
     padding: '5px',
-    border: '1px solid rgb(7,82,18)',
+    border: '1px solid ' + theme.primary.main,
     borderRadius: '10px',
     width: '60%',
     height: '35px',
@@ -137,4 +137,4 @@ export const useStyles = createUseStyles({
       outline: 'none',
     },
   },
-});
+}));

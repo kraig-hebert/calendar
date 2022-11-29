@@ -1,17 +1,17 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   linkList: {
     '& li': {
       display: 'inline',
       padding: '10px',
       cursor: 'pointer',
       '&:hover': {
-        borderBottom: '2px dashed #fff',
+        borderBottom: '2px dashed ' + theme.light.main,
       },
     },
   },
   selectedLink: {
-    color: 'rgb(120,255,140)',
+    color: theme.secondary.main,
   },
-});
+}));

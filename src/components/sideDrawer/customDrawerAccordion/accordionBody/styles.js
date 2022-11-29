@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   body: {
     height: (props) => props.height,
     overflow: 'hidden',
@@ -8,6 +8,6 @@ export const useStyles = createUseStyles({
     width: '85%',
     borderBottomLeftRadius: '10px',
     borderBottomRightRadius: '10px',
-    borderTop: '1px solid #fff',
+    borderTop: '1px solid ' + theme.light.main,
   },
-});
+}));

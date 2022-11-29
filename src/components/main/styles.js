@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   main: {
     width: '100%',
     height: '100%',
@@ -23,9 +23,9 @@ export const useStyles = createUseStyles({
     height: '30px',
     cursor: 'pointer',
     borderRadius: '10px',
-    backgroundColor: 'rgb(120,255,140)',
+    backgroundColor: theme.secondary.main,
     '&:hover': {
-      backgroundColor: 'rgb(120,255,0)',
+      backgroundColor: theme.secondary.halfAlpha,
     },
   },
   headerDate: {
@@ -34,7 +34,7 @@ export const useStyles = createUseStyles({
   },
   hamburger: {
     fontSize: '2rem',
-    color: 'rgb(7,82,18)',
+    color: theme.primary.main,
     cursor: 'pointer',
     position: 'absolute',
     left: '10px',
@@ -45,4 +45,4 @@ export const useStyles = createUseStyles({
     justifyContent: 'center',
     width: '100%',
   },
-});
+}));
