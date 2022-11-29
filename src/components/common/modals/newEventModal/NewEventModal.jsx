@@ -11,9 +11,11 @@ import { useStyles } from './styles';
 import { AiFillCloseCircle, AiFillSave } from 'react-icons/ai';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
+import { useTheme } from 'react-jss';
 
 const NewEventModal = () => {
   const dispatch = useDispatch();
+  const theme = useTheme();
   const newEventModalOpen = useSelector(selectNewEventModalOpen);
   const defaultCalendarTitles = useSelector(selectDefaultCalendarTitles);
   const [inputValue, setInputValue] = useState('');
@@ -49,8 +51,9 @@ const NewEventModal = () => {
   };
 
   const setColor = () => {
-    if (defaultCalendarTitles.includes(selectedCalendar.title)) return '#000';
-    else return '#fff';
+    if (defaultCalendarTitles.includes(selectedCalendar.title))
+      return theme.dark.main;
+    else return theme.light.main;
   };
   const handleSave = () => {
     if (selectedSwitch === false) {

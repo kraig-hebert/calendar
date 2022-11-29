@@ -3,9 +3,11 @@ import { useSelector } from 'react-redux';
 import CalendarInput from './calendarInput/CalendarInput';
 import { selectDefaultCalendars } from '../../../../../reducers/appSettings';
 import { useStyles } from './styles';
+import { useTheme } from 'react-jss';
 
 const CalendarList = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const defaultCalendars = useSelector(selectDefaultCalendars);
   const renderedCalendarList = defaultCalendars.map((calendar, index) => {
     return (
@@ -14,7 +16,7 @@ const CalendarList = () => {
         classes={classes}
         key={index}
         checkBoxBackgroundColor={calendar.filter}
-        checkColor="#000"
+        checkColor={theme.dark.main}
       />
     );
   });

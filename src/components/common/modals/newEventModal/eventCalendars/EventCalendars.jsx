@@ -7,8 +7,10 @@ import {
   selectCustomCalendars,
 } from '../../../../../reducers/appSettings';
 import CheckBox from './checkbox/CheckBox';
+import { useTheme } from 'react-jss';
 
 const EventCalendars = (props) => {
+  const theme = useTheme();
   const { selectedCalendar, setSelectedCalendar } = props;
   const defaultCalendars = useSelector(selectDefaultCalendars);
   const customCalendars = useSelector(selectCustomCalendars);
@@ -32,13 +34,13 @@ const EventCalendars = (props) => {
 
   const renderedDefaultCalendars = defaultCalendars.map((calendar, index) => (
     <div key={index} className={classes.calendar}>
-      <CheckBox {...setStyles(calendar, '#000')} />
+      <CheckBox {...setStyles(calendar, theme.dark.main)} />
       <span>{calendar.title}</span>
     </div>
   ));
   const renderedCustomCalendars = customCalendars.map((calendar, index) => (
     <div key={index + 4} className={classes.calendar}>
-      <CheckBox {...setStyles(calendar, '#fff')} />
+      <CheckBox {...setStyles(calendar, theme.light.main)} />
       <span>{calendar.title}</span>
     </div>
   ));

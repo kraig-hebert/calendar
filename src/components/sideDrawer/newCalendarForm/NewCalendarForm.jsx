@@ -7,9 +7,11 @@ import {
   addNewCalendar,
   selectCustomCalendars,
 } from '../../../reducers/appSettings';
+import { useTheme } from 'react-jss';
 
 const NewCalendarForm = (props) => {
   const dispatch = useDispatch();
+  const theme = useTheme();
   const { calendarFormVisible, setCalendarFormVisible } = props;
   const [inputValue, setInputValue] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('');
@@ -48,7 +50,7 @@ const NewCalendarForm = (props) => {
       height: '25px',
       borderRadius: '50%',
       backgroundColor: color,
-      border: '2px solid #000',
+      border: '2px solid ' + theme.dark.main,
       borderStyle: color === selectedFilter ? 'solid' : 'none',
       opacity: color !== selectedFilter ? '0.5' : '1',
     };

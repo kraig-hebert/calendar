@@ -8,7 +8,7 @@ export const useStyles = createUseStyles((theme) => ({
     position: 'relative',
     borderRadius: '3px',
     transition: '.3s',
-    border: '1px solid ' + theme.light.main,
+    border: '1px solid ' + theme.dark.main,
     '&:after': {
       position: 'absolute',
       content: '""',

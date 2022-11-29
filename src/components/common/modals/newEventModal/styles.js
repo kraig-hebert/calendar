@@ -39,7 +39,6 @@ export const useStyles = createUseStyles((theme) => ({
     border: '1px solid ' + theme.primary.main,
     borderRadius: '20px',
     zIndex: props.modal.zIndex,
-
     opacity: props.modal.opacity,
     animationName: props.modal.animation,
     animationDuration: '.55s',
