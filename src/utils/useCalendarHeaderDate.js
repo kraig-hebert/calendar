@@ -1,14 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { format, startOfWeek, endOfWeek, addMonths, getMonth } from 'date-fns';
+import { format, startOfWeek, endOfWeek, addMonths } from 'date-fns';
+
 import {
   selectCurrentDate,
   selectCurrentCalendarSpread,
 } from '../reducers/appSettings';
 
+/* 
+  returns headerDate with updated format and date when either 
+  the current date has changed or type of calendar is changed   
+*/
 const useCalendarHeaderDate = () => {
   const date = useSelector(selectCurrentDate);
-  const [headerDate, setHeaderDate] = useState(format(date, 'MMMM y')); // format: January 2022
+  const [headerDate, setHeaderDate] = useState(format(date, 'MMMM y')); // format: ex. January 2022
   const currentCalendarSpread = useSelector(selectCurrentCalendarSpread);
 
   const headerFormat = {
