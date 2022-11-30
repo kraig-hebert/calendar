@@ -167,7 +167,7 @@ export const selectAllCalendars = createSelector(
   selectDefaultCalendars,
   selectCustomCalendars,
   (defaultCalendars, customCalendars) => {
-    let calendarList = new Array();
+    let calendarList = [];
     defaultCalendars.forEach((calendar) => calendarList.push(calendar));
     customCalendars.forEach((calendar) => calendarList.push(calendar));
     return calendarList;
@@ -186,4 +186,5 @@ export const {
   eventModalClosed,
   filterReturned,
 } = appSettingsSlice.actions;
+
 export default appSettingsSlice.reducer;

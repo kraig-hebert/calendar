@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   dayCalendar: (props) => ({
     display: 'flex',
     flexDirection: 'column',
@@ -29,7 +29,7 @@ export const useStyles = createUseStyles({
     position: 'relative',
     width: props.blockWidth,
     height: '30px',
-    border: '1px solid rgba(0,0,0,0.5)',
+    border: '1px solid ' + theme.dark.halfAlpha,
     borderRight: props.borderRight,
     '&:not(:last-of-type)': {
       borderBottom: '0',
@@ -41,4 +41,4 @@ export const useStyles = createUseStyles({
     right: '101%',
     top: '-5px',
   }),
-});
+}));

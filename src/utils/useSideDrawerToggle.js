@@ -16,7 +16,7 @@ const useSideDrawerToggle = (toggle) => {
   const toggleSideDrawer = useCallback(() => {
     if (toggle) dispatch(drawerOpenSelected());
     else dispatch(drawerCloseSelected());
-  }, [toggle]);
+  }, [toggle, dispatch]);
 
   return toggleSideDrawer;
 };

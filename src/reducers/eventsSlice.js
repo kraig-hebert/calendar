@@ -3,9 +3,10 @@ import {
   createSlice,
   createAsyncThunk,
 } from '@reduxjs/toolkit';
+import { isSameWeek, getDay } from 'date-fns';
+
 import * as client from '../api/client';
 import { selectCurrentDate } from './appSettings';
-import { isSameWeek, getDay } from 'date-fns';
 
 const initialState = {
   entities: {},
@@ -51,7 +52,7 @@ const eventsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchEvents.fulfilled, (state, action) => {
-        const newEvents = new Object();
+        const newEvents = {};
         const eventList = action.payload;
         eventList.forEach((event) => {
           newEvents[event.id] = event;
@@ -71,10 +72,11 @@ const eventsSlice = createSlice({
   },
 });
 
-export const {} = eventsSlice.actions;
+// export const {} = eventsSlice.actions;
 
 export const selectEventEntities = (state) => state.events.entities;
 
+// returns list of all events with dateObjects
 export const selectEvents = createSelector(selectEventEntities, (events) => {
   const sortedEventListWithDateObjects = Object.values(events).map((event) => {
     if (event.allDay)
@@ -93,10 +95,11 @@ export const selectEvents = createSelector(selectEventEntities, (events) => {
   return sortedEventListWithDateObjects;
 });
 
+// creates object with allDay and timed events separated into 2 lists
 const groupFilteredEvents = (filteredEvents) => {
   const eventsDict = {
-    allDay: new Array(),
-    timed: new Array(),
+    allDay: [],
+    timed: [],
   };
   filteredEvents.forEach((event) => {
     if (event.allDay) eventsDict.allDay.push(event);
@@ -105,6 +108,7 @@ const groupFilteredEvents = (filteredEvents) => {
   return eventsDict;
 };
 
+// returns the groupedEvents based on currentDay
 export const selectDayFilteredEvents = createSelector(
   selectEvents,
   selectCurrentDate,
@@ -120,22 +124,28 @@ export const selectDayFilteredEvents = createSelector(
   }
 );
 
+/* 
+  returns an object with a key for each day of the week 
+  each key is a list of groupedEvents for that given day
+*/
 export const selectWeekFilteredEvents = createSelector(
   selectEvents,
   selectCurrentDate,
   (events, currentDate) => {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    const filteredEventsByDay = new Object();
+    const filteredEventsByDay = {};
     const filteredEvents = events.filter((event) => {
       if (event.hasOwnProperty('startTime')) {
         if (isSameWeek(event.startTime, currentDate)) return true;
       } else if (isSameWeek(event.singleDate, currentDate)) return true;
+      return false;
     });
     days.forEach((day, index) => {
       const dayEvents = filteredEvents.filter((event) => {
         if (event.hasOwnProperty('startTime')) {
           if (getDay(event.startTime) === index) return true;
         } else if (getDay(event.singleDate) === index) return true;
+        return false;
       });
       filteredEventsByDay[days[index]] = groupFilteredEvents(dayEvents);
     });
@@ -143,6 +153,7 @@ export const selectWeekFilteredEvents = createSelector(
   }
 );
 
+// returns the groupedEvents based on currentMonth
 export const selectMonthFilteredEvents = createSelector(
   selectEvents,
   selectCurrentDate,

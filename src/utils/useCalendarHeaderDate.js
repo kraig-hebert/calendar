@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { format, startOfWeek, endOfWeek, addMonths } from 'date-fns';
 
@@ -16,23 +16,28 @@ const useCalendarHeaderDate = () => {
   const [headerDate, setHeaderDate] = useState(format(date, 'MMMM y')); // format: ex. January 2022
   const currentCalendarSpread = useSelector(selectCurrentCalendarSpread);
 
-  const headerFormat = {
-    day: format(date, 'EEEE MMMM d, y'),
-    week: `${format(startOfWeek(date), 'MMM d, y')} - ${format(
-      endOfWeek(date),
-      'MMMM d, y'
-    )}`,
-    month: format(date, 'MMMM y'),
-    year: format(date, 'y'),
-    schedule: `${format(date, 'MMM y')} - ${format(
-      addMonths(date, 6),
-      'MMM y'
-    )}`,
-  };
+  /* 
+    returns header date in the proper format based on currentCalendarSpread
+  */
+  const headerFormat = useMemo(() => {
+    return {
+      day: format(date, 'EEEE MMMM d, y'),
+      week: `${format(startOfWeek(date), 'MMM d, y')} - ${format(
+        endOfWeek(date),
+        'MMMM d, y'
+      )}`,
+      month: format(date, 'MMMM y'),
+      year: format(date, 'y'),
+      schedule: `${format(date, 'MMM y')} - ${format(
+        addMonths(date, 6),
+        'MMM y'
+      )}`,
+    };
+  }, [date]);
 
   useEffect(() => {
     setHeaderDate(headerFormat[currentCalendarSpread]);
-  }, [currentCalendarSpread, date]);
+  }, [currentCalendarSpread, headerFormat]);
   return headerDate;
 };
 

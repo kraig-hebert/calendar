@@ -2,17 +2,17 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
   checkBox: (props) => ({
+    position: 'relative',
     height: '16px',
     width: '16px',
     backgroundColor: props.checkBoxBackgroundColor,
-    position: 'relative',
     borderRadius: '3px',
-    transition: '.3s',
     border: '1px solid ' + theme.dark.main,
+    transition: '.3s',
     '&:after': {
-      position: 'absolute',
       content: '""',
       display: 'block',
+      position: 'absolute',
       left: '4px',
       width: '5px',
       height: '10px',

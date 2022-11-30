@@ -1,15 +1,17 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useStyles } from './styles';
-import { selectAllCalendars } from '../../../reducers/appSettings';
 import PropTypes from 'prop-types';
 import { differenceInHours, format } from 'date-fns';
+
+import { useStyles } from './styles';
+
+import { selectAllCalendars } from '../../../reducers/appSettings';
 
 const DayCalendarColumn = (props) => {
   const { dayFilteredEvents } = props;
   const ref = useRef();
   const classes = useStyles(props);
-  const renderedTimeBlocks = new Array();
+  const renderedTimeBlocks = [];
   const allCalendars = useSelector(selectAllCalendars);
   const [calendarWidthValue, setCalendarWidthValue] = useState();
   const allDayEventsList = dayFilteredEvents.allDay;
