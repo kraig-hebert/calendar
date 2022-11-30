@@ -34,13 +34,15 @@ const NewEventModal = () => {
     // set delay to match $fadeOut time so reset isn't visible
     setTimeout(() => {
       setInputValue('');
-      setSelectedSwitch('all-day');
+      setSelectedSwitch(false);
       setSelectedCalendar(new Object());
       setSingleDate(format(new Date(), 'yyyy-L-dd'));
       setStartTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
       setEndTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
     }, 500);
   };
+
+  // returns dateObject created from the dateInput value
   const setDate = () => {
     const datePartsList = singleDate.split('-');
     return new Date(
@@ -49,12 +51,13 @@ const NewEventModal = () => {
       datePartsList[2]
     ).toJSON();
   };
-
+  // sets checkmark color to black or white if calendar is default/custom
   const setColor = () => {
     if (defaultCalendarTitles.includes(selectedCalendar.title))
       return theme.dark.main;
     else return theme.light.main;
   };
+
   const handleSave = () => {
     if (selectedSwitch === false) {
       const newEvent = {
@@ -80,7 +83,7 @@ const NewEventModal = () => {
     }
   };
 
-  const setModalStyles = () => {
+  const setModalAnimations = () => {
     if (newEventModalOpen)
       return {
         animation: '$fadeIn',
@@ -94,7 +97,7 @@ const NewEventModal = () => {
         opacity: '0',
       };
   };
-  const setDateContainerStyles = () => {
+  const setDateInputAnimations = () => {
     if (selectedSwitch === false)
       return {
         dateContainer: {
@@ -122,14 +125,11 @@ const NewEventModal = () => {
         },
       };
   };
-  const setStyles = () => {
-    const props = new Object();
-    props.modal = setModalStyles();
-    props.dateInputs = setDateContainerStyles();
-    return props;
-  };
 
-  const classes = useStyles(setStyles());
+  const classes = useStyles({
+    modal: setModalAnimations(),
+    dateInputs: setDateInputAnimations(),
+  });
 
   return (
     <div className={classes.modal}>

@@ -9,20 +9,28 @@ import { selectAllCalendars } from '../../../reducers/appSettings';
 
 const DayCalendarColumn = (props) => {
   const { dayFilteredEvents } = props;
+  const allDayEventsList = dayFilteredEvents.allDay;
+  const timedEventsList = dayFilteredEvents.timed;
+
   const ref = useRef();
   const classes = useStyles(props);
   const renderedTimeBlocks = [];
   const allCalendars = useSelector(selectAllCalendars);
-  const [calendarWidthValue, setCalendarWidthValue] = useState();
-  const allDayEventsList = dayFilteredEvents.allDay;
-  const timedEventsList = dayFilteredEvents.timed;
 
-  const calculateHeight = (event) => {
+  /* 
+    value is set when calendar is painted, and is used to set each event width
+    see useLayoutEffect()
+  */
+  const [calendarWidthValue, setCalendarWidthValue] = useState();
+
+  // returns height of a timeBlock based on how long event is
+  const calculateEventHeight = (event) => {
     const diff = differenceInHours(event.endTime, event.startTime);
     const height = diff * 30 + (diff - 1);
-    return `${height}px`;
+    return height;
   };
 
+  // sets the style
   const setStyle = (event) => {
     const calendar = allCalendars.filter(
       (calendar) => event.filter === calendar.title
@@ -32,9 +40,9 @@ const DayCalendarColumn = (props) => {
         display: 'grid',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: calendar.length ? calendar[0].filter : 'none',
         height: '20px',
         width: calendarWidthValue,
+        backgroundColor: calendar.length ? calendar[0].filter : 'none',
         color: event.color,
         borderRadius: '5px',
         cursor: 'pointer',
@@ -42,10 +50,10 @@ const DayCalendarColumn = (props) => {
     } else {
       return {
         position: 'absolute',
+        height: `${calculateEventHeight(event)}px`,
+        width: calendarWidthValue,
         backgroundColor: calendar.length ? calendar[0].filter : 'none',
         color: event.color,
-        height: calculateHeight(event),
-        width: calendarWidthValue,
         zIndex: '2',
         cursor: 'pointer',
       };
@@ -107,6 +115,7 @@ const DayCalendarColumn = (props) => {
   useLayoutEffect(() => {
     setCalendarWidthValue(ref.current.offsetWidth);
   }, []);
+
   return (
     <div className={classes.dayCalendar} ref={ref}>
       <div className={classes.allDayEvents}>{renderedAllDayEvents}</div>
@@ -116,12 +125,12 @@ const DayCalendarColumn = (props) => {
 };
 
 DayCalendarColumn.propTypes = {
-  dayFilteredEvents: PropTypes.object,
-  width: PropTypes.string,
-  height: PropTypes.string,
-  displayTime: PropTypes.bool,
-  calendarWidth: PropTypes.string,
   borderRight: PropTypes.bool,
+  calendarWidth: PropTypes.string,
+  dayFilteredEvents: PropTypes.object,
+  displayTime: PropTypes.bool,
+  height: PropTypes.string,
+  width: PropTypes.string,
 };
 
 export default DayCalendarColumn;

@@ -42,6 +42,24 @@
       "endTime": "2022-11-27T20:00:00.000Z",
       "allDay": false,
       "id": 5
+    },
+    {
+      "title": "Res 6",
+      "filter": "Runs",
+      "color": "rgb(255,255,255)",
+      "startTime": "2022-11-30T21:00:00.000Z",
+      "endTime": "2022-11-30T23:00:00.000Z",
+      "allDay": false,
+      "id": 6
+    },
+    {
+      "title": "Test",
+      "filter": "Chess",
+      "color": "rgb(255,255,255)",
+      "startTime": "2022-11-30T22:00:00.000Z",
+      "endTime": "2022-12-01T02:00:00.000Z",
+      "allDay": false,
+      "id": 7
     }
   ]
 }
