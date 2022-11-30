@@ -1,10 +1,9 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 
 import SmallMonthCalendar from '../../../common/smallMonthCalendar/SmallMonthCalendar';
-import MonthCalendar from '../monthCalendar/MonthCalendar';
 import {
   selectCurrentDate,
   calendarMonthSelected,
@@ -46,7 +45,6 @@ const YearCalendar = () => {
         >
           {month}
         </p>
-
         <div className={classes.bottomBorder}></div>
         <SmallMonthCalendar
           year={currentDate.getFullYear()}

@@ -1,6 +1,14 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
+  baseDay: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '30px',
+    height: '30px',
+    borderRadius: '50%',
+  },
   calendar: {
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
@@ -9,36 +17,22 @@ export const useStyles = createUseStyles((theme) => ({
     marginTop: '10px',
     marginBottom: '20px',
     '& div': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '30px',
-      height: '30px',
+      extend: 'baseDay',
       cursor: 'default',
     },
   },
   currentDay: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '30px',
-    height: '30px',
+    extend: 'baseDay',
     backgroundColor: theme.primary.main,
     color: theme.light.main + ' !important',
-    borderRadius: '50%',
-    cursor: 'pointer',
+    cursor: 'pointer !important',
     '&:hover': {
       backgroundColor: theme.secondary.main,
     },
   },
   notCurrentDay: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '30px',
-    height: '30px',
-    cursor: 'pointer',
-    borderRadius: '50%',
+    extend: 'baseDay',
+    cursor: 'pointer !important',
     '&:hover': {
       backgroundColor: theme.secondary.main,
     },
