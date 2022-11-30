@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { useStyles } from './styles';
 
 const SwitchSelectors = (props) => {
@@ -19,7 +20,7 @@ const SwitchSelectors = (props) => {
           type="checkbox"
           name="all-day"
           id="all-day"
-          checked={selectedSwitch && true}
+          checked={selectedSwitch}
           onChange={(e) => setSelectedSwitch((prev) => !prev)}
         />
         <span className={classes.slider}></span>

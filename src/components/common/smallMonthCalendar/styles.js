@@ -2,11 +2,11 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
   calendar: {
-    marginTop: '10px',
-    width: '80%',
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
     gridTemplateRows: 'repeat(7, 30px)',
+    width: '80%',
+    marginTop: '10px',
     marginBottom: '20px',
     '& div': {
       display: 'flex',
@@ -18,16 +18,15 @@ export const useStyles = createUseStyles((theme) => ({
     },
   },
   currentDay: {
-    backgroundColor: theme.primary.main,
-    color: theme.light.main + ' !important',
-    borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: '30px',
     height: '30px',
-    cursor: 'pointer',
+    backgroundColor: theme.primary.main,
+    color: theme.light.main + ' !important',
     borderRadius: '50%',
+    cursor: 'pointer',
     '&:hover': {
       backgroundColor: theme.secondary.main,
     },

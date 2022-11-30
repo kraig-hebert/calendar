@@ -2,11 +2,11 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
   monthCalendar: {
-    marginTop: '10px',
-    width: '95%',
-    height: '98%',
     display: 'grid',
     gridTemplateRows: '30px auto',
+    width: '95%',
+    height: '98%',
+    marginTop: '10px',
     marginBottom: '20px',
   },
   calendarHeader: {
@@ -20,12 +20,11 @@ export const useStyles = createUseStyles((theme) => ({
       alignItems: 'center',
       height: '100%',
       width: '100%',
-      border: '1px solid ' + theme.dark.main,
       backgroundColor: theme.primary.main,
       color: theme.light.main,
-      borderRight: '0',
+      border: '1px solid ' + theme.dark.main,
       '&:last-of-type': {
-        borderRight: '1px solid ' + theme.light.main,
+        borderRight: '1px solid ' + theme.dark.main,
       },
     },
   },
@@ -47,11 +46,11 @@ export const useStyles = createUseStyles((theme) => ({
       },
       '& span': {
         display: 'grid',
+        alignItems: 'center',
+        justifyContent: 'center',
         width: '30px',
         height: '40px',
         marginTop: '10px',
-        alignItems: 'center',
-        justifyContent: 'center',
         marginBottom: '10px',
         '&:hover': {
           borderRadius: '50%',

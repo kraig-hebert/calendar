@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useStyles } from './styles';
 import { addDays, addMonths, addYears, format } from 'date-fns';
 import { CgArrowLeftR, CgArrowRightR } from 'react-icons/cg';
 import { GiHamburgerMenu } from 'react-icons/gi';
+
 import {
   selectDrawerOpen,
   selectCurrentCalendarSpread,
@@ -18,6 +18,7 @@ import DayCalendar from './calendarTypes/dayCalendar/DayCalendar';
 import WeekCalendar from './calendarTypes/weekCalendar/WeekCalendar';
 import YearCalendar from './calendarTypes/yearCalendar/YearCalendar';
 import ScheduleCalendar from './calendarTypes/scheduleCalendar/ScheduleCalendar';
+import { useStyles } from './styles';
 
 const Main = () => {
   const classes = useStyles();

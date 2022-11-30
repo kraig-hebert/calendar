@@ -109,7 +109,7 @@ const MonthCalendar = (props) => {
   };
 
   const assembleCalendar = () => {
-    let renderedCalendar = new Array();
+    let renderedCalendar = [];
 
     for (let i = 0; i < startDayOfMonth; i++) {
       renderedCalendar.push(<div key={i}></div>);

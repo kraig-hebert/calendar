@@ -2,28 +2,28 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
   main: {
-    width: '100%',
-    height: '100%',
     position: 'relative',
     display: 'grid',
     gridTemplateRows: '7% auto',
-    overflow: 'scroll',
+    width: '100%',
+    height: '100%',
     marginTop: '5px',
+    overflow: 'scroll',
   },
   mainHeader: {
-    justifySelf: 'center',
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    fontSize: '2rem',
+    justifySelf: 'center',
     width: '90%',
+    fontSize: '2rem',
   },
   headerIconButton: {
     width: '30px',
     height: '30px',
-    cursor: 'pointer',
-    borderRadius: '10px',
     backgroundColor: theme.secondary.main,
+    borderRadius: '10px',
+    cursor: 'pointer',
     '&:hover': {
       backgroundColor: theme.secondary.halfAlpha,
     },
@@ -33,12 +33,12 @@ export const useStyles = createUseStyles((theme) => ({
     fontWeight: '500',
   },
   hamburger: {
-    fontSize: '2rem',
-    color: theme.primary.main,
-    cursor: 'pointer',
     position: 'absolute',
     left: '10px',
     top: '10px',
+    color: theme.primary.main,
+    fontSize: '2rem',
+    cursor: 'pointer',
   },
   calendarContainer: {
     display: 'flex',

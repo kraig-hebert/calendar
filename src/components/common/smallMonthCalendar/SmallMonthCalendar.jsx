@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { getDay, getDaysInMonth, format } from 'date-fns';
+
+import { useStyles } from './styles';
 import { calendarDaySelected } from '../../../reducers/appSettings';
 
 const SmallMonthCalendar = (props) => {
@@ -12,7 +13,7 @@ const SmallMonthCalendar = (props) => {
   const navigate = useNavigate();
   const { month, year, date } = props;
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-  const numberOfDaysInMonth = getDaysInMonth(new Date(year, month, 1)); // returns number of days in month
+  const numberOfDaysInMonth = getDaysInMonth(new Date(year, month, 1));
 
   const handleDayClick = (e, day) => {
     const newDate = new Date(year, month, day);

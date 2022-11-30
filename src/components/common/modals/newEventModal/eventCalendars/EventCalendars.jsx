@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useStyles } from './styles';
 import { useSelector } from 'react-redux';
+import { useTheme } from 'react-jss';
+
 import {
   selectDefaultCalendars,
   selectCustomCalendars,
 } from '../../../../../reducers/appSettings';
+import { useStyles } from './styles';
 import CheckBox from './checkbox/CheckBox';
-import { useTheme } from 'react-jss';
 
 const EventCalendars = (props) => {
   const theme = useTheme();
@@ -15,8 +16,11 @@ const EventCalendars = (props) => {
   const defaultCalendars = useSelector(selectDefaultCalendars);
   const customCalendars = useSelector(selectCustomCalendars);
   const handleClick = (e, calendar) => setSelectedCalendar(calendar);
+
   const classes = useStyles({ calendarListLength: customCalendars.length });
-  const setStyles = (calendar, checkColor) => {
+
+  // sets active selected calendar to display checked and uncheck all others
+  const setCheckBoxProps = (calendar, checkColor) => {
     if (calendar.title === selectedCalendar.title) {
       return {
         checkBoxBackgroundColor: calendar.filter,
@@ -34,13 +38,13 @@ const EventCalendars = (props) => {
 
   const renderedDefaultCalendars = defaultCalendars.map((calendar, index) => (
     <div key={index} className={classes.calendar}>
-      <CheckBox {...setStyles(calendar, theme.dark.main)} />
+      <CheckBox {...setCheckBoxProps(calendar, theme.dark.main)} />
       <span>{calendar.title}</span>
     </div>
   ));
   const renderedCustomCalendars = customCalendars.map((calendar, index) => (
-    <div key={index + 4} className={classes.calendar}>
-      <CheckBox {...setStyles(calendar, theme.light.main)} />
+    <div key={index} className={classes.calendar}>
+      <CheckBox {...setCheckBoxProps(calendar, theme.light.main)} />
       <span>{calendar.title}</span>
     </div>
   ));

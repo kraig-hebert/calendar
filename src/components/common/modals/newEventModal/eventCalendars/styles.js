@@ -6,8 +6,8 @@ export const useStyles = createUseStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     width: '100%',
-    backgroundColor: theme.secondary.main,
     marginBottom: '10px',
+    backgroundColor: theme.secondary.main,
     borderBottom: '1px solid ' + theme.primary.main,
     '& div': {
       margin: '10px',
