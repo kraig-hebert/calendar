@@ -18,13 +18,13 @@ export const useStyles = createUseStyles((theme) => ({
     justifyContent: 'center',
   },
   monthName: {
-    backgroundColor: theme.secondary.main,
     display: 'block',
     height: '100%',
     width: '50%',
+    backgroundColor: theme.secondary.main,
+    color: theme.dark.main,
     textAlign: 'center',
     textDecoration: 'none',
-    color: theme.dark.main,
     '&:hover': {
       backgroundColor: theme.primary.main,
       color: theme.light.main,
@@ -33,8 +33,8 @@ export const useStyles = createUseStyles((theme) => ({
   },
   bottomBorder: {
     display: 'block',
+    width: '50%',
     height: '1px',
     backgroundColor: theme.dark.main,
-    width: '50%',
   },
 }));

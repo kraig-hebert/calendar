@@ -1,14 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
+
 import SmallMonthCalendar from '../../../common/smallMonthCalendar/SmallMonthCalendar';
 import MonthCalendar from '../monthCalendar/MonthCalendar';
-import { useStyles } from './styles';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {
   selectCurrentDate,
   calendarMonthSelected,
 } from '../../../../reducers/appSettings';
+import { useStyles } from './styles';
 
 const YearCalendar = () => {
   const monthNames = [
@@ -27,26 +28,24 @@ const YearCalendar = () => {
   ];
   const classes = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const currentDate = useSelector(selectCurrentDate);
   const today = new Date();
   const handleMonthClick = (month) => {
-    dispatch(
-      calendarMonthSelected(
-        new Date(currentDate.getFullYear(), month, 1).toJSON()
-      )
-    );
+    const newDate = new Date(currentDate.getFullYear(), month, 1);
+    dispatch(calendarMonthSelected(newDate));
+    navigate(`/month/${format(newDate, 'MM-dd-yy')}`);
   };
 
   const renderedCalendarWithName = monthNames.map((month, index) => {
     return (
       <div key={index} className={classes.miniCalendar}>
-        <Link
-          to="/month"
-          element={<MonthCalendar />}
+        <p
           className={classes.monthName}
+          onClick={(e) => handleMonthClick(index)}
         >
-          <p onClick={(e) => handleMonthClick(index)}>{month}</p>
-        </Link>
+          {month}
+        </p>
 
         <div className={classes.bottomBorder}></div>
         <SmallMonthCalendar
