@@ -1,8 +1,8 @@
 import React from 'react';
-import { useStyles } from './styles';
 import PropTypes from 'prop-types';
-
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa';
+
+import { useStyles } from './styles';
 
 const AccordionHeader = (props) => {
   const classes = useStyles();

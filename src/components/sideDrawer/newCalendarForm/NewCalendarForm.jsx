@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { useStyles } from './styles';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTheme } from 'react-jss';
+
 import {
   selectAvailableColorFilters,
   addNewCalendar,
   selectCustomCalendars,
 } from '../../../reducers/appSettings';
-import { useTheme } from 'react-jss';
+import { useStyles } from './styles';
 
 const NewCalendarForm = (props) => {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ const NewCalendarForm = (props) => {
     setInputValue('');
     setSelectedFilter('');
     setCalendarFormVisible(false);
+
+    // set timeout to match newCalendarForm transiton time
     setTimeout(() => {
       const newCalendar = {
         id: getID(customCalendars),
