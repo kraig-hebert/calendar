@@ -32,7 +32,7 @@ const YearCalendar = () => {
   const today = new Date();
   const handleMonthClick = (month) => {
     const newDate = new Date(currentDate.getFullYear(), month, 1);
-    dispatch(calendarMonthSelected(newDate));
+    dispatch(calendarMonthSelected(newDate.toJSON()));
     navigate(`/month/${format(newDate, 'MM-dd-yy')}`);
   };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+
 import DayCalendarColumn from '../../../common/dayCalendarColumn/DayCalendarColumn';
 import { selectDayFilteredEvents } from '../../../../reducers/eventsSlice';
 

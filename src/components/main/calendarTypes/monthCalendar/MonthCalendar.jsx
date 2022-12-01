@@ -1,15 +1,15 @@
 import React from 'react';
-import { useStyles } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getDay, getDaysInMonth, format } from 'date-fns';
+
 import {
   selectCurrentDate,
   calendarDaySelected,
   selectAllCalendars,
 } from '../../../../reducers/appSettings';
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
-import { getDay, getDaysInMonth, format } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { useStyles } from './styles';
 
 const MonthCalendar = (props) => {
   const dispatch = useDispatch();
@@ -31,13 +31,15 @@ const MonthCalendar = (props) => {
     )
   );
 
-  const getRows = () => {
-    if (numberOfDaysInMonth > 29 && startDayOfMonth > 4) return 6;
+  // set number of rows to display the correct amount of weeks for the given month
+  const getNumberOfCalendarRows = () => {
+    if (numberOfDaysInMonth < 31 && startDayOfMonth > 5) return 6;
+    else if (numberOfDaysInMonth > 30 && startDayOfMonth > 4) return 6;
     else return 5;
   };
-  const classes = useStyles({ rows: getRows() });
+  const classes = useStyles({ rows: getNumberOfCalendarRows() });
 
-  const handleDayClick = (e, day) => {
+  const handleDayClick = (day) => {
     const newDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
@@ -56,6 +58,7 @@ const MonthCalendar = (props) => {
       return classes.currentDay;
     else return undefined;
   };
+
   const setEventStyles = (event) => {
     const calendar = allCalendars.filter(
       (calendar) => event.filter === calendar.title
@@ -65,16 +68,18 @@ const MonthCalendar = (props) => {
       justifyContent: 'flex-start',
       alignItems: 'center',
       height: '20px',
-      backgroundColor: calendar.length ? calendar[0].filter : 'none',
+      backgroundColor: calendar[0].filter,
       color: event.color,
       cursor: 'pointer',
     };
   };
+
   const setEventTitleLength = (title) => {
     const newTitle = title.slice(0, 12).trim();
     if (newTitle === title) return newTitle;
     else return `${newTitle}...`;
   };
+
   const renderEvents = (i) => {
     const allDayEventsList = monthFilteredEvents.allDay.filter(
       (event) => event.singleDate.getDate() === i
@@ -119,7 +124,7 @@ const MonthCalendar = (props) => {
         <div key={i + startDayOfMonth}>
           <span
             className={checkIfCurrentDay(i)}
-            onClick={(e) => handleDayClick(e, i)}
+            onClick={(e) => handleDayClick(i)}
           >
             {i}
           </span>
@@ -133,6 +138,7 @@ const MonthCalendar = (props) => {
 
     return renderedCalendar;
   };
+
   return (
     <div className={classes.monthCalendar}>
       <div className={classes.calendarHeader}>
