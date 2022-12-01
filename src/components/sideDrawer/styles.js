@@ -2,12 +2,12 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
   drawerContainer: {
-    width: '300px',
-    borderRight: '1px solid ' + theme.primary.main,
-    paddingTop: '10px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    width: '300px',
+    paddingTop: '10px',
+    borderRight: '1px solid ' + theme.primary.main,
     overflow: 'hidden',
   },
   iconContainer: {
@@ -17,15 +17,15 @@ export const useStyles = createUseStyles((theme) => ({
     width: '100%',
   },
   closeIcon: {
-    cursor: 'pointer',
     left: '225px',
     paddingRight: '10px',
-    fontSize: '2rem',
     color: theme.primary.main,
+    fontSize: '2rem',
+    cursor: 'pointer',
   },
   monthName: {
-    textAlign: 'center',
     marginTop: '10px',
+    textAlign: 'center',
     fontSize: '1.5rem',
   },
 }));

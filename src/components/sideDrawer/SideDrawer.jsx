@@ -12,10 +12,10 @@ import CustomerDrawerAccordion from './customDrawerAccordion/CustomerDrawerAccor
 
 const SideDrawer = () => {
   const drawerOpen = useSelector(selectDrawerOpen);
-  const date = new Date();
+  const today = new Date();
   const classes = useStyles();
   const toggleSideDrawerClosed = useSideDrawerToggle(false);
-  const month = format(date, 'MMMM y');
+  const month = format(today, 'MMMM y');
   const [calendarFormVisible, setCalendarFormVisible] = useState(false);
 
   return (
@@ -30,9 +30,9 @@ const SideDrawer = () => {
           </div>
           <p className={classes.monthName}>{month}</p>
           <SmallMonthCalendar
-            year={date.getFullYear()}
-            month={date.getMonth()}
-            date={date}
+            year={today.getFullYear()}
+            month={today.getMonth()}
+            date={today}
           />
           <DefaultDrawerAccordion />
           <CustomerDrawerAccordion

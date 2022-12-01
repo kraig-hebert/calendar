@@ -1,14 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
+import { selectWeekFilteredEvents } from '../../../../reducers/eventsSlice';
 import DayCalendarColumn from '../../../common/dayCalendarColumn/DayCalendarColumn';
 import { useStyles } from './styles';
-import { useSelector } from 'react-redux';
-import { selectWeekFilteredEvents } from '../../../../reducers/eventsSlice';
 
 const WeekCalendar = () => {
   const classes = useStyles();
   const weekFilteredEvents = useSelector(selectWeekFilteredEvents);
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const height = Object.values(weekFilteredEvents).map(
+  const heightList = Object.values(weekFilteredEvents).map(
     (dayEvents) => dayEvents.allDay.length
   );
 
@@ -26,7 +27,7 @@ const WeekCalendar = () => {
         calendarWidth="100%"
         borderRight={setBorderRight(index)}
         dayFilteredEvents={dayFilteredEvents}
-        height={`${Math.max(...height) * 20}px`}
+        height={`${Math.max(...heightList) * 20}px`}
       />
     );
   });
