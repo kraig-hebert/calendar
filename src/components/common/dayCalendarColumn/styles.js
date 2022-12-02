@@ -14,14 +14,6 @@ export const useStyles = createUseStyles((theme) => ({
     justifyContent: 'flex-end',
     height: props.height,
     marginBottom: '5px',
-    '& div:first-of-type': {
-      borderTopRightRadius: '5px',
-      borderTopLeftRadius: '5px',
-    },
-    '& div:last-of-type': {
-      borderBottomRightRadius: '5px',
-      borderBottomLeftRadius: '5px',
-    },
   }),
   timeBlocks: { width: '100%' },
   timeBlock: (props) => ({
