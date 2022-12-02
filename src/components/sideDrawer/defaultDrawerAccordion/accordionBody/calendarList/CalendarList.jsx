@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useTheme } from 'react-jss';
+
 import CalendarInput from './calendarInput/CalendarInput';
 import { selectDefaultCalendars } from '../../../../../reducers/appSettings';
 import { useStyles } from './styles';
-import { useTheme } from 'react-jss';
 
 const CalendarList = () => {
   const classes = useStyles();

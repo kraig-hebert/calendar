@@ -1,9 +1,10 @@
 import React from 'react';
-import { useStyles } from './styles';
-import PropTypes from 'prop-types';
-import CalendarList from './calendarList/CalendarList';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import CalendarList from './calendarList/CalendarList';
 import { selectCustomCalendars } from '../../../../reducers/appSettings';
+import { useStyles } from './styles';
 
 const AccordionBody = (props) => {
   const { showAccordion } = props;

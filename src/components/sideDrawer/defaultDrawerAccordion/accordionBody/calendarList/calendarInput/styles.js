@@ -5,9 +5,9 @@ export const useStyles = createUseStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     width: '100%',
-    fontSize: '1rem',
-    padding: '5px',
     backgroundColor: theme.secondary.main,
+    padding: '5px',
+    fontSize: '1rem',
     '&:hover': {
       backgroundColor: theme.secondary.halfAlpha,
     },

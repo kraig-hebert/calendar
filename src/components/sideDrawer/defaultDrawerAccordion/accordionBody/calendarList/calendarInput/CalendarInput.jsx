@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useStyles } from './styles';
-import CheckBox from '../../../../../common/checkBox/CheckBox';
 import PropTypes from 'prop-types';
+
+import CheckBox from '../../../../../common/checkBox/CheckBox';
+import { useStyles } from './styles';
 
 const CalendarInput = (props) => {
   const { title, checkBoxBackgroundColor, checkColor } = props;

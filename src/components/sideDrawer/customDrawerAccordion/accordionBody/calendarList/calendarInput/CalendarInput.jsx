@@ -1,14 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useStyles } from './styles';
-import CheckBox from '../../../../../common/checkBox/CheckBox';
-import { BsTrashFill, BsPencilFill } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { BsTrashFill, BsPencilFill } from 'react-icons/bs';
+
 import {
   deleteCustomCalendar,
   filterReturned,
 } from '../../../../../../reducers/appSettings';
 import { deleteCalendarEvents } from '../../../../../../reducers/eventsSlice';
+import CheckBox from '../../../../../common/checkBox/CheckBox';
+import { useStyles } from './styles';
 
 const CalendarInput = (props) => {
   const { title, checkBoxBackgroundColor, checkColor } = props;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import AccordionBody from './accordionBody/AccordionBody';
 import AccordionHeader from './accordionHeader/AccordionHeader';
 import NewCalendarForm from '../newCalendarForm/NewCalendarForm';
-
 import { useStyles } from './styles';
-import PropTypes from 'prop-types';
 
 const CustomerDrawerAccordion = (props) => {
   const { setCalendarFormVisible, calendarFormVisible } = props;

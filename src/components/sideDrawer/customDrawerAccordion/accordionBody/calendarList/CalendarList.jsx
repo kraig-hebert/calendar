@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useTheme } from 'react-jss';
+
 import { selectCustomCalendars } from '../../../../../reducers/appSettings';
 import CalendarInput from './calendarInput/CalendarInput';
-import { useTheme } from 'react-jss';
 
 const CalendarList = () => {
   const theme = useTheme();

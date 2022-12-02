@@ -2,13 +2,13 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
   inputContainer: {
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     width: '100%',
-    fontSize: '1rem',
     padding: '5px',
     backgroundColor: theme.secondary.main,
-    position: 'relative',
+    fontSize: '1rem',
     '&:hover': {
       backgroundColor: theme.secondary.halfAlpha,
     },
