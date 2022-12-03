@@ -11,7 +11,8 @@ export const useStyles = createUseStyles((theme) => ({
   allDayEvents: (props) => ({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
+    width: props.width,
     height: props.height,
   }),
   eventBorder: {

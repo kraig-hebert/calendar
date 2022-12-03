@@ -12,7 +12,7 @@ const DayCalendarColumn = (props) => {
   const timedEventsList = dayFilteredEvents.timed;
 
   const ref = useRef();
-  const classes = useStyles(props);
+
   const renderedTimeBlocks = [];
   const allCalendars = useSelector(selectAllCalendars);
 
@@ -20,12 +20,14 @@ const DayCalendarColumn = (props) => {
     value is set when calendar is painted, and is used to set each event width
     see useLayoutEffect()
   */
-  const [calendarWidthValue, setCalendarWidthValue] = useState();
+  const [calendarWidthValue, setCalendarWidthValue] = useState(0);
+  const styleProps = { ...props, width: calendarWidthValue };
+  const classes = useStyles(styleProps);
 
   // returns height of a timeBlock based on how long event is
   const calculateEventHeight = (event) => {
     const diff = differenceInHours(event.endTime, event.startTime);
-    const height = diff * 30 + (diff - 1);
+    const height = diff * 30 + (diff - 3);
     return height;
   };
 
@@ -40,7 +42,8 @@ const DayCalendarColumn = (props) => {
         justifyContent: 'center',
         alignItems: 'center',
         height: '20px',
-        width: calendarWidthValue,
+        width: calendarWidthValue - 10,
+        margin: '0 5px',
         backgroundColor: calendar.length ? calendar[0].filter : 'none',
         color: event.color,
         borderRadius: '5px',
@@ -50,7 +53,8 @@ const DayCalendarColumn = (props) => {
       return {
         position: 'absolute',
         height: `${calculateEventHeight(event)}px`,
-        width: calendarWidthValue,
+        width: calendarWidthValue - 3,
+        padding: '1px',
         backgroundColor: calendar.length ? calendar[0].filter : 'none',
         color: event.color,
         zIndex: '2',

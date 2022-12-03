@@ -10,28 +10,28 @@ const initialState = {
   currentDate: new Date().toJSON(),
   currentCalendarSpread: 'month',
   availableColorFilters: [
-    'rgba(0,0,255,.75)' /* blue */,
-    'rgba(0,255,0,.75)' /* green */,
-    'rgba(255,0,0,.75)' /* red */,
-    'rgba(165,42,42,.75)' /* orange */,
+    'rgba(0,0,255,.9)' /* blue */,
+    'rgba(32,178,170,.9)' /* seagreen */,
+    'rgba(255,0,0,.9)' /* red */,
+    'rgba(165,42,42,.9)' /* orange */,
   ],
   customCalendars: {},
   defaultCalendars: [
     {
       title: 'Holidays',
-      filter: 'rgba(255,192,203,.75)', // pink
+      filter: 'rgba(255,192,203,.9)', // pink
     },
     {
       title: 'Birthdays',
-      filter: 'rgba(255,255,0,.75)', // yellow
+      filter: 'rgba(255,255,0,.9)', // yellow
     },
     {
       title: 'Events',
-      filter: 'rgba(32,178,170,.75)', // seagreen
+      filter: 'rgba(0,255,50,.9)' /* green */,
     },
     {
       title: 'Reminders',
-      filter: 'rgba(205,133,63,.75)', // peru
+      filter: 'rgba(205,133,63,.9)', // peru
     },
   ],
 };

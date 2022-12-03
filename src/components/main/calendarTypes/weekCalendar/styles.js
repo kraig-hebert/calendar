@@ -6,4 +6,14 @@ export const useStyles = createUseStyles({
     justifyContent: 'center',
     width: '90%',
   },
+  dayContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+  },
+  dayName: {
+    width: '100%',
+    textAlign: 'center',
+    fontSize: '1.5rem',
+  },
 });
