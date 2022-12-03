@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { startOfWeek } from 'date-fns';
+import { startOfWeek, addDays } from 'date-fns';
 
 import { selectCurrentDate } from '../../../../reducers/appSettings';
 import { selectWeekFilteredEvents } from '../../../../reducers/eventsSlice';
@@ -13,10 +13,10 @@ const WeekCalendar = () => {
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   const currentDate = useSelector(selectCurrentDate);
-  const startDateofWeek = startOfWeek(currentDate).getDate();
+  const startDateofWeek = startOfWeek(currentDate);
   const dates = [];
   for (let i = 0; i < 7; i++) {
-    dates.push(startDateofWeek + i);
+    dates.push(addDays(startDateofWeek, i));
   }
   const heightList = Object.values(weekFilteredEvents).map(
     (dayEvents) => dayEvents.allDay.length
@@ -30,7 +30,9 @@ const WeekCalendar = () => {
     const dayFilteredEvents = weekFilteredEvents[days[index]];
     return (
       <div className={classes.dayContainer} key={index}>
-        <p className={classes.dayName}>{`${dates[index]} ${days[index]}`}</p>
+        <p className={classes.dayName}>{`${dates[index].getDate()} ${
+          days[index]
+        }`}</p>
         <DayCalendarColumn
           blockWidth="100%"
           displayTime={day === 'Sun' ? true : false}
