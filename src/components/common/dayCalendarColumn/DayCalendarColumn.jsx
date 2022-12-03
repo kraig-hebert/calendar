@@ -2,15 +2,12 @@ import React, { useRef, useLayoutEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { differenceInHours, format } from 'date-fns';
-import { useTheme } from 'react-jss';
-
-import { useStyles } from './styles';
 
 import { selectAllCalendars } from '../../../reducers/appSettings';
+import { useStyles } from './styles';
 
 const DayCalendarColumn = (props) => {
   const { dayFilteredEvents } = props;
-  const theme = useTheme();
   const allDayEventsList = dayFilteredEvents.allDay;
   const timedEventsList = dayFilteredEvents.timed;
 
@@ -47,7 +44,6 @@ const DayCalendarColumn = (props) => {
         backgroundColor: calendar.length ? calendar[0].filter : 'none',
         color: event.color,
         borderRadius: '5px',
-        border: `1px solid ${theme.light.main}`,
         cursor: 'pointer',
       };
     } else {
@@ -63,9 +59,12 @@ const DayCalendarColumn = (props) => {
     }
   };
   const renderedAllDayEvents = allDayEventsList.map((event) => (
-    <div key={event.id} style={setStyle(event)}>
-      <p>{event.title}</p>
-    </div>
+    <>
+      <div key={event.id} style={setStyle(event)}>
+        <p>{event.title}</p>
+      </div>
+      <div className={classes.eventBorder}></div>
+    </>
   ));
 
   const renderEventTime = (event) =>

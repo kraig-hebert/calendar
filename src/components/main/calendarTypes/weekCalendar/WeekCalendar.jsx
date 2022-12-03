@@ -27,7 +27,7 @@ const WeekCalendar = () => {
         calendarWidth="100%"
         borderRight={setBorderRight(index)}
         dayFilteredEvents={dayFilteredEvents}
-        height={`${Math.max(...heightList) * 20}px`}
+        height={`${(Math.max(...heightList) + 0.5) * 20}px`}
       />
     );
   });

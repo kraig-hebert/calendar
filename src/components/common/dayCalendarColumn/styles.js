@@ -11,10 +11,14 @@ export const useStyles = createUseStyles((theme) => ({
   allDayEvents: (props) => ({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     height: props.height,
-    marginBottom: '5px',
   }),
+  eventBorder: {
+    height: '1px',
+    width: '100%',
+    backgroundColor: theme.light.main,
+  },
   timeBlocks: { width: '100%' },
   timeBlock: (props) => ({
     display: 'block',
