@@ -8,7 +8,7 @@ export const useStyles = createUseStyles((theme) => ({
     width: '100%',
     height: '100%',
     marginTop: '5px',
-    overflow: 'scroll',
+    overflow: 'hidden',
   },
   mainHeader: {
     display: 'flex',
@@ -17,6 +17,7 @@ export const useStyles = createUseStyles((theme) => ({
     justifySelf: 'center',
     width: '90%',
     fontSize: '2rem',
+    overflow: 'hidden',
   },
   headerIconButton: {
     width: '30px',
@@ -44,5 +45,7 @@ export const useStyles = createUseStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
+    height: '100%',
+    overflow: 'scroll',
   },
 }));
