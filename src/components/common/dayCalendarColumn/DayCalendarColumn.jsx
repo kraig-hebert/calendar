@@ -59,12 +59,12 @@ const DayCalendarColumn = (props) => {
     }
   };
   const renderedAllDayEvents = allDayEventsList.map((event) => (
-    <>
-      <div key={event.id} style={setStyle(event)}>
+    <div key={event.id}>
+      <div style={setStyle(event)}>
         <p>{event.title}</p>
       </div>
       <div className={classes.eventBorder}></div>
-    </>
+    </div>
   ));
 
   const renderEventTime = (event) =>
