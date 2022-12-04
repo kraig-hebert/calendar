@@ -22,7 +22,7 @@ const useCalendarHeaderDate = () => {
   const headerFormat = useMemo(() => {
     return {
       day: format(date, 'EEEE MMMM d, y'),
-      week: `${format(startOfWeek(date), 'MMM d, y')} - ${format(
+      week: `${format(startOfWeek(date), 'MMM d')} - ${format(
         endOfWeek(date),
         'MMMM d, y'
       )}`,
