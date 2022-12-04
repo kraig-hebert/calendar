@@ -5,6 +5,7 @@ export const useStyles = createUseStyles({
     display: 'flex',
     justifyContent: 'center',
     width: '90%',
+    height: '100%',
   },
   dayContainer: {
     display: 'flex',
