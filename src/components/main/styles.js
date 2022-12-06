@@ -4,10 +4,9 @@ export const useStyles = createUseStyles((theme) => ({
   main: {
     position: 'relative',
     display: 'grid',
-    gridTemplateRows: '7% auto',
+    gridTemplateRows: '5% 95%',
     width: '100%',
     height: '100%',
-    marginTop: '5px',
     overflow: 'hidden',
   },
   mainHeader: {
@@ -16,7 +15,8 @@ export const useStyles = createUseStyles((theme) => ({
     alignItems: 'center',
     justifySelf: 'center',
     width: '90%',
-    fontSize: '2rem',
+    paddingTop: '5px',
+    fontSize: '1.75rem',
     overflow: 'hidden',
   },
   headerIconButton: {
@@ -45,7 +45,8 @@ export const useStyles = createUseStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     width: '100%',
-    overflowY: 'scroll',
-    msOverflowX: 'hidden',
+    height: '100%',
+    overflowY: 'auto',
+    overflowX: 'hidden',
   },
 }));

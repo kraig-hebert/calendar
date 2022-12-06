@@ -4,12 +4,13 @@ export const useStyles = createUseStyles({
   appContainer: {
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
     position: 'relative',
+    overflow: 'hidden',
+    height: '100vh',
   },
   bottomContainer: {
     display: 'flex',
     height: '100%',
-    marginTop: '50px',
+    width: '100%',
   },
 });

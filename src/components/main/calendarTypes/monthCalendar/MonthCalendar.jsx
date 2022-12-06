@@ -37,7 +37,8 @@ const MonthCalendar = (props) => {
     else if (numberOfDaysInMonth > 30 && startDayOfMonth > 4) return 6;
     else return 5;
   };
-  const classes = useStyles({ rows: getNumberOfCalendarRows() });
+  const numberOfCalendarRows = getNumberOfCalendarRows();
+  const classes = useStyles({ rows: numberOfCalendarRows });
 
   const handleDayClick = (day) => {
     const newDate = new Date(
@@ -68,8 +69,8 @@ const MonthCalendar = (props) => {
       justifyContent: 'flex-start',
       alignItems: 'center',
       height: '20px',
-      backgroundColor: calendar.length ? calendar[0].filter : 'none',
-      color: event.color,
+      backgroundColor: calendar.length ? calendar[0].filter : '#000',
+      color: calendar.length ? event.color : '#fff',
       cursor: 'pointer',
     };
   };
@@ -78,6 +79,15 @@ const MonthCalendar = (props) => {
     const newTitle = title.slice(0, 12).trim();
     if (newTitle === title) return newTitle;
     else return `${newTitle}...`;
+  };
+
+  const finalizeEventList = (eventList, maxListLength) => {
+    if (eventList.length <= maxListLength) return eventList;
+    else {
+      const finalEventList = eventList.slice(0, maxListLength);
+      finalEventList.push({ title: 'More Events' });
+      return finalEventList;
+    }
   };
 
   const renderEvents = (i) => {
@@ -89,7 +99,17 @@ const MonthCalendar = (props) => {
       .sort((eventA, eventB) => eventA.startTime - eventB.startTime);
 
     const todaysEventsList = allDayEventsList.concat(timedEventsList);
-    return todaysEventsList.map((event, index) => {
+    let eventListForRender;
+    switch (numberOfCalendarRows) {
+      case 5:
+        eventListForRender = finalizeEventList(todaysEventsList, 4);
+        break;
+      case 6:
+        eventListForRender = finalizeEventList(todaysEventsList, 4);
+        break;
+    }
+    console.log(eventListForRender);
+    return eventListForRender.map((event, index) => {
       if (event.allDay)
         return (
           <div style={setEventStyles(event)} key={index}>
@@ -99,12 +119,20 @@ const MonthCalendar = (props) => {
             </div>
           </div>
         );
-      else
+      else if (event.startTime)
         return (
           <div style={setEventStyles(event)} key={index}>
             <div className={classes.eventInfo}>
               {format(event.startTime, 'hh:mm aaa')} -
             </div>
+            <div className={classes.eventInfo}>
+              {setEventTitleLength(event.title)}
+            </div>
+          </div>
+        );
+      else
+        return (
+          <div style={setEventStyles(event)} key={index}>
             <div className={classes.eventInfo}>
               {setEventTitleLength(event.title)}
             </div>

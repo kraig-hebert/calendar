@@ -2,7 +2,8 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
   header: {
-    position: 'fixed',
+    position: 'sticky',
+    top: '0',
     width: '100%',
     height: '50px',
     backgroundColor: theme.primary.main,

@@ -5,7 +5,7 @@ export const useStyles = createUseStyles((theme) => ({
     display: 'grid',
     gridTemplateRows: '30px auto',
     width: '95%',
-    height: '98%',
+    height: '96%',
     marginTop: '10px',
     marginBottom: '20px',
   },
