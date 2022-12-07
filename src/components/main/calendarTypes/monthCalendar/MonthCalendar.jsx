@@ -105,7 +105,7 @@ const MonthCalendar = (props) => {
         eventListForRender = finalizeEventList(todaysEventsList, 4);
         break;
       case 6:
-        eventListForRender = finalizeEventList(todaysEventsList, 4);
+        eventListForRender = finalizeEventList(todaysEventsList, 3);
         break;
     }
     console.log(eventListForRender);

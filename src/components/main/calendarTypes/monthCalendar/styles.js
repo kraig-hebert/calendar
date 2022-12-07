@@ -3,9 +3,9 @@ import { createUseStyles } from 'react-jss';
 export const useStyles = createUseStyles((theme) => ({
   monthCalendar: {
     display: 'grid',
-    gridTemplateRows: '30px auto',
+    gridTemplateRows: '20px auto',
     width: '95%',
-    height: '96%',
+    height: '97%',
     marginTop: '10px',
     marginBottom: '20px',
   },
@@ -48,8 +48,8 @@ export const useStyles = createUseStyles((theme) => ({
         display: 'grid',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '30px',
-        height: '40px',
+        width: '20px',
+        height: '25px',
         marginTop: '10px',
         marginBottom: '10px',
         '&:hover': {
