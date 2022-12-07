@@ -14,6 +14,7 @@ const DayCalendar = () => {
         calendarWidth="90%"
         borderRight={true}
         dayFilteredEvents={dayFilteredEvents}
+        maxAllDayEvents={4}
       />
     </>
   );

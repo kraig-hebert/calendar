@@ -7,7 +7,7 @@ import { selectAllCalendars } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
 
 const DayCalendarColumn = (props) => {
-  const { dayFilteredEvents } = props;
+  const { dayFilteredEvents, maxAllDayEvents } = props;
   const allDayEventsList = dayFilteredEvents.allDay;
   const timedEventsList = dayFilteredEvents.timed;
 
@@ -44,8 +44,8 @@ const DayCalendarColumn = (props) => {
         height: '20px',
         width: calendarWidthValue - 10,
         margin: '0 5px',
-        backgroundColor: calendar.length ? calendar[0].filter : 'none',
-        color: event.color,
+        backgroundColor: calendar.length ? calendar[0].filter : '#000',
+        color: calendar.length ? event.color : '#fff',
         borderRadius: '5px',
         cursor: 'pointer',
       };
@@ -62,14 +62,25 @@ const DayCalendarColumn = (props) => {
       };
     }
   };
-  const renderedAllDayEvents = allDayEventsList.map((event) => (
-    <div key={event.id}>
-      <div style={setStyle(event)}>
-        <p>{event.title}</p>
+
+  const renderAllDayEvents = () => {
+    let newEventList = [];
+    if (allDayEventsList.length <= maxAllDayEvents)
+      newEventList = allDayEventsList;
+    else {
+      newEventList = allDayEventsList.slice(0, maxAllDayEvents);
+      newEventList.push({ title: 'Test', allDay: true });
+    }
+    const renderedAllDayEvents = newEventList.map((event, index) => (
+      <div key={index}>
+        <div style={setStyle(event)}>
+          <p>{event.title}</p>
+        </div>
+        <div className={classes.eventBorder}></div>
       </div>
-      <div className={classes.eventBorder}></div>
-    </div>
-  ));
+    ));
+    return renderedAllDayEvents;
+  };
 
   const renderEventTime = (event) =>
     `${format(event.startTime, 'haaa')} - ${format(event.endTime, 'haaa')}`;
@@ -124,7 +135,7 @@ const DayCalendarColumn = (props) => {
 
   return (
     <div className={classes.dayCalendar} ref={ref}>
-      <div className={classes.allDayEvents}>{renderedAllDayEvents}</div>
+      <div className={classes.allDayEvents}>{renderAllDayEvents()}</div>
       <div className={classes.timeBlocks}>{renderedTimeBlocks}</div>
     </div>
   );
@@ -137,6 +148,7 @@ DayCalendarColumn.propTypes = {
   displayTime: PropTypes.bool,
   height: PropTypes.string,
   width: PropTypes.string,
+  maxAllDayEvents: PropTypes.number,
 };
 
 export default DayCalendarColumn;

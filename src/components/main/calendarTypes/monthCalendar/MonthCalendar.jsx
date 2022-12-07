@@ -108,7 +108,6 @@ const MonthCalendar = (props) => {
         eventListForRender = finalizeEventList(todaysEventsList, 3);
         break;
     }
-    console.log(eventListForRender);
     return eventListForRender.map((event, index) => {
       if (event.allDay)
         return (

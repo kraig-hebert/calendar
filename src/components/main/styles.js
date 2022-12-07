@@ -20,8 +20,8 @@ export const useStyles = createUseStyles((theme) => ({
     overflow: 'hidden',
   },
   headerIconButton: {
-    width: '30px',
-    height: '30px',
+    width: '25px',
+    height: '25px',
     backgroundColor: theme.secondary.main,
     borderRadius: '10px',
     cursor: 'pointer',

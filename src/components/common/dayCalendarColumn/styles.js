@@ -5,7 +5,6 @@ export const useStyles = createUseStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingTop: '10px',
     width: props.calendarWidth,
   }),
   allDayEvents: (props) => ({
