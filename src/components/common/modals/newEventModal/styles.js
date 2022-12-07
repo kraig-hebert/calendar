@@ -58,7 +58,7 @@ export const useStyles = createUseStyles((theme) => ({
     borderBottom: '1px solid ' + theme.primary.main,
   },
   icon: {
-    margin: '10px',
+    margin: '10px 20px',
     color: theme.secondary.main,
     cursor: 'pointer',
     fontSize: '2rem',

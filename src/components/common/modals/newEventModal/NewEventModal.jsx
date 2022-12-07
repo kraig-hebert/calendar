@@ -8,7 +8,8 @@ import {
 import { saveNewEvent } from '../../../../reducers/eventsSlice';
 import { format } from 'date-fns';
 import { useStyles } from './styles';
-import { AiFillCloseCircle, AiFillSave } from 'react-icons/ai';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { FaSave } from 'react-icons/fa';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
 import { useTheme } from 'react-jss';
@@ -135,7 +136,7 @@ const NewEventModal = () => {
     <div className={classes.modal}>
       <div className={classes.modalContent}>
         <div className={classes.iconContainer}>
-          <AiFillSave className={classes.icon} onClick={handleSave} />
+          <FaSave className={classes.icon} onClick={handleSave} />
           <input
             type="text"
             name="title"
