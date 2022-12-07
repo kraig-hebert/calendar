@@ -4,7 +4,7 @@ export const useStyles = createUseStyles((theme) => ({
   monthCalendar: {
     display: 'grid',
     gridTemplateRows: '20px auto',
-    width: '95%',
+    width: '99%',
     height: '97%',
     marginTop: '10px',
     marginBottom: '20px',
@@ -12,6 +12,8 @@ export const useStyles = createUseStyles((theme) => ({
   calendarHeader: {
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
+    width: '100%',
+    marginLeft: '1px',
     '& div': {
       display: 'flex',
       alignSelf: 'center',
@@ -23,8 +25,12 @@ export const useStyles = createUseStyles((theme) => ({
       backgroundColor: theme.primary.main,
       color: theme.light.main,
       border: '1px solid ' + theme.dark.main,
+      '&:first-of-type': {
+        borderTopLeftRadius: '5px',
+      },
       '&:last-of-type': {
         borderRight: '1px solid ' + theme.dark.main,
+        borderTopRightRadius: '5px',
       },
     },
   },
