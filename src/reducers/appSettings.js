@@ -23,7 +23,7 @@ const initialState = {
     },
     {
       title: 'Birthdays',
-      filter: 'rgba(255,255,0,.9)', // yellow
+      filter: 'rgba(255,255,50,.9)', // yellow
     },
     {
       title: 'Events',
