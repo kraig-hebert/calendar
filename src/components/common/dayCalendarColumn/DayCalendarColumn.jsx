@@ -2,6 +2,7 @@ import React, { useRef, useLayoutEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { differenceInHours, format } from 'date-fns';
+import { useTheme } from 'react-jss';
 
 import { selectAllCalendars } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
@@ -12,6 +13,7 @@ const DayCalendarColumn = (props) => {
   const timedEventsList = dayFilteredEvents.timed;
 
   const ref = useRef();
+  const theme = useTheme();
 
   const renderedTimeBlocks = [];
   const allCalendars = useSelector(selectAllCalendars);
@@ -44,8 +46,10 @@ const DayCalendarColumn = (props) => {
         height: '20px',
         width: calendarWidthValue - 10,
         margin: '0 5px',
-        backgroundColor: calendar.length ? calendar[0].filter : '#000',
-        color: calendar.length ? event.color : '#fff',
+        backgroundColor: calendar.length
+          ? calendar[0].filter
+          : theme.dark.quarterAlpha,
+        color: calendar.length ? event.color : theme.light.main,
         borderRadius: '5px',
         cursor: 'pointer',
       };
@@ -63,13 +67,19 @@ const DayCalendarColumn = (props) => {
     }
   };
 
+  const setOverflowEventTitle = () => {
+    const extraEventTotal = allDayEventsList.length - maxAllDayEvents;
+    if (extraEventTotal > 1) return `${extraEventTotal} more events`;
+    else return `${extraEventTotal} more event`;
+  };
+
   const renderAllDayEvents = () => {
     let newEventList = [];
     if (allDayEventsList.length <= maxAllDayEvents)
       newEventList = allDayEventsList;
     else {
       newEventList = allDayEventsList.slice(0, maxAllDayEvents);
-      newEventList.push({ title: 'Test', allDay: true });
+      newEventList.push({ title: setOverflowEventTitle(), allDay: true });
     }
     const renderedAllDayEvents = newEventList.map((event, index) => (
       <div key={index}>
