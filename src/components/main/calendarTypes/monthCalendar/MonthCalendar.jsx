@@ -10,10 +10,12 @@ import {
 } from '../../../../reducers/appSettings';
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
 import { useStyles } from './styles';
+import OverflowEvents from './overflowEvents/OverflowEvents';
 
 const MonthCalendar = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const currentDate = useSelector(selectCurrentDate);
   const monthFilteredEvents = useSelector(selectMonthFilteredEvents);
   const allCalendars = useSelector(selectAllCalendars);
@@ -69,12 +71,11 @@ const MonthCalendar = (props) => {
       justifyContent: 'flex-start',
       alignItems: 'center',
       height: '20px',
-      backgroundColor: calendar.length ? calendar[0].filter : '#000',
-      color: calendar.length ? event.color : '#fff',
+      backgroundColor: calendar[0].filter,
+      color: event.color,
       cursor: 'pointer',
     };
   };
-
   const setEventTitleLength = (title) => {
     const newTitle = title.slice(0, 12).trim();
     if (newTitle === title) return newTitle;
@@ -131,11 +132,11 @@ const MonthCalendar = (props) => {
         );
       else
         return (
-          <div style={setEventStyles(event)} key={index}>
-            <div className={classes.eventInfo}>
-              {setEventTitleLength(event.title)}
-            </div>
-          </div>
+          <OverflowEvents
+            title={event.title}
+            classStuff={classes.eventInfo}
+            key={index}
+          />
         );
     });
   };
