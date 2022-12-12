@@ -100,6 +100,7 @@ const MonthCalendar = (props) => {
       .sort((eventA, eventB) => eventA.startTime - eventB.startTime);
 
     const todaysEventsList = allDayEventsList.concat(timedEventsList);
+    console.log(todaysEventsList);
     let eventListForRender;
     switch (numberOfCalendarRows) {
       case 5:
@@ -134,8 +135,8 @@ const MonthCalendar = (props) => {
         return (
           <OverflowEvents
             title={event.title}
-            classStuff={classes.eventInfo}
             key={index}
+            events={todaysEventsList}
           />
         );
     });

@@ -11,4 +11,5 @@ export const useStyles = createUseStyles((theme) => ({
     color: theme.dark.main,
     cursor: 'pointer',
   },
+  title: { margin: 'auto' },
 }));

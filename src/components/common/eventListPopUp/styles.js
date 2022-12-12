@@ -2,12 +2,12 @@ import { createUseStyles } from 'react-jss';
 import EventListPopUp from './EventListPopUp';
 
 export const useStyles = createUseStyles((theme) => ({
-  eventListPopUp: {
+  eventListPopUp: (props) => ({
     position: 'absolute',
-    width: '100px',
-    height: '20px',
-    bottom: '0',
-    left: '0',
+    display: props.display ? 'block' : 'none',
+    width: props.width,
+    bottom: '0px',
+    right: '0',
     backgroundColor: 'yellow',
-  },
+  }),
 }));
