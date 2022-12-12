@@ -7,9 +7,9 @@ import { selectAllCalendars } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
 
 const EventListPopUp = (props) => {
-  const { events } = props;
-  console.log(events);
-  const classes = useStyles(props);
+  const { events, display } = props;
+
+  const classes = useStyles({ ...props, height: `${events.length * 50}px` });
   const allCalendars = useSelector(selectAllCalendars);
 
   const setEventStyles = (event) => {

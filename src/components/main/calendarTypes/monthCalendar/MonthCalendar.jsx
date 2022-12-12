@@ -100,7 +100,6 @@ const MonthCalendar = (props) => {
       .sort((eventA, eventB) => eventA.startTime - eventB.startTime);
 
     const todaysEventsList = allDayEventsList.concat(timedEventsList);
-    console.log(todaysEventsList);
     let eventListForRender;
     switch (numberOfCalendarRows) {
       case 5:
