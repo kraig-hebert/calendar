@@ -8,14 +8,12 @@ import TimedEvent from '../eventBlocks/TimedEvent';
 
 const EventListPopUp = (props) => {
   const { events, overflowEventsOpen, setOverflowEventsOpen } = props;
-  const setDynamicEventContainerStyles = () => {
+  const setHeight = () => {
     if (overflowEventsOpen) return { height: `${events.length * 27}px` };
     else return { height: '0px' };
   };
 
-  const dynamicEventContainerStyles = setDynamicEventContainerStyles();
-  console.log(dynamicEventContainerStyles);
-  const classes = useStyles({ ...props, ...dynamicEventContainerStyles });
+  const classes = useStyles({ ...props, ...setHeight() });
 
   const eventListForRender = events.map((event, index) => {
     if (event.allDay) return <AllDayEvent event={event} key={index} />;
