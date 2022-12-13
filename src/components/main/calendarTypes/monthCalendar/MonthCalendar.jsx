@@ -6,7 +6,6 @@ import { getDay, getDaysInMonth, format } from 'date-fns';
 import {
   selectCurrentDate,
   calendarDaySelected,
-  selectAllCalendars,
 } from '../../../../reducers/appSettings';
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
 
@@ -21,7 +20,6 @@ const MonthCalendar = (props) => {
 
   const currentDate = useSelector(selectCurrentDate);
   const monthFilteredEvents = useSelector(selectMonthFilteredEvents);
-  const allCalendars = useSelector(selectAllCalendars);
   const today = new Date();
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const numberOfDaysInMonth = getDaysInMonth(currentDate);
@@ -63,27 +61,6 @@ const MonthCalendar = (props) => {
     )
       return classes.currentDay;
     else return undefined;
-  };
-
-  const setEventStyles = (event) => {
-    const calendar = allCalendars.filter(
-      (calendar) => event.filter === calendar.title
-    );
-    return {
-      display: 'flex',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      height: '20px',
-      backgroundColor: calendar[0].filter,
-      color: event.color,
-      borderRadius: '5px',
-      cursor: 'pointer',
-    };
-  };
-  const setEventTitleLength = (title) => {
-    const newTitle = title.slice(0, 12).trim();
-    if (newTitle === title) return newTitle;
-    else return `${newTitle}...`;
   };
 
   const finalizeEventList = (eventList, maxListLength) => {
