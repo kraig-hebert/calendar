@@ -13,7 +13,6 @@ export const useStyles = createUseStyles((theme) => ({
     alignItems: 'center',
     width: props.width,
     height: props.height,
-    padding: '0 5px',
     bottom: '0px',
     left: '50%',
     transform: 'translate(-50%)',
@@ -23,17 +22,24 @@ export const useStyles = createUseStyles((theme) => ({
     overflow: 'hidden',
     transition: 'height .25s',
   }),
-  eventInfo: {
-    margin: '0 3px',
+  eventsContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    margin: '5px 0px',
   },
   iconContainer: {
     display: 'flex',
     justifyContent: 'flex-end',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     width: '80%',
-    height: '20px',
+    height: '25px',
     color: theme.primary.main,
     fontSize: '1.25rem',
-    cursor: 'pointer',
+    '& svg': {
+      cursor: 'pointer',
+    },
   },
 }));

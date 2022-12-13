@@ -9,7 +9,7 @@ import TimedEvent from '../eventBlocks/TimedEvent';
 const EventListPopUp = (props) => {
   const { events, overflowEventsOpen, setOverflowEventsOpen } = props;
   const setHeight = () => {
-    if (overflowEventsOpen) return { height: `${events.length * 27}px` };
+    if (overflowEventsOpen) return { height: `${events.length * 20 + 50}px` };
     else return { height: '0px' };
   };
 
@@ -24,7 +24,7 @@ const EventListPopUp = (props) => {
       <div className={classes.iconContainer}>
         <AiFillCloseCircle onClick={(e) => setOverflowEventsOpen(false)} />
       </div>
-      {eventListForRender}
+      <div className={classes.eventsContainer}>{eventListForRender}</div>
     </div>
   );
 };
