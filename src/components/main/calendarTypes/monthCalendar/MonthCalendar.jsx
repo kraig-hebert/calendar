@@ -73,6 +73,7 @@ const MonthCalendar = (props) => {
       height: '20px',
       backgroundColor: calendar[0].filter,
       color: event.color,
+      borderRadius: '5px',
       cursor: 'pointer',
     };
   };

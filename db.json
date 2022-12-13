@@ -230,6 +230,14 @@
       "singleDate": "2022-12-11T05:00:00.000Z",
       "allDay": true,
       "id": 38
+    },
+    {
+      "title": "Birthday 50th",
+      "filter": "Birthdays",
+      "color": "rgb(0,0,0)",
+      "singleDate": "2022-12-11T05:00:00.000Z",
+      "allDay": true,
+      "id": 39
     }
   ]
 }
