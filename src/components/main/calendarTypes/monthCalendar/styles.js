@@ -67,7 +67,11 @@ export const useStyles = createUseStyles((theme) => ({
     },
   }),
   eventsContainer: {
-    width: '95%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
     height: '100%',
     '& > div': {
       margin: '1px 1px',

@@ -12,6 +12,8 @@ import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
 
 import { useStyles } from './styles';
 import OverflowEvents from './overflowEvents/OverflowEvents';
+import AllDayEvent from '../../../common/eventBlocks/AllDayEvent';
+import TimedEvent from '../../../common/eventBlocks/TimedEvent';
 
 const MonthCalendar = (props) => {
   const dispatch = useDispatch();
@@ -112,26 +114,8 @@ const MonthCalendar = (props) => {
         break;
     }
     return eventListForRender.map((event, index) => {
-      if (event.allDay)
-        return (
-          <div style={setEventStyles(event)} key={index}>
-            <div className={classes.eventInfo}>All Day -</div>
-            <div className={classes.eventInfo}>
-              {setEventTitleLength(event.title)}
-            </div>
-          </div>
-        );
-      else if (event.startTime)
-        return (
-          <div style={setEventStyles(event)} key={index}>
-            <div className={classes.eventInfo}>
-              {format(event.startTime, 'hh:mm aaa')} -
-            </div>
-            <div className={classes.eventInfo}>
-              {setEventTitleLength(event.title)}
-            </div>
-          </div>
-        );
+      if (event.allDay) return <AllDayEvent event={event} key={index} />;
+      else if (event.startTime) return <TimedEvent event={event} key={index} />;
       else
         return (
           <OverflowEvents

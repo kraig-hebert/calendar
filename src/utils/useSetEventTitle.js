@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 
 const useSetEventTitle = (props) => {
   const { title } = props;
-  console.log(title);
 
   const [formattedEventTitle, setFormattedEventTitle] = useState();
 
   const setEventTitleLength = () => {
-    const newTitle = title.slice(0, 12).trim();
+    const newTitle = title.slice(0, 9).trim();
     if (newTitle === title) return newTitle;
     else return `${newTitle}...`;
   };

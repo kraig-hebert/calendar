@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { format } from 'date-fns';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
 import { selectAllCalendars } from '../../../reducers/appSettings';
 import AllDayEvent from '../eventBlocks/AllDayEvent';
 import { useStyles } from './styles';
+import TimedEvent from '../eventBlocks/TimedEvent';
 
 const EventListPopUp = (props) => {
   const { events, setOverflowEventsOpen } = props;
@@ -32,25 +32,9 @@ const EventListPopUp = (props) => {
     };
   };
 
-  const setEventTitleLength = (title) => {
-    const newTitle = title.slice(0, 12).trim();
-    if (newTitle === title) return newTitle;
-    else return `${newTitle}...`;
-  };
-
   const eventListForRender = events.map((event, index) => {
     if (event.allDay) return <AllDayEvent event={event} key={index} />;
-    else
-      return (
-        <div style={setEventStyles(event)} key={index}>
-          <div className={classes.eventInfo}>
-            {format(event.startTime, 'hh:mm aaa')} -
-          </div>
-          <div className={classes.eventInfo}>
-            {setEventTitleLength(event.title)}
-          </div>
-        </div>
-      );
+    else return <TimedEvent event={event} key={index} />;
   });
   return (
     <div className={classes.eventListPopUp}>
