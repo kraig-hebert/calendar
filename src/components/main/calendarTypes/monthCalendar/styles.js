@@ -78,7 +78,4 @@ export const useStyles = createUseStyles((theme) => ({
     color: theme.light.main,
     borderRadius: '50%',
   },
-  eventInfo: {
-    margin: '0 3px',
-  },
 }));

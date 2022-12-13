@@ -9,7 +9,6 @@ export const useStyles = createUseStyles((theme) => ({
     height: '20px',
     backgroundColor: theme.dark.quarterAlpha,
     color: theme.dark.main,
-    cursor: 'pointer',
   },
-  title: { margin: 'auto' },
+  title: { margin: 'auto', cursor: 'pointer' },
 }));

@@ -22,16 +22,18 @@ const OverflowEvents = (props) => {
     setWidth(ref.current.offsetWidth);
   }, []);
   return (
-    <div
-      className={classes.overflowEvents}
-      ref={ref}
-      onClick={(e) => setOverflowEventsOpen((prev) => !prev)}
-    >
-      <div className={classes.title}>{setEventTitleLength(title)}</div>
+    <div className={classes.overflowEvents} ref={ref}>
+      <div
+        className={classes.title}
+        onClick={(e) => setOverflowEventsOpen(true)}
+      >
+        {setEventTitleLength(title)}
+      </div>
       <EventListPopUp
         width={width}
         display={overflowEventsOpen}
         events={events}
+        setOverflowEventsOpen={setOverflowEventsOpen}
       />
     </div>
   );

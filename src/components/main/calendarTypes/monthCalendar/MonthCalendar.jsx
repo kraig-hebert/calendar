@@ -9,6 +9,7 @@ import {
   selectAllCalendars,
 } from '../../../../reducers/appSettings';
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
+
 import { useStyles } from './styles';
 import OverflowEvents from './overflowEvents/OverflowEvents';
 
@@ -73,6 +74,7 @@ const MonthCalendar = (props) => {
       height: '20px',
       backgroundColor: calendar[0].filter,
       color: event.color,
+      borderRadius: '5px',
       cursor: 'pointer',
     };
   };
