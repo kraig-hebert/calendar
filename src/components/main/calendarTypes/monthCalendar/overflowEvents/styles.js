@@ -6,6 +6,7 @@ export const useStyles = createUseStyles((theme) => ({
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
+    width: '90%',
     height: '20px',
     backgroundColor: theme.dark.quarterAlpha,
     color: theme.dark.main,

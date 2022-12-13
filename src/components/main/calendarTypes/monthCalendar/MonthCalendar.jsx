@@ -6,12 +6,13 @@ import { getDay, getDaysInMonth, format } from 'date-fns';
 import {
   selectCurrentDate,
   calendarDaySelected,
-  selectAllCalendars,
 } from '../../../../reducers/appSettings';
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
 
 import { useStyles } from './styles';
 import OverflowEvents from './overflowEvents/OverflowEvents';
+import AllDayEvent from '../../../common/eventBlocks/AllDayEvent';
+import TimedEvent from '../../../common/eventBlocks/TimedEvent';
 
 const MonthCalendar = (props) => {
   const dispatch = useDispatch();
@@ -19,7 +20,6 @@ const MonthCalendar = (props) => {
 
   const currentDate = useSelector(selectCurrentDate);
   const monthFilteredEvents = useSelector(selectMonthFilteredEvents);
-  const allCalendars = useSelector(selectAllCalendars);
   const today = new Date();
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const numberOfDaysInMonth = getDaysInMonth(currentDate);
@@ -63,27 +63,6 @@ const MonthCalendar = (props) => {
     else return undefined;
   };
 
-  const setEventStyles = (event) => {
-    const calendar = allCalendars.filter(
-      (calendar) => event.filter === calendar.title
-    );
-    return {
-      display: 'flex',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-      height: '20px',
-      backgroundColor: calendar[0].filter,
-      color: event.color,
-      borderRadius: '5px',
-      cursor: 'pointer',
-    };
-  };
-  const setEventTitleLength = (title) => {
-    const newTitle = title.slice(0, 12).trim();
-    if (newTitle === title) return newTitle;
-    else return `${newTitle}...`;
-  };
-
   const finalizeEventList = (eventList, maxListLength) => {
     if (eventList.length <= maxListLength) return eventList;
     else {
@@ -112,26 +91,8 @@ const MonthCalendar = (props) => {
         break;
     }
     return eventListForRender.map((event, index) => {
-      if (event.allDay)
-        return (
-          <div style={setEventStyles(event)} key={index}>
-            <div className={classes.eventInfo}>All Day -</div>
-            <div className={classes.eventInfo}>
-              {setEventTitleLength(event.title)}
-            </div>
-          </div>
-        );
-      else if (event.startTime)
-        return (
-          <div style={setEventStyles(event)} key={index}>
-            <div className={classes.eventInfo}>
-              {format(event.startTime, 'hh:mm aaa')} -
-            </div>
-            <div className={classes.eventInfo}>
-              {setEventTitleLength(event.title)}
-            </div>
-          </div>
-        );
+      if (event.allDay) return <AllDayEvent event={event} key={index} />;
+      else if (event.startTime) return <TimedEvent event={event} key={index} />;
       else
         return (
           <OverflowEvents

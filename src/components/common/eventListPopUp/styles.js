@@ -1,9 +1,13 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
+  '@keyframes unroll': (props) => ({
+    from: { height: '0px', display: 'none' },
+    to: { height: props.height, display: props.display },
+  }),
   eventListPopUp: (props) => ({
     position: 'absolute',
-    display: props.display ? 'flex' : 'none',
+    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -16,6 +20,8 @@ export const useStyles = createUseStyles((theme) => ({
     backgroundColor: theme.light.main,
     filter: 'drop-shadow(0px 0px 1px #000)',
     borderRadius: '5px',
+    overflow: 'hidden',
+    transition: 'height .25s',
   }),
   eventInfo: {
     margin: '0 3px',

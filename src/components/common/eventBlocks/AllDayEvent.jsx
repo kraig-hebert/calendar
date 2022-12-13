@@ -8,7 +8,6 @@ import { useStyles } from './styles';
 
 const AllDayEvent = (props) => {
   const { event } = props;
-  console.log(event);
   const allCalendars = useSelector(selectAllCalendars);
   const calendar = allCalendars.filter(
     (calendar) => event.filter === calendar.title

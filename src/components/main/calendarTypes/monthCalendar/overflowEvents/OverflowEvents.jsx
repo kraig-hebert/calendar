@@ -33,6 +33,7 @@ const OverflowEvents = (props) => {
         width={width}
         display={overflowEventsOpen}
         events={events}
+        overflowEventsOpen={overflowEventsOpen}
         setOverflowEventsOpen={setOverflowEventsOpen}
       />
     </div>
