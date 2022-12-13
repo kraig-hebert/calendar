@@ -5,6 +5,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 
 import { selectAllCalendars } from '../../../reducers/appSettings';
+import AllDayEvent from '../eventBlocks/AllDayEvent';
 import { useStyles } from './styles';
 
 const EventListPopUp = (props) => {
@@ -38,15 +39,7 @@ const EventListPopUp = (props) => {
   };
 
   const eventListForRender = events.map((event, index) => {
-    if (event.allDay)
-      return (
-        <div style={setEventStyles(event)} key={index}>
-          <div className={classes.eventInfo}>All Day -</div>
-          <div className={classes.eventInfo}>
-            {setEventTitleLength(event.title)}
-          </div>
-        </div>
-      );
+    if (event.allDay) return <AllDayEvent event={event} key={index} />;
     else
       return (
         <div style={setEventStyles(event)} key={index}>

@@ -9,6 +9,7 @@ import {
   selectAllCalendars,
 } from '../../../../reducers/appSettings';
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
+
 import { useStyles } from './styles';
 import OverflowEvents from './overflowEvents/OverflowEvents';
 
