@@ -12,12 +12,6 @@ const OverflowEvents = (props) => {
   const ref = useRef();
   const classes = useStyles();
 
-  const setEventTitleLength = (title) => {
-    const newTitle = title.slice(0, 12).trim();
-    if (newTitle === title) return newTitle;
-    else return `${newTitle}...`;
-  };
-
   useLayoutEffect(() => {
     setWidth(ref.current.offsetWidth);
   }, []);
@@ -27,7 +21,7 @@ const OverflowEvents = (props) => {
         className={classes.title}
         onClick={(e) => setOverflowEventsOpen(true)}
       >
-        {setEventTitleLength(title)}
+        {title}
       </div>
       <EventListPopUp
         width={width}
