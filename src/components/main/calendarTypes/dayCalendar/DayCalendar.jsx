@@ -11,7 +11,7 @@ const DayCalendar = () => {
       <DayCalendarColumn
         blockWidth="100%"
         displayTime={true}
-        calendarWidth="90%"
+        calendarWidth="80%"
         borderRight={true}
         dayFilteredEvents={dayFilteredEvents}
         maxAllDayEvents={4}

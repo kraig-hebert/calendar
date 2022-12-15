@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { differenceInHours, format } from 'date-fns';
@@ -24,7 +24,6 @@ const DayCalendarColumn = (props) => {
     see useLayoutEffect()
   */
   const [calendarWidthValue, setCalendarWidthValue] = useState(0);
-  console.log(calendarWidthValue, 'daycalendar');
   const styleProps = { ...props, width: calendarWidthValue };
   const classes = useStyles(styleProps);
 
@@ -157,7 +156,7 @@ const DayCalendarColumn = (props) => {
       </div>
     );
   }
-  useEffect(() => {
+  useLayoutEffect(() => {
     setCalendarWidthValue(ref.current.offsetWidth);
   });
 

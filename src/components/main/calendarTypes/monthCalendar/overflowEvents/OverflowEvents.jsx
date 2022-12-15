@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import EventListPopUp from '../../../../common/eventListPopUp/EventListPopUp';
@@ -13,7 +13,7 @@ const OverflowEvents = (props) => {
   const ref = useRef();
   const classes = useStyles({ width: overflowWidth });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setWidth(ref.current.offsetWidth);
   });
   return (
