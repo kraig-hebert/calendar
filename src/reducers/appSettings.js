@@ -2,72 +2,79 @@ import {
   createSelector,
   createSlice,
   createAsyncThunk,
-} from '@reduxjs/toolkit';
+} from "@reduxjs/toolkit";
 
 const initialState = {
   drawerOpen: true,
   newEventModalOpen: false,
   currentDate: new Date().toJSON(),
-  currentCalendarSpread: 'month',
+  currentCalendarSpread: "month",
   availableColorFilters: [
-    'rgba(0,0,255,.9)' /* blue */,
-    'rgba(32,178,170,.9)' /* seagreen */,
-    'rgba(255,0,0,.9)' /* red */,
-    'rgba(165,42,42,.9)' /* orange */,
+    "rgba(0,0,255,.9)" /* blue */,
+    "rgba(32,178,170,.9)" /* seagreen */,
+    "rgba(255,0,0,.9)" /* red */,
+    "rgba(165,42,42,.9)" /* orange */,
   ],
   customCalendars: {},
   defaultCalendars: [
     {
-      title: 'Holidays',
-      filter: 'rgba(255,192,203,.9)', // pink
+      title: "Holidays",
+      filter: "rgba(255,192,203,.9)", // pink
     },
     {
-      title: 'Birthdays',
-      filter: 'rgba(255,255,50,.9)', // yellow
+      title: "Birthdays",
+      filter: "rgba(255,255,50,.9)", // yellow
     },
     {
-      title: 'Events',
-      filter: 'rgba(0,255,50,.9)' /* green */,
+      title: "Events",
+      filter: "rgba(0,255,50,.9)" /* green */,
     },
     {
-      title: 'Reminders',
-      filter: 'rgba(205,133,63,.9)', // peru
+      title: "Reminders",
+      filter: "rgba(205,133,63,.9)", // peru
     },
   ],
 };
 
 export const getCustomCalendars = createAsyncThunk(
-  'appSettings/getCustomCalenars',
-  async () => JSON.parse(localStorage.getItem('customCalendars'))
+  "appSettings/getCustomCalendars",
+  async () => {
+    if (localStorage.getItem("customCalendars"))
+      return JSON.parse(localStorage.getItem("customCalendars"));
+    else {
+      localStorage.setItem("customCalendars", "[]");
+      return [];
+    }
+  }
 );
 
 export const addNewCalendar = createAsyncThunk(
-  'appSettings/addNewCalendar',
+  "appSettings/addNewCalendar",
   async (calendar, { getState }) => {
     const state = getState();
     let customCalendars = Object.values(state.appSettings.customCalendars);
     customCalendars.push(calendar);
-    localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
+    localStorage.setItem("customCalendars", JSON.stringify(customCalendars));
     return calendar;
   }
 );
 
 export const deleteCustomCalendar = createAsyncThunk(
-  'appSettings/deleteCustomCalendar',
+  "appSettings/deleteCustomCalendar",
   async (title, { getState }) => {
     const state = getState();
     const customCalendars = Object.values(
       state.appSettings.customCalendars
     ).filter((calendar) => calendar.title !== title);
-    localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
+    localStorage.setItem("customCalendars", JSON.stringify(customCalendars));
     return customCalendars;
   }
 );
 
 export const setCustomFilters = createAsyncThunk(
-  'appSettings/setCustomFilters',
+  "appSettings/setCustomFilters",
   async () => {
-    const customCalendars = JSON.parse(localStorage.getItem('customCalendars'));
+    const customCalendars = JSON.parse(localStorage.getItem("customCalendars"));
     const usedFilters = customCalendars.map((calendar) => calendar.filter);
     return initialState.availableColorFilters.filter(
       (filter) => !usedFilters.includes(filter)
@@ -76,7 +83,7 @@ export const setCustomFilters = createAsyncThunk(
 );
 
 const appSettingsSlice = createSlice({
-  name: 'appSettings',
+  name: "appSettings",
   initialState,
   reducers: {
     drawerCloseSelected(state) {
@@ -96,12 +103,12 @@ const appSettingsSlice = createSlice({
     calendarDaySelected(state, action) {
       const newDate = action.payload;
       state.currentDate = newDate;
-      state.currentCalendarSpread = 'day';
+      state.currentCalendarSpread = "day";
     },
     calendarMonthSelected(state, action) {
       const newDate = action.payload;
       state.currentDate = newDate;
-      state.currentCalendarSpread = 'month';
+      state.currentCalendarSpread = "month";
     },
     addEventButtonClicked(state) {
       state.newEventModalOpen = true;
