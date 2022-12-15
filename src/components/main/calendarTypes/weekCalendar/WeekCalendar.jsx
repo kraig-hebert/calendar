@@ -27,6 +27,7 @@ const WeekCalendar = () => {
     else return false;
   };
   const renderedDayColumns = days.map((day, index) => {
+    console.log(day);
     const dayFilteredEvents = weekFilteredEvents[days[index]];
     return (
       <div className={classes.dayContainer} key={index}>
@@ -36,15 +37,16 @@ const WeekCalendar = () => {
         <DayCalendarColumn
           blockWidth="100%"
           displayTime={day === 'Sun' ? true : false}
-          calendarWidth="100%"
           borderRight={setBorderRight(index)}
           dayFilteredEvents={dayFilteredEvents}
           height={`${Math.max(...heightList) * 18}px`}
           maxAllDayEvents={3}
+          width="100%"
         />
       </div>
     );
   });
+  console.log(renderedDayColumns);
 
   return <div className={classes.weekCalendar}>{renderedDayColumns}</div>;
 };

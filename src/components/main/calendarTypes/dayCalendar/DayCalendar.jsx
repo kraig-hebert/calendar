@@ -3,20 +3,22 @@ import { useSelector } from 'react-redux';
 
 import DayCalendarColumn from '../../../common/dayCalendarColumn/DayCalendarColumn';
 import { selectDayFilteredEvents } from '../../../../reducers/eventsSlice';
+import { useStyles } from './styles';
 
 const DayCalendar = () => {
+  const classes = useStyles();
   const dayFilteredEvents = useSelector(selectDayFilteredEvents);
   return (
-    <>
+    <div className={classes.dayCalendar}>
       <DayCalendarColumn
         blockWidth="100%"
         displayTime={true}
-        calendarWidth="80%"
         borderRight={true}
         dayFilteredEvents={dayFilteredEvents}
         maxAllDayEvents={4}
+        width="90%"
       />
-    </>
+    </div>
   );
 };
 

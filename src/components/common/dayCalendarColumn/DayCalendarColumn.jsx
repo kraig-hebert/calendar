@@ -6,7 +6,7 @@ import { useTheme } from 'react-jss';
 
 import { selectAllCalendars } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
-import OverflowEvents from '../../main/calendarTypes/monthCalendar/overflowEvents/OverflowEvents';
+import OverflowEvents from '../overflowEvents/OverflowEvents';
 
 const DayCalendarColumn = (props) => {
   const { dayFilteredEvents, maxAllDayEvents } = props;
@@ -24,7 +24,7 @@ const DayCalendarColumn = (props) => {
     see useLayoutEffect()
   */
   const [calendarWidthValue, setCalendarWidthValue] = useState(0);
-  const styleProps = { ...props, width: calendarWidthValue };
+  const styleProps = { ...props, calendarWidth: calendarWidthValue };
   const classes = useStyles(styleProps);
 
   // returns height of a timeBlock based on how long event is
@@ -156,8 +156,9 @@ const DayCalendarColumn = (props) => {
       </div>
     );
   }
-  useLayoutEffect(() => {
+  useLayoutEffect(() => () => {
     setCalendarWidthValue(ref.current.offsetWidth);
+    console.log(ref.current.offsetWidth);
   });
 
   return (
@@ -170,12 +171,12 @@ const DayCalendarColumn = (props) => {
 
 DayCalendarColumn.propTypes = {
   borderRight: PropTypes.bool,
-  calendarWidth: PropTypes.string,
+  blockWidth: PropTypes.string,
   dayFilteredEvents: PropTypes.object,
   displayTime: PropTypes.bool,
   height: PropTypes.string,
-  width: PropTypes.string,
   maxAllDayEvents: PropTypes.number,
+  width: PropTypes.string,
 };
 
 export default DayCalendarColumn;

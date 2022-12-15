@@ -10,7 +10,7 @@ import {
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
 
 import { useStyles } from './styles';
-import OverflowEvents from './overflowEvents/OverflowEvents';
+import OverflowEvents from '../../../common/overflowEvents/OverflowEvents';
 import AllDayEvent from '../../../common/eventBlocks/AllDayEvent';
 import TimedEvent from '../../../common/eventBlocks/TimedEvent';
 

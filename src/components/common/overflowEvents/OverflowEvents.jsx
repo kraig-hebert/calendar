@@ -13,7 +13,7 @@ const OverflowEvents = (props) => {
   const ref = useRef();
   const classes = useStyles({ width: overflowWidth });
 
-  useLayoutEffect(() => {
+  useLayoutEffect(() => () => {
     setWidth(ref.current.offsetWidth);
   });
   return (
