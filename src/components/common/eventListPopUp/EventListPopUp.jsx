@@ -7,7 +7,8 @@ import { useStyles } from './styles';
 import TimedEvent from '../eventBlocks/TimedEvent';
 
 const EventListPopUp = (props) => {
-  const { events, overflowEventsOpen, setOverflowEventsOpen } = props;
+  const { events, overflowEventsOpen, setOverflowEventsOpen, width } = props;
+  console.log(width);
   const setHeight = () => {
     if (overflowEventsOpen) return { height: `${events.length * 20 + 50}px` };
     else return { height: '0px' };

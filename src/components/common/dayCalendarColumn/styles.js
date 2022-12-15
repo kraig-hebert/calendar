@@ -11,6 +11,7 @@ export const useStyles = createUseStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end',
+    alignItems: 'center',
     width: props.width,
     height: props.height,
   }),

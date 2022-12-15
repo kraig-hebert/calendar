@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { differenceInHours, format } from 'date-fns';
@@ -6,6 +6,7 @@ import { useTheme } from 'react-jss';
 
 import { selectAllCalendars } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
+import OverflowEvents from '../../main/calendarTypes/monthCalendar/overflowEvents/OverflowEvents';
 
 const DayCalendarColumn = (props) => {
   const { dayFilteredEvents, maxAllDayEvents } = props;
@@ -23,6 +24,7 @@ const DayCalendarColumn = (props) => {
     see useLayoutEffect()
   */
   const [calendarWidthValue, setCalendarWidthValue] = useState(0);
+  console.log(calendarWidthValue, 'daycalendar');
   const styleProps = { ...props, width: calendarWidthValue };
   const classes = useStyles(styleProps);
 
@@ -79,16 +81,32 @@ const DayCalendarColumn = (props) => {
       newEventList = allDayEventsList;
     else {
       newEventList = allDayEventsList.slice(0, maxAllDayEvents);
-      newEventList.push({ title: setOverflowEventTitle(), allDay: true });
+      newEventList.push({
+        title: setOverflowEventTitle(),
+        allDay: true,
+        overflow: true,
+      });
     }
-    const renderedAllDayEvents = newEventList.map((event, index) => (
-      <div key={index}>
-        <div style={setStyle(event)}>
-          <p>{event.title}</p>
-        </div>
-        <div className={classes.eventBorder}></div>
-      </div>
-    ));
+    const renderedAllDayEvents = newEventList.map((event, index) => {
+      if (!event.overflow)
+        return (
+          <div key={index}>
+            <div style={setStyle(event)}>
+              <p>{event.title}</p>
+            </div>
+            <div className={classes.eventBorder}></div>
+          </div>
+        );
+      else
+        return (
+          <OverflowEvents
+            title={event.title}
+            key={index}
+            events={allDayEventsList}
+            overflowWidth={calendarWidthValue - 10}
+          />
+        );
+    });
     return renderedAllDayEvents;
   };
 
@@ -139,9 +157,9 @@ const DayCalendarColumn = (props) => {
       </div>
     );
   }
-  useLayoutEffect(() => {
+  useEffect(() => {
     setCalendarWidthValue(ref.current.offsetWidth);
-  }, []);
+  });
 
   return (
     <div className={classes.dayCalendar} ref={ref}>
