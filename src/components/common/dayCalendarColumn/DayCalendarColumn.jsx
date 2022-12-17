@@ -156,7 +156,7 @@ const DayCalendarColumn = (props) => {
       </div>
     );
   }
-  useLayoutEffect(() => () => {
+  useLayoutEffect(() => {
     setCalendarWidthValue(ref.current.offsetWidth);
     console.log(ref.current.offsetWidth);
   });
