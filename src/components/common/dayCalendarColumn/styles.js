@@ -30,7 +30,7 @@ export const useStyles = createUseStyles((theme) => ({
   timeBlock: (props) => ({
     display: 'block',
     position: 'relative',
-    width: props.blockWidth,
+    width: props.calendarWidth,
     height: '30px',
     border: '1px solid ' + theme.dark.halfAlpha,
     borderRight: props.borderRight,
