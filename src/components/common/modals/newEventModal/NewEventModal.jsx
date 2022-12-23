@@ -144,7 +144,7 @@ const NewEventModal = () => {
       if (isAfter(new Date(endTime), new Date(startTime)) && inputValue)
         setSavingAllowed(true);
       else setSavingAllowed(false);
-    } else if (inputValue) setSavingAllowed(true);
+    } else inputValue ? setSavingAllowed(true) : setSavingAllowed(false);
   }, [inputValue, startTime, endTime, selectedSwitch]);
 
   return (
