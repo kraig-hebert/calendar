@@ -11,6 +11,7 @@ const WeekCalendar = () => {
   const classes = useStyles();
   const weekFilteredEvents = useSelector(selectWeekFilteredEvents);
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const MAX_ALL_DAY_EVENTS = 3;
 
   const currentDate = useSelector(selectCurrentDate);
   const startDateofWeek = startOfWeek(currentDate);
@@ -18,9 +19,14 @@ const WeekCalendar = () => {
   for (let i = 0; i < 7; i++) {
     dates.push(addDays(startDateofWeek, i));
   }
-  const heightList = Object.values(weekFilteredEvents).map(
-    (dayEvents) => dayEvents.allDay.length
-  );
+  const setHeight = () => {
+    const heightList = Object.values(weekFilteredEvents).map(
+      (dayEvents) => dayEvents.allDay.length
+    );
+    if (Math.max(...heightList) > MAX_ALL_DAY_EVENTS)
+      return (MAX_ALL_DAY_EVENTS + 1) * 20;
+    else return `${Math.max(...heightList) * 20}px`;
+  };
 
   const setBorderRight = (index) => {
     if (index === days.length - 1) return true;
@@ -38,7 +44,7 @@ const WeekCalendar = () => {
           displayTime={day === 'Sun' ? true : false}
           borderRight={setBorderRight(index)}
           dayFilteredEvents={dayFilteredEvents}
-          height={`${(Math.max(...heightList) + 1) * 19}px`}
+          height={setHeight()}
           maxAllDayEvents={3}
           width="100%"
         />

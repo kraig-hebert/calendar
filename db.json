@@ -39,6 +39,46 @@
       "singleDate": "2022-12-17T05:00:00.000Z",
       "allDay": true,
       "id": 6
+    },
+    {
+      "title": "fasdfsdf",
+      "filter": "rIDES",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2022-12-22T05:00:00.000Z",
+      "allDay": true,
+      "id": 7
+    },
+    {
+      "title": "fasdfsdf",
+      "filter": "Reminders",
+      "color": "rgb(0,0,0)",
+      "singleDate": "2022-12-22T05:00:00.000Z",
+      "allDay": true,
+      "id": 8
+    },
+    {
+      "title": "cZXCZXCzc",
+      "filter": "Chess",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2022-12-22T05:00:00.000Z",
+      "allDay": true,
+      "id": 9
+    },
+    {
+      "title": "fasdfasdf",
+      "filter": "rIDES",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2022-12-22T05:00:00.000Z",
+      "allDay": true,
+      "id": 10
+    },
+    {
+      "title": "fasdfasdf",
+      "filter": "Birthdays",
+      "color": "rgb(0,0,0)",
+      "singleDate": "2022-12-22T05:00:00.000Z",
+      "allDay": true,
+      "id": 11
     }
   ]
 }
