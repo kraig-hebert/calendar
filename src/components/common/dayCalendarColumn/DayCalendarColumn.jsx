@@ -98,12 +98,16 @@ const DayCalendarColumn = (props) => {
         );
       else
         return (
-          <OverflowEvents
-            title={event.title}
-            key={index}
-            events={allDayEventsList}
-            overflowWidth={calendarWidthValue - 10}
-          />
+          <>
+            {' '}
+            <OverflowEvents
+              title={event.title}
+              key={index}
+              events={allDayEventsList}
+              overflowWidth={calendarWidthValue - 10}
+            />
+            <div className={classes.eventBorder}></div>
+          </>
         );
     });
     return renderedAllDayEvents;

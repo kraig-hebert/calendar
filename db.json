@@ -1,3 +1,44 @@
 {
-  "events": []
+  "events": [
+    {
+      "title": "ffffff",
+      "filter": "Events",
+      "color": "rgb(0,0,0)",
+      "singleDate": "2022-12-22T05:00:00.000Z",
+      "allDay": true,
+      "id": 2
+    },
+    {
+      "title": "ffffff",
+      "filter": "rIDES",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2022-12-22T05:00:00.000Z",
+      "allDay": true,
+      "id": 3
+    },
+    {
+      "title": "asdfasdfasdf",
+      "filter": "Birthdays",
+      "color": "rgb(0,0,0)",
+      "singleDate": "2022-12-22T05:00:00.000Z",
+      "allDay": true,
+      "id": 4
+    },
+    {
+      "title": "fasdfsdf",
+      "filter": "Plyo",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2022-12-11T05:00:00.000Z",
+      "allDay": true,
+      "id": 5
+    },
+    {
+      "title": "fasdfasdf",
+      "filter": "Reminders",
+      "color": "rgb(0,0,0)",
+      "singleDate": "2022-12-17T05:00:00.000Z",
+      "allDay": true,
+      "id": 6
+    }
+  ]
 }

@@ -38,7 +38,7 @@ const WeekCalendar = () => {
           displayTime={day === 'Sun' ? true : false}
           borderRight={setBorderRight(index)}
           dayFilteredEvents={dayFilteredEvents}
-          height={`${Math.max(...heightList) * 18}px`}
+          height={`${(Math.max(...heightList) + 1) * 19}px`}
           maxAllDayEvents={3}
           width="100%"
         />
