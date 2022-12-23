@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectNewEventModalOpen,
   eventModalClosed,
+  selectDefaultCalendars,
   selectDefaultCalendarTitles,
 } from '../../../../reducers/appSettings';
 import { saveNewEvent } from '../../../../reducers/eventsSlice';
@@ -19,9 +20,12 @@ const NewEventModal = () => {
   const theme = useTheme();
   const newEventModalOpen = useSelector(selectNewEventModalOpen);
   const defaultCalendarTitles = useSelector(selectDefaultCalendarTitles);
+  const defaultCalendars = useSelector(selectDefaultCalendars);
   const [inputValue, setInputValue] = useState('');
   const [selectedSwitch, setSelectedSwitch] = useState(false);
-  const [selectedCalendar, setSelectedCalendar] = useState(new Object());
+  const [selectedCalendar, setSelectedCalendar] = useState({
+    ...defaultCalendars[0],
+  });
   const [singleDate, setSingleDate] = useState(format(new Date(), 'yyyy-L-dd'));
   const [startTime, setStartTime] = useState(
     format(new Date(), 'yyyy-L-dd') + 'T12:00'
@@ -36,7 +40,7 @@ const NewEventModal = () => {
     setTimeout(() => {
       setInputValue('');
       setSelectedSwitch(false);
-      setSelectedCalendar(new Object());
+      setSelectedCalendar({ ...defaultCalendars[0] });
       setSingleDate(format(new Date(), 'yyyy-L-dd'));
       setStartTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
       setEndTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
