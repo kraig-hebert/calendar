@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectNewEventModalOpen,
@@ -7,7 +7,7 @@ import {
   selectDefaultCalendarTitles,
 } from '../../../../reducers/appSettings';
 import { saveNewEvent } from '../../../../reducers/eventsSlice';
-import { format } from 'date-fns';
+import { format, isAfter } from 'date-fns';
 import { useStyles } from './styles';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { FaSave } from 'react-icons/fa';
@@ -33,6 +33,7 @@ const NewEventModal = () => {
   const [endTime, setEndTime] = useState(
     format(new Date(), 'yyyy-L-dd') + 'T12:00'
   );
+  const [savingAllowed, setSavingAllowed] = useState(false);
 
   const clearModal = () => {
     dispatch(eventModalClosed());
@@ -44,6 +45,7 @@ const NewEventModal = () => {
       setSingleDate(format(new Date(), 'yyyy-L-dd'));
       setStartTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
       setEndTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
+      setSavingAllowed(false);
     }, 500);
   };
 
@@ -64,6 +66,7 @@ const NewEventModal = () => {
   };
 
   const handleSave = () => {
+    if (!savingAllowed) return;
     if (selectedSwitch === false) {
       const newEvent = {
         title: inputValue,
@@ -136,11 +139,24 @@ const NewEventModal = () => {
     dateInputs: setDateInputAnimations(),
   });
 
+  useEffect(() => {
+    if (selectedSwitch) {
+      if (isAfter(new Date(endTime), new Date(startTime)) && inputValue)
+        setSavingAllowed(true);
+      else setSavingAllowed(false);
+    } else if (inputValue) setSavingAllowed(true);
+  }, [inputValue, startTime, endTime, selectedSwitch]);
+
   return (
     <div className={classes.modal}>
       <div className={classes.modalContent}>
         <div className={classes.iconContainer}>
-          <FaSave className={classes.icon} onClick={handleSave} />
+          <FaSave
+            className={
+              savingAllowed ? classes.iconActive : classes.iconDisabled
+            }
+            onClick={handleSave}
+          />
           <input
             type="text"
             name="title"
@@ -148,9 +164,14 @@ const NewEventModal = () => {
             value={inputValue}
             placeholder="Title"
             className={classes.titleInput}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+            }}
           />
-          <AiFillCloseCircle className={classes.icon} onClick={clearModal} />
+          <AiFillCloseCircle
+            className={classes.iconActive}
+            onClick={clearModal}
+          />
         </div>
         <EventCalendars
           selectedCalendar={selectedCalendar}

@@ -57,11 +57,19 @@ export const useStyles = createUseStyles((theme) => ({
     borderTopLeftRadius: '20px',
     borderBottom: '1px solid ' + theme.primary.main,
   },
-  icon: {
+  iconBase: {
     margin: '10px 20px',
-    color: theme.secondary.main,
     cursor: 'pointer',
     fontSize: '2rem',
+  },
+  iconActive: {
+    extend: 'iconBase',
+    color: theme.secondary.main,
+  },
+  iconDisabled: {
+    extend: 'iconBase',
+    color: 'red',
+    cursor: 'default',
   },
   titleInput: {
     width: '60%',
