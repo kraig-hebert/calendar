@@ -99,12 +99,12 @@ const DayCalendarColumn = (props) => {
       else
         return (
           <>
-            {' '}
             <OverflowEvents
               title={event.title}
               key={index}
               events={allDayEventsList}
               overflowWidth={calendarWidthValue - 10}
+              top={maxAllDayEvents * 21}
             />
             <div className={classes.eventBorder}></div>
           </>

@@ -5,11 +5,10 @@ import EventListPopUp from '../eventListPopUp/EventListPopUp';
 import { useStyles } from './styles';
 
 const OverflowEvents = (props) => {
-  const { title, events, overflowWidth } = props;
+  const { title, events, overflowWidth, top } = props;
 
   const [overflowEventsOpen, setOverflowEventsOpen] = useState(false);
   const [width, setWidth] = useState(0);
-  console.log(width, 'overflow');
   const ref = useRef();
   const classes = useStyles({ width: overflowWidth });
 
@@ -30,6 +29,7 @@ const OverflowEvents = (props) => {
         events={events}
         overflowEventsOpen={overflowEventsOpen}
         setOverflowEventsOpen={setOverflowEventsOpen}
+        top={top}
       />
     </div>
   );
@@ -38,6 +38,8 @@ const OverflowEvents = (props) => {
 OverflowEvents.propTypes = {
   title: PropTypes.string,
   events: PropTypes.array,
+  overflowWidth: PropTypes.string,
+  top: PropTypes.number,
 };
 
 export default OverflowEvents;

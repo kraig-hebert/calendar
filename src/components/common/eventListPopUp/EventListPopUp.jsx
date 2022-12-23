@@ -7,14 +7,14 @@ import { useStyles } from './styles';
 import TimedEvent from '../eventBlocks/TimedEvent';
 
 const EventListPopUp = (props) => {
-  const { events, overflowEventsOpen, setOverflowEventsOpen, width } = props;
-  console.log(width);
-  const setHeight = () => {
-    if (overflowEventsOpen) return { height: `${events.length * 20 + 50}px` };
-    else return { height: '0px' };
+  const { events, overflowEventsOpen, setOverflowEventsOpen, top } = props;
+  const setTransitionProps = () => {
+    if (overflowEventsOpen)
+      return { height: `${events.length * 20 + 50}px`, top: top };
+    else return { height: '0px', top: '0' };
   };
 
-  const classes = useStyles({ ...props, ...setHeight() });
+  const classes = useStyles({ ...props, ...setTransitionProps() });
 
   const eventListForRender = events.map((event, index) => {
     if (event.allDay) return <AllDayEvent event={event} key={index} />;
@@ -36,6 +36,7 @@ EventListPopUp.propTypes = {
   events: PropTypes.array,
   setOverflowEventsOpen: PropTypes.bool,
   setOverflowEventsOpen: PropTypes.func,
+  top: PropTypes.number,
 };
 
 export default EventListPopUp;
