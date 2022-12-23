@@ -24,8 +24,8 @@ const WeekCalendar = () => {
       (dayEvents) => dayEvents.allDay.length
     );
     if (Math.max(...heightList) > MAX_ALL_DAY_EVENTS)
-      return (MAX_ALL_DAY_EVENTS + 1) * 20;
-    else return `${Math.max(...heightList) * 20}px`;
+      return (MAX_ALL_DAY_EVENTS + 1) * 21;
+    else return `${Math.max(...heightList) * 21}px`;
   };
 
   const setBorderRight = (index) => {
