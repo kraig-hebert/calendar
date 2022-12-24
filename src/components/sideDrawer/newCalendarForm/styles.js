@@ -9,7 +9,7 @@ export const useStyles = createUseStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
-    width: '80%',
+    width: '75%',
     height: props.height,
     backgroundColor: theme.secondary.main,
     borderTop: '1px solid ' + theme.light.main,
@@ -26,7 +26,7 @@ export const useStyles = createUseStyles((theme) => ({
       textAlign: 'center',
     },
     '& input': {
-      width: '175px',
+      width: '155px',
       height: '20px',
       padding: '5px',
       border: '1px solid ' + theme.primary.main,

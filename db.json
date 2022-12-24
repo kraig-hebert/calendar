@@ -9,14 +9,6 @@
       "id": 2
     },
     {
-      "title": "ffffff",
-      "filter": "rIDES",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2022-12-22T05:00:00.000Z",
-      "allDay": true,
-      "id": 3
-    },
-    {
       "title": "asdfasdfasdf",
       "filter": "Birthdays",
       "color": "rgb(0,0,0)",
@@ -42,14 +34,6 @@
     },
     {
       "title": "fasdfsdf",
-      "filter": "rIDES",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2022-12-22T05:00:00.000Z",
-      "allDay": true,
-      "id": 7
-    },
-    {
-      "title": "fasdfsdf",
       "filter": "Reminders",
       "color": "rgb(0,0,0)",
       "singleDate": "2022-12-22T05:00:00.000Z",
@@ -63,14 +47,6 @@
       "singleDate": "2022-12-22T05:00:00.000Z",
       "allDay": true,
       "id": 9
-    },
-    {
-      "title": "fasdfasdf",
-      "filter": "rIDES",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2022-12-22T05:00:00.000Z",
-      "allDay": true,
-      "id": 10
     },
     {
       "title": "fasdfasdf",
@@ -95,14 +71,6 @@
       "singleDate": "2022-12-24T05:00:00.000Z",
       "allDay": true,
       "id": 13
-    },
-    {
-      "title": "asdfasdfsf",
-      "filter": "rIDES",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2022-12-24T05:00:00.000Z",
-      "allDay": true,
-      "id": 14
     },
     {
       "title": "fasdfsdf",
