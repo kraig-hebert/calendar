@@ -7,11 +7,18 @@ import { useStyles } from './styles';
 import TimedEvent from '../eventBlocks/TimedEvent';
 
 const EventListPopUp = (props) => {
-  const { events, overflowEventsOpen, setOverflowEventsOpen, top } = props;
+  const { events, overflowEventsOpen, setOverflowEventsOpen, top, bottom } =
+    props;
   const setTransitionProps = () => {
-    if (overflowEventsOpen)
-      return { height: `${events.length * 20 + 50}px`, top: top };
-    else return { height: '0px', top: '0' };
+    if (bottom) {
+      if (overflowEventsOpen)
+        return { height: `${events.length * 20 + 50}px`, bottom: '0px' };
+      else return { height: '0px', bottom: '0px' };
+    } else {
+      if (overflowEventsOpen)
+        return { height: `${events.length * 20 + 50}px`, top: top };
+      else return { height: '0px', top: '0' };
+    }
   };
 
   const classes = useStyles({ ...props, ...setTransitionProps() });
@@ -37,6 +44,7 @@ EventListPopUp.propTypes = {
   setOverflowEventsOpen: PropTypes.bool,
   setOverflowEventsOpen: PropTypes.func,
   top: PropTypes.number,
+  bottom: PropTypes.bool,
 };
 
 export default EventListPopUp;

@@ -100,6 +100,7 @@ const MonthCalendar = (props) => {
             key={index}
             events={todaysEventsList}
             overflowWidth="90%"
+            bottom={true}
           />
         );
     });

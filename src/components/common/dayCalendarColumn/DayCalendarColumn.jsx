@@ -105,6 +105,7 @@ const DayCalendarColumn = (props) => {
               events={allDayEventsList}
               overflowWidth={calendarWidthValue - 10}
               top={maxAllDayEvents * 21}
+              bottom={false}
             />
             <div className={classes.eventBorder}></div>
           </>
