@@ -5,8 +5,9 @@ export const useStyles = createUseStyles((theme) => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    width: '100%',
-    padding: '5px',
+    width: '80%',
+    height: '30px',
+    padding: '0 5px',
     backgroundColor: theme.secondary.main,
     fontSize: '1rem',
     '&:hover': {
@@ -15,6 +16,10 @@ export const useStyles = createUseStyles((theme) => ({
     '&:hover > div': {
       display: 'block',
       cursor: 'pointer',
+    },
+    '&:last-of-type': {
+      borderBottomLeftRadius: '10px',
+      borderBottomRightRadius: '10px',
     },
   },
   optionsContainer: {

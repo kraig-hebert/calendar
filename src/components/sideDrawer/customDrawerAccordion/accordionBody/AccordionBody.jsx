@@ -11,7 +11,7 @@ const AccordionBody = (props) => {
   const customCalendars = useSelector(selectCustomCalendars);
 
   const setAccordionHeight = () => {
-    if (showAccordion) return `${customCalendars.length * 32}px`;
+    if (showAccordion) return `${customCalendars.length * 30}px`;
     else return '0';
   };
   const classes = useStyles({ height: setAccordionHeight() });

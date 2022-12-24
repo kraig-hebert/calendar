@@ -21,7 +21,7 @@ const CalendarList = () => {
       />
     );
   });
-  return <div>{renderedCalendarList}</div>;
+  return <>{renderedCalendarList}</>;
 };
 
 export default CalendarList;
