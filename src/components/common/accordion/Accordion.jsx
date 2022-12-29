@@ -6,14 +6,15 @@ import AccordionHeader from './accordionHeader/AccordionHeader';
 import NewCalendarForm from '../../sideDrawer/newCalendarForm/NewCalendarForm';
 import { useStyles } from './styles';
 
-const CustomerDrawerAccordion = (props) => {
-  const { setCalendarFormVisible, calendarFormVisible } = props;
+const Accordion = (props) => {
+  const { title, setCalendarFormVisible, calendarFormVisible } = props;
   const classes = useStyles();
   const [calendarAccordionOpen, setCalendarAccordionOpen] = useState(true);
 
   return (
     <div className={classes.accordion}>
       <AccordionHeader
+        title={title}
         calendarAccordionOpen={calendarAccordionOpen}
         setCalendarAccordionOpen={setCalendarAccordionOpen}
         calendarFormVisible={calendarFormVisible}
@@ -31,9 +32,10 @@ const CustomerDrawerAccordion = (props) => {
   );
 };
 
-CustomerDrawerAccordion.propTypes = {
+Accordion.propTypes = {
+  title: PropTypes.string,
   calendarFormVisible: PropTypes.bool,
   setCalendaFormVisible: PropTypes.func,
 };
 
-export default CustomerDrawerAccordion;
+export default Accordion;
