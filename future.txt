@@ -5,7 +5,6 @@ MonthCalendar-OverFlowEvents-EventListPopUp: set animation to start from bottom/
 
 Filters: display/hide events from calendar based on active calendar filters
 
-Accordion: create single component to use for both the DefaultCalendarAccordion and the CustomCalendarAccordion
 *******************************************************************
 
 
