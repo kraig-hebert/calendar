@@ -8,5 +8,6 @@ export const useStyles = createUseStyles({
     alignItems: 'center',
     justifyContent: 'flex-start',
     width: '100%',
+    margin: '5px 0',
   },
 });

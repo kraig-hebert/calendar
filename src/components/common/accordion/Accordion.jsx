@@ -10,7 +10,10 @@ const Accordion = (props) => {
   const { title, setCalendarFormVisible, calendarFormVisible } = props;
   const classes = useStyles();
   const [calendarAccordionOpen, setCalendarAccordionOpen] = useState(true);
-
+  const setType = () => {
+    if (title === 'Calendars') return 'default';
+    else return 'custom';
+  };
   return (
     <div className={classes.accordion}>
       <AccordionHeader
@@ -20,14 +23,13 @@ const Accordion = (props) => {
         calendarFormVisible={calendarFormVisible}
         setCalendarFormVisible={setCalendarFormVisible}
       />
-      <AccordionBody
-        showAccordion={calendarAccordionOpen}
-        calendarFormVisible={calendarFormVisible}
-      />
-      <NewCalendarForm
-        calendarFormVisible={calendarFormVisible}
-        setCalendarFormVisible={setCalendarFormVisible}
-      />
+      <AccordionBody showAccordion={calendarAccordionOpen} type={setType()} />
+      {title !== 'Calendars' && (
+        <NewCalendarForm
+          calendarFormVisible={calendarFormVisible}
+          setCalendarFormVisible={setCalendarFormVisible}
+        />
+      )}
     </div>
   );
 };
