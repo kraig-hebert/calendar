@@ -5,11 +5,11 @@ import CalendarInput from './calendarInput/CalendarInput';
 
 const CalendarList = (props) => {
   const { calendarList, checkColor } = props.props;
-  const renderedCalendarList = calendarList.map((calendar) => {
+  const renderedCalendarList = calendarList.map((calendar, index) => {
     return (
       <CalendarInput
         title={calendar.title}
-        key={calendar.id}
+        key={index}
         checkBoxBackgroundColor={calendar.filter}
         checkColor={checkColor}
       />
