@@ -12,7 +12,13 @@ import CheckBox from '../../../../checkBox/CheckBox';
 import { useStyles } from './styles';
 
 const CalendarInput = (props) => {
-  const { title, checkBoxBackgroundColor, checkColor, isEditable } = props;
+  const {
+    title,
+    checkBoxBackgroundColor,
+    checkColor,
+    isEditable,
+    startChecked,
+  } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -36,7 +42,7 @@ const CalendarInput = (props) => {
       <CheckBox
         checkBoxBackgroundColor={checkBoxBackgroundColor}
         checkColor={checkColor}
-        startChecked={true}
+        startChecked={startChecked}
       />
       <span className={classes.label}>
         {title.charAt(0).toUpperCase() + title.slice(1)}
@@ -50,6 +56,7 @@ CalendarInput.propTypes = {
   checkBoxBackgroundColor: PropTypes.string,
   checkColor: PropTypes.string,
   isEditable: PropTypes.bool,
+  startChecked: PropTypes.bool,
 };
 
 export default CalendarInput;

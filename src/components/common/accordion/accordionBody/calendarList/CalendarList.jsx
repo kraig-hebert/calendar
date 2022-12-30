@@ -16,6 +16,7 @@ const CalendarList = (props) => {
         checkBoxBackgroundColor={calendar.filter}
         checkColor={checkColor}
         isEditable={calendarType === 'custom' ? true : false}
+        startChecked={activeFilters.includes(calendar.title) ? true : false}
       />
     );
   });
