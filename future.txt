@@ -5,6 +5,12 @@ MonthCalendar-OverFlowEvents-EventListPopUp: set animation to start from bottom/
 
 Filters: display/hide events from calendar based on active calendar filters
 
+CustomCalendars: allow user to edit title and filter color using the <NewCalendarForm/>
+
+Events: 
+    - allow user to edit and events details
+    - allow user to create an event to populate the future based on interval chosen
+
 *******************************************************************
 
 
