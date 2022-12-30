@@ -84,6 +84,20 @@ export const setCustomFilters = createAsyncThunk(
   }
 );
 
+export const setActiveFilters = createAsyncThunk(
+  'appSettings/setActiveFilters',
+  async (customCalendarObject) => {
+    const customCalendars = Object.values(customCalendarObject).map(
+      (calendar) => {
+        return { ...calendar };
+      }
+    );
+    const calendarList = customCalendars.concat(initialState.defaultCalendars);
+
+    return calendarList.map((calendar) => calendar.title);
+  }
+);
+
 const appSettingsSlice = createSlice({
   name: 'appSettings',
   initialState,
@@ -143,6 +157,10 @@ const appSettingsSlice = createSlice({
       .addCase(setCustomFilters.fulfilled, (state, action) => {
         const availableFilters = action.payload;
         state.availableColorFilters = availableFilters;
+      })
+      .addCase(setActiveFilters.fulfilled, (state, action) => {
+        const activeFilters = action.payload;
+        state.activeFilters = activeFilters;
       });
   },
 });
@@ -161,6 +179,7 @@ export const selectNewEventModalOpen = (state) =>
   state.appSettings.newEventModalOpen;
 export const selectDefaultCalendars = (state) =>
   state.appSettings.defaultCalendars;
+export const selectActiveFilters = (state) => state.appSettings.activeFilters;
 
 export const selectCustomCalendars = createSelector(
   selectCustomCalendarsEntities,

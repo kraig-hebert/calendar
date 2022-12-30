@@ -3,7 +3,9 @@ FEATURES
 
 MonthCalendar-OverFlowEvents-EventListPopUp: set animation to start from bottom/top depending on which row of the MonthCalendar the EventListPopUp is located in
 
-Filters: display/hide events from calendar based on active calendar filters
+Filters: 
+    - display/hide events from calendar based on active calendar filters
+    - save which filters are active in localStorage so the acgiveFilters persists through page reloads
 
 CustomCalendars: allow user to edit title and filter color using the <NewCalendarForm/>
 
