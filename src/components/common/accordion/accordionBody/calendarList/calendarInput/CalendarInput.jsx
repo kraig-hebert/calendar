@@ -12,7 +12,7 @@ import CheckBox from '../../../../checkBox/CheckBox';
 import { useStyles } from './styles';
 
 const CalendarInput = (props) => {
-  const { title, checkBoxBackgroundColor, checkColor } = props;
+  const { title, checkBoxBackgroundColor, checkColor, isEditable } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const CalendarInput = (props) => {
 
   return (
     <div className={classes.inputContainer}>
-      {title !== 'Calendar' && (
+      {isEditable && (
         <div className={classes.optionsContainer}>
           <BsTrashFill onClick={handleDelete} />
           <BsPencilFill onClick={editCustomCalendar} />
@@ -49,6 +49,7 @@ CalendarInput.propTypes = {
   title: PropTypes.string,
   checkBoxBackgroundColor: PropTypes.string,
   checkColor: PropTypes.string,
+  isEditable: PropTypes.bool,
 };
 
 export default CalendarInput;

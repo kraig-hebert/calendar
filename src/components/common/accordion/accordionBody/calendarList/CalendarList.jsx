@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CalendarInput from './calendarInput/CalendarInput';
 
 const CalendarList = (props) => {
-  const { calendarList, checkColor } = props.props;
+  const { calendarType, calendarList, checkColor } = props.props;
   const renderedCalendarList = calendarList.map((calendar, index) => {
     return (
       <CalendarInput
@@ -12,6 +12,7 @@ const CalendarList = (props) => {
         key={index}
         checkBoxBackgroundColor={calendar.filter}
         checkColor={checkColor}
+        isEditable={calendarType === 'custom' ? true : false}
       />
     );
   });
@@ -19,6 +20,7 @@ const CalendarList = (props) => {
 };
 
 CalendarList.propTypes = {
+  calendarType: PropTypes.string,
   checkColor: PropTypes.string,
   calendarList: PropTypes.array,
 };

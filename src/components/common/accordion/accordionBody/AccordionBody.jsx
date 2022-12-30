@@ -26,11 +26,13 @@ const AccordionBody = (props) => {
   const setProps = () => {
     if (type === 'default')
       return {
+        calendarType: type,
         checkColor: theme.dark.main,
         calendarList: defaultCalendars,
       };
     else
       return {
+        calendarType: type,
         checkColor: theme.light.main,
         calendarList: customCalendars,
       };

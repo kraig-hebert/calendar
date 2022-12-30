@@ -15,6 +15,7 @@ const initialState = {
     'rgba(255,0,0,.9)' /* red */,
     'rgba(165,42,42,.9)' /* orange */,
   ],
+  activeFilters: [],
   customCalendars: {},
   defaultCalendars: [
     {
@@ -171,9 +172,7 @@ export const selectCustomCalendars = createSelector(
 
 export const selectDefaultCalendarTitles = createSelector(
   selectDefaultCalendars,
-  (defaultCalendars) => {
-    return defaultCalendars.map((calendar) => calendar.title);
-  }
+  (defaultCalendars) => defaultCalendars.map((calendar) => calendar.title)
 );
 
 export const selectAllCalendars = createSelector(
