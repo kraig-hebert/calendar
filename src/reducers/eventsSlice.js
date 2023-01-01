@@ -116,13 +116,15 @@ export const selectDayFilteredEvents = createSelector(
   (events, currentDate, activeFilters) => {
     console.log(events);
     console.log(currentDate);
-    const filteredEvents = events.filter(
-      (event) =>
-        (event.hasOwnProperty('startTime') &&
-          isSameDay(event.startTime, currentDate)) |
-        (event.hasOwnProperty('singleDate') &&
-          isSameDay(event.singleDate, currentDate))
-    );
+    const filteredEvents = events
+      .filter(
+        (event) =>
+          (event.hasOwnProperty('startTime') &&
+            isSameDay(event.startTime, currentDate)) |
+          (event.hasOwnProperty('singleDate') &&
+            isSameDay(event.singleDate, currentDate))
+      )
+      .filter((event) => activeFilters.includes(event.filter));
     return groupFilteredEvents(filteredEvents);
   }
 );
@@ -134,15 +136,19 @@ export const selectDayFilteredEvents = createSelector(
 export const selectWeekFilteredEvents = createSelector(
   selectEvents,
   selectCurrentDate,
-  (events, currentDate) => {
+  selectActiveFilters,
+  (events, currentDate, activeFilters) => {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const filteredEventsByDay = {};
-    const filteredEvents = events.filter((event) => {
-      if (event.hasOwnProperty('startTime')) {
-        if (isSameWeek(event.startTime, currentDate)) return true;
-      } else if (isSameWeek(event.singleDate, currentDate)) return true;
-      return false;
-    });
+    const filteredEvents = events
+      .filter((event) => {
+        if (event.hasOwnProperty('startTime')) {
+          if (isSameWeek(event.startTime, currentDate)) return true;
+        } else if (isSameWeek(event.singleDate, currentDate)) return true;
+        return false;
+      })
+      .filter((event) => activeFilters.includes(event.filter));
+
     days.forEach((day, index) => {
       const dayEvents = filteredEvents.filter((event) => {
         if (event.hasOwnProperty('startTime')) {
