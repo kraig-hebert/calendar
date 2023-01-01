@@ -1,4 +1,8 @@
-12-28-22
+1-1-2023
 --------
+- events shown on calendar will now only display if they have an active filter
+
+12-28-2022
+----------
 - created common/accordionHeader/AccordionHeader instead of using two different accordions for customCalendars and defaultCalendars
 
