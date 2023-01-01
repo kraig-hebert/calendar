@@ -17,7 +17,8 @@ Events:
 
 
 *******************************************************************
-REFRACTOR
+REFRACTOR/FIXES
 
 - move <EventListPopUp/> inside of <OverflowEvents/>
+- force the current date to the NewEventForm
 *******************************************************************
