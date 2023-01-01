@@ -136,6 +136,16 @@ const appSettingsSlice = createSlice({
       const filter = action.payload;
       state.availableColorFilters.push(filter);
     },
+    filterUnchecked(state, action) {
+      const filter = action.payload;
+      state.activeFilters = state.activeFilters.filter(
+        (activeFilter) => activeFilter !== filter
+      );
+    },
+    filterChecked(state, action) {
+      const filter = action.payload;
+      state.activeFilters.push(filter);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -216,6 +226,8 @@ export const {
   addEventButtonClicked,
   eventModalClosed,
   filterReturned,
+  filterUnchecked,
+  filterChecked,
 } = appSettingsSlice.actions;
 
 export default appSettingsSlice.reducer;

@@ -8,6 +8,7 @@ import CalendarInput from './calendarInput/CalendarInput';
 const CalendarList = (props) => {
   const { calendarType, calendarList, checkColor } = props.props;
   const activeFilters = useSelector(selectActiveFilters);
+  console.log(activeFilters);
   const renderedCalendarList = calendarList.map((calendar, index) => {
     return (
       <CalendarInput

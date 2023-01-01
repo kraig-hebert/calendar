@@ -43,6 +43,7 @@ const CalendarInput = (props) => {
         checkBoxBackgroundColor={checkBoxBackgroundColor}
         checkColor={checkColor}
         startChecked={startChecked}
+        title={title}
       />
       <span className={classes.label}>
         {title.charAt(0).toUpperCase() + title.slice(1)}
