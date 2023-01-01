@@ -69,7 +69,7 @@ export const deleteCustomCalendar = createAsyncThunk(
       state.appSettings.customCalendars
     ).filter((calendar) => calendar.title !== title);
     localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
-    return customCalendars;
+    return [customCalendars, title];
   }
 );
 
@@ -159,10 +159,15 @@ const appSettingsSlice = createSlice({
         state.availableColorFilters = state.availableColorFilters.filter(
           (filter) => filter !== newCalendar.filter
         );
+        state.activeFilters.push(newCalendar.title);
       })
       .addCase(deleteCustomCalendar.fulfilled, (state, action) => {
-        const customCalendars = action.payload;
+        const customCalendars = action.payload[0];
+        const title = action.payload[1];
         state.customCalendars = customCalendars;
+        state.activeFilters = state.activeFilters.filter(
+          (activeFilter) => activeFilter !== title
+        );
       })
       .addCase(setCustomFilters.fulfilled, (state, action) => {
         const availableFilters = action.payload;

@@ -41,14 +41,6 @@
       "id": 11
     },
     {
-      "title": "fasdfasdf",
-      "filter": "Runs",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2022-12-24T05:00:00.000Z",
-      "allDay": true,
-      "id": 12
-    },
-    {
       "title": "fasdfsdf",
       "filter": "Events",
       "color": "rgb(0,0,0)",
