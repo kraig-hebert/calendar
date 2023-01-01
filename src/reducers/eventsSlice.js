@@ -166,14 +166,17 @@ export const selectWeekFilteredEvents = createSelector(
 export const selectMonthFilteredEvents = createSelector(
   selectEvents,
   selectCurrentDate,
-  (events, currentDate) => {
-    const filteredEvents = events.filter(
-      (event) =>
-        ((event.hasOwnProperty('startTime') && event.startTime.getMonth()) |
-          (event.hasOwnProperty('singleDate') &&
-            event.singleDate.getMonth())) ===
-        currentDate.getMonth()
-    );
+  selectActiveFilters,
+  (events, currentDate, activeFilters) => {
+    const filteredEvents = events
+      .filter(
+        (event) =>
+          ((event.hasOwnProperty('startTime') && event.startTime.getMonth()) |
+            (event.hasOwnProperty('singleDate') &&
+              event.singleDate.getMonth())) ===
+          currentDate.getMonth()
+      )
+      .filter((event) => activeFilters.includes(event.filter));
     return groupFilteredEvents(filteredEvents);
   }
 );
