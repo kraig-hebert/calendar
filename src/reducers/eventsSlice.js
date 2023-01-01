@@ -3,10 +3,10 @@ import {
   createSlice,
   createAsyncThunk,
 } from '@reduxjs/toolkit';
-import { isSameWeek, getDay } from 'date-fns';
+import { isSameWeek, getDay, isSameDay } from 'date-fns';
 
 import * as client from '../api/client';
-import { selectCurrentDate } from './appSettings';
+import { selectCurrentDate, selectActiveFilters } from './appSettings';
 
 const initialState = {
   entities: {},
@@ -112,13 +112,16 @@ const groupFilteredEvents = (filteredEvents) => {
 export const selectDayFilteredEvents = createSelector(
   selectEvents,
   selectCurrentDate,
-  (events, currentDate) => {
+  selectActiveFilters,
+  (events, currentDate, activeFilters) => {
+    console.log(events);
+    console.log(currentDate);
     const filteredEvents = events.filter(
       (event) =>
-        ((event.hasOwnProperty('startTime') && event.startTime.getDate()) |
-          (event.hasOwnProperty('singleDate') &&
-            event.singleDate.getDate())) ===
-        currentDate.getDate()
+        (event.hasOwnProperty('startTime') &&
+          isSameDay(event.startTime, currentDate)) |
+        (event.hasOwnProperty('singleDate') &&
+          isSameDay(event.singleDate, currentDate))
     );
     return groupFilteredEvents(filteredEvents);
   }
