@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import {
   getCustomCalendars,
   setCustomFilters,
+  getActiveFilters,
   setActiveFilters,
 } from './reducers/appSettings';
 import { fetchEvents } from './reducers/eventsSlice';
@@ -22,6 +23,7 @@ store
   .dispatch(getCustomCalendars())
   .then((result) => store.dispatch(setActiveFilters(result.payload))); // load custom calendars than build active filter list
 store.dispatch(setCustomFilters()); // set custom filter list
+store.dispatch(getActiveFilters());
 
 root.render(
   <ThemeProvider theme={theme}>

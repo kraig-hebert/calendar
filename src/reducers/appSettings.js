@@ -84,16 +84,25 @@ export const setCustomFilters = createAsyncThunk(
   }
 );
 
+export const getActiveFilters = createAsyncThunk(
+  'appSettings/getActiveFilters',
+  async () => {
+    if (localStorage.getItem('activeFilters'))
+      return JSON.parse(localStorage.getItem('activeFilters'));
+    else {
+      localStorage.setItem('activeFilters', '[]');
+      return [];
+    }
+  }
+);
+
 export const setActiveFilters = createAsyncThunk(
   'appSettings/setActiveFilters',
-  async (customCalendarObject) => {
-    const customCalendars = Object.values(customCalendarObject).map(
-      (calendar) => {
-        return { ...calendar };
-      }
-    );
+  async (customCalendarList) => {
+    const customCalendars = customCalendarList.map((calendar) => {
+      return { ...calendar };
+    });
     const calendarList = customCalendars.concat(initialState.defaultCalendars);
-
     return calendarList.map((calendar) => calendar.title);
   }
 );
@@ -173,7 +182,7 @@ const appSettingsSlice = createSlice({
         const availableFilters = action.payload;
         state.availableColorFilters = availableFilters;
       })
-      .addCase(setActiveFilters.fulfilled, (state, action) => {
+      .addCase(getActiveFilters.fulfilled, (state, action) => {
         const activeFilters = action.payload;
         state.activeFilters = activeFilters;
       });
