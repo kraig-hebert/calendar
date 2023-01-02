@@ -65,19 +65,27 @@ export const deleteCustomCalendar = createAsyncThunk(
   'appSettings/deleteCustomCalendar',
   async (title, { getState }) => {
     const state = getState();
+
     const customCalendars = Object.values(
       state.appSettings.customCalendars
     ).filter((calendar) => calendar.title !== title);
     localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
+
+    const activeFiltersFromStorage = JSON.parse(
+      localStorage.getItem('activeFilters')
+    );
+    const newActiveFilterList = activeFiltersFromStorage.filter(
+      (activeFilter) => activeFilter !== title
+    );
+    localStorage.setItem('activeFilters', newActiveFilterList);
     return [customCalendars, title];
   }
 );
 
 export const setCustomFilters = createAsyncThunk(
   'appSettings/setCustomFilters',
-  async () => {
-    const customCalendars = JSON.parse(localStorage.getItem('customCalendars'));
-    const usedFilters = customCalendars.map((calendar) => calendar.filter);
+  async (customCalendarList) => {
+    const usedFilters = customCalendarList.map((calendar) => calendar.filter);
     return initialState.availableColorFilters.filter(
       (filter) => !usedFilters.includes(filter)
     );
@@ -90,8 +98,11 @@ export const getActiveFilters = createAsyncThunk(
     if (localStorage.getItem('activeFilters'))
       return JSON.parse(localStorage.getItem('activeFilters'));
     else {
-      localStorage.setItem('activeFilters', '[]');
-      return [];
+      const defaultFilters = initialState.defaultCalendars.map(
+        (calendar) => calendar.title
+      );
+      localStorage.setItem('activeFilters', JSON.stringify(defaultFilters));
+      return defaultFilters;
     }
   }
 );

@@ -18,11 +18,10 @@ import { theme } from './themes/theme';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-store.dispatch(fetchEvents()); // load events
+store.dispatch(fetchEvents());
 store
   .dispatch(getCustomCalendars())
-  .then((result) => store.dispatch(setActiveFilters(result.payload))); // load custom calendars than build active filter list
-store.dispatch(setCustomFilters()); // set custom filter list
+  .then((result) => store.dispatch(setCustomFilters(result.payload)));
 store.dispatch(getActiveFilters());
 
 root.render(

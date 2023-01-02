@@ -58,14 +58,6 @@
       "id": 16
     },
     {
-      "title": "Test",
-      "filter": "Chess",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2023-01-01T05:00:00.000Z",
-      "allDay": true,
-      "id": 17
-    },
-    {
       "title": "TEst",
       "filter": "Holidays",
       "color": "rgb(0,0,0)",
