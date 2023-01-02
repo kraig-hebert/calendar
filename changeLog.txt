@@ -1,3 +1,7 @@
+1-2-2023
+--------
+- activeFilters are now persistent across page loads using localStorage
+
 1-1-2023
 --------
 - events shown on calendar will now only display if they have an active filter
