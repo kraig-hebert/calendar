@@ -57,6 +57,11 @@ export const addNewCalendar = createAsyncThunk(
     let customCalendars = Object.values(state.appSettings.customCalendars);
     customCalendars.push(calendar);
     localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
+
+    const activeFilters = [...state.appSettings.activeFilters];
+    activeFilters.push(calendar.title);
+    localStorage.setItem('activeFilters', JSON.stringify(activeFilters));
+
     return calendar;
   }
 );
@@ -71,13 +76,11 @@ export const deleteCustomCalendar = createAsyncThunk(
     ).filter((calendar) => calendar.title !== title);
     localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
 
-    const activeFiltersFromStorage = JSON.parse(
-      localStorage.getItem('activeFilters')
-    );
-    const newActiveFilterList = activeFiltersFromStorage.filter(
+    const activeFilters = [...state.appSettings.activeFilters];
+    const newActiveFilterList = activeFilters.filter(
       (activeFilter) => activeFilter !== title
     );
-    localStorage.setItem('activeFilters', newActiveFilterList);
+    localStorage.setItem('activeFilters', JSON.stringify(newActiveFilterList));
     return [customCalendars, title];
   }
 );
@@ -107,14 +110,26 @@ export const getActiveFilters = createAsyncThunk(
   }
 );
 
-export const setActiveFilters = createAsyncThunk(
-  'appSettings/setActiveFilters',
-  async (customCalendarList) => {
-    const customCalendars = customCalendarList.map((calendar) => {
-      return { ...calendar };
-    });
-    const calendarList = customCalendars.concat(initialState.defaultCalendars);
-    return calendarList.map((calendar) => calendar.title);
+export const addActiveFilter = createAsyncThunk(
+  'appSettings/addActiveFilter',
+  async (filter, { getState }) => {
+    const state = getState();
+    const activeFilters = [...state.appSettings.activeFilters];
+    activeFilters.push(filter);
+    localStorage.setItem('activeFilters', JSON.stringify(activeFilters));
+    return filter;
+  }
+);
+
+export const deleteActiveFilter = createAsyncThunk(
+  'appSettings/deleteActiveFilter',
+  async (filter, { getState }) => {
+    const state = getState();
+    const activeFilters = state.appSettings.activeFilters.filter(
+      (activeFilter) => activeFilter !== filter
+    );
+    localStorage.setItem('activeFilters', JSON.stringify(activeFilters));
+    return filter;
   }
 );
 
@@ -156,16 +171,6 @@ const appSettingsSlice = createSlice({
       const filter = action.payload;
       state.availableColorFilters.push(filter);
     },
-    filterUnchecked(state, action) {
-      const filter = action.payload;
-      state.activeFilters = state.activeFilters.filter(
-        (activeFilter) => activeFilter !== filter
-      );
-    },
-    filterChecked(state, action) {
-      const filter = action.payload;
-      state.activeFilters.push(filter);
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -196,6 +201,16 @@ const appSettingsSlice = createSlice({
       .addCase(getActiveFilters.fulfilled, (state, action) => {
         const activeFilters = action.payload;
         state.activeFilters = activeFilters;
+      })
+      .addCase(addActiveFilter.fulfilled, (state, action) => {
+        const filter = action.payload;
+        state.activeFilters.push(filter);
+      })
+      .addCase(deleteActiveFilter.fulfilled, (state, action) => {
+        const filter = action.payload;
+        state.activeFilters = state.activeFilters.filter(
+          (activeFilter) => activeFilter !== filter
+        );
       });
   },
 });
@@ -251,8 +266,6 @@ export const {
   addEventButtonClicked,
   eventModalClosed,
   filterReturned,
-  filterUnchecked,
-  filterChecked,
 } = appSettingsSlice.actions;
 
 export default appSettingsSlice.reducer;

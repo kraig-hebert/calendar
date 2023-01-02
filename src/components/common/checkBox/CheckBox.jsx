@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { filterChecked, filterUnchecked } from '../../../reducers/appSettings';
+import {
+  addActiveFilter,
+  deleteActiveFilter,
+} from '../../../reducers/appSettings';
 import { useStyles } from './styles';
 
 const CheckBox = (props) => {
@@ -25,14 +28,12 @@ const CheckBox = (props) => {
   };
   const classes = useStyles(setStyles());
 
-  const handleClick = () => {
-    setChecked((prev) => !prev);
-  };
+  const handleClick = () => setChecked((prev) => !prev);
 
   useEffect(() => {
     if (ref.current !== 0) {
-      if (checked) dispatch(filterChecked(title));
-      else dispatch(filterUnchecked(title));
+      if (checked) dispatch(addActiveFilter(title));
+      else dispatch(deleteActiveFilter(title));
     } else ref.current = 1;
   }, [checked]);
 
