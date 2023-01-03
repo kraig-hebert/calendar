@@ -14,7 +14,7 @@ const useSetEventTitle = (props) => {
 
   useEffect(() => {
     setFormattedEventTitle(setEventTitleLength());
-  }, []);
+  }, [title]);
 
   return formattedEventTitle;
 };
