@@ -7,6 +7,8 @@ import { isSameWeek, getDay, isSameDay } from 'date-fns';
 
 import * as client from '../api/client';
 import { selectCurrentDate, selectActiveFilters } from './appSettings';
+import holidayFactory from '../utils/holidayFactory';
+const holidays = holidayFactory(2023, 'all');
 
 const initialState = {
   entities: {},
@@ -16,10 +18,19 @@ const initialState = {
 const getID = (eventList) =>
   eventList.length ? eventList[eventList.length - 1].id + 1 : 1;
 
-export const fetchEvents = createAsyncThunk(
-  'events/fetchEvents',
-  async () => await client.get()
-);
+export const fetchEvents = createAsyncThunk('events/fetchEvents', async () => {
+  const events = await client.get();
+  holidays.forEach((holiday) => {
+    events.push({
+      ...holiday,
+      filter: 'Holidays',
+      color: 'rgb(0,0,0,)',
+      allDay: true,
+    });
+  });
+  console.log(events);
+  return events;
+});
 
 export const saveNewEvent = createAsyncThunk(
   'events/saveNewEvent',

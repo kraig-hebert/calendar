@@ -6,6 +6,7 @@ import NewEventModal from './components/common/modals/newEventModal/NewEventModa
 
 function App() {
   const classes = useStyles();
+
   return (
     <div className={classes.appContainer}>
       <Header />
