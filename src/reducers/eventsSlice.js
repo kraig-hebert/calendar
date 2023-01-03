@@ -3,12 +3,11 @@ import {
   createSlice,
   createAsyncThunk,
 } from '@reduxjs/toolkit';
-import { isSameWeek, getDay, isSameDay } from 'date-fns';
+import { isSameWeek, getDay, isSameDay, isSameMonth } from 'date-fns';
 
 import * as client from '../api/client';
 import { selectCurrentDate, selectActiveFilters } from './appSettings';
 import holidayFactory from '../utils/holidayFactory';
-const holidays = holidayFactory(2023, 'all');
 
 const initialState = {
   entities: {},
@@ -18,19 +17,10 @@ const initialState = {
 const getID = (eventList) =>
   eventList.length ? eventList[eventList.length - 1].id + 1 : 1;
 
-export const fetchEvents = createAsyncThunk('events/fetchEvents', async () => {
-  const events = await client.get();
-  holidays.forEach((holiday) => {
-    events.push({
-      ...holiday,
-      filter: 'Holidays',
-      color: 'rgb(0,0,0,)',
-      allDay: true,
-    });
-  });
-  console.log(events);
-  return events;
-});
+export const fetchEvents = createAsyncThunk(
+  'events/fetchEvents',
+  async () => await client.get()
+);
 
 export const saveNewEvent = createAsyncThunk(
   'events/saveNewEvent',
@@ -180,13 +170,12 @@ export const selectMonthFilteredEvents = createSelector(
   selectActiveFilters,
   (events, currentDate, activeFilters) => {
     const filteredEvents = events
-      .filter(
-        (event) =>
-          ((event.hasOwnProperty('startTime') && event.startTime.getMonth()) |
-            (event.hasOwnProperty('singleDate') &&
-              event.singleDate.getMonth())) ===
-          currentDate.getMonth()
-      )
+      .filter((event) => {
+        if (event.hasOwnProperty('startTIme')) {
+          if (isSameMonth(event.startTime, currentDate)) return true;
+        } else if (isSameMonth(event.singleDate, currentDate)) return true;
+        return false;
+      })
       .filter((event) => activeFilters.includes(event.filter));
     return groupFilteredEvents(filteredEvents);
   }

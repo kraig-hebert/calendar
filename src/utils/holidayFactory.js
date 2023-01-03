@@ -1,5 +1,5 @@
 const createNewYears = (year) => new Date(year, 0, 1);
-const createMLK = (year) => new Date();
+const createMLK = (year) => new Date(year, 1, 1);
 
 const holidayFactory = (year, month) => {
   const holidays = [
@@ -7,6 +7,11 @@ const holidayFactory = (year, month) => {
       title: 'New Years Day',
       month: 'January',
       singleDate: createNewYears(year).toJSON(),
+    },
+    {
+      title: 'MLK Day',
+      month: 'February',
+      singleDate: createMLK(year).toJSON(),
     },
   ];
 
