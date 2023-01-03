@@ -18,9 +18,8 @@ const AllDayEvent = (props) => {
   });
   return (
     <div className={classes.eventContainer}>
-      <div className={classes.eventInfo}>All Day -</div>
       <div className={classes.eventInfo}>
-        {useSetEventTitle({ title: event.title })}
+        {useSetEventTitle({ title: event.title, length: 20 })}
       </div>
     </div>
   );

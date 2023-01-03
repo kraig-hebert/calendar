@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const useSetEventTitle = (props) => {
-  const { title } = props;
+  const { title, length } = props;
 
   const [formattedEventTitle, setFormattedEventTitle] = useState();
 
   const setEventTitleLength = () => {
-    const newTitle = title.slice(0, 9).trim();
+    const newTitle = title.slice(0, length).trim();
     if (newTitle === title) return newTitle;
     else return `${newTitle}...`;
   };
@@ -21,6 +21,7 @@ const useSetEventTitle = (props) => {
 
 useSetEventTitle.propTypes = {
   title: PropTypes.string,
+  length: PropTypes.number,
 };
 
 export default useSetEventTitle;

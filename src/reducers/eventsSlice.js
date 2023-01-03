@@ -185,7 +185,7 @@ export const selectMonthFilteredEvents = createSelector(
   (events, currentDate, activeFilters) => {
     const filteredEvents = events
       .filter((event) => {
-        if (event.hasOwnProperty('startTIme')) {
+        if (event.hasOwnProperty('startTime')) {
           if (isSameMonth(event.startTime, currentDate)) return true;
         } else if (isSameMonth(event.singleDate, currentDate)) return true;
         return false;

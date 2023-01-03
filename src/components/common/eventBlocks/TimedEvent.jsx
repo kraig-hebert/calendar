@@ -24,7 +24,7 @@ const TimedEvent = (props) => {
         {format(event.startTime, 'hh:mm aaa')} -
       </div>
       <div className={classes.eventInfo}>
-        {useSetEventTitle({ title: event.title })}
+        {useSetEventTitle({ title: event.title, length: 9 })}
       </div>
     </div>
   );
