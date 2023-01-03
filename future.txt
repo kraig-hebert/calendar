@@ -8,11 +8,6 @@ CustomCalendars: allow user to edit title and filter color using the <NewCalenda
 Events: 
     - allow user to edit and events details
     - allow user to create an event to populate the future based on interval chosen
-
-Holidays: 
-    - find API with popular holidays to populate the holiday list
-    - make logic allow for user to add to this premade list with their own holidays
-
 *******************************************************************
 
 
