@@ -26,12 +26,14 @@ const NewEventModal = () => {
   const [selectedCalendar, setSelectedCalendar] = useState({
     ...defaultCalendars[0],
   });
-  const [singleDate, setSingleDate] = useState(format(new Date(), 'yyyy-L-dd'));
+  const [singleDate, setSingleDate] = useState(
+    format(new Date(), 'yyyy-MM-dd')
+  );
   const [startTime, setStartTime] = useState(
-    format(new Date(), 'yyyy-L-dd') + 'T12:00'
+    format(new Date(), 'yyyy-MM-dd') + 'T12:00:00'
   );
   const [endTime, setEndTime] = useState(
-    format(new Date(), 'yyyy-L-dd') + 'T12:00'
+    format(new Date(), 'yyyy-MM-dd') + 'T12:00:00'
   );
   const [savingAllowed, setSavingAllowed] = useState(false);
 
@@ -42,9 +44,9 @@ const NewEventModal = () => {
       setInputValue('');
       setSelectedSwitch(false);
       setSelectedCalendar({ ...defaultCalendars[0] });
-      setSingleDate(format(new Date(), 'yyyy-L-dd'));
-      setStartTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
-      setEndTime(format(new Date(), 'yyyy-L-dd') + 'T12:00');
+      setSingleDate(format(new Date(), 'yyyy-MM-dd'));
+      setStartTime(format(new Date(), 'yyyy-MM-dd') + 'T12:00:00');
+      setEndTime(format(new Date(), 'yyyy-MM-dd') + 'T12:00:00');
       setSavingAllowed(false);
     }, 500);
   };

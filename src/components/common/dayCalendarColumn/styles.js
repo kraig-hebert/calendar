@@ -1,17 +1,11 @@
 import { createUseStyles } from 'react-jss';
 
-const showStyles = (props) => {
-  console.log(props);
-  return 'none';
-};
-
 export const useStyles = createUseStyles((theme) => ({
   dayCalendar: (props) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     width: props.width,
-    backgroundColor: showStyles(props),
   }),
   allDayEvents: (props) => ({
     display: 'flex',

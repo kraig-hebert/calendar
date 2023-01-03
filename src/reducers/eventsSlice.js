@@ -129,8 +129,6 @@ export const selectDayFilteredEvents = createSelector(
   selectCurrentDate,
   selectActiveFilters,
   (events, currentDate, activeFilters) => {
-    console.log(events);
-    console.log(currentDate);
     const filteredEvents = events
       .filter(
         (event) =>
