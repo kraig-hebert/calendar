@@ -94,6 +94,42 @@ const createMemorial = (year) => {
 
 const createIndependance = (year) => new Date(year, 6, 4);
 
+const createLabor = (year) => {
+  const date = new Date(year, 8, 1);
+  if (datefns.getDay(date) === 1) return date;
+  else return datefns.nextMonday(date);
+};
+
+const createColumbus = (year) => {
+  const date = new Date(year, 9, 1);
+  if (datefns.getDay(date) === 1) return datefns.addWeeks(date, 1);
+  else {
+    let nextMonday = datefns.nextMonday(date);
+    for (let i = 1; i < 2; i++) {
+      nextMonday = datefns.nextMonday(nextMonday);
+    }
+    return nextMonday;
+  }
+};
+
+const createHalloween = (year) => new Date(year, 9, 31);
+
+const createThanksgiving = (year) => {
+  const date = new Date(year, 10, 1);
+  if (datefns.getDay(date) === 4) return datefns.addWeeks(date, 3);
+  else {
+    let nextThursday = datefns.nextThursday(date);
+    for (let i = 1; i < 4; i++) {
+      nextThursday = datefns.nextThursday(nextThursday);
+    }
+    return nextThursday;
+  }
+};
+
+const createChristmas = (year) => new Date(year, 11, 25);
+
+const createNewYearsEve = (year) => new Date(year, 11, 31);
+
 const holidayFactory = (year, month) => {
   const holidays = [
     {
@@ -131,6 +167,30 @@ const holidayFactory = (year, month) => {
     {
       title: 'Independance Day',
       singleDate: createIndependance(year),
+    },
+    {
+      title: 'Labor Day',
+      singleDate: createLabor(year),
+    },
+    {
+      title: 'Columbus Day',
+      singleDate: createColumbus(year),
+    },
+    {
+      title: 'Halloween',
+      singleDate: createHalloween(year),
+    },
+    {
+      title: 'Thanksgiving',
+      singleDate: createThanksgiving(year),
+    },
+    {
+      title: 'Christmas',
+      singleDate: createChristmas(year),
+    },
+    {
+      title: "New Year's Eve",
+      singleDate: createNewYearsEve(year),
     },
   ];
 
