@@ -78,31 +78,37 @@ const eventsSlice = createSlice({
 export const selectEventEntities = (state) => state.events.entities;
 
 // returns list of all events with dateObjects
-export const selectEvents = createSelector(selectEventEntities, (events) => {
-  const sortedEventListWithDateObjects = Object.values(events).map((event) => {
-    if (event.allDay)
-      return {
-        ...event,
-        singleDate: new Date(event.singleDate),
-      };
-    else
-      return {
-        ...event,
-        startTime: new Date(event.startTime),
-        endTime: new Date(event.endTime),
-      };
-  });
-  holidayFactory(2023, 'all').forEach((holiday) => {
-    sortedEventListWithDateObjects.push({
-      title: holiday.title,
-      singleDate: new Date(holiday.singleDate),
-      allDay: true,
-      filter: 'Holidays',
-      color: 'rgb(0,0,0)',
+export const selectEvents = createSelector(
+  selectEventEntities,
+  selectCurrentDate,
+  (events, currentDate) => {
+    const sortedEventListWithDateObjects = Object.values(events).map(
+      (event) => {
+        if (event.allDay)
+          return {
+            ...event,
+            singleDate: new Date(event.singleDate),
+          };
+        else
+          return {
+            ...event,
+            startTime: new Date(event.startTime),
+            endTime: new Date(event.endTime),
+          };
+      }
+    );
+    holidayFactory(currentDate.getFullYear(), 'all').forEach((holiday) => {
+      sortedEventListWithDateObjects.push({
+        title: holiday.title,
+        singleDate: new Date(holiday.singleDate),
+        allDay: true,
+        filter: 'Holidays',
+        color: 'rgb(0,0,0)',
+      });
     });
-  });
-  return sortedEventListWithDateObjects;
-});
+    return sortedEventListWithDateObjects;
+  }
+);
 
 // creates object with allDay and timed events separated into 2 lists
 const groupFilteredEvents = (filteredEvents) => {
