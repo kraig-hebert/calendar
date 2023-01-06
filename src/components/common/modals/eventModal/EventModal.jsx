@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   selectEventModalOpen,
   eventModalClosed,
+  selectEventForEditID,
   selectDefaultCalendars,
   selectDefaultCalendarTitles,
 } from '../../../../reducers/appSettings';
-import { saveNewEvent } from '../../../../reducers/eventsSlice';
-import { format, isAfter } from 'date-fns';
+import { saveNewEvent, selectEvents } from '../../../../reducers/eventsSlice';
+import { format, isAfter, sub } from 'date-fns';
 import { useStyles } from './styles';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import { FaSave } from 'react-icons/fa';
@@ -19,14 +20,16 @@ const EventModal = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const eventModalOpen = useSelector(selectEventModalOpen);
-
+  const eventForEditID = useSelector(selectEventForEditID);
+  const events = useSelector(selectEvents);
+  const eventForEdit = events.filter((event) => event.id === eventForEditID)[0];
   const defaultCalendarTitles = useSelector(selectDefaultCalendarTitles);
   const defaultCalendars = useSelector(selectDefaultCalendars);
   const [inputValue, setInputValue] = useState('');
   const [selectedSwitch, setSelectedSwitch] = useState(false);
-  const [selectedCalendar, setSelectedCalendar] = useState({
-    ...defaultCalendars[0],
-  });
+  const [selectedCalendar, setSelectedCalendar] = useState(
+    defaultCalendars[0].title
+  );
   const [singleDate, setSingleDate] = useState(
     format(new Date(), 'yyyy-MM-dd')
   );
@@ -44,7 +47,7 @@ const EventModal = () => {
     setTimeout(() => {
       setInputValue('');
       setSelectedSwitch(false);
-      setSelectedCalendar({ ...defaultCalendars[0] });
+      setSelectedCalendar(defaultCalendars[0].title);
       setSingleDate(format(new Date(), 'yyyy-MM-dd'));
       setStartTime(format(new Date(), 'yyyy-MM-dd') + 'T12:00:00');
       setEndTime(format(new Date(), 'yyyy-MM-dd') + 'T12:00:00');
@@ -73,7 +76,7 @@ const EventModal = () => {
     if (selectedSwitch === false) {
       const newEvent = {
         title: inputValue,
-        filter: selectedCalendar.title,
+        filter: selectedCalendar,
         color: setColor(),
         singleDate: setDate(),
         allDay: true,
@@ -83,7 +86,7 @@ const EventModal = () => {
     } else {
       const newEvent = {
         title: inputValue,
-        filter: selectedCalendar.title,
+        filter: selectedCalendar,
         color: setColor(),
         startTime: new Date(startTime).toJSON(),
         endTime: new Date(endTime).toJSON(),
@@ -149,6 +152,26 @@ const EventModal = () => {
       else setSavingAllowed(false);
     } else inputValue ? setSavingAllowed(true) : setSavingAllowed(false);
   }, [inputValue, startTime, endTime, selectedSwitch]);
+
+  useEffect(() => {
+    if (eventModalOpen === 'edit') {
+      setInputValue(eventForEdit.title);
+      setSelectedCalendar(eventForEdit.filter);
+      if (eventForEdit.hasOwnProperty('singleDate')) {
+        setSelectedSwitch(false);
+        setSingleDate(format(eventForEdit.singleDate, 'yyyy-MM-dd'));
+      } else {
+        console.log('ere');
+        setSelectedSwitch(true);
+        setStartTime(
+          sub(eventForEdit.startTime, { hours: 5 }).toJSON().slice(0, -3)
+        );
+        setEndTime(
+          sub(eventForEdit.endTime, { hours: 5 }).toJSON().slice(0, -3)
+        );
+      }
+    } else return;
+  }, [eventForEdit, eventModalOpen]);
 
   return (
     <div className={classes.modal}>

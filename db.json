@@ -98,6 +98,40 @@
       "singleDate": "2023-01-03T05:00:00.000Z",
       "allDay": true,
       "id": 22
+    },
+    {
+      "title": "MLK Day",
+      "filter": "Run",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2023-01-05T05:00:00.000Z",
+      "allDay": true,
+      "id": 23
+    },
+    {
+      "title": "Test",
+      "filter": "Holidays",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2023-01-05T05:00:00.000Z",
+      "allDay": true,
+      "id": 24
+    },
+    {
+      "title": "Trying something",
+      "filter": "Birthdays",
+      "color": "rgb(255,255,255)",
+      "startTime": "2023-01-05T17:00:00.000Z",
+      "endTime": "2023-01-05T19:00:00.000Z",
+      "allDay": false,
+      "id": 25
+    },
+    {
+      "title": "New Years Day",
+      "filter": "Holidays",
+      "color": "rgb(255,255,255)",
+      "startTime": "2023-01-05T17:00:00.000Z",
+      "endTime": "2023-01-05T19:00:00.000Z",
+      "allDay": false,
+      "id": 26
     }
   ]
 }

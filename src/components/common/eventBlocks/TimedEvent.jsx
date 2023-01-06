@@ -1,14 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 
-import { selectAllCalendars } from '../../../reducers/appSettings';
+import {
+  selectAllCalendars,
+  eventClicked,
+} from '../../../reducers/appSettings';
 import useSetEventTitle from '../../../utils/useSetEventTitle';
 import { useStyles } from './styles';
 
 const TimedEvent = (props) => {
   const { event } = props;
+  const dispatch = useDispatch();
   const allCalendars = useSelector(selectAllCalendars);
   const calendar = allCalendars.filter(
     (calendar) => event.filter === calendar.title
@@ -19,7 +23,10 @@ const TimedEvent = (props) => {
   });
 
   return (
-    <div className={classes.eventContainer}>
+    <div
+      className={classes.eventContainer}
+      onClick={(e) => dispatch(eventClicked(event.id))}
+    >
       <div className={classes.eventInfo}>
         {format(event.startTime, 'hh:mm aaa')} -
       </div>

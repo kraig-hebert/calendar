@@ -1,13 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { selectAllCalendars } from '../../../reducers/appSettings';
+import {
+  selectAllCalendars,
+  eventClicked,
+} from '../../../reducers/appSettings';
 import useSetEventTitle from '../../../utils/useSetEventTitle';
 import { useStyles } from './styles';
 
 const AllDayEvent = (props) => {
   const { event } = props;
+  const dispatch = useDispatch();
   const allCalendars = useSelector(selectAllCalendars);
   const calendar = allCalendars.filter(
     (calendar) => event.filter === calendar.title
@@ -17,7 +21,10 @@ const AllDayEvent = (props) => {
     color: event.color,
   });
   return (
-    <div className={classes.eventContainer}>
+    <div
+      className={classes.eventContainer}
+      onClick={(e) => dispatch(eventClicked(event.id))}
+    >
       <div className={classes.eventInfo}>
         {useSetEventTitle({ title: event.title, length: 20 })}
       </div>

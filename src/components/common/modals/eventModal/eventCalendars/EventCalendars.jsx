@@ -21,17 +21,17 @@ const EventCalendars = (props) => {
 
   // sets active selected calendar to display checked and uncheck all others
   const setCheckBoxProps = (calendar, checkColor) => {
-    if (calendar.title === selectedCalendar.title) {
+    if (calendar.title === selectedCalendar) {
       return {
         checkBoxBackgroundColor: calendar.filter,
         checkColor: checkColor,
-        onClick: (e) => handleClick(e, calendar),
+        onClick: (e) => handleClick(e, calendar.title),
       };
     } else {
       return {
         checkBoxBackgroundColor: 'rgb(225, 226, 227)',
         checkColor: 'rgb(225, 226, 227)',
-        onClick: (e) => handleClick(e, calendar),
+        onClick: (e) => handleClick(e, calendar.title),
       };
     }
   };
@@ -60,7 +60,7 @@ const EventCalendars = (props) => {
 };
 
 EventCalendars.propTypes = {
-  selectedCalendar: PropTypes.object,
+  selectedCalendar: PropTypes.string,
   setSelectedCalendar: PropTypes.func,
 };
 

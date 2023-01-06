@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   navLinkSelected,
   selectCurrentCalendarSpread,
@@ -12,7 +12,6 @@ import { format } from 'date-fns';
 const NavBar = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const currentCalendarSpread = useSelector(selectCurrentCalendarSpread);
   const currentDate = useSelector(selectCurrentDate);
   const setStyle = (calendar) =>

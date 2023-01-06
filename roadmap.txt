@@ -8,6 +8,7 @@ CustomCalendars: allow user to edit title and filter color using the <NewCalenda
 Events: 
     - allow user to edit and events details
     - allow user to create an event to populate the future based on interval chosen
+    - set property on default holidays so they are not editable
 *******************************************************************
 
 
