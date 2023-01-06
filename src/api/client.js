@@ -22,6 +22,18 @@ export const post = async (eventObject) => {
   return response;
 };
 
+export const put = async (eventObject) => {
+  const response = fetch(API_URL + eventObject.id, {
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    method: 'PUT',
+    body: JSON.stringify(eventObject),
+  });
+  return response;
+};
+
 export const remove = async (id) => {
   const response = await fetch(API_URL + id, {
     method: 'DELETE',

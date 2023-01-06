@@ -35,6 +35,14 @@ export const saveNewEvent = createAsyncThunk(
   }
 );
 
+export const editEvent = createAsyncThunk(
+  'events/editEvent',
+  async (eventForEdit) => {
+    const response = await client.put(eventForEdit);
+    if (response.status === 200) return eventForEdit;
+  }
+);
+
 export const deleteCalendarEvents = createAsyncThunk(
   'events/deleteCalendarEvents',
   async (title, { getState }) => {
@@ -63,6 +71,10 @@ const eventsSlice = createSlice({
       .addCase(saveNewEvent.fulfilled, (state, action) => {
         const newEvent = action.payload;
         state.entities[newEvent.id] = newEvent;
+      })
+      .addCase(editEvent.fulfilled, (state, action) => {
+        const eventForEdit = action.payload;
+        state.entities[eventForEdit.id] = eventForEdit;
       })
       .addCase(deleteCalendarEvents.fulfilled, (state, action) => {
         const title = action.payload;

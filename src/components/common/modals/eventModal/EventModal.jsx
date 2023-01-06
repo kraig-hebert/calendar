@@ -7,7 +7,11 @@ import {
   selectDefaultCalendars,
   selectDefaultCalendarTitles,
 } from '../../../../reducers/appSettings';
-import { saveNewEvent, selectEvents } from '../../../../reducers/eventsSlice';
+import {
+  saveNewEvent,
+  editEvent,
+  selectEvents,
+} from '../../../../reducers/eventsSlice';
 import { format, isAfter, sub } from 'date-fns';
 import { useStyles } from './styles';
 import { AiFillCloseCircle } from 'react-icons/ai';
@@ -73,18 +77,17 @@ const EventModal = () => {
 
   const handleSave = () => {
     if (!savingAllowed) return;
+    let newEvent;
     if (selectedSwitch === false) {
-      const newEvent = {
+      newEvent = {
         title: inputValue,
         filter: selectedCalendar,
         color: setColor(),
         singleDate: setDate(),
         allDay: true,
       };
-      dispatch(saveNewEvent(newEvent));
-      clearModal();
     } else {
-      const newEvent = {
+      newEvent = {
         title: inputValue,
         filter: selectedCalendar,
         color: setColor(),
@@ -92,9 +95,11 @@ const EventModal = () => {
         endTime: new Date(endTime).toJSON(),
         allDay: false,
       };
-      dispatch(saveNewEvent(newEvent));
-      clearModal();
     }
+    if (eventModalOpen === 'edit')
+      dispatch(editEvent({ ...newEvent, id: eventForEditID }));
+    else dispatch(saveNewEvent(newEvent));
+    clearModal();
   };
 
   const setModalAnimations = () => {
