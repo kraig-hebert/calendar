@@ -161,7 +161,6 @@ const EventModal = () => {
         setSelectedSwitch(false);
         setSingleDate(format(eventForEdit.singleDate, 'yyyy-MM-dd'));
       } else {
-        console.log('ere');
         setSelectedSwitch(true);
         setStartTime(
           sub(eventForEdit.startTime, { hours: 5 }).toJSON().slice(0, -3)

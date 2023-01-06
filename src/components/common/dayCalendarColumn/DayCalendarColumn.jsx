@@ -1,15 +1,19 @@
 import React, { useRef, useLayoutEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { differenceInHours, format } from 'date-fns';
 import { useTheme } from 'react-jss';
 
-import { selectAllCalendars } from '../../../reducers/appSettings';
+import {
+  selectAllCalendars,
+  eventClicked,
+} from '../../../reducers/appSettings';
 import { useStyles } from './styles';
 import OverflowEvents from '../overflowEvents/OverflowEvents';
 
 const DayCalendarColumn = (props) => {
   const { dayFilteredEvents, maxAllDayEvents } = props;
+  const dispatch = useDispatch();
   const allDayEventsList = dayFilteredEvents.allDay;
   const timedEventsList = dayFilteredEvents.timed;
 
@@ -90,7 +94,10 @@ const DayCalendarColumn = (props) => {
       if (!event.overflow)
         return (
           <div key={index}>
-            <div style={setStyle(event)}>
+            <div
+              style={setStyle(event)}
+              onClick={(e) => dispatch(eventClicked(event.id))}
+            >
               <p>{event.title}</p>
             </div>
             <div className={classes.eventBorder}></div>
@@ -121,7 +128,11 @@ const DayCalendarColumn = (props) => {
     const renderedTimedEvents = timedEventsList
       .filter((event) => event.startTime.getHours() === time)
       .map((event) => (
-        <div key={event.id} style={setStyle(event)}>
+        <div
+          key={event.id}
+          style={setStyle(event)}
+          onClick={(e) => dispatch(eventClicked(event.id))}
+        >
           <p>{event.title}</p>
           <p>{renderEventTime(event)}</p>
         </div>
