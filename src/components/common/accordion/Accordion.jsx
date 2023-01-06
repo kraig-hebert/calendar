@@ -20,16 +20,9 @@ const Accordion = (props) => {
         title={title}
         calendarAccordionOpen={calendarAccordionOpen}
         setCalendarAccordionOpen={setCalendarAccordionOpen}
-        calendarFormVisible={calendarFormVisible}
-        setCalendarFormVisible={setCalendarFormVisible}
       />
       <AccordionBody showAccordion={calendarAccordionOpen} type={setType()} />
-      {title !== 'Calendars' && (
-        <NewCalendarForm
-          calendarFormVisible={calendarFormVisible}
-          setCalendarFormVisible={setCalendarFormVisible}
-        />
-      )}
+      {title !== 'Calendars' && <NewCalendarForm />}
     </div>
   );
 };

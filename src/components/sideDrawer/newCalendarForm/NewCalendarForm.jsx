@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTheme } from 'react-jss';
 
@@ -7,17 +6,22 @@ import {
   selectAvailableColorFilters,
   addNewCalendar,
   selectCustomCalendars,
+  selectCalendarFormOpen,
+  calendarFormToggled,
+  selectCalendarForEdit,
 } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
 
-const NewCalendarForm = (props) => {
+const NewCalendarForm = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
-  const { calendarFormVisible, setCalendarFormVisible } = props;
   const [inputValue, setInputValue] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('');
+  const calendarFormOpen = useSelector(selectCalendarFormOpen);
+  const calendarForEdit = useSelector(selectCalendarForEdit);
+
   const setFormHeight = () => {
-    if (calendarFormVisible) return '200px';
+    if (calendarFormOpen) return '200px';
     else return '0';
   };
   const classes = useStyles({ height: setFormHeight() });
@@ -31,7 +35,7 @@ const NewCalendarForm = (props) => {
   const handleSave = (e) => {
     setInputValue('');
     setSelectedFilter('');
-    setCalendarFormVisible(false);
+    dispatch(calendarFormToggled(false));
 
     // set timeout to match newCalendarForm transiton time
     setTimeout(() => {
@@ -88,11 +92,6 @@ const NewCalendarForm = (props) => {
       </button>
     </div>
   );
-};
-
-NewCalendarForm.propTypes = {
-  calendarFormVisible: PropTypes.bool,
-  setCalendarFormVisible: PropTypes.func,
 };
 
 export default NewCalendarForm;

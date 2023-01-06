@@ -15,7 +15,6 @@ const SideDrawer = () => {
   const classes = useStyles();
   const toggleSideDrawerClosed = useSideDrawerToggle(false);
   const month = format(today, 'MMMM y');
-  const [calendarFormVisible, setCalendarFormVisible] = useState(false);
 
   return (
     <>
@@ -33,21 +32,8 @@ const SideDrawer = () => {
             month={today.getMonth()}
             date={today}
           />
-          {/* <DefaultDrawerAccordion />
-          <CustomerDrawerAccordion
-            calendarFormVisible={calendarFormVisible}
-            setCalendarFormVisible={setCalendarFormVisible}
-          /> */}
-          <Accordion
-            title="Calendars"
-            calendarFormVisible={calendarFormVisible}
-            setCalendaFormVisible={setCalendarFormVisible}
-          />
-          <Accordion
-            title="My Calendars"
-            calendarFormVisible={calendarFormVisible}
-            setCalendarFormVisible={setCalendarFormVisible}
-          />
+          <Accordion title="Calendars" />
+          <Accordion title="My Calendars" />
         </div>
       )}
     </>

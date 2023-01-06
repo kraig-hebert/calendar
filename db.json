@@ -58,7 +58,7 @@
       "id": 16
     },
     {
-      "title": "TEst",
+      "title": "Test",
       "filter": "Reminders",
       "color": "rgb(0,0,0)",
       "singleDate": "2023-01-04T05:00:00.000Z",
@@ -83,7 +83,7 @@
       "id": 20
     },
     {
-      "title": "fasdfasdfasdfasdfasdfsadfasdf",
+      "title": "fasdfasdfasdfa",
       "filter": "Events",
       "color": "rgb(0,0,0)",
       "startTime": "2023-01-03T17:00:00.000Z",
@@ -100,11 +100,12 @@
       "id": 22
     },
     {
-      "title": "MLK Day",
+      "title": "10 Miler",
       "filter": "Run",
       "color": "rgb(255,255,255)",
-      "singleDate": "2023-01-05T05:00:00.000Z",
-      "allDay": true,
+      "startTime": "2023-01-05T18:00:00.000Z",
+      "endTime": "2023-01-05T22:00:00.000Z",
+      "allDay": false,
       "id": 23
     },
     {
@@ -202,6 +203,14 @@
       "singleDate": "2023-01-05T05:00:00.000Z",
       "allDay": true,
       "id": 37
+    },
+    {
+      "title": "Mitch Match",
+      "filter": "Chess",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2023-01-05T05:00:00.000Z",
+      "allDay": true,
+      "id": 38
     }
   ]
 }

@@ -6,10 +6,10 @@ import {
 
 const initialState = {
   drawerOpen: true,
-  newEventModalOpen: false,
   eventModalOpen: false,
-  eventForEditID: {},
-  calendatForEdit: {},
+  eventForEditID: 0,
+  calendarFormOpen: false,
+  calendarForEdit: {},
   currentDate: new Date().toJSON(),
   currentCalendarSpread: 'month',
   availableColorFilters: [
@@ -179,6 +179,10 @@ const appSettingsSlice = createSlice({
       const filter = action.payload;
       state.availableColorFilters.push(filter);
     },
+    calendarFormToggled(state, action) {
+      const toggle = action.payload;
+      state.calendarFormOpen = toggle;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -238,6 +242,10 @@ export const selectEventForEditID = (state) => state.appSettings.eventForEditID;
 export const selectDefaultCalendars = (state) =>
   state.appSettings.defaultCalendars;
 export const selectActiveFilters = (state) => state.appSettings.activeFilters;
+export const selectCalendarFormOpen = (state) =>
+  state.appSettings.calendarFormOpen;
+export const selectCalendarForEdit = (state) =>
+  state.appSettings.calendarForEdit;
 
 export const selectCustomCalendars = createSelector(
   selectCustomCalendarsEntities,
@@ -275,6 +283,7 @@ export const {
   eventClicked,
   eventModalClosed,
   filterReturned,
+  calendarFormToggled,
 } = appSettingsSlice.actions;
 
 export default appSettingsSlice.reducer;
