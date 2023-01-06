@@ -90,10 +90,10 @@ const DayCalendarColumn = (props) => {
         overflow: true,
       });
     }
-    const renderedAllDayEvents = newEventList.map((event) => {
+    const renderedAllDayEvents = newEventList.map((event, index) => {
       if (!event.overflow)
         return (
-          <div key={event.id}>
+          <div key={index}>
             <div
               style={setStyle(event)}
               onClick={(e) => dispatch(eventClicked(event.id))}
@@ -105,17 +105,16 @@ const DayCalendarColumn = (props) => {
         );
       else
         return (
-          <>
+          <div key={index}>
             <OverflowEvents
               title={event.title}
-              key={200}
               events={allDayEventsList}
-              overflowWidth={calendarWidthValue - 10}
+              overflowWidth={(calendarWidthValue - 10).toString()}
               top={maxAllDayEvents * 21}
               bottom={false}
             />
             <div className={classes.eventBorder}></div>
-          </>
+          </div>
         );
     });
     return renderedAllDayEvents;
@@ -127,9 +126,9 @@ const DayCalendarColumn = (props) => {
   const renderTimedEvents = (time) => {
     const renderedTimedEvents = timedEventsList
       .filter((event) => event.startTime.getHours() === time)
-      .map((event) => (
+      .map((event, index) => (
         <div
-          key={event.id}
+          key={index}
           style={setStyle(event)}
           onClick={(e) => dispatch(eventClicked(event.id))}
         >
