@@ -1,7 +1,7 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
-  inputContainer: {
+  defaultContainer: {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
@@ -10,16 +10,19 @@ export const useStyles = createUseStyles((theme) => ({
     padding: '0 5px',
     backgroundColor: theme.secondary.main,
     fontSize: '1rem',
+    '&:last-of-type': {
+      borderBottomLeftRadius: '10px',
+      borderBottomRightRadius: '10px',
+    },
+  },
+  customContainer: {
+    extend: 'defaultContainer',
     '&:hover': {
       backgroundColor: theme.secondary.halfAlpha,
     },
     '&:hover > div': {
       display: 'block',
       cursor: 'pointer',
-    },
-    '&:last-of-type': {
-      borderBottomLeftRadius: '10px',
-      borderBottomRightRadius: '10px',
     },
   },
   optionsContainer: {

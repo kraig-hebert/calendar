@@ -8,7 +8,8 @@ const initialState = {
   drawerOpen: true,
   newEventModalOpen: false,
   eventModalOpen: false,
-  eventForEditID: 0,
+  eventForEditID: {},
+  calendatForEdit: {},
   currentDate: new Date().toJSON(),
   currentCalendarSpread: 'month',
   availableColorFilters: [
@@ -168,7 +169,7 @@ const appSettingsSlice = createSlice({
     },
     eventClicked(state, action) {
       const eventID = action.payload;
-      state.eventForEdit = eventID;
+      state.eventForEditID = eventID;
       state.eventModalOpen = 'edit';
     },
     eventModalClosed(state) {
@@ -233,7 +234,7 @@ export const selectAvailableColorFilters = (state) =>
 export const selectCustomCalendarsEntities = (state) =>
   state.appSettings.customCalendars;
 export const selectEventModalOpen = (state) => state.appSettings.eventModalOpen;
-export const selectEventForEditID = (state) => state.appSettings.eventForEdit;
+export const selectEventForEditID = (state) => state.appSettings.eventForEditID;
 export const selectDefaultCalendars = (state) =>
   state.appSettings.defaultCalendars;
 export const selectActiveFilters = (state) => state.appSettings.activeFilters;

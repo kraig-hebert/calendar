@@ -31,7 +31,11 @@ const CalendarInput = (props) => {
   const editCustomCalendar = () => {};
 
   return (
-    <div className={classes.inputContainer}>
+    <div
+      className={
+        isEditable ? classes.customContainer : classes.defaultContainer
+      }
+    >
       {isEditable && (
         <div className={classes.optionsContainer}>
           <BsTrashFill onClick={handleDelete} />

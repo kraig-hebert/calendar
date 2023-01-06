@@ -6,6 +6,7 @@ MonthCalendar-OverFlowEvents-EventListPopUp: set animation to start from bottom/
 CustomCalendars: allow user to edit title and filter color using the <NewCalendarForm/>
 
 Events: 
+    - add scrolling effect onHover for events with title to long on MonthCalendar
     - allow user to create an event to populate the future based on interval chosen
     - set property on default holidays so they are not editable and force holidays to be all day events
     - create logic so multiple events can span certain timeframes
