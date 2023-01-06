@@ -90,10 +90,10 @@ const DayCalendarColumn = (props) => {
         overflow: true,
       });
     }
-    const renderedAllDayEvents = newEventList.map((event, index) => {
+    const renderedAllDayEvents = newEventList.map((event) => {
       if (!event.overflow)
         return (
-          <div key={index}>
+          <div key={event.id}>
             <div
               style={setStyle(event)}
               onClick={(e) => dispatch(eventClicked(event.id))}
@@ -108,7 +108,7 @@ const DayCalendarColumn = (props) => {
           <>
             <OverflowEvents
               title={event.title}
-              key={index}
+              key={200}
               events={allDayEventsList}
               overflowWidth={calendarWidthValue - 10}
               top={maxAllDayEvents * 21}

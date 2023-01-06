@@ -66,7 +66,7 @@ const EventModal = () => {
   };
   // sets checkmark color to black or white if calendar is default/custom
   const setColor = () => {
-    if (defaultCalendarTitles.includes(selectedCalendar.title))
+    if (defaultCalendarTitles.includes(selectedCalendar))
       return theme.dark.main;
     else return theme.light.main;
   };
