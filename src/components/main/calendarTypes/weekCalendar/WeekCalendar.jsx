@@ -24,7 +24,7 @@ const WeekCalendar = () => {
       (dayEvents) => dayEvents.allDay.length
     );
     if (Math.max(...heightList) > MAX_ALL_DAY_EVENTS)
-      return ((MAX_ALL_DAY_EVENTS + 1) * 21).toString();
+      return ((MAX_ALL_DAY_EVENTS + 1) * 21).toString() + 'px';
     else return `${Math.max(...heightList) * 21}px`;
   };
 

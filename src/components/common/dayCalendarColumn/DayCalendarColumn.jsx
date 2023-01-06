@@ -109,7 +109,7 @@ const DayCalendarColumn = (props) => {
             <OverflowEvents
               title={event.title}
               events={allDayEventsList}
-              overflowWidth={(calendarWidthValue - 10).toString()}
+              overflowWidth={(calendarWidthValue - 10).toString() + 'px'}
               top={maxAllDayEvents * 21}
               bottom={false}
             />
