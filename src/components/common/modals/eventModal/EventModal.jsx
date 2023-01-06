@@ -167,6 +167,9 @@ const EventModal = () => {
         setSingleDate(format(eventForEdit.singleDate, 'yyyy-MM-dd'));
       } else {
         setSelectedSwitch(true);
+        /*
+          when converting Date.prototype toJSON() you must remove 5 hours to account for eastern time zone. Need to update logic in order for system to account for users current timezone besides eastern time
+        */
         setStartTime(
           sub(eventForEdit.startTime, { hours: 5 }).toJSON().slice(0, -3)
         );

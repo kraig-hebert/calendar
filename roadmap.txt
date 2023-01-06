@@ -19,4 +19,5 @@ REFRACTOR/FIXES
 - move <EventListPopUp/> inside of <OverflowEvents/>
 - force the current date to the NewEventForm
 - on weekCalendar the title can go outside its eventBox
+- add logic to convert the Date.prototype to account for current timezone when createing the EventModal when editing an event
 *******************************************************************
