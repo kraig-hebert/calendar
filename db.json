@@ -116,9 +116,9 @@
       "id": 24
     },
     {
-      "title": "Trying something",
-      "filter": "Birthdays",
-      "color": "rgb(255,255,255)",
+      "title": "Trying something new",
+      "filter": "Holidays",
+      "color": "rgb(0,0,0)",
       "startTime": "2023-01-05T17:00:00.000Z",
       "endTime": "2023-01-05T19:00:00.000Z",
       "allDay": false,

@@ -6,9 +6,9 @@ MonthCalendar-OverFlowEvents-EventListPopUp: set animation to start from bottom/
 CustomCalendars: allow user to edit title and filter color using the <NewCalendarForm/>
 
 Events: 
-    - allow user to edit and events details
     - allow user to create an event to populate the future based on interval chosen
-    - set property on default holidays so they are not editable
+    - set property on default holidays so they are not editable and force holidays to be all day events
+    - create logic so multiple events can span certain timeframes
 *******************************************************************
 
 
@@ -17,4 +17,5 @@ REFRACTOR/FIXES
 
 - move <EventListPopUp/> inside of <OverflowEvents/>
 - force the current date to the NewEventForm
+- on weekCalendar the title can go outside its eventBox
 *******************************************************************
