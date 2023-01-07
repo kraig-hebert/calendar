@@ -9,7 +9,7 @@ const initialState = {
   eventModalOpen: false,
   eventForEditID: 0,
   calendarFormOpen: false,
-  calendarForEdit: {},
+  calendarForEditTitle: '',
   currentDate: new Date().toJSON(),
   currentCalendarSpread: 'month',
   availableColorFilters: [
@@ -183,6 +183,10 @@ const appSettingsSlice = createSlice({
       const toggle = action.payload;
       state.calendarFormOpen = toggle;
     },
+    calendarEditClicked(state, action) {
+      const calendarTitle = action.payload;
+      state.calendarForEditTitle = calendarTitle;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -244,8 +248,8 @@ export const selectDefaultCalendars = (state) =>
 export const selectActiveFilters = (state) => state.appSettings.activeFilters;
 export const selectCalendarFormOpen = (state) =>
   state.appSettings.calendarFormOpen;
-export const selectCalendarForEdit = (state) =>
-  state.appSettings.calendarForEdit;
+export const selectCalendarForEditTitle = (state) =>
+  state.appSettings.calendarForEditTItle;
 
 export const selectCustomCalendars = createSelector(
   selectCustomCalendarsEntities,
@@ -271,6 +275,16 @@ export const selectAllCalendars = createSelector(
   }
 );
 
+export const selectCalendarForEdit = createSelector(
+  selectCalendarForEditTitle,
+  selectAllCalendars,
+  (calendarForEditTitle, allCalendars) => {
+    return allCalendars.filter(
+      (calendar) => calendar.title === calendarForEditTitle
+    )[0];
+  }
+);
+
 export const {
   customFiltersSet,
   drawerCloseSelected,
@@ -284,6 +298,7 @@ export const {
   eventModalClosed,
   filterReturned,
   calendarFormToggled,
+  calendarEditClicked,
 } = appSettingsSlice.actions;
 
 export default appSettingsSlice.reducer;

@@ -6,6 +6,8 @@ import { BsTrashFill, BsPencilFill } from 'react-icons/bs';
 import {
   deleteCustomCalendar,
   filterReturned,
+  calendarEditClicked,
+  calendarFormToggled,
 } from '../../../../../../reducers/appSettings';
 import { deleteCalendarEvents } from '../../../../../../reducers/eventsSlice';
 import CheckBox from '../../../../checkBox/CheckBox';
@@ -28,7 +30,10 @@ const CalendarInput = (props) => {
     dispatch(deleteCalendarEvents(title));
   };
 
-  const editCustomCalendar = () => {};
+  const editCustomCalendar = () => {
+    dispatch(calendarEditClicked(title));
+    dispatch(calendarFormToggled(true));
+  };
 
   return (
     <div
