@@ -11,6 +11,7 @@ import {
   selectCalendarForEdit,
   editCustomCalendar,
 } from '../../../reducers/appSettings';
+import { updateCalendarEventFilters } from '../../../reducers/eventsSlice';
 import { useStyles } from './styles';
 
 const CalendarForm = (props) => {
@@ -54,8 +55,15 @@ const CalendarForm = (props) => {
       title: inputValue,
       filter: selectedFilter,
     };
-    if (calendarFormOpen === 'edit') dispatch(editCustomCalendar(calendar));
-    else dispatch(addNewCalendar(calendar));
+    if (calendarFormOpen === 'edit') {
+      dispatch(editCustomCalendar(calendar));
+      dispatch(
+        updateCalendarEventFilters({
+          newTitle: calendar.title,
+          oldCalendarTitle: calendarForEdit.title,
+        })
+      );
+    } else dispatch(addNewCalendar(calendar));
     clearForm();
   };
 

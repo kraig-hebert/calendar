@@ -43,6 +43,21 @@ export const editEvent = createAsyncThunk(
   }
 );
 
+export const updateCalendarEventFilters = createAsyncThunk(
+  'events/updateCalendarEventFilters',
+  async (props, { getState }) => {
+    const { newTitle, oldCalendarTitle } = props;
+    const state = getState();
+    const eventsToUpdate = Object.values(state.events.entities)
+      .filter((event) => event.filter === oldCalendarTitle)
+      .map((event) => {
+        return { ...event, filter: newTitle };
+      });
+    eventsToUpdate.forEach(async (event) => await client.patch(event));
+    return eventsToUpdate;
+  }
+);
+
 export const deleteCalendarEvents = createAsyncThunk(
   'events/deleteCalendarEvents',
   async (title, { getState }) => {
@@ -75,6 +90,12 @@ const eventsSlice = createSlice({
       .addCase(editEvent.fulfilled, (state, action) => {
         const eventForEdit = action.payload;
         state.entities[eventForEdit.id] = eventForEdit;
+      })
+      .addCase(updateCalendarEventFilters.fulfilled, (state, action) => {
+        const eventsToUpdate = action.payload;
+        eventsToUpdate.forEach((event) => {
+          state.entities[event.id] = { ...event };
+        });
       })
       .addCase(deleteCalendarEvents.fulfilled, (state, action) => {
         const title = action.payload;

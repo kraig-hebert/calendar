@@ -171,6 +171,31 @@
       "endTime": "2023-01-07T03:00:00.000Z",
       "allDay": false,
       "id": 38
+    },
+    {
+      "title": "Test",
+      "filter": "Rides and RIdes",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2023-01-08T05:00:00.000Z",
+      "allDay": true,
+      "id": 39
+    },
+    {
+      "title": "Tourney",
+      "filter": "Chess",
+      "color": "rgb(255,255,255)",
+      "startTime": "2023-01-08T17:00:00.000Z",
+      "endTime": "2023-01-08T19:00:00.000Z",
+      "allDay": false,
+      "id": 40
+    },
+    {
+      "title": "Tester",
+      "filter": "Rides and RIdes",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2023-01-10T05:00:00.000Z",
+      "allDay": true,
+      "id": 41
     }
   ]
 }
