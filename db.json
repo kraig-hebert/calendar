@@ -66,14 +66,6 @@
       "id": 18
     },
     {
-      "title": "Test Ginger",
-      "filter": "Run",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2023-01-10T05:00:00.000Z",
-      "allDay": true,
-      "id": 19
-    },
-    {
       "title": "1111111111",
       "filter": "Events",
       "color": "rgb(0,0,0)",
@@ -98,15 +90,6 @@
       "singleDate": "2023-01-04T05:00:00.000Z",
       "allDay": true,
       "id": 22
-    },
-    {
-      "title": "10 Miler",
-      "filter": "Run",
-      "color": "rgb(255,255,255)",
-      "startTime": "2023-01-05T18:00:00.000Z",
-      "endTime": "2023-01-05T22:00:00.000Z",
-      "allDay": false,
-      "id": 23
     },
     {
       "title": "Test",
@@ -157,30 +140,6 @@
       "id": 31
     },
     {
-      "title": "fasdfsdf",
-      "filter": "Run",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2023-12-25T05:00:00.000Z",
-      "allDay": true,
-      "id": 32
-    },
-    {
-      "title": "Title",
-      "filter": "Run",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2022-12-25T05:00:00.000Z",
-      "allDay": true,
-      "id": 33
-    },
-    {
-      "title": "Test Event Edit",
-      "filter": "Run",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2023-01-02T05:00:00.000Z",
-      "allDay": true,
-      "id": 34
-    },
-    {
       "title": "Test",
       "filter": "Events",
       "color": "rgb(0,0,0)",
@@ -212,15 +171,6 @@
       "endTime": "2023-01-07T03:00:00.000Z",
       "allDay": false,
       "id": 38
-    },
-    {
-      "title": "20 Miles",
-      "filter": "Bike",
-      "color": "rgb(255,255,255)",
-      "startTime": "2023-01-07T13:00:00.000Z",
-      "endTime": "2023-01-07T15:00:00.000Z",
-      "allDay": false,
-      "id": 39
     }
   ]
 }

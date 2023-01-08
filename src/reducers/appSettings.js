@@ -19,7 +19,7 @@ const initialState = {
     'rgba(165,42,42,.9)' /* orange */,
   ],
   activeFilters: [],
-  customCalendars: {},
+  customCalendars: [],
   defaultCalendars: [
     {
       title: 'Events',
@@ -57,7 +57,7 @@ export const addNewCalendar = createAsyncThunk(
   'appSettings/addNewCalendar',
   async (calendar, { getState }) => {
     const state = getState();
-    const customCalendars = Object.values(state.appSettings.customCalendars);
+    const customCalendars = [...state.appSettings.customCalendars];
     customCalendars.push(calendar);
     localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
 
@@ -98,17 +98,16 @@ export const deleteCustomCalendar = createAsyncThunk(
   async (title, { getState }) => {
     const state = getState();
 
-    const customCalendars = Object.values(
-      state.appSettings.customCalendars
-    ).filter((calendar) => calendar.title !== title);
+    const customCalendars = state.appSettings.customCalendars.filter(
+      (calendar) => calendar.title !== title
+    );
     localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
 
-    const activeFilters = [...state.appSettings.activeFilters];
-    const newActiveFilterList = activeFilters.filter(
+    const activeFilterList = state.appSettings.activeFilters.filter(
       (activeFilter) => activeFilter !== title
     );
-    localStorage.setItem('activeFilters', JSON.stringify(newActiveFilterList));
-    return [customCalendars, title];
+    localStorage.setItem('activeFilters', JSON.stringify(activeFilterList));
+    return { customCalendars, activeFilterList };
   }
 );
 
@@ -226,7 +225,7 @@ const appSettingsSlice = createSlice({
       })
       .addCase(addNewCalendar.fulfilled, (state, action) => {
         const newCalendar = action.payload;
-        state.customCalendars[newCalendar.id] = newCalendar;
+        state.customCalendars.push(newCalendar);
         state.availableColorFilters = state.availableColorFilters.filter(
           (filter) => filter !== newCalendar.filter
         );
@@ -242,12 +241,9 @@ const appSettingsSlice = createSlice({
         });
       })
       .addCase(deleteCustomCalendar.fulfilled, (state, action) => {
-        const customCalendars = action.payload[0];
-        const title = action.payload[1];
-        state.customCalendars = customCalendars;
-        state.activeFilters = state.activeFilters.filter(
-          (activeFilter) => activeFilter !== title
-        );
+        const { customCalendars, activeFilterList } = action.payload;
+        state.customCalendars = [...customCalendars];
+        state.activeFilters = activeFilterList;
       })
       .addCase(setCustomFilters.fulfilled, (state, action) => {
         const availableFilters = action.payload;
@@ -278,7 +274,7 @@ export const selectCurrentCalendarSpread = (state) =>
   state.appSettings.currentCalendarSpread;
 export const selectAvailableColorFilters = (state) =>
   state.appSettings.availableColorFilters;
-export const selectCustomCalendarsEntities = (state) =>
+export const selectCustomCalendars = (state) =>
   state.appSettings.customCalendars;
 export const selectEventModalOpen = (state) => state.appSettings.eventModalOpen;
 export const selectEventForEditID = (state) => state.appSettings.eventForEditID;
@@ -289,14 +285,6 @@ export const selectCalendarFormOpen = (state) =>
   state.appSettings.calendarFormOpen;
 export const selectCalendarForEditTitle = (state) =>
   state.appSettings.calendarForEditTitle;
-
-export const selectCustomCalendars = createSelector(
-  selectCustomCalendarsEntities,
-  (entities) =>
-    Object.values(entities).map((calendar) => {
-      return { ...calendar };
-    })
-);
 
 export const selectDefaultCalendarTitles = createSelector(
   selectDefaultCalendars,
@@ -316,9 +304,9 @@ export const selectAllCalendars = createSelector(
 
 export const selectCalendarForEdit = createSelector(
   selectCalendarForEditTitle,
-  selectAllCalendars,
-  (calendarForEditTitle, allCalendars) => {
-    return allCalendars.filter(
+  selectCustomCalendars,
+  (calendarForEditTitle, customCalendars) => {
+    return customCalendars.filter(
       (calendar) => calendar.title === calendarForEditTitle
     )[0];
   }
