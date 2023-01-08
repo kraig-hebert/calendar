@@ -12,7 +12,7 @@ import {
 } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
 
-const NewCalendarForm = () => {
+const CalendarForm = (props) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const [inputValue, setInputValue] = useState('');
@@ -70,9 +70,21 @@ const NewCalendarForm = () => {
       onClick={(e) => setSelectedFilter(color)}
     ></div>
   ));
+
+  useEffect(() => {
+    if (calendarFormOpen === 'edit') {
+      setInputValue(calendarForEdit.title);
+      setSelectedFilter(calendarForEdit.filter);
+    } else if (!calendarFormOpen) {
+      setInputValue('');
+      setSelectedFilter('');
+    }
+  }, [calendarForEdit, calendarFormOpen]);
   return (
     <div className={classes.newCalendarForm}>
-      <h2>Add New Calendar</h2>
+      <h2>
+        {calendarFormOpen !== 'edit' ? 'Add New Calendar' : 'Edit Calendar'}
+      </h2>
       <input
         type="text"
         name="title"
@@ -88,10 +100,10 @@ const NewCalendarForm = () => {
         onClick={(e) => handleSave(e)}
         disabled={!selectedFilter | !inputValue}
       >
-        <h3>Save</h3>
+        <h3>{calendarFormOpen !== 'edit' ? 'Save' : 'Edit'}</h3>
       </button>
     </div>
   );
 };
 
-export default NewCalendarForm;
+export default CalendarForm;

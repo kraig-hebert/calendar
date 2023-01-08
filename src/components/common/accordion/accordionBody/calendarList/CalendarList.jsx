@@ -11,9 +11,8 @@ const CalendarList = (props) => {
   const renderedCalendarList = calendarList.map((calendar, index) => {
     return (
       <CalendarInput
-        title={calendar.title}
+        calendar={calendar}
         key={index}
-        checkBoxBackgroundColor={calendar.filter}
         checkColor={checkColor}
         isEditable={calendarType === 'custom' ? true : false}
         startChecked={activeFilters.includes(calendar.title) ? true : false}

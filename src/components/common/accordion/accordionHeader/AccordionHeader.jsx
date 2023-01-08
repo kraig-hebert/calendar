@@ -7,6 +7,7 @@ import {
   selectCalendarFormOpen,
   calendarFormToggled,
   selectCalendarForEdit,
+  filterRemoved,
 } from '../../../../reducers/appSettings';
 import { useStyles } from './styles';
 
@@ -14,7 +15,14 @@ const AccordionHeader = (props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const calendarFormOpen = useSelector(selectCalendarFormOpen);
+  const calendarForEdit = useSelector(selectCalendarForEdit);
   const { title, calendarAccordionOpen, setCalendarAccordionOpen } = props;
+
+  const handleCalendarFormClose = () => {
+    if (calendarFormOpen === 'edit')
+      dispatch(filterRemoved(calendarForEdit.filter));
+    dispatch(calendarFormToggled(false));
+  };
 
   const setDisplayedButtons = () => {
     if (title !== 'Calendars') {
@@ -22,7 +30,7 @@ const AccordionHeader = (props) => {
         return (
           <FaMinus
             className={classes.shrunkIcon}
-            onClick={(e) => dispatch(calendarFormToggled(false))}
+            onClick={handleCalendarFormClose}
           />
         );
       else

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { BsTrashFill, BsPencilFill } from 'react-icons/bs';
 
@@ -14,25 +14,20 @@ import CheckBox from '../../../../checkBox/CheckBox';
 import { useStyles } from './styles';
 
 const CalendarInput = (props) => {
-  const {
-    title,
-    checkBoxBackgroundColor,
-    checkColor,
-    isEditable,
-    startChecked,
-  } = props;
+  const { calendar, checkColor, isEditable, startChecked } = props;
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const handleDelete = () => {
-    dispatch(filterReturned(checkBoxBackgroundColor));
-    dispatch(deleteCustomCalendar(title));
-    dispatch(deleteCalendarEvents(title));
+    dispatch(filterReturned(calendar.filter));
+    dispatch(deleteCustomCalendar(calendar.title));
+    dispatch(deleteCalendarEvents(calendar.title));
   };
 
   const editCustomCalendar = () => {
-    dispatch(calendarEditClicked(title));
-    dispatch(calendarFormToggled(true));
+    dispatch(filterReturned(calendar.filter));
+    dispatch(calendarEditClicked(calendar.title));
+    dispatch(calendarFormToggled('edit'));
   };
 
   return (
@@ -49,21 +44,20 @@ const CalendarInput = (props) => {
       )}
 
       <CheckBox
-        checkBoxBackgroundColor={checkBoxBackgroundColor}
+        checkBoxBackgroundColor={calendar.filter}
         checkColor={checkColor}
         startChecked={startChecked}
-        title={title}
+        title={calendar.title}
       />
       <span className={classes.label}>
-        {title.charAt(0).toUpperCase() + title.slice(1)}
+        {calendar.title.charAt(0).toUpperCase() + calendar.title.slice(1)}
       </span>
     </div>
   );
 };
 
 CalendarInput.propTypes = {
-  title: PropTypes.string,
-  checkBoxBackgroundColor: PropTypes.string,
+  calendar: PropTypes.object,
   checkColor: PropTypes.string,
   isEditable: PropTypes.bool,
   startChecked: PropTypes.bool,

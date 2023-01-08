@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import AccordionBody from './accordionBody/AccordionBody';
 import AccordionHeader from './accordionHeader/AccordionHeader';
-import NewCalendarForm from '../../sideDrawer/newCalendarForm/NewCalendarForm';
+import CalendarForm from '../../sideDrawer/calendarForm/CalendarForm';
 import { useStyles } from './styles';
 
 const Accordion = (props) => {
@@ -22,7 +22,7 @@ const Accordion = (props) => {
         setCalendarAccordionOpen={setCalendarAccordionOpen}
       />
       <AccordionBody showAccordion={calendarAccordionOpen} type={setType()} />
-      {title !== 'Calendars' && <NewCalendarForm />}
+      {title !== 'Calendars' && <CalendarForm />}
     </div>
   );
 };

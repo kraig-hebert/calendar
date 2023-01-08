@@ -179,6 +179,12 @@ const appSettingsSlice = createSlice({
       const filter = action.payload;
       state.availableColorFilters.push(filter);
     },
+    filterRemoved(state, action) {
+      const filter = action.payload;
+      state.availableColorFilters = state.availableColorFilters.filter(
+        (availableFilter) => availableFilter !== filter
+      );
+    },
     calendarFormToggled(state, action) {
       const toggle = action.payload;
       state.calendarFormOpen = toggle;
@@ -249,7 +255,7 @@ export const selectActiveFilters = (state) => state.appSettings.activeFilters;
 export const selectCalendarFormOpen = (state) =>
   state.appSettings.calendarFormOpen;
 export const selectCalendarForEditTitle = (state) =>
-  state.appSettings.calendarForEditTItle;
+  state.appSettings.calendarForEditTitle;
 
 export const selectCustomCalendars = createSelector(
   selectCustomCalendarsEntities,
@@ -297,6 +303,7 @@ export const {
   eventClicked,
   eventModalClosed,
   filterReturned,
+  filterRemoved,
   calendarFormToggled,
   calendarEditClicked,
 } = appSettingsSlice.actions;
