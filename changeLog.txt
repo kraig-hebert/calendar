@@ -1,3 +1,7 @@
+1-8-2023
+--------
+- use can now edit customCalendar title and filter color
+
 1-5-2023
 --------
 - user can now edit events from any calendar type
