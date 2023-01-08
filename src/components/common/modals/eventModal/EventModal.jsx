@@ -77,9 +77,9 @@ const EventModal = () => {
 
   const handleSave = () => {
     if (!savingAllowed) return;
-    let newEvent;
+    let event;
     if (selectedSwitch === false) {
-      newEvent = {
+      event = {
         title: inputValue,
         filter: selectedCalendar,
         color: setColor(),
@@ -87,7 +87,7 @@ const EventModal = () => {
         allDay: true,
       };
     } else {
-      newEvent = {
+      event = {
         title: inputValue,
         filter: selectedCalendar,
         color: setColor(),
@@ -97,8 +97,8 @@ const EventModal = () => {
       };
     }
     if (eventModalOpen === 'edit')
-      dispatch(editEvent({ ...newEvent, id: eventForEditID }));
-    else dispatch(saveNewEvent(newEvent));
+      dispatch(editEvent({ ...event, id: eventForEditID }));
+    else dispatch(saveNewEvent(event));
     clearModal();
   };
 

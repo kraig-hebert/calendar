@@ -69,6 +69,11 @@ export const addNewCalendar = createAsyncThunk(
   }
 );
 
+export const editCalendar = createAsyncThunk(
+  'appSettings/editCalendar',
+  async (calendar) => {}
+);
+
 export const deleteCustomCalendar = createAsyncThunk(
   'appSettings/deleteCustomCalendar',
   async (title, { getState }) => {

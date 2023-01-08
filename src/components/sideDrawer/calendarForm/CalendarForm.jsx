@@ -9,6 +9,7 @@ import {
   selectCalendarFormOpen,
   calendarFormToggled,
   selectCalendarForEdit,
+  editCalendar,
 } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
 
@@ -29,23 +30,33 @@ const CalendarForm = (props) => {
   const customCalendars = useSelector(selectCustomCalendars);
 
   // return next available id
-  const getID = (calendarList) =>
-    calendarList.length ? calendarList[calendarList.length - 1].id + 1 : 1;
+  const getID = () => {
+    if (calendarFormOpen === 'edit') return calendarForEdit.id;
+    else
+      return customCalendars.length
+        ? customCalendars[customCalendars.length - 1].id + 1
+        : 1;
+  };
 
-  const handleSave = (e) => {
-    setInputValue('');
-    setSelectedFilter('');
+  const clearForm = () => {
     dispatch(calendarFormToggled(false));
 
     // set timeout to match newCalendarForm transiton time
     setTimeout(() => {
-      const newCalendar = {
-        id: getID(customCalendars),
-        title: inputValue,
-        filter: selectedFilter,
-      };
-      dispatch(addNewCalendar(newCalendar));
+      setInputValue('');
+      setSelectedFilter('');
     }, 250);
+  };
+
+  const handleSave = (e) => {
+    const calendar = {
+      id: getID(),
+      title: inputValue,
+      filter: selectedFilter,
+    };
+    if (calendarFormOpen === 'edit') dispatch(editCalendar(calendar));
+    else dispatch(addNewCalendar(calendar));
+    clearForm();
   };
 
   const setStyle = (color) => {
