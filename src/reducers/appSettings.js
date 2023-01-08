@@ -73,23 +73,23 @@ export const editCustomCalendar = createAsyncThunk(
   'appSettings/editCalendar',
   async (calendar, { getState }) => {
     const state = getState();
-    const customCalendars = Object.values(
-      state.appSettings.customCalendars
-    ).map((existingCalendar) => {
-      if (existingCalendar.id === calendar.id) return calendar;
-      else return existingCalendar;
-    });
+    const customCalendars = state.appSettings.customCalendars.map(
+      (existingCalendar) => {
+        if (existingCalendar.id === calendar.id) return calendar;
+        else return existingCalendar;
+      }
+    );
     localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
 
-    const activeFilters = state.appSettings.activeFilters.map(
+    const activeFilterList = state.appSettings.activeFilters.map(
       (activeFilter) => {
         if (activeFilter === state.appSettings.calendarForEditTitle)
           return calendar.title;
         else return activeFilter;
       }
     );
-    localStorage.setItem('activeFilters', JSON.stringify(activeFilters));
-    return calendar;
+    localStorage.setItem('activeFilters', JSON.stringify(activeFilterList));
+    return { customCalendars, activeFilterList };
   }
 );
 
@@ -232,17 +232,20 @@ const appSettingsSlice = createSlice({
         state.activeFilters.push(newCalendar.title);
       })
       .addCase(editCustomCalendar.fulfilled, (state, action) => {
-        const editedCalendar = action.payload;
-        state.customCalendars[editedCalendar.id] = { ...editedCalendar };
-        state.activeFilters = state.activeFilters.map((activeFilter) => {
-          if (activeFilter === state.customCalendars[editedCalendar.id].title)
-            return editedCalendar.title;
-          else return activeFilter;
-        });
+        const { customCalendars, activeFilterList } = action.payload;
+        state.customCalendars = customCalendars;
+
+        const customCalendarFilters = customCalendars.map(
+          (calendar) => calendar.filter
+        );
+        state.availableColorFilters = state.availableColorFilters.filter(
+          (filter) => !customCalendarFilters.includes(filter)
+        );
+        state.activeFilters = activeFilterList;
       })
       .addCase(deleteCustomCalendar.fulfilled, (state, action) => {
         const { customCalendars, activeFilterList } = action.payload;
-        state.customCalendars = [...customCalendars];
+        state.customCalendars = customCalendars;
         state.activeFilters = activeFilterList;
       })
       .addCase(setCustomFilters.fulfilled, (state, action) => {
