@@ -57,7 +57,7 @@ export const addNewCalendar = createAsyncThunk(
   'appSettings/addNewCalendar',
   async (calendar, { getState }) => {
     const state = getState();
-    let customCalendars = Object.values(state.appSettings.customCalendars);
+    const customCalendars = Object.values(state.appSettings.customCalendars);
     customCalendars.push(calendar);
     localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
 
@@ -69,9 +69,28 @@ export const addNewCalendar = createAsyncThunk(
   }
 );
 
-export const editCalendar = createAsyncThunk(
+export const editCustomCalendar = createAsyncThunk(
   'appSettings/editCalendar',
-  async (calendar) => {}
+  async (calendar, { getState }) => {
+    const state = getState();
+    const customCalendars = Object.values(
+      state.appSettings.customCalendars
+    ).map((existingCalendar) => {
+      if (existingCalendar.id === calendar.id) return calendar;
+      else return existingCalendar;
+    });
+    localStorage.setItem('customCalendars', JSON.stringify(customCalendars));
+
+    const activeFilters = state.appSettings.activeFilters.map(
+      (activeFilter) => {
+        if (activeFilter === state.appSettings.calendarForEditTitle)
+          return calendar.title;
+        else return activeFilter;
+      }
+    );
+    localStorage.setItem('activeFilters', JSON.stringify(activeFilters));
+    return calendar;
+  }
 );
 
 export const deleteCustomCalendar = createAsyncThunk(
@@ -212,6 +231,15 @@ const appSettingsSlice = createSlice({
           (filter) => filter !== newCalendar.filter
         );
         state.activeFilters.push(newCalendar.title);
+      })
+      .addCase(editCustomCalendar.fulfilled, (state, action) => {
+        const editedCalendar = action.payload;
+        state.customCalendars[editedCalendar.id] = { ...editedCalendar };
+        state.activeFilters = state.activeFilters.map((activeFilter) => {
+          if (activeFilter === state.customCalendars[editedCalendar.id].title)
+            return editedCalendar.title;
+          else return activeFilter;
+        });
       })
       .addCase(deleteCustomCalendar.fulfilled, (state, action) => {
         const customCalendars = action.payload[0];

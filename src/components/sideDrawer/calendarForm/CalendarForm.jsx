@@ -9,7 +9,7 @@ import {
   selectCalendarFormOpen,
   calendarFormToggled,
   selectCalendarForEdit,
-  editCalendar,
+  editCustomCalendar,
 } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
 
@@ -54,7 +54,7 @@ const CalendarForm = (props) => {
       title: inputValue,
       filter: selectedFilter,
     };
-    if (calendarFormOpen === 'edit') dispatch(editCalendar(calendar));
+    if (calendarFormOpen === 'edit') dispatch(editCustomCalendar(calendar));
     else dispatch(addNewCalendar(calendar));
     clearForm();
   };
