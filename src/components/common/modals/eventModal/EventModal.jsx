@@ -36,6 +36,12 @@ const EventModal = () => {
     defaultCalendars[0].title
   );
 
+  const cleanUpTime = (date, timeToAdd) => {
+    const newDate = date;
+    newDate.setHours(date.getHours() + timeToAdd, 0, 0);
+    return newDate;
+  };
+
   const setDateInputFormat = (date) => format(date, 'yyyy-MM-dd');
   const setDateTimeInputFormat = (date) => {
     const newDate = format(date, 'yyyy-MM-ddk:mm:ss');
@@ -44,9 +50,11 @@ const EventModal = () => {
 
   const [singleDate, setSingleDate] = useState(setDateInputFormat(new Date()));
   const [startTime, setStartTime] = useState(
-    setDateTimeInputFormat(new Date())
+    setDateTimeInputFormat(cleanUpTime(new Date(), 0))
   );
-  const [endTime, setEndTime] = useState(setDateTimeInputFormat(new Date()));
+  const [endTime, setEndTime] = useState(
+    setDateTimeInputFormat(cleanUpTime(new Date(), 1))
+  );
 
   const [savingAllowed, setSavingAllowed] = useState(false);
 
@@ -58,8 +66,8 @@ const EventModal = () => {
       setSelectedSwitch(false);
       setSelectedCalendar(defaultCalendars[0].title);
       setSingleDate(setDateInputFormat(new Date()));
-      setStartTime(setDateTimeInputFormat(new Date()));
-      setEndTime(setDateTimeInputFormat(new Date()));
+      setStartTime(setDateTimeInputFormat(cleanUpTime(new Date(), 0)));
+      setEndTime(setDateTimeInputFormat(cleanUpTime(new Date(), 1)));
       setSavingAllowed(false);
     }, 500);
   };
