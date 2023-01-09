@@ -67,15 +67,6 @@
       "id": 20
     },
     {
-      "title": "fasdfasdfasdfa",
-      "filter": "Events",
-      "color": "rgb(0,0,0)",
-      "startTime": "2023-01-03T17:00:00.000Z",
-      "endTime": "2023-01-03T23:00:00.000Z",
-      "allDay": false,
-      "id": 21
-    },
-    {
       "title": "NewTitle again",
       "filter": "Birthdays",
       "color": "rgb(0,0,0)",

@@ -13,7 +13,7 @@ export const useStyles = createUseStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '60%',
+    width: '90%',
     marginTop: '10px',
     '& p': {
       fontSize: '1.25rem',
