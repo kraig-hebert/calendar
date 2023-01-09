@@ -1,6 +1,9 @@
 1-9-2023
 --------
 - user can now delete an event from Calendar
+- EventForm will now disable edit icon if !savingAllowed
+- default holidays will not not be clickable or editable
+- when setting a NewEvent calendar type the Holidays type will force the user to choose an AllDayEvent
 
 1-8-2023
 --------
