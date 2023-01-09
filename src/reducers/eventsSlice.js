@@ -151,6 +151,7 @@ export const selectEvents = createSelector(
         allDay: true,
         filter: 'Holidays',
         color: 'rgb(0,0,0)',
+        notEditable: true,
       });
     });
     return sortedEventListWithDateObjects;

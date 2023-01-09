@@ -9,6 +9,7 @@ import {
   eventClicked,
 } from '../../../reducers/appSettings';
 import { useStyles } from './styles';
+import AllDayEvent from '../eventBlocks/AllDayEvent';
 import OverflowEvents from '../overflowEvents/OverflowEvents';
 
 const DayCalendarColumn = (props) => {
@@ -94,13 +95,11 @@ const DayCalendarColumn = (props) => {
       if (!event.overflow)
         return (
           <div key={index}>
-            <div
-              style={setStyle(event)}
-              onClick={(e) => dispatch(eventClicked(event.id))}
-            >
-              <p>{event.title}</p>
-            </div>
-            <div className={classes.eventBorder}></div>
+            <AllDayEvent
+              event={event}
+              width={calendarWidthValue - 10}
+              key={index}
+            />
           </div>
         );
       else
