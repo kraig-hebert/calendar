@@ -58,14 +58,6 @@
       "id": 16
     },
     {
-      "title": "Test",
-      "filter": "Reminders",
-      "color": "rgb(0,0,0)",
-      "singleDate": "2023-01-04T05:00:00.000Z",
-      "allDay": true,
-      "id": 18
-    },
-    {
       "title": "1111111111",
       "filter": "Events",
       "color": "rgb(0,0,0)",
@@ -141,7 +133,7 @@
     },
     {
       "title": "Test",
-      "filter": "Events",
+      "filter": "Birthdays",
       "color": "rgb(0,0,0)",
       "singleDate": "2023-01-02T05:00:00.000Z",
       "allDay": true,
@@ -162,40 +154,6 @@
       "singleDate": "2023-01-05T05:00:00.000Z",
       "allDay": true,
       "id": 37
-    },
-    {
-      "title": "Mitch Match",
-      "filter": "Birthdays",
-      "color": "rgb(0,0,0)",
-      "startTime": "2023-01-07T01:00:00.000Z",
-      "endTime": "2023-01-07T03:00:00.000Z",
-      "allDay": false,
-      "id": 38
-    },
-    {
-      "title": "Test",
-      "filter": "Rides and RIdes",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2023-01-08T05:00:00.000Z",
-      "allDay": true,
-      "id": 39
-    },
-    {
-      "title": "Tourney",
-      "filter": "Chess",
-      "color": "rgb(255,255,255)",
-      "startTime": "2023-01-08T17:00:00.000Z",
-      "endTime": "2023-01-08T19:00:00.000Z",
-      "allDay": false,
-      "id": 40
-    },
-    {
-      "title": "Tester",
-      "filter": "Rides and RIdes",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2023-01-10T05:00:00.000Z",
-      "allDay": true,
-      "id": 41
     }
   ]
 }

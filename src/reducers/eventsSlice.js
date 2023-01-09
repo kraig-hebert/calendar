@@ -58,6 +58,14 @@ export const updateCalendarEventFilters = createAsyncThunk(
   }
 );
 
+export const deleteEvent = createAsyncThunk(
+  'events/deleteEvent',
+  async (id) => {
+    const response = await client.remove(id);
+    if (response.status === 200) return id;
+  }
+);
+
 export const deleteCalendarEvents = createAsyncThunk(
   'events/deleteCalendarEvents',
   async (title, { getState }) => {
@@ -97,11 +105,17 @@ const eventsSlice = createSlice({
           state.entities[event.id] = { ...event };
         });
       })
+      .addCase(deleteEvent.fulfilled, (state, action) => {
+        const id = action.payload;
+        delete state.entities[id];
+      })
       .addCase(deleteCalendarEvents.fulfilled, (state, action) => {
         const title = action.payload;
-        state.entities = Object.values(state.entities).filter(
-          (event) => event.filter !== title
-        );
+        Object.values(state.entities).forEach((event) => {
+          if (event.filter === title) {
+            delete state.entities[event.id];
+          }
+        });
       });
   },
 });

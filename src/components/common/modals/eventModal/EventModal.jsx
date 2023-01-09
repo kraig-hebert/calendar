@@ -11,10 +11,11 @@ import {
   saveNewEvent,
   editEvent,
   selectEvents,
+  deleteEvent,
 } from '../../../../reducers/eventsSlice';
 import { format, isAfter, sub } from 'date-fns';
 import { useStyles } from './styles';
-import { AiFillCloseCircle } from 'react-icons/ai';
+import { AiFillCloseCircle, AiFillDelete } from 'react-icons/ai';
 import { FaSave } from 'react-icons/fa';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
@@ -102,6 +103,11 @@ const EventModal = () => {
     clearModal();
   };
 
+  const handleDelete = () => {
+    dispatch(deleteEvent(eventForEdit.id));
+    clearModal();
+  };
+
   const setModalAnimations = () => {
     if (eventModalOpen)
       return {
@@ -150,6 +156,11 @@ const EventModal = () => {
     dateInputs: setDateInputAnimations(),
   });
 
+  const checkSavingAllowed = () =>
+    savingAllowed ? classes.iconActive : classes.iconDisabled;
+  const checkEventModalOpen = () =>
+    eventModalOpen === 'edit' ? classes.iconActive : classes.iconDisabled;
+
   useEffect(() => {
     if (selectedSwitch) {
       if (isAfter(new Date(endTime), new Date(startTime)) && inputValue)
@@ -183,13 +194,14 @@ const EventModal = () => {
   return (
     <div className={classes.modal}>
       <div className={classes.modalContent}>
-        <div className={classes.iconContainer}>
-          <FaSave
-            className={
-              savingAllowed ? classes.iconActive : classes.iconDisabled
-            }
-            onClick={handleSave}
-          />
+        <div className={classes.modalHeader}>
+          <div className={classes.iconContainer}>
+            <FaSave className={checkSavingAllowed()} onClick={handleSave} />
+            <AiFillDelete
+              className={checkEventModalOpen()}
+              onClick={handleDelete}
+            />
+          </div>
           <input
             type="text"
             name="title"
@@ -201,10 +213,12 @@ const EventModal = () => {
               setInputValue(e.target.value);
             }}
           />
-          <AiFillCloseCircle
-            className={classes.iconActive}
-            onClick={clearModal}
-          />
+          <div className={classes.iconContainer}>
+            <AiFillCloseCircle
+              className={classes.iconActive}
+              onClick={clearModal}
+            />
+          </div>
         </div>
         <EventCalendars
           selectedCalendar={selectedCalendar}

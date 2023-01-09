@@ -46,7 +46,7 @@ export const useStyles = createUseStyles((theme) => ({
     animationName: props.modal.animation,
     animationDuration: '.55s',
   }),
-  iconContainer: {
+  modalHeader: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -57,10 +57,26 @@ export const useStyles = createUseStyles((theme) => ({
     borderTopLeftRadius: '20px',
     borderBottom: '1px solid ' + theme.primary.main,
   },
+  iconContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '10px 0',
+    backgroundColor: theme.primary.main,
+    borderTopRightRadius: '20px',
+    borderTopLeftRadius: '20px',
+    borderBottom: '1px solid ' + theme.primary.main,
+    '&:first-of-type': {
+      width: '125px',
+    },
+    '&:last-of-type': {
+      width: '75px',
+    },
+  },
   iconBase: {
-    margin: '10px 20px',
+    margin: '10px 10px',
     cursor: 'pointer',
-    fontSize: '2rem',
+    fontSize: '30px',
   },
   iconActive: {
     extend: 'iconBase',
@@ -72,8 +88,8 @@ export const useStyles = createUseStyles((theme) => ({
     cursor: 'default',
   },
   titleInput: {
-    width: '60%',
     height: '35px',
+    width: '60%',
     padding: '5px 15px',
     border: '1px solid ' + theme.primary.main,
     borderRadius: '10px',
