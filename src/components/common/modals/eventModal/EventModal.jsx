@@ -35,15 +35,19 @@ const EventModal = () => {
   const [selectedCalendar, setSelectedCalendar] = useState(
     defaultCalendars[0].title
   );
-  const [singleDate, setSingleDate] = useState(
-    format(new Date(), 'yyyy-MM-dd')
-  );
+
+  const setDateInputFormat = (date) => format(date, 'yyyy-MM-dd');
+  const setDateTimeInputFormat = (date) => {
+    const newDate = format(date, 'yyyy-MM-ddk:mm:ss');
+    return newDate.slice(0, 10) + 'T' + newDate.slice(10);
+  };
+
+  const [singleDate, setSingleDate] = useState(setDateInputFormat(new Date()));
   const [startTime, setStartTime] = useState(
-    format(new Date(), 'yyyy-MM-dd') + 'T12:00:00'
+    setDateTimeInputFormat(new Date())
   );
-  const [endTime, setEndTime] = useState(
-    format(new Date(), 'yyyy-MM-dd') + 'T12:00:00'
-  );
+  const [endTime, setEndTime] = useState(setDateTimeInputFormat(new Date()));
+
   const [savingAllowed, setSavingAllowed] = useState(false);
 
   const clearModal = () => {
@@ -53,9 +57,9 @@ const EventModal = () => {
       setInputValue('');
       setSelectedSwitch(false);
       setSelectedCalendar(defaultCalendars[0].title);
-      setSingleDate(format(new Date(), 'yyyy-MM-dd'));
-      setStartTime(format(new Date(), 'yyyy-MM-dd') + 'T12:00:00');
-      setEndTime(format(new Date(), 'yyyy-MM-dd') + 'T12:00:00');
+      setSingleDate(setDateInputFormat(new Date()));
+      setStartTime(setDateTimeInputFormat(new Date()));
+      setEndTime(setDateTimeInputFormat(new Date()));
       setSavingAllowed(false);
     }, 500);
   };
@@ -177,7 +181,7 @@ const EventModal = () => {
       setSelectedCalendar(eventForEdit.filter);
       if (eventForEdit.hasOwnProperty('singleDate')) {
         setSelectedSwitch(false);
-        setSingleDate(format(eventForEdit.singleDate, 'yyyy-MM-dd'));
+        setSingleDate(setDateInputFormat(eventForEdit.singleDate));
       } else {
         setSelectedSwitch(true);
         /*
