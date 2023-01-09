@@ -19,7 +19,7 @@ const AllDayEvent = (props) => {
   const classes = useStyles({
     backgroundColor: calendar[0].filter,
     color: event.color,
-    width: `${width}px`,
+    width: width ? `${width}px` : '90%',
     cursor: event.notEditable ? 'default' : 'pointer',
   });
 

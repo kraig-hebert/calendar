@@ -20,6 +20,8 @@ const TimedEvent = (props) => {
   const classes = useStyles({
     backgroundColor: calendar[0].filter,
     color: event.color,
+    width: '90%',
+    cursor: 'pointer',
   });
 
   return (

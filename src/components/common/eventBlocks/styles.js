@@ -5,7 +5,7 @@ export const useStyles = createUseStyles({
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    width: props.width ? props.width : '90%',
+    width: props.width,
     height: '20px',
     backgroundColor: props.backgroundColor,
     color: props.color,
