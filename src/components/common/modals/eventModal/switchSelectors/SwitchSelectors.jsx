@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useTheme } from 'react-jss';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
 
 const SwitchSelectors = (props) => {
-  const { selectedSwitch, setSelectedSwitch } = props;
-  const classes = useStyles();
+  const { selectedSwitch, setSelectedSwitch, selectedCalendar } = props;
+  const theme = useTheme();
+
+  const setStyles = () => {
+    if (selectedCalendar !== 'Holidays')
+      return {
+        backgroundColor: theme.primary.main,
+      };
+    else return { backgroundColor: 'none' };
+  };
+  const classes = useStyles(setStyles());
+
+  const handleSwitchChange = () => {
+    if (selectedCalendar !== 'Holidays') setSelectedSwitch((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (selectedCalendar === 'Holidays') setSelectedSwitch(false);
+  }, [selectedCalendar, setSelectedSwitch]);
+
   return (
     <div className={classes.switchContainer}>
       <p
@@ -21,9 +40,9 @@ const SwitchSelectors = (props) => {
           name="all-day"
           id="all-day"
           checked={selectedSwitch}
-          onChange={(e) => setSelectedSwitch((prev) => !prev)}
+          onChange={handleSwitchChange}
         />
-        <span className={classes.slider}></span>
+        <span className={classes.activeSlider}></span>
       </label>
       <p
         className={
@@ -39,6 +58,7 @@ const SwitchSelectors = (props) => {
 SwitchSelectors.propTypes = {
   selectedSwitch: PropTypes.bool,
   setSelectedSwitch: PropTypes.func,
+  selectedCalendar: PropTypes.string,
 };
 
 export default SwitchSelectors;

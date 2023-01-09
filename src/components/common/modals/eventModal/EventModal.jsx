@@ -224,6 +224,7 @@ const EventModal = () => {
         <SwitchSelectors
           selectedSwitch={selectedSwitch}
           setSelectedSwitch={setSelectedSwitch}
+          selectedCalendar={selectedCalendar}
         />
         <div className={classes.timeContainer}>
           <div className={classes.dateContainer}>

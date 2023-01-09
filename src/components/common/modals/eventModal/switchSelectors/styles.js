@@ -43,7 +43,7 @@ export const useStyles = createUseStyles((theme) => ({
     animation: '$fadeOut',
     animationDuration: '.75s',
   },
-  slider: {
+  activeSlider: (props) => ({
     position: 'absolute',
     top: '0',
     left: '0',
@@ -60,10 +60,10 @@ export const useStyles = createUseStyles((theme) => ({
       bottom: '-15%',
       height: '20px',
       width: '20px',
-      backgroundColor: theme.primary.main,
+      backgroundColor: props.backgroundColor,
       borderRadius: '50%',
       transition: '.75s',
       cursor: 'pointer',
     },
-  },
+  }),
 }));
