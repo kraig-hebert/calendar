@@ -6,6 +6,7 @@ import {
   selectEventForEditID,
   selectDefaultCalendars,
   selectDefaultCalendarTitles,
+  selectAllCalendars,
 } from '../../../../reducers/appSettings';
 import {
   saveNewEvent,
@@ -26,6 +27,7 @@ const EventModal = () => {
   const theme = useTheme();
   const eventModalOpen = useSelector(selectEventModalOpen);
   const eventForEditID = useSelector(selectEventForEditID);
+  const allCalendars = useSelector(selectAllCalendars);
   const events = useSelector(selectEvents);
   const eventForEdit = events.filter((event) => event.id === eventForEditID)[0];
   const defaultCalendarTitles = useSelector(selectDefaultCalendarTitles);
@@ -165,6 +167,7 @@ const EventModal = () => {
 
   const classes = useStyles({
     modal: setModalAnimations(),
+    modalHeight: `${allCalendars.length * 38}px`,
     dateInputs: setDateInputAnimations(),
   });
 
@@ -234,51 +237,55 @@ const EventModal = () => {
             />
           </div>
         </div>
-        <EventCalendars
-          selectedCalendar={selectedCalendar}
-          setSelectedCalendar={setSelectedCalendar}
-        />
-        <SwitchSelectors
-          selectedSwitch={selectedSwitch}
-          setSelectedSwitch={setSelectedSwitch}
-          selectedCalendar={selectedCalendar}
-        />
-        <div className={classes.timeContainer}>
-          <div className={classes.dateContainer}>
-            <div className={classes.dateInputContainer}>
-              <p>Date</p>
-              <input
-                type="date"
-                name="date"
-                id="date"
-                className={classes.dateInput}
-                value={singleDate}
-                onChange={(e) => setSingleDate(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className={classes.dateTimeContainer}>
-            <div className={classes.dateInputContainer}>
-              <p>Start Time</p>
-              <input
-                type="datetime-local"
-                name="start-date"
-                id="start-date"
-                className={classes.dateInput}
-                value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
-              />
-            </div>
-            <div className={classes.dateInputContainer}>
-              <p>End Time</p>
-              <input
-                type="datetime-local"
-                name="end-date"
-                id="end-date"
-                className={classes.dateInput}
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-              />
+        <div className={classes.modelBody}>
+          <EventCalendars
+            selectedCalendar={selectedCalendar}
+            setSelectedCalendar={setSelectedCalendar}
+          />
+          <div className={classes.dateContent}>
+            <SwitchSelectors
+              selectedSwitch={selectedSwitch}
+              setSelectedSwitch={setSelectedSwitch}
+              selectedCalendar={selectedCalendar}
+            />
+            <div className={classes.timeContainer}>
+              <div className={classes.dateContainer}>
+                <div className={classes.dateInputContainer}>
+                  <p>Date</p>
+                  <input
+                    type="date"
+                    name="date"
+                    id="date"
+                    className={classes.dateInput}
+                    value={singleDate}
+                    onChange={(e) => setSingleDate(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className={classes.dateTimeContainer}>
+                <div className={classes.dateInputContainer}>
+                  <p>Start Time</p>
+                  <input
+                    type="datetime-local"
+                    name="start-date"
+                    id="start-date"
+                    className={classes.dateInput}
+                    value={startTime}
+                    onChange={(e) => setStartTime(e.target.value)}
+                  />
+                </div>
+                <div className={classes.dateInputContainer}>
+                  <p>End Time</p>
+                  <input
+                    type="datetime-local"
+                    name="end-date"
+                    id="end-date"
+                    className={classes.dateInput}
+                    value={endTime}
+                    onChange={(e) => setEndTime(e.target.value)}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

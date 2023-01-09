@@ -102,6 +102,18 @@ export const useStyles = createUseStyles((theme) => ({
       color: theme.dark.main,
     },
   },
+  modelBody: (props) => ({
+    display: 'flex',
+    width: '100%',
+    height: props.modalHeight,
+  }),
+  dateContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+  },
   timeContainer: {
     display: 'flex',
     width: '100%',

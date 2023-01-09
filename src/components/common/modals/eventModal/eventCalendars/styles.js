@@ -4,11 +4,13 @@ export const useStyles = createUseStyles((theme) => ({
   calendarRow: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    width: '100%',
+    justifyContent: 'flex-start',
+    width: '25%',
+    height: '100%',
     marginBottom: '10px',
     backgroundColor: theme.secondary.main,
-    borderBottom: '1px solid ' + theme.primary.main,
+    borderBottomLeftRadius: '20px',
+    borderRight: '1px solid ' + theme.primary.main,
     '& div': {
       margin: '10px',
     },
