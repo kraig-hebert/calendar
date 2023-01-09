@@ -10,7 +10,7 @@ export const useStyles = createUseStyles({
     backgroundColor: props.backgroundColor,
     color: props.color,
     borderRadius: '5px',
-    cursor: 'pointer',
+    cursor: props.cursor,
     margin: '1px 0px',
   }),
   eventInfo: {

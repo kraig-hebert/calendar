@@ -20,12 +20,16 @@ const AllDayEvent = (props) => {
     backgroundColor: calendar[0].filter,
     color: event.color,
     width: `${width}px`,
+    cursor: event.notEditable ? 'default' : 'pointer',
   });
+
+  const handleEventClick = () => {
+    if (event.notEditable) return;
+    dispatch(eventClicked(event.id));
+  };
+
   return (
-    <div
-      className={classes.eventContainer}
-      onClick={(e) => dispatch(eventClicked(event.id))}
-    >
+    <div className={classes.eventContainer} onClick={handleEventClick}>
       <div className={classes.eventInfo}>
         {useSetEventTitle({ title: event.title, length: 20 })}
       </div>
