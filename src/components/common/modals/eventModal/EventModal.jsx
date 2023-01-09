@@ -158,8 +158,10 @@ const EventModal = () => {
 
   const checkSavingAllowed = () =>
     savingAllowed ? classes.iconActive : classes.iconDisabled;
-  const checkEventModalOpen = () =>
-    eventModalOpen === 'edit' ? classes.iconActive : classes.iconDisabled;
+  const checkForEdit = () =>
+    eventModalOpen === 'edit' && savingAllowed
+      ? classes.iconActive
+      : classes.iconDisabled;
 
   useEffect(() => {
     if (selectedSwitch) {
@@ -197,7 +199,7 @@ const EventModal = () => {
         <div className={classes.modalHeader}>
           <div className={classes.iconContainer}>
             <FaSave className={checkSavingAllowed()} onClick={handleSave} />
-            <FaTrash className={checkEventModalOpen()} onClick={handleDelete} />
+            <FaTrash className={checkForEdit()} onClick={handleDelete} />
           </div>
           <input
             type="text"
