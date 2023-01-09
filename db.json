@@ -148,14 +148,6 @@
       "id": 36
     },
     {
-      "title": "Test",
-      "filter": "Events",
-      "color": "rgb(0,0,0)",
-      "singleDate": "2023-01-05T05:00:00.000Z",
-      "allDay": true,
-      "id": 37
-    },
-    {
       "title": "Laundry",
       "filter": "Reminders",
       "color": "rgb(0,0,0)",

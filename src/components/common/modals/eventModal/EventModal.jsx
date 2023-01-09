@@ -15,7 +15,7 @@ import {
 } from '../../../../reducers/eventsSlice';
 import { format, isAfter, addHours } from 'date-fns';
 import { useStyles } from './styles';
-import { AiFillCloseCircle, AiFillDelete } from 'react-icons/ai';
+import { AiFillCloseCircle } from 'react-icons/ai';
 import { FaSave, FaTrash } from 'react-icons/fa';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
@@ -170,10 +170,8 @@ const EventModal = () => {
 
   const checkSavingAllowed = () =>
     savingAllowed ? classes.iconActive : classes.iconDisabled;
-  const checkForEdit = () =>
-    eventModalOpen === 'edit' && savingAllowed
-      ? classes.iconActive
-      : classes.iconDisabled;
+  const checkDelete = () =>
+    eventModalOpen === 'edit' ? classes.iconActive : classes.iconDisabled;
 
   useEffect(() => {
     if (selectedSwitch) {
@@ -216,7 +214,7 @@ const EventModal = () => {
         <div className={classes.modalHeader}>
           <div className={classes.iconContainer}>
             <FaSave className={checkSavingAllowed()} onClick={handleSave} />
-            <FaTrash className={checkForEdit()} onClick={handleDelete} />
+            <FaTrash className={checkDelete()} onClick={handleDelete} />
           </div>
           <input
             type="text"
