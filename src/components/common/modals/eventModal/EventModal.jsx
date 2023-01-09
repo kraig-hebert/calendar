@@ -13,7 +13,7 @@ import {
   selectEvents,
   deleteEvent,
 } from '../../../../reducers/eventsSlice';
-import { format, isAfter, sub } from 'date-fns';
+import { format, isAfter, addHours } from 'date-fns';
 import { useStyles } from './styles';
 import { AiFillCloseCircle, AiFillDelete } from 'react-icons/ai';
 import { FaSave, FaTrash } from 'react-icons/fa';
@@ -36,24 +36,24 @@ const EventModal = () => {
     defaultCalendars[0].title
   );
 
-  const cleanUpTime = (date, timeToAdd) => {
+  const cleanUpTime = (date) => {
     const newDate = date;
-    newDate.setHours(date.getHours() + timeToAdd, 0, 0);
+    newDate.setHours(date.getHours(), 0, 0);
     return newDate;
   };
 
   const setDateInputFormat = (date) => format(date, 'yyyy-MM-dd');
   const setDateTimeInputFormat = (date) => {
-    const newDate = format(date, 'yyyy-MM-ddk:mm:ss');
+    const newDate = format(date, 'yyyy-MM-ddHH:mm:ss');
     return newDate.slice(0, 10) + 'T' + newDate.slice(10);
   };
 
   const [singleDate, setSingleDate] = useState(setDateInputFormat(new Date()));
   const [startTime, setStartTime] = useState(
-    setDateTimeInputFormat(cleanUpTime(new Date(), 0))
+    setDateTimeInputFormat(cleanUpTime(new Date()))
   );
   const [endTime, setEndTime] = useState(
-    setDateTimeInputFormat(cleanUpTime(new Date(), 1))
+    setDateTimeInputFormat(cleanUpTime(addHours(new Date(), 1)))
   );
 
   const [savingAllowed, setSavingAllowed] = useState(false);
@@ -66,8 +66,8 @@ const EventModal = () => {
       setSelectedSwitch(false);
       setSelectedCalendar(defaultCalendars[0].title);
       setSingleDate(setDateInputFormat(new Date()));
-      setStartTime(setDateTimeInputFormat(cleanUpTime(new Date(), 0)));
-      setEndTime(setDateTimeInputFormat(cleanUpTime(new Date(), 1)));
+      setStartTime(setDateTimeInputFormat(cleanUpTime(new Date())));
+      setEndTime(setDateTimeInputFormat(addHours(cleanUpTime(new Date()), 1)));
       setSavingAllowed(false);
     }, 500);
   };
@@ -190,17 +190,22 @@ const EventModal = () => {
       if (eventForEdit.hasOwnProperty('singleDate')) {
         setSelectedSwitch(false);
         setSingleDate(setDateInputFormat(eventForEdit.singleDate));
-      } else {
-        setSelectedSwitch(true);
-        /*
-          when converting Date.prototype toJSON() you must remove 5 hours to account for eastern time zone. Need to update logic in order for system to account for users current timezone besides eastern time
-        */
+
         setStartTime(
-          sub(eventForEdit.startTime, { hours: 5 }).toJSON().slice(0, -3)
+          setDateTimeInputFormat(
+            cleanUpTime(new Date(eventForEdit.singleDate.setHours(12)))
+          )
         );
         setEndTime(
-          sub(eventForEdit.endTime, { hours: 5 }).toJSON().slice(0, -3)
+          setDateTimeInputFormat(
+            cleanUpTime(new Date(eventForEdit.singleDate.setHours(13)))
+          )
         );
+      } else {
+        setSelectedSwitch(true);
+        setSingleDate(setDateInputFormat(eventForEdit.startTime));
+        setStartTime(setDateTimeInputFormat(eventForEdit.startTime));
+        setEndTime(setDateTimeInputFormat(eventForEdit.endTime));
       }
     } else return;
   }, [eventForEdit, eventModalOpen]);
