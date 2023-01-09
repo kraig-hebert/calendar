@@ -16,7 +16,7 @@ import {
 import { format, isAfter, sub } from 'date-fns';
 import { useStyles } from './styles';
 import { AiFillCloseCircle, AiFillDelete } from 'react-icons/ai';
-import { FaSave } from 'react-icons/fa';
+import { FaSave, FaTrash } from 'react-icons/fa';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
 import { useTheme } from 'react-jss';
@@ -197,10 +197,7 @@ const EventModal = () => {
         <div className={classes.modalHeader}>
           <div className={classes.iconContainer}>
             <FaSave className={checkSavingAllowed()} onClick={handleSave} />
-            <AiFillDelete
-              className={checkEventModalOpen()}
-              onClick={handleDelete}
-            />
+            <FaTrash className={checkEventModalOpen()} onClick={handleDelete} />
           </div>
           <input
             type="text"
