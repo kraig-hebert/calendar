@@ -4,7 +4,6 @@ FEATURES
 MonthCalendar-OverFlowEvents-EventListPopUp: set animation to start from bottom/top depending on which row of the MonthCalendar the EventListPopUp is located in
 
 Events: 
-    - allow user to delete an event
     - add scrolling effect onHover for events with title to long on MonthCalendar
     - allow user to create an event to populate the future based on interval chosen
     - set property on default holidays so they are not editable and force holidays to be all day events

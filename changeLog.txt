@@ -1,6 +1,10 @@
+1-9-2023
+--------
+- user can now delete an event from Calendar
+
 1-8-2023
 --------
-- use can now edit customCalendar title and filter color
+- user can now edit customCalendar title and filter color
 
 1-5-2023
 --------
