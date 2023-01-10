@@ -120,7 +120,7 @@ const EventModal = () => {
   };
 
   const handleDelete = () => {
-    dispatch(deleteEvent(eventForEdit.id));
+    if (eventModalOpen == 'edit') dispatch(deleteEvent(eventForEdit.id));
     clearModal();
   };
 

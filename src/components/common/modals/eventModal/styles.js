@@ -86,6 +86,7 @@ export const useStyles = createUseStyles((theme) => ({
   iconDisabled: {
     extend: 'iconBase',
     color: theme.secondary.halfAlpha,
+    pointerEvents: 'none',
     cursor: 'default',
   },
   titleInputContainer: {
