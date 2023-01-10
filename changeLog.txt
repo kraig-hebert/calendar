@@ -5,6 +5,10 @@ EVENTMODAL
     - date/dateTime inputs will now be prepopulated
     - when setting a NewEvent calendar type the Holidays type will force the user to choose an AllDayEvent
     - user can now delete an event from Calendar
+    - updating styling
+        - added trash icon and logic for active/disabled
+        - layout of calendars and inputs
+        - styling and animation of input placeholder
 HOLIDAYS
 - default holidays will not not be clickable or editable
 

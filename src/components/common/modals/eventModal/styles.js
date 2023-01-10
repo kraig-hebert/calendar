@@ -117,6 +117,7 @@ export const useStyles = createUseStyles((theme) => ({
     color: theme.dark.halfAlpha,
     backgroundColor: 'theme.light.main',
     padding: '0 20px',
+    pointerEvents: 'none',
     transition: '.35s',
   },
   modelBody: (props) => ({
