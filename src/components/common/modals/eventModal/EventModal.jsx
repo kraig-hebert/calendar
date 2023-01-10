@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   selectEventModalOpen,
@@ -17,7 +17,8 @@ import {
 import { format, isAfter, addHours } from 'date-fns';
 import { useStyles } from './styles';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import { FaSave, FaTrash } from 'react-icons/fa';
+import { BsTrashFill, BsSaveFill } from 'react-icons/bs';
+import { FaRegSave } from 'react-icons/fa';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
 import { useTheme } from 'react-jss';
@@ -25,6 +26,7 @@ import { useTheme } from 'react-jss';
 const EventModal = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
+  const titleRef = useRef();
   const eventModalOpen = useSelector(selectEventModalOpen);
   const eventForEditID = useSelector(selectEventForEditID);
   const allCalendars = useSelector(selectAllCalendars);
@@ -188,6 +190,7 @@ const EventModal = () => {
     if (eventModalOpen === 'edit') {
       setInputValue(eventForEdit.title);
       setSelectedCalendar(eventForEdit.filter);
+      titleRef.current.focus();
       if (eventForEdit.hasOwnProperty('singleDate')) {
         setSelectedSwitch(false);
         setSingleDate(setDateInputFormat(eventForEdit.singleDate));
@@ -216,8 +219,8 @@ const EventModal = () => {
       <div className={classes.modalContent}>
         <div className={classes.modalHeader}>
           <div className={classes.iconContainer}>
-            <FaSave className={checkSavingAllowed()} onClick={handleSave} />
-            <FaTrash className={checkDelete()} onClick={handleDelete} />
+            <FaRegSave className={checkSavingAllowed()} onClick={handleSave} />
+            <BsTrashFill className={checkDelete()} onClick={handleDelete} />
           </div>
           <div className={classes.titleInputContainer}>
             <input
@@ -229,8 +232,11 @@ const EventModal = () => {
               onChange={(e) => {
                 setInputValue(e.target.value);
               }}
+              ref={titleRef}
             />
-            <span className={classes.placeholder}>Enter Title..</span>
+            {!inputValue && (
+              <span className={classes.placeholder}>Enter Title..</span>
+            )}
           </div>
           <div className={classes.iconContainer}>
             <AiFillCloseCircle
