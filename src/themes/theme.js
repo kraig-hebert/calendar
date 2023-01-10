@@ -9,10 +9,12 @@ export const theme = {
   },
   dark: {
     main: 'rgb(0,0,0)',
+    threeQuarterAlpha: 'rgba(0,0,0,.75)',
     halfAlpha: 'rgba(0,0,0,.5)',
     quarterAlpha: 'rgba(0,0,0,.25)',
   },
   light: {
     main: 'rgb(255,255,255)',
+    transparant: 'rgba(255,255,255,0)',
   },
 };

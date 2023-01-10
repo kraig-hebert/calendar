@@ -167,7 +167,7 @@ const EventModal = () => {
 
   const classes = useStyles({
     modal: setModalAnimations(),
-    modalHeight: `${allCalendars.length * 38}px`,
+    modalHeight: `${allCalendars.length * 40}px`,
     dateInputs: setDateInputAnimations(),
   });
 
@@ -219,17 +219,19 @@ const EventModal = () => {
             <FaSave className={checkSavingAllowed()} onClick={handleSave} />
             <FaTrash className={checkDelete()} onClick={handleDelete} />
           </div>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            value={inputValue}
-            placeholder="Title"
-            className={classes.titleInput}
-            onChange={(e) => {
-              setInputValue(e.target.value);
-            }}
-          />
+          <div className={classes.titleInputContainer}>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              value={inputValue}
+              className={classes.titleInput}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+              }}
+            />
+            <span className={classes.placeholder}>Enter Title..</span>
+          </div>
           <div className={classes.iconContainer}>
             <AiFillCloseCircle
               className={classes.iconActive}
