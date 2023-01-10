@@ -18,6 +18,7 @@ export const useStyles = createUseStyles((theme) => ({
     '& p': {
       fontSize: '1.25rem',
       marginRight: '10px',
+      cursor: 'pointer',
     },
     '& label': {
       position: 'relative',

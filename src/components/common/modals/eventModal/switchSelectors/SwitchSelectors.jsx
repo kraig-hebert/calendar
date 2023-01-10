@@ -21,6 +21,11 @@ const SwitchSelectors = (props) => {
     if (selectedCalendar !== 'Holidays') setSelectedSwitch((prev) => !prev);
   };
 
+  const handleClick = (type) => {
+    if (type === 'allDay' && selectedSwitch) handleSwitchChange();
+    else if (type === 'timed' && !selectedSwitch) handleSwitchChange();
+  };
+
   useEffect(() => {
     if (selectedCalendar === 'Holidays') setSelectedSwitch(false);
   }, [selectedCalendar, setSelectedSwitch]);
@@ -31,6 +36,7 @@ const SwitchSelectors = (props) => {
         className={
           !selectedSwitch ? classes.activeEventType : classes.inActiveEventType
         }
+        onClick={(e) => handleClick('allDay')}
       >
         All Day Event
       </p>
@@ -48,6 +54,7 @@ const SwitchSelectors = (props) => {
         className={
           selectedSwitch ? classes.activeEventType : classes.inActiveEventType
         }
+        onClick={(e) => handleClick('timed')}
       >
         Timed Event
       </p>

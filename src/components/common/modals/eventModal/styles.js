@@ -123,6 +123,7 @@ export const useStyles = createUseStyles((theme) => ({
   modelBody: (props) => ({
     display: 'flex',
     width: '100%',
+    minHeight: '200px',
     height: props.modalHeight,
   }),
   dateContent: {
