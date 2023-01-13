@@ -58,10 +58,10 @@
       "id": 16
     },
     {
-      "title": "NewTitle again",
+      "title": "NewTitle",
       "filter": "Birthdays",
       "color": "rgb(0,0,0)",
-      "singleDate": "2023-01-04T05:00:00.000Z",
+      "singleDate": "2023-01-02T05:00:00.000Z",
       "allDay": true,
       "id": 22
     },

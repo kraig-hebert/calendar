@@ -16,9 +16,7 @@ import {
 } from '../../../../reducers/eventsSlice';
 import { format, isAfter, addHours } from 'date-fns';
 import { useStyles } from './styles';
-import { AiFillCloseCircle } from 'react-icons/ai';
-import { BsTrashFill, BsSaveFill } from 'react-icons/bs';
-import { FaRegSave } from 'react-icons/fa';
+import ModalHeader from './modalHeader/ModalHeader';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
 import { useTheme } from 'react-jss';
@@ -173,11 +171,6 @@ const EventModal = () => {
     dateInputs: setDateInputAnimations(),
   });
 
-  const checkSavingAllowed = () =>
-    savingAllowed ? classes.iconActive : classes.iconDisabled;
-  const checkDelete = () =>
-    eventModalOpen === 'edit' ? classes.iconActive : classes.iconDisabled;
-
   useEffect(() => {
     if (selectedSwitch) {
       if (isAfter(new Date(endTime), new Date(startTime)) && inputValue)
@@ -217,34 +210,15 @@ const EventModal = () => {
   return (
     <div className={classes.modal}>
       <div className={classes.modalContent}>
-        <div className={classes.modalHeader}>
-          <div className={classes.iconContainer}>
-            <FaRegSave className={checkSavingAllowed()} onClick={handleSave} />
-            <BsTrashFill className={checkDelete()} onClick={handleDelete} />
-          </div>
-          <div className={classes.titleInputContainer}>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              value={inputValue}
-              className={classes.titleInput}
-              onChange={(e) => {
-                setInputValue(e.target.value);
-              }}
-              ref={titleRef}
-            />
-            {!inputValue && (
-              <span className={classes.placeholder}>Enter Title..</span>
-            )}
-          </div>
-          <div className={classes.iconContainer}>
-            <AiFillCloseCircle
-              className={classes.iconActive}
-              onClick={clearModal}
-            />
-          </div>
-        </div>
+        <ModalHeader
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          savingAllowed={savingAllowed}
+          handleSave={handleSave}
+          handleDelete={handleDelete}
+          clearModal={clearModal}
+          titleRef={titleRef}
+        />
         <div className={classes.modelBody}>
           <EventCalendars
             selectedCalendar={selectedCalendar}
