@@ -19,6 +19,7 @@ import { useStyles } from './styles';
 import ModalHeader from './modalHeader/ModalHeader';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
+import TimeContainer from './timeContainer/TimeContainer';
 import { useTheme } from 'react-jss';
 
 const EventModal = () => {
@@ -136,39 +137,10 @@ const EventModal = () => {
         opacity: '0',
       };
   };
-  const setDateInputAnimations = () => {
-    if (selectedSwitch === false)
-      return {
-        dateContainer: {
-          animation: '$dateMoveIn',
-          opactity: '1',
-          width: '100%',
-        },
-        dateTimeContainer: {
-          animation: '$dateMoveOut',
-          opacity: '0',
-          width: '0%',
-        },
-      };
-    else
-      return {
-        dateContainer: {
-          animation: '$dateMoveOut',
-          opacity: '0',
-          width: '0%',
-        },
-        dateTimeContainer: {
-          animation: '$dateMoveIn',
-          opactity: '1',
-          width: '100%',
-        },
-      };
-  };
 
   const classes = useStyles({
     modal: setModalAnimations(),
     modalHeight: `${allCalendars.length * 40}px`,
-    dateInputs: setDateInputAnimations(),
   });
 
   useEffect(() => {
@@ -230,45 +202,15 @@ const EventModal = () => {
               setSelectedSwitch={setSelectedSwitch}
               selectedCalendar={selectedCalendar}
             />
-            <div className={classes.timeContainer}>
-              <div className={classes.dateContainer}>
-                <div className={classes.dateInputContainer}>
-                  <p>Date</p>
-                  <input
-                    type="date"
-                    name="date"
-                    id="date"
-                    className={classes.dateInput}
-                    value={singleDate}
-                    onChange={(e) => setSingleDate(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className={classes.dateTimeContainer}>
-                <div className={classes.dateInputContainer}>
-                  <p>Start Time</p>
-                  <input
-                    type="datetime-local"
-                    name="start-date"
-                    id="start-date"
-                    className={classes.dateInput}
-                    value={startTime}
-                    onChange={(e) => setStartTime(e.target.value)}
-                  />
-                </div>
-                <div className={classes.dateInputContainer}>
-                  <p>End Time</p>
-                  <input
-                    type="datetime-local"
-                    name="end-date"
-                    id="end-date"
-                    className={classes.dateInput}
-                    value={endTime}
-                    onChange={(e) => setEndTime(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
+            <TimeContainer
+              selectedSwitch={selectedSwitch}
+              singleDate={singleDate}
+              setSingleDate={setSingleDate}
+              startTime={startTime}
+              setStartTime={setStartTime}
+              endTime={endTime}
+              setEndTime={setEndTime}
+            />
           </div>
         </div>
       </div>
