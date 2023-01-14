@@ -85,6 +85,7 @@ const EventModal = () => {
       setStartTime(setDateTimeInputFormat(cleanUpTime(new Date())));
       setEndTime(setDateTimeInputFormat(addHours(cleanUpTime(new Date()), 1)));
       setSavingAllowed(false);
+      setUserAlertOpen(false);
     }, 500);
   };
   // returns dateObject created from the dateInput value
