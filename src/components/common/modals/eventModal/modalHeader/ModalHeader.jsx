@@ -2,8 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import { BsTrashFill, BsSaveFill } from 'react-icons/bs';
-import { FaRegSave } from 'react-icons/fa';
+import { BsTrashFill } from 'react-icons/bs';
+import { SlClose } from 'react-icons/sl';
+import { FaRegSave, FaRegWindowClose } from 'react-icons/fa';
 
 import { selectEventModalOpen } from '../../../../../reducers/appSettings';
 import { useStyles } from './styles';
@@ -12,7 +13,6 @@ const ModalHeader = (props) => {
   const {
     inputValue,
     setInputValue,
-    savingAllowed,
     handleSave,
     handleDelete,
     clearModal,
@@ -21,15 +21,13 @@ const ModalHeader = (props) => {
   const classes = useStyles();
   const eventModalOpen = useSelector(selectEventModalOpen);
 
-  const checkSavingAllowed = () =>
-    savingAllowed ? classes.iconActive : classes.iconDisabled;
   const checkDelete = () =>
     eventModalOpen === 'edit' ? classes.iconActive : classes.iconDisabled;
 
   return (
     <div className={classes.modalHeader}>
       <div className={classes.iconContainer}>
-        <FaRegSave className={checkSavingAllowed()} onClick={handleSave} />
+        <FaRegSave className={classes.iconActive} onClick={handleSave} />
         <BsTrashFill className={checkDelete()} onClick={handleDelete} />
       </div>
       <div className={classes.titleInputContainer}>
@@ -49,10 +47,7 @@ const ModalHeader = (props) => {
         )}
       </div>
       <div className={classes.iconContainer}>
-        <AiFillCloseCircle
-          className={classes.iconActive}
-          onClick={clearModal}
-        />
+        <FaRegWindowClose className={classes.iconActive} onClick={clearModal} />
       </div>
     </div>
   );
@@ -61,7 +56,6 @@ const ModalHeader = (props) => {
 ModalHeader.propTypes = {
   inputValue: PropTypes.string,
   setInputValue: PropTypes.func,
-  savingAllowed: PropTypes.bool,
   handleSave: PropTypes.func,
   handleDelete: PropTypes.func,
   clearModal: PropTypes.func,

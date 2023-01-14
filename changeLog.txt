@@ -1,3 +1,7 @@
+1-13-2023
+---------
+- separated modal into individual components
+
 1-9-2023
 --------
 EVENTMODAL

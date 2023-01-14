@@ -25,6 +25,7 @@ export const useStyles = createUseStyles((theme) => ({
     animationDuration: '.5s',
   }),
   modalContent: (props) => ({
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -39,6 +40,7 @@ export const useStyles = createUseStyles((theme) => ({
     animationDuration: '.55s',
   }),
   modelBody: (props) => ({
+    position: 'relative',
     display: 'flex',
     width: '100%',
     minHeight: '200px',

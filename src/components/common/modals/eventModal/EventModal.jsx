@@ -20,6 +20,7 @@ import ModalHeader from './modalHeader/ModalHeader';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
 import TimeContainer from './timeContainer/TimeContainer';
+import UserAlertDrawer from './userAlertDrawer/UserAlertDrawer';
 import { useTheme } from 'react-jss';
 
 const EventModal = () => {
@@ -38,6 +39,7 @@ const EventModal = () => {
   const [selectedCalendar, setSelectedCalendar] = useState(
     defaultCalendars[0].title
   );
+  const [userAlertOpen, setUserAlertOpen] = useState(false);
 
   const cleanUpTime = (date) => {
     const newDate = date;
@@ -61,6 +63,7 @@ const EventModal = () => {
 
   const [savingAllowed, setSavingAllowed] = useState(false);
 
+  // close and clear all values in modal inputs
   const clearModal = () => {
     dispatch(eventModalClosed());
     // set delay to match $fadeOut time so reset isn't visible
@@ -74,7 +77,6 @@ const EventModal = () => {
       setSavingAllowed(false);
     }, 500);
   };
-
   // returns dateObject created from the dateInput value
   const setDate = () => {
     const datePartsList = singleDate.split('-');
@@ -91,8 +93,15 @@ const EventModal = () => {
     else return theme.light.main;
   };
 
+  const handleUserAlert = () => {
+    setUserAlertOpen(true);
+  };
+
   const handleSave = () => {
-    if (!savingAllowed) return;
+    if (!savingAllowed) {
+      handleUserAlert();
+      return;
+    }
     let event;
     if (selectedSwitch === false) {
       event = {
@@ -185,7 +194,6 @@ const EventModal = () => {
         <ModalHeader
           inputValue={inputValue}
           setInputValue={setInputValue}
-          savingAllowed={savingAllowed}
           handleSave={handleSave}
           handleDelete={handleDelete}
           clearModal={clearModal}
@@ -213,6 +221,10 @@ const EventModal = () => {
             />
           </div>
         </div>
+        <UserAlertDrawer
+          userAlertOpen={userAlertOpen}
+          setUserAlertOpen={setUserAlertOpen}
+        />
       </div>
     </div>
   );
