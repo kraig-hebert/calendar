@@ -105,18 +105,9 @@ const EventModal = () => {
 
   const handleUserAlert = (display) => {
     const newAlertList = [];
-    if (!validateInputValue())
-      newAlertList.push(
-        <div key={1} className={classes.alert}>
-          Please enter a valid title.
-        </div>
-      );
+    if (!validateInputValue()) newAlertList.push('A title is required');
     if (!validateDateTimeValues())
-      newAlertList.push(
-        <div key={2} className={classes.alert}>
-          Start Time is after End Time.
-        </div>
-      );
+      newAlertList.push('The end date you entered is before the start date. ');
     setAlertList(newAlertList);
     if (display) setUserAlertOpen(true);
   };

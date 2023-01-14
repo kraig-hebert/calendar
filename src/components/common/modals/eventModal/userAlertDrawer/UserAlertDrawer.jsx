@@ -14,20 +14,22 @@ const UserAlertDrawer = (props) => {
       return {
         width: '200px',
         animationName: '$revealDrawer',
-        border: `1px solid ${theme.primary.main}`,
       };
     } else {
       return {
         width: '0',
         animationName: '$hideDrawer',
-        border: 'none',
       };
     }
   };
 
   const classes = useStyles(setDrawerAnimation());
 
-  const renderedAlertList = alertList.map((alert) => alert);
+  const renderedAlertList = alertList.map((alert, index) => (
+    <div key={index} className={classes.alert}>
+      {alert}
+    </div>
+  ));
 
   const handleClose = () => setUserAlertOpen(false);
   return (
