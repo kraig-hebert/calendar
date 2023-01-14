@@ -120,7 +120,7 @@ const EventModal = () => {
     let event;
     if (selectedSwitch === false) {
       event = {
-        title: inputValue,
+        title: inputValue.trim(),
         filter: selectedCalendar,
         color: setColor(),
         singleDate: setDate(),
@@ -128,7 +128,7 @@ const EventModal = () => {
       };
     } else {
       event = {
-        title: inputValue,
+        title: inputValue.trim(),
         filter: selectedCalendar,
         color: setColor(),
         startTime: new Date(startTime).toJSON(),

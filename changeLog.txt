@@ -1,6 +1,9 @@
 1-13-2023
 ---------
 - separated modal into individual components
+UserAlertDrawer
+    - added drawer with animation to display a promt for the user to correct input data before saving
+    - populated content dynamically using validation
 
 1-9-2023
 --------
