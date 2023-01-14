@@ -6,6 +6,7 @@ import { useStyles } from './styles';
 const ConfirmButton = (props) => {
   const { buttonTitle, onClick } = props.props;
   const classes = useStyles();
+
   return (
     <div className={classes.button} onClick={onClick}>
       <p>{buttonTitle}</p>
