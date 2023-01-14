@@ -3,15 +3,21 @@ import PropTypes from 'prop-types';
 import { FaWindowClose } from 'react-icons/fa';
 
 import { useStyles } from './styles';
+import ConfirmButton from './confirmButton/ConfirmButton';
 
 const UserConfirmDrawer = (props) => {
-  const { userConfirmOpen, setUserConfirmOpen, confirmValue, handleSave } =
-    props;
+  const {
+    userConfirmOpen,
+    setUserConfirmOpen,
+    confirmValue,
+    handleSave,
+    handleDelete,
+  } = props;
 
   const setDrawerAnimation = () => {
     if (userConfirmOpen) {
       return {
-        height: '125px',
+        height: '50px',
         animationName: '$revealDrawer',
       };
     } else {
@@ -23,12 +29,19 @@ const UserConfirmDrawer = (props) => {
   };
 
   const classes = useStyles(setDrawerAnimation());
+  const setButtonProps = () => {
+    if (confirmValue === 'save')
+      return { buttonTitle: 'Confirm Save', onClick: handleSave };
+    else if (confirmValue === 'delete')
+      return { buttonTitle: 'Confirm Delete', onClick: handleDelete };
+    else return { buttonTitle: '', onClick: () => {} };
+  };
 
   const handleClose = () => setUserConfirmOpen(false);
   return (
     <div className={classes.drawerContainer}>
       <div className={classes.drawerContent}>
-        Confirm
+        <ConfirmButton props={setButtonProps()} />
         <FaWindowClose className={classes.icon} onClick={handleClose} />
       </div>
     </div>
@@ -40,6 +53,7 @@ UserConfirmDrawer.propTypes = {
   setUserConfirmOpen: PropTypes.func,
   confirmValue: PropTypes.string,
   handleSave: PropTypes.func,
+  handleDelete: PropTypes.func,
 };
 
 export default UserConfirmDrawer;

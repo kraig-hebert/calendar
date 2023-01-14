@@ -3,10 +3,10 @@ import { createUseStyles } from 'react-jss';
 export const useStyles = createUseStyles((theme) => ({
   '@keyframes revealDrawer': {
     '0%': { height: '0' },
-    '100%': { height: '125px' },
+    '100%': { height: '50px' },
   },
   '@keyframes hideDrawer': {
-    '0%': { height: '125px' },
+    '0%': { height: '50px' },
     '100%': { height: '0' },
   },
   drawerContainer: (props) => ({
@@ -25,7 +25,7 @@ export const useStyles = createUseStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '125px',
+    height: '50px',
     width: '200px',
     backgroundColor: theme.success.main,
     borderTopRightRadius: '10px',

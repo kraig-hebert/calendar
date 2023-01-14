@@ -119,11 +119,15 @@ const EventModal = () => {
   };
 
   const handleSaveClick = () => {
-    if (savingAllowed) setUserConfirmOpen(true);
-    else {
-      handleUserAlert(true);
-      return;
-    }
+    if (savingAllowed) {
+      setConfirmValue('save');
+      setUserConfirmOpen(true);
+    } else handleUserAlert(true);
+  };
+
+  const handleDeleteClick = () => {
+    setConfirmValue('delete');
+    setUserConfirmOpen(true);
   };
 
   const handleSave = () => {
@@ -233,7 +237,7 @@ const EventModal = () => {
           inputValue={inputValue}
           setInputValue={setInputValue}
           handleSaveClick={handleSaveClick}
-          handleDelete={handleDelete}
+          handleDeleteClick={handleDeleteClick}
           clearModal={clearModal}
           titleRef={titleRef}
         />
@@ -264,6 +268,7 @@ const EventModal = () => {
           setUserConfirmOpen={setUserConfirmOpen}
           confirmValue={confirmValue}
           handleSave={handleSave}
+          handleDelete={handleDelete}
         />
         <UserAlertDrawer
           userAlertOpen={userAlertOpen}
