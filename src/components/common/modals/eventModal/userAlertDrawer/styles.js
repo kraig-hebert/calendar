@@ -25,7 +25,6 @@ export const useStyles = createUseStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    flexWrap: 'nowrap',
     height: '75px',
     width: '200px',
     backgroundColor: theme.secondary.main,
