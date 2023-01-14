@@ -20,6 +20,7 @@ import ModalHeader from './modalHeader/ModalHeader';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
 import EventCalendars from './eventCalendars/EventCalendars';
 import TimeContainer from './timeContainer/TimeContainer';
+import UserConfirmDrawer from './userConfirmDrawer/UserConfirmDrawer';
 import UserAlertDrawer from './userAlertDrawer/UserAlertDrawer';
 import { useTheme } from 'react-jss';
 
@@ -44,6 +45,10 @@ const EventModal = () => {
   const [selectedCalendar, setSelectedCalendar] = useState(
     defaultCalendars[0].title
   );
+
+  const [userConfirmOpen, setUserConfirmOpen] = useState(true);
+  const [confirmValue, setConfirmValue] = useState('');
+
   const [userAlertOpen, setUserAlertOpen] = useState(false);
   const [alertList, setAlertList] = useState([]);
 
@@ -250,6 +255,11 @@ const EventModal = () => {
             />
           </div>
         </div>
+        <UserConfirmDrawer
+          userConfirmOpen={userConfirmOpen}
+          setUserConfirmOpen={setUserConfirmOpen}
+          confirmValue={confirmValue}
+        />
         <UserAlertDrawer
           userAlertOpen={userAlertOpen}
           setUserAlertOpen={setUserAlertOpen}

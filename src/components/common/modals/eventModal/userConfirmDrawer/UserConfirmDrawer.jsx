@@ -4,18 +4,18 @@ import { FaWindowClose } from 'react-icons/fa';
 
 import { useStyles } from './styles';
 
-const UserAlertDrawer = (props) => {
-  const { userAlertOpen, setUserAlertOpen, alertList } = props;
+const UserConfirmDrawer = (props) => {
+  const { userConfirmOpen, setUserConfirmOpen, confirmValue } = props;
 
   const setDrawerAnimation = () => {
-    if (userAlertOpen) {
+    if (userConfirmOpen) {
       return {
-        width: '200px',
+        height: '125px',
         animationName: '$revealDrawer',
       };
     } else {
       return {
-        width: '0',
+        height: '0',
         animationName: '$hideDrawer',
       };
     }
@@ -23,27 +23,21 @@ const UserAlertDrawer = (props) => {
 
   const classes = useStyles(setDrawerAnimation());
 
-  const renderedAlertList = alertList.map((alert, index) => (
-    <div key={index} className={classes.alert}>
-      {alert}
-    </div>
-  ));
-
-  const handleClose = () => setUserAlertOpen(false);
+  const handleClose = () => setUserConfirmOpen(false);
   return (
     <div className={classes.drawerContainer}>
       <div className={classes.drawerContent}>
+        Confirm
         <FaWindowClose className={classes.icon} onClick={handleClose} />
-        <div className={classes.alertsContainer}>{renderedAlertList}</div>
       </div>
     </div>
   );
 };
 
-UserAlertDrawer.propTypes = {
-  userAlertOpen: PropTypes.bool,
-  setUserAlertOpen: PropTypes.func,
-  alertList: PropTypes.array,
+UserConfirmDrawer.propTypes = {
+  userConfirmOpen: PropTypes.bool,
+  setUserConfirmOpen: PropTypes.func,
+  confirmValue: PropTypes.string,
 };
 
-export default UserAlertDrawer;
+export default UserConfirmDrawer;

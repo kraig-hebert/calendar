@@ -2,19 +2,19 @@ import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
   '@keyframes revealDrawer': {
-    '0%': { width: '0' },
-    '100%': { width: '200px' },
+    '0%': { height: '0' },
+    '100%': { height: '125px' },
   },
   '@keyframes hideDrawer': {
-    '0%': { width: '200px' },
-    '100%': { width: '0' },
+    '0%': { height: '125px' },
+    '100%': { height: '0' },
   },
   drawerContainer: (props) => ({
     position: 'absolute',
-    width: props.width,
-    left: '100%',
-    top: '50%',
-    transform: 'translateY(-50%)',
+    height: props.height,
+    left: '50%',
+    bottom: '100%',
+    transform: 'translateX(-50%)',
     animationName: props.animationName,
     animationDuration: '.25s',
     overflow: 'hidden',
@@ -25,12 +25,11 @@ export const useStyles = createUseStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '75px',
+    height: '125px',
     width: '200px',
-    backgroundColor: theme.alert.main,
-    borderLeft: `1px solid ${theme.primary.main}`,
+    backgroundColor: theme.success.main,
     borderTopRightRadius: '10px',
-    borderBottomRightRadius: '10px',
+    borderTopLeftRadius: '10px',
   }),
   icon: {
     position: 'absolute',
@@ -39,9 +38,5 @@ export const useStyles = createUseStyles((theme) => ({
     color: theme.primary.main,
     fontSize: '1.25rem',
     cursor: 'pointer',
-  },
-  alert: {
-    fontSize: '.75rem',
-    margin: '10px 10px',
   },
 }));

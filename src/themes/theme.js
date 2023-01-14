@@ -17,4 +17,10 @@ export const theme = {
     main: 'rgb(255,255,255)',
     transparant: 'rgba(255,255,255,0)',
   },
+  success: {
+    main: 'rgb(92,184,92)',
+  },
+  alert: {
+    main: 'rgb(217,83,79)',
+  },
 };
