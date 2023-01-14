@@ -19,7 +19,7 @@ export const useStyles = createUseStyles((theme) => ({
     animationDuration: '.25s',
     overflow: 'hidden',
   }),
-  drawerContent: (props) => ({
+  drawerContent: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
@@ -30,7 +30,7 @@ export const useStyles = createUseStyles((theme) => ({
     backgroundColor: theme.success.main,
     borderTopRightRadius: '10px',
     borderTopLeftRadius: '10px',
-  }),
+  },
   icon: {
     position: 'absolute',
     right: '5px',

@@ -5,7 +5,8 @@ import { FaWindowClose } from 'react-icons/fa';
 import { useStyles } from './styles';
 
 const UserConfirmDrawer = (props) => {
-  const { userConfirmOpen, setUserConfirmOpen, confirmValue } = props;
+  const { userConfirmOpen, setUserConfirmOpen, confirmValue, handleSave } =
+    props;
 
   const setDrawerAnimation = () => {
     if (userConfirmOpen) {
@@ -38,6 +39,7 @@ UserConfirmDrawer.propTypes = {
   userConfirmOpen: PropTypes.bool,
   setUserConfirmOpen: PropTypes.func,
   confirmValue: PropTypes.string,
+  handleSave: PropTypes.func,
 };
 
 export default UserConfirmDrawer;

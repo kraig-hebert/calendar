@@ -46,7 +46,7 @@ const EventModal = () => {
     defaultCalendars[0].title
   );
 
-  const [userConfirmOpen, setUserConfirmOpen] = useState(true);
+  const [userConfirmOpen, setUserConfirmOpen] = useState(false);
   const [confirmValue, setConfirmValue] = useState('');
 
   const [userAlertOpen, setUserAlertOpen] = useState(false);
@@ -118,11 +118,15 @@ const EventModal = () => {
     if (display) setUserAlertOpen(true);
   };
 
-  const handleSave = () => {
-    if (!savingAllowed) {
+  const handleSaveClick = () => {
+    if (savingAllowed) setUserConfirmOpen(true);
+    else {
       handleUserAlert(true);
       return;
     }
+  };
+
+  const handleSave = () => {
     let event;
     if (selectedSwitch === false) {
       event = {
@@ -228,7 +232,7 @@ const EventModal = () => {
         <ModalHeader
           inputValue={inputValue}
           setInputValue={setInputValue}
-          handleSave={handleSave}
+          handleSaveClick={handleSaveClick}
           handleDelete={handleDelete}
           clearModal={clearModal}
           titleRef={titleRef}
@@ -259,6 +263,7 @@ const EventModal = () => {
           userConfirmOpen={userConfirmOpen}
           setUserConfirmOpen={setUserConfirmOpen}
           confirmValue={confirmValue}
+          handleSave={handleSave}
         />
         <UserAlertDrawer
           userAlertOpen={userAlertOpen}

@@ -13,7 +13,7 @@ const ModalHeader = (props) => {
   const {
     inputValue,
     setInputValue,
-    handleSave,
+    handleSaveClick,
     handleDelete,
     clearModal,
     titleRef,
@@ -27,7 +27,7 @@ const ModalHeader = (props) => {
   return (
     <div className={classes.modalHeader}>
       <div className={classes.iconContainer}>
-        <FaRegSave className={classes.iconActive} onClick={handleSave} />
+        <FaRegSave className={classes.iconActive} onClick={handleSaveClick} />
         <BsTrashFill className={checkDelete()} onClick={handleDelete} />
       </div>
       <div className={classes.titleInputContainer}>
@@ -56,7 +56,7 @@ const ModalHeader = (props) => {
 ModalHeader.propTypes = {
   inputValue: PropTypes.string,
   setInputValue: PropTypes.func,
-  handleSave: PropTypes.func,
+  handleSaveClick: PropTypes.func,
   handleDelete: PropTypes.func,
   clearModal: PropTypes.func,
   titleRef: PropTypes.object,
