@@ -6,7 +6,7 @@ import { FaWindowClose } from 'react-icons/fa';
 import { useStyles } from './styles';
 
 const UserAlertDrawer = (props) => {
-  const { userAlertOpen, setUserAlertOpen } = props;
+  const { userAlertOpen, setUserAlertOpen, alertList } = props;
   const theme = useTheme();
 
   const setDrawerAnimation = () => {
@@ -27,11 +27,14 @@ const UserAlertDrawer = (props) => {
 
   const classes = useStyles(setDrawerAnimation());
 
+  const renderedAlertList = alertList.map((alert) => alert);
+
   const handleClose = () => setUserAlertOpen(false);
   return (
     <div className={classes.drawerContainer}>
       <div className={classes.drawerContent}>
         <FaWindowClose className={classes.icon} onClick={handleClose} />
+        <div className={classes.alertsContainer}>{renderedAlertList}</div>
       </div>
     </div>
   );
@@ -40,6 +43,7 @@ const UserAlertDrawer = (props) => {
 UserAlertDrawer.propTypes = {
   userAlertOpen: PropTypes.bool,
   setUserAlertOpen: PropTypes.func,
+  alertList: PropTypes.array,
 };
 
 export default UserAlertDrawer;

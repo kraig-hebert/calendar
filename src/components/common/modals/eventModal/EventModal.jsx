@@ -34,12 +34,18 @@ const EventModal = () => {
   const eventForEdit = events.filter((event) => event.id === eventForEditID)[0];
   const defaultCalendarTitles = useSelector(selectDefaultCalendarTitles);
   const defaultCalendars = useSelector(selectDefaultCalendars);
+
   const [inputValue, setInputValue] = useState('');
+  const validateInputValue = () => {
+    if (inputValue && inputValue.trim().length > 0) return true;
+    else return false;
+  };
   const [selectedSwitch, setSelectedSwitch] = useState(false);
   const [selectedCalendar, setSelectedCalendar] = useState(
     defaultCalendars[0].title
   );
   const [userAlertOpen, setUserAlertOpen] = useState(false);
+  const [alertList, setAlertList] = useState([]);
 
   const cleanUpTime = (date) => {
     const newDate = date;
@@ -60,6 +66,10 @@ const EventModal = () => {
   const [endTime, setEndTime] = useState(
     setDateTimeInputFormat(cleanUpTime(addHours(new Date(), 1)))
   );
+  const validateDateTimeValues = () => {
+    if (isAfter(new Date(endTime), new Date(startTime))) return true;
+    else return false;
+  };
 
   const [savingAllowed, setSavingAllowed] = useState(false);
 
@@ -93,13 +103,27 @@ const EventModal = () => {
     else return theme.light.main;
   };
 
-  const handleUserAlert = () => {
-    setUserAlertOpen(true);
+  const handleUserAlert = (display) => {
+    const newAlertList = [];
+    if (!validateInputValue())
+      newAlertList.push(
+        <div key={1} className={classes.alert}>
+          Please enter a valid title.
+        </div>
+      );
+    if (!validateDateTimeValues())
+      newAlertList.push(
+        <div key={2} className={classes.alert}>
+          Start Time is after End Time.
+        </div>
+      );
+    setAlertList(newAlertList);
+    if (display) setUserAlertOpen(true);
   };
 
   const handleSave = () => {
     if (!savingAllowed) {
-      handleUserAlert();
+      handleUserAlert(true);
       return;
     }
     let event;
@@ -152,12 +176,25 @@ const EventModal = () => {
     modalHeight: `${allCalendars.length * 40}px`,
   });
 
+  const handleSavingAllowed = () => {
+    setSavingAllowed(true);
+    setUserAlertOpen(false);
+  };
+
+  const handleSavingNotAllowed = () => {
+    handleUserAlert(false);
+    setSavingAllowed(false);
+  };
+
   useEffect(() => {
     if (selectedSwitch) {
-      if (isAfter(new Date(endTime), new Date(startTime)) && inputValue)
-        setSavingAllowed(true);
-      else setSavingAllowed(false);
-    } else inputValue ? setSavingAllowed(true) : setSavingAllowed(false);
+      if (validateDateTimeValues() && validateInputValue()) {
+        handleSavingAllowed();
+      } else {
+        handleSavingNotAllowed();
+      }
+    } else
+      validateInputValue() ? handleSavingAllowed() : handleSavingNotAllowed();
   }, [inputValue, startTime, endTime, selectedSwitch]);
 
   useEffect(() => {
@@ -224,6 +261,7 @@ const EventModal = () => {
         <UserAlertDrawer
           userAlertOpen={userAlertOpen}
           setUserAlertOpen={setUserAlertOpen}
+          alertList={alertList}
         />
       </div>
     </div>
