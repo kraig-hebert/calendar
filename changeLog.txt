@@ -1,5 +1,8 @@
 1-14-2023
 ---------
+UserConfirmDrawer
+    - added drawer with animation to display a promt for the user to correct input data before saving
+    - populated button content dynamically
 
 1-13-2023
 ---------
