@@ -17,7 +17,7 @@ export const useStyles = createUseStyles((theme) => ({
     top: '100%',
     transform: 'translateX(-50%)',
     animationName: props.animationName,
-    animationDuration: '.25s',
+    animationDuration: '.1s',
     overflow: 'hidden',
   }),
   drawerContent: (props) => ({
