@@ -49,8 +49,9 @@ export const useStyles = createUseStyles((theme) => ({
   dateContent: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     width: '100%',
+    height: '100%',
   },
 }));

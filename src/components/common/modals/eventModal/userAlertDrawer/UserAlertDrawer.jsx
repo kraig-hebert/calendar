@@ -10,12 +10,12 @@ const UserAlertDrawer = (props) => {
   const setDrawerAnimation = () => {
     if (userAlertOpen) {
       return {
-        width: '200px',
+        height: '75px',
         animationName: '$revealDrawer',
       };
     } else {
       return {
-        width: '0',
+        height: '0',
         animationName: '$hideDrawer',
       };
     }
