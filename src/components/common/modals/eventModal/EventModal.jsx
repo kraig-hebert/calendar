@@ -23,6 +23,7 @@ import TimeContainer from './timeContainer/TimeContainer';
 import UserConfirmDrawer from './userConfirmDrawer/UserConfirmDrawer';
 import UserAlertDrawer from './userAlertDrawer/UserAlertDrawer';
 import { useTheme } from 'react-jss';
+import IntertvalDrawer from './intervalDrawer/IntertvalDrawer';
 
 const EventModal = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,8 @@ const EventModal = () => {
 
   const [userAlertOpen, setUserAlertOpen] = useState(false);
   const [alertList, setAlertList] = useState([]);
+
+  const [intervalOpen, setIntervalOpen] = useState(true);
 
   const cleanUpTime = (date) => {
     const newDate = date;
@@ -275,6 +278,10 @@ const EventModal = () => {
           userAlertOpen={userAlertOpen}
           setUserAlertOpen={setUserAlertOpen}
           alertList={alertList}
+        />
+        <IntertvalDrawer
+          intervalOpen={intervalOpen}
+          setIntervalOpen={setIntervalOpen}
         />
       </div>
     </div>
