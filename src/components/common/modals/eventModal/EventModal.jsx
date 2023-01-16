@@ -53,7 +53,7 @@ const EventModal = () => {
   const [userAlertOpen, setUserAlertOpen] = useState(false);
   const [alertList, setAlertList] = useState([]);
 
-  const [intervalOpen, setIntervalOpen] = useState(true);
+  const [intervalOpen, setIntervalOpen] = useState(false);
 
   const cleanUpTime = (date) => {
     const newDate = date;
@@ -95,6 +95,7 @@ const EventModal = () => {
       setSavingAllowed(false);
       setUserAlertOpen(false);
       setUserConfirmOpen(false);
+      setIntervalOpen(false);
     }, 500);
   };
   // returns dateObject created from the dateInput value

@@ -1,33 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import IntervalCreator from './intervalCreator/IntervalCreator';
 import { useStyles } from './styles';
 import { FaWindowClose } from 'react-icons/fa';
 
 const IntertvalDrawer = (props) => {
   const { intervalOpen, setIntervalOpen } = props;
 
+  const handleClose = () => setIntervalOpen(false);
+  const handleClick = () => {
+    setIntervalOpen(true);
+  };
+
   const setDrawerAnimation = () => {
     if (intervalOpen) {
       return {
         width: '200px',
+        height: '200px',
         animationName: '$revealDrawer',
       };
     } else {
       return {
-        width: '0',
+        width: '50px',
+        height: '100px',
         animationName: '$hideDrawer',
       };
     }
   };
 
-  const classes = useStyles(setDrawerAnimation());
-  const handleClose = () => setIntervalOpen(false);
+  const setButtonAnimation = () => {
+    if (!intervalOpen) {
+      return {
+        width: '30px',
+        animationName: '$revealButton',
+      };
+    } else {
+      return {
+        width: '0px',
+        animationName: '$hideButton',
+      };
+    }
+  };
+
+  const classes = useStyles({
+    drawerProps: setDrawerAnimation(),
+    buttonProps: setButtonAnimation(),
+  });
 
   return (
     <div className={classes.drawerContainer}>
       <div className={classes.drawerContent}>
-        <FaWindowClose className={classes.icon} onClick={handleClose} />
+        {intervalOpen && (
+          <FaWindowClose className={classes.icon} onClick={handleClose} />
+        )}
+        <div className={classes.button} onClick={handleClick}>
+          <p>Create Interval</p>
+        </div>
+        <IntervalCreator intervalOpen={intervalOpen} />
       </div>
     </div>
   );
