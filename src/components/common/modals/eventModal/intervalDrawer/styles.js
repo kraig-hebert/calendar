@@ -3,12 +3,12 @@ import { createUseStyles } from 'react-jss';
 export const useStyles = createUseStyles((theme) => ({
   '@keyframes revealDrawer': {
     '0%': { width: '50px', height: '100px' },
-    '50%': { width: '50px', height: '200px' },
-    '100%': { width: '200px', height: '200px' },
+    '50%': { width: '50px', height: '250px' },
+    '100%': { width: '200px', height: '250px' },
   },
   '@keyframes hideDrawer': {
-    '0%': { width: '200px', height: '200px' },
-    '50%': { width: '50px', height: '200px' },
+    '0%': { width: '200px', height: '250px' },
+    '50%': { width: '50px', height: '250px' },
     '100%': { width: '50px', height: '100px' },
   },
   '@keyframes revealButton': {

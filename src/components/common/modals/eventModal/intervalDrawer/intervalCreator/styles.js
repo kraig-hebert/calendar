@@ -1,6 +1,6 @@
 import { createUseStyles } from 'react-jss';
 
-export const useStyles = createUseStyles({
+export const useStyles = createUseStyles((theme) => ({
   '@keyframes revealIntervalCreator': {
     '0%': { width: '0' },
     '50%': { width: '0' },
@@ -13,13 +13,24 @@ export const useStyles = createUseStyles({
   },
   intervalContainer: (props) => ({
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     width: props.width,
     height: '100%',
-    backgroundColor: 'red',
     animationName: props.animationName,
     animationDuration: '.75s',
     overflow: 'hidden',
+    fontSize: '1.25rem',
   }),
-});
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '200px',
+    height: '100%',
+  },
+  icon: {
+    fontSize: '1.25rem',
+    color: theme.primary.main,
+    marginTop: '10px',
+  },
+}));

@@ -17,7 +17,7 @@ const IntertvalDrawer = (props) => {
     if (intervalOpen) {
       return {
         width: '200px',
-        height: '200px',
+        height: '250px',
         animationName: '$revealDrawer',
       };
     } else {

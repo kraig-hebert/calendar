@@ -137,6 +137,24 @@
       "singleDate": "2023-01-13T05:00:00.000Z",
       "allDay": true,
       "id": 35
+    },
+    {
+      "title": "Legs",
+      "filter": "Stretch",
+      "color": "rgb(255,255,255)",
+      "startTime": "2023-01-16T23:00:00.000Z",
+      "endTime": "2023-01-17T00:00:00.000Z",
+      "allDay": false,
+      "id": 36
+    },
+    {
+      "title": "5 miles",
+      "filter": "Runs",
+      "color": "rgb(255,255,255)",
+      "startTime": "2023-01-17T00:00:00.000Z",
+      "endTime": "2023-01-17T01:00:00.000Z",
+      "allDay": false,
+      "id": 37
     }
   ]
 }
