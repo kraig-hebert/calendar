@@ -4,6 +4,8 @@ FEATURES
 MonthCalendar-OverFlowEvents-EventListPopUp: set animation to start from bottom/top depending on which row of the MonthCalendar the EventListPopUp is located in
 
 Events: 
+    - only allow user to add events in 1 hour increments
+        - can revisit and change to 30 minutes when I fix the display bug of calendar growing
     - add scrolling effect onHover for events with title to long on MonthCalendar
     - allow user to create an event to populate the future based on interval chosen
     - create logic so multiple events can span certain timeframes
