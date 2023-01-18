@@ -1,3 +1,12 @@
+1-17-2023
+---------
+DayCalendarColumn
+    - cloned into WeekCalendarColumn
+    - use WeekCalendarColumn for WeekCalendar
+    - use DayCalendarColumn for DayCalendar
+    - bypasses the bug from JSS where it doesn't flush identical components from the DOM when rendering page.
+    - caused styles to not be attatched to the right component, causing page to render improperly
+    
 1-16-2023
 ---------
 IntervalCreator
