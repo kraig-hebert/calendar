@@ -4,7 +4,7 @@ import { startOfWeek, addDays } from 'date-fns';
 
 import { selectCurrentDate } from '../../../../reducers/appSettings';
 import { selectWeekFilteredEvents } from '../../../../reducers/eventsSlice';
-import DayCalendarColumn from '../../../common/dayCalendarColumn/DayCalendarColumn';
+import WeekCalendarColumn from '../../../common/weekCalendarColumn/WeekCalendarColumn';
 import { useStyles } from './styles';
 
 const WeekCalendar = () => {
@@ -39,7 +39,7 @@ const WeekCalendar = () => {
         <p className={classes.dayName}>{`${dates[index].getDate()} ${
           days[index]
         }`}</p>
-        <DayCalendarColumn
+        <WeekCalendarColumn
           blockWidth="100%"
           displayTime={day === 'Sun' ? true : false}
           borderRight={setBorderRight(index)}
