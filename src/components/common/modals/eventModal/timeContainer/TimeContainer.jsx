@@ -51,31 +51,21 @@ const TimeContainer = (props) => {
       <div className={classes.dateContainer}>
         <div className={classes.dateInputContainer}>
           <p>Date</p>
-          <DateInput value={singleDate} setValue={setSingleDate} />
+          <DateInput value={singleDate} setValue={setSingleDate} type="date" />
         </div>
       </div>
       <div className={classes.dateTimeContainer}>
         <div className={classes.dateInputContainer}>
           <p>Start Time</p>
-          <input
-            type="datetime-local"
-            name="start-date"
-            id="start-date"
-            className={classes.dateInput}
+          <DateInput
             value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
+            setValue={setStartTime}
+            type="datetime"
           />
         </div>
         <div className={classes.dateInputContainer}>
           <p>End Time</p>
-          <input
-            type="datetime-local"
-            name="end-date"
-            id="end-date"
-            className={classes.dateInput}
-            value={endTime}
-            onChange={(e) => setEndTime(e.target.value)}
-          />
+          <DateInput value={endTime} setValue={setEndTime} type="datetime" />
         </div>
       </div>
     </div>
