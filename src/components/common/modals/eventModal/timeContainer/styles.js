@@ -48,8 +48,13 @@ export const useStyles = createUseStyles((theme) => ({
       color: theme.primary.main,
     },
   },
-  dateInput: {
+  inputContainer: {
+    position: 'relative',
     width: '60%',
+    height: '100%',
+  },
+  dateInput: {
+    width: '100%',
     height: '35px',
     margin: '10px 0',
     padding: '5px',
@@ -57,11 +62,20 @@ export const useStyles = createUseStyles((theme) => ({
     borderRadius: '10px',
     fontSize: '1.25rem',
     '&::-webkit-calendar-picker-indicator': {
-      // filter: 'invert(1)',
-      cursor: 'pointer',
+      filter: 'invert(1)',
+      pointerEvents: 'none',
     },
     '&:active, &:focus': {
       outline: 'none',
     },
+  },
+  icon: {
+    position: 'absolute',
+    right: '10px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    cursor: 'pointer',
+    fontSize: '1.5rem',
+    color: theme.primary.main,
   },
 }));

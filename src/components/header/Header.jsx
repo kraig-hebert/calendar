@@ -2,9 +2,7 @@ import React from 'react';
 import { useStyles } from './styles';
 import { FaCalendarPlus } from 'react-icons/fa';
 import NavBar from './navBar/NavBar';
-import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { mainHeaderButtonClicked } from '../../reducers/appSettings';
 import { addEventButtonClicked } from '../../reducers/appSettings';
 
 const Header = () => {

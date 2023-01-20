@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaRegCalendarAlt } from 'react-icons/fa';
 
+import DateInput from '../../../dateInput/DateInput';
 import { useStyles } from './styles';
 
 const TimeContainer = (props) => {
@@ -49,14 +51,7 @@ const TimeContainer = (props) => {
       <div className={classes.dateContainer}>
         <div className={classes.dateInputContainer}>
           <p>Date</p>
-          <input
-            type="date"
-            name="date"
-            id="date"
-            className={classes.dateInput}
-            value={singleDate}
-            onChange={(e) => setSingleDate(e.target.value)}
-          />
+          <DateInput value={singleDate} setValue={setSingleDate} />
         </div>
       </div>
       <div className={classes.dateTimeContainer}>
