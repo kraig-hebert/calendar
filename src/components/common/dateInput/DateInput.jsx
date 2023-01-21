@@ -18,12 +18,12 @@ const DateInput = (props) => {
   };
 
   function handleDocumentClick(event) {
-    if (!showPicker) return;
-    else if (
+    if (
       event.target !== calendarRef.current &&
       event.target !== iconRef.current
-    )
+    ) {
       setShowPicker(false);
+    }
   }
   useEffect(() => {
     document.addEventListener('click', handleDocumentClick);
@@ -44,7 +44,6 @@ const DateInput = (props) => {
         year={2023}
         month={0}
         showPicker={showPicker}
-        setShowPicker={setShowPicker}
         ref={calendarRef}
       />
       <FaRegCalendarAlt id="datePickerIcon" className={classes.icon} />
