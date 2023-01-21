@@ -1,18 +1,21 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
-  calendar: {
-    display: 'none',
+  calendar: (props) => ({
+    position: 'absolute',
+    top: '100%',
+    left: '0',
+    display: props.display ? 'grid' : 'none',
     gridTemplateColumns: 'repeat(7, 1fr)',
-    gridTemplateRows: 'repeat(7, 30px)',
+    gridTemplateRows: `repeat(${props.rowTotal}, 30px)`,
     width: '80%',
-    marginTop: '10px',
-    marginBottom: '20px',
+    backgroundColor: theme.light.main,
+    zIndex: '4',
     '& div': {
-      extend: 'baseDay',
+      extend: 'day',
       cursor: 'default',
     },
-  },
+  }),
   day: {
     display: 'flex',
     justifyContent: 'center',

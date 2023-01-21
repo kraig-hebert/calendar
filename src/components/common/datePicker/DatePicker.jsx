@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import { getDay, getDaysInMonth, format } from 'date-fns';
+import { getDay, getDaysInMonth, getWeeksInMonth } from 'date-fns';
 
 import { useStyles } from './styles';
 
-const DatePicker = (props) => {
-  const { month, year, date } = props;
-  const classes = useStyles();
+const DatePicker = forwardRef((props, ref) => {
+  const { month, year, showPicker } = props;
+  const setCalendarRows = () => getWeeksInMonth(new Date(year, month, 1));
+  const classes = useStyles({
+    display: showPicker,
+    rowTotal: setCalendarRows(),
+  });
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const numberOfDaysInMonth = getDaysInMonth(new Date(year, month, 1));
 
@@ -38,7 +42,17 @@ const DatePicker = (props) => {
     return setDatesOnCalendar(renderedCalendarWithHeader);
   };
 
-  return <div className={classes.calendar}>{assembleCalendar()}</div>;
+  return (
+    <div className={classes.calendar} ref={ref}>
+      {assembleCalendar()}
+    </div>
+  );
+});
+
+DatePicker.propTypes = {
+  month: PropTypes.number,
+  year: PropTypes.number,
+  showPicker: PropTypes.bool,
 };
 
 export default DatePicker;
