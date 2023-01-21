@@ -10,6 +10,12 @@ export const useStyles = createUseStyles((theme) => ({
     padding: '5px 0',
     fontSize: '1.15rem',
     color: theme.light.main,
+    '& div': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      cursor: 'pointer',
+    },
     '& div:first-of-type': {
       marginLeft: '15px',
     },
