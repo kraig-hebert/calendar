@@ -19,7 +19,7 @@ const DateInput = (props) => {
 
   function handleDocumentClick(event) {
     if (
-      event.target !== calendarRef.current &&
+      !calendarRef.current.contains(event.target) &&
       event.target !== iconRef.current
     ) {
       setShowPicker(false);

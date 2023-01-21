@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getDay, getDaysInMonth, getWeeksInMonth } from 'date-fns';
 
 import { useStyles } from './styles';
+import PickerHeader from './pickerHeader/PickerHeader';
 
 const DatePicker = forwardRef((props, ref) => {
   const { month, year, showPicker } = props;
@@ -43,8 +44,11 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   return (
-    <div className={classes.calendar} ref={ref}>
-      {assembleCalendar()}
+    <div className={classes.picker}>
+      <PickerHeader />
+      <div className={classes.calendar} ref={ref}>
+        {assembleCalendar()}
+      </div>
     </div>
   );
 });

@@ -14,7 +14,6 @@ export const useStyles = createUseStyles((theme) => ({
     border: '1px solid ' + theme.primary.main,
     borderRadius: '10px',
     fontSize: '1.25rem',
-    pointerEvents: 'none',
     '&::-webkit-calendar-picker-indicator': {
       filter: 'invert(1)',
       pointerEvents: 'none',
