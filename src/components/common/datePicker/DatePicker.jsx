@@ -44,11 +44,9 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   return (
-    <div className={classes.picker}>
+    <div className={classes.picker} ref={ref}>
       <PickerHeader />
-      <div className={classes.calendar} ref={ref}>
-        {assembleCalendar()}
-      </div>
+      <div className={classes.calendar}>{assembleCalendar()}</div>
     </div>
   );
 });
