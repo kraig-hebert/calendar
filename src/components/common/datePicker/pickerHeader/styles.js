@@ -10,17 +10,23 @@ export const useStyles = createUseStyles((theme) => ({
     padding: '5px 0',
     fontSize: '1.15rem',
     color: theme.light.main,
-    '& div': {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      cursor: 'pointer',
-    },
-    '& div:first-of-type': {
+  },
+  selectorContainer: {
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    '&:first-of-type': {
       marginLeft: '15px',
     },
-    '& div:last-of-type': {
+    '&:last-of-type': {
       marginRight: '15px',
     },
+    '& > p': {
+      color: `${theme.light.main} !important`,
+    },
+  },
+  downArrow: {
+    cursor: 'pointer',
   },
 }));
