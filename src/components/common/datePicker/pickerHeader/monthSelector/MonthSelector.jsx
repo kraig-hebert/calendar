@@ -4,8 +4,13 @@ import PropTypes from 'prop-types';
 import { useStyles } from './styles';
 
 const MonthSelector = (props) => {
-  const { selectedMonth, setSelectedMonth, optionsOpen, setOptionsOpen } =
-    props;
+  const {
+    selectedMonth,
+    setSelectedMonth,
+    optionsOpen,
+    setOptionsOpen,
+    setValue,
+  } = props;
   const classes = useStyles({ display: optionsOpen });
 
   const months = [
@@ -27,6 +32,7 @@ const MonthSelector = (props) => {
     console.log(e);
     setOptionsOpen(false);
     setSelectedMonth(e.target.textContent);
+    setValue();
   };
 
   const renderedMonthOptions = months.map((month, index) => (
@@ -43,6 +49,7 @@ MonthSelector.propTypes = {
   setActiveMonth: PropTypes.func,
   optionsOpen: PropTypes.bool,
   setOptionsOpen: PropTypes.func,
+  setValue: PropTypes.func,
 };
 
 export default MonthSelector;

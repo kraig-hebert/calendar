@@ -6,7 +6,7 @@ import { useStyles } from './styles';
 import PickerHeader from './pickerHeader/PickerHeader';
 
 const DatePicker = forwardRef((props, ref) => {
-  const { month, year, showPicker } = props;
+  const { month, year, showPicker, setValue } = props;
   const months = [
     'January',
     'February',
@@ -60,7 +60,6 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const assembleCalendar = () => {
-    console.log('assemble');
     const renderedCalendarWithHeader = days.map((day, index) => (
       <div key={index}>{day}</div>
     ));
@@ -74,6 +73,7 @@ const DatePicker = forwardRef((props, ref) => {
         setSelectedMonth={setSelectedMonth}
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
+        setValue={setValue}
       />
       <div className={classes.calendar}>{assembleCalendar()}</div>
     </div>
@@ -84,6 +84,7 @@ DatePicker.propTypes = {
   month: PropTypes.number,
   year: PropTypes.number,
   showPicker: PropTypes.bool,
+  setValue: PropTypes.func,
 };
 
 export default DatePicker;

@@ -9,7 +9,6 @@ export const useStyles = createUseStyles((theme) => ({
     alignItems: 'flex-start',
     flexDirection: 'column',
     zIndex: '5',
-    color: theme.dark.main,
     boxShadow: `0px 0px 3px ${theme.dark.main}`,
   }),
   monthOption: {
@@ -23,7 +22,9 @@ export const useStyles = createUseStyles((theme) => ({
     cursor: 'pointer',
     '&:hover': {
       backgroundColor: theme.primary.main,
-      color: theme.light.main,
+      '& p': {
+        color: theme.light.main,
+      },
     },
   },
 }));
