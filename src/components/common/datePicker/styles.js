@@ -20,21 +20,28 @@ export const useStyles = createUseStyles((theme) => ({
     width: '100%',
     backgroundColor: theme.light.main,
     zIndex: '4',
-    '& div': {
-      extend: 'day',
-      cursor: 'default',
-    },
   }),
-  day: {
+  baseDay: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: '30px',
     height: '30px',
+  },
+  headerDay: {
+    extend: 'baseDay',
+    cursor: 'default',
+  },
+  day: {
+    extend: 'baseDay',
     borderRadius: '50%',
     cursor: 'pointer !important',
     '&:hover': {
       backgroundColor: theme.secondary.main,
     },
+  },
+  activeDay: {
+    extend: 'baseDay',
+    backgroundColor: theme.primary.main,
   },
 }));

@@ -46,6 +46,7 @@ const DateInput = (props) => {
         month={0}
         setValue={setValue}
         showPicker={showPicker}
+        setShowPicker={setShowPicker}
         ref={calendarRef}
       />
       <FaRegCalendarAlt id="datePickerIcon" className={classes.icon} />

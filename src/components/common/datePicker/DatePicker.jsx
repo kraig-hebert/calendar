@@ -7,7 +7,7 @@ import { useStyles } from './styles';
 import PickerHeader from './pickerHeader/PickerHeader';
 
 const DatePicker = forwardRef((props, ref) => {
-  const { month, year, showPicker, setValue, type } = props;
+  const { month, year, showPicker, setShowPicker, setValue, type } = props;
   const months = [
     'January',
     'February',
@@ -63,19 +63,23 @@ const DatePicker = forwardRef((props, ref) => {
 
   const assembleCalendar = () => {
     const renderedCalendarWithHeader = days.map((day, index) => (
-      <div key={index}>{day}</div>
+      <div key={index} className={classes.headerDay}>
+        {day}
+      </div>
     ));
     return setDatesOnCalendar(renderedCalendarWithHeader);
   };
 
   useEffect(() => {
-    if (type === 'date')
+    if (type === 'date') {
+      setShowPicker(false);
       setValue(
         setDateFormat(
           new Date(selectedYear, months.indexOf(selectedMonth), selectedDate),
           type
         )
       );
+    }
   }, [selectedDate]);
 
   return (
@@ -96,6 +100,7 @@ DatePicker.propTypes = {
   month: PropTypes.number,
   year: PropTypes.number,
   showPicker: PropTypes.bool,
+  setShowPicker: PropTypes.func,
   setValue: PropTypes.func,
   type: PropTypes.string,
 };
