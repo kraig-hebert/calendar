@@ -197,6 +197,14 @@
       "singleDate": "2023-01-24T05:00:00.000Z",
       "allDay": true,
       "id": 42
+    },
+    {
+      "title": "New Date",
+      "filter": "Runs",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2023-01-26T05:00:00.000Z",
+      "allDay": true,
+      "id": 43
     }
   ]
 }

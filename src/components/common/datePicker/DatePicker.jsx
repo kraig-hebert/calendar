@@ -43,6 +43,7 @@ const DatePicker = forwardRef((props, ref) => {
     if (selectedDate === day) {
       if (months.indexOf(selectedMonth) === month && selectedYear === year)
         return classes.selectedDay;
+      else return classes.day;
     } else return classes.day;
   };
 
