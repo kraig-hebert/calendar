@@ -2,12 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 
+import { getDateFromFormat } from '../../../helpers/dateHelpers';
 import { useStyles } from './styles';
 import DatePicker from '../datePicker/DatePicker';
 
 const DateInput = (props) => {
   const { value, setValue, type } = props;
-  const valueAsDateObject = new Date(value);
+  const valueAsDateObject = getDateFromFormat(value, type);
   const classes = useStyles();
   const calendarRef = useRef();
   const iconRef = useRef();

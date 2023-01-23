@@ -22,3 +22,10 @@ export const setDateFormat = (date, type) => {
     return newDate.slice(0, 10) + 'T' + newDate.slice(10);
   }
 };
+
+export const getDateFromFormat = (value, type) => {
+  if (type === 'date') {
+    const dateValue = value.split('-');
+    return new Date(dateValue[0], dateValue[1] - 1, dateValue[2]);
+  } else return new Date(value);
+};
