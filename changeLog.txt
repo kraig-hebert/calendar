@@ -1,3 +1,13 @@
+1-23-2023
+---------
+DateInput
+DatePicker
+    - disabled built in date picker and icon
+    - added new custom icon and logic for opening and closing datepicker
+    - created calendar portion of a datepicker
+    - logic created to allow user to select a month and date and this will update the date input
+    - choosing month and selecting a time is not operational yet
+
 1-17-2023
 ---------
 DayCalendarColumn
