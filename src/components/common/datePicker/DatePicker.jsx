@@ -7,7 +7,7 @@ import { useStyles } from './styles';
 import PickerHeader from './pickerHeader/PickerHeader';
 
 const DatePicker = forwardRef((props, ref) => {
-  const { month, year, showPicker, setShowPicker, setValue, type } = props;
+  const { day, month, year, showPicker, setShowPicker, setValue, type } = props;
   const months = [
     'January',
     'February',
@@ -23,7 +23,7 @@ const DatePicker = forwardRef((props, ref) => {
     'December',
   ];
 
-  const [selectedDate, setSelectedDate] = useState(1);
+  const [selectedDate, setSelectedDate] = useState(day);
   const [selectedMonth, setSelectedMonth] = useState(months[month]);
   const [selectedYear, setSelectedYear] = useState(year);
 
@@ -39,6 +39,12 @@ const DatePicker = forwardRef((props, ref) => {
   );
 
   const handleDayClick = (day) => setSelectedDate(day);
+  const checkIfSelectedDay = (day) => {
+    if (selectedDate === day) {
+      if (months.indexOf(selectedMonth) === month && selectedYear === year)
+        return classes.selectedDay;
+    } else return classes.day;
+  };
 
   const setDatesOnCalendar = (renderedCalendar) => {
     const startDayOfMonth = getDay(
@@ -52,7 +58,7 @@ const DatePicker = forwardRef((props, ref) => {
         <div
           key={i + 6 + startDayOfMonth}
           onClick={() => handleDayClick(i)}
-          className={classes.day}
+          className={checkIfSelectedDay(i)}
         >
           {i}
         </div>
@@ -97,6 +103,7 @@ const DatePicker = forwardRef((props, ref) => {
 });
 
 DatePicker.propTypes = {
+  day: PropTypes.number,
   month: PropTypes.number,
   year: PropTypes.number,
   showPicker: PropTypes.bool,

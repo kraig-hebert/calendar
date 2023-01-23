@@ -7,6 +7,7 @@ import DatePicker from '../datePicker/DatePicker';
 
 const DateInput = (props) => {
   const { value, setValue, type } = props;
+  const valueAsDateObject = new Date(value);
   const classes = useStyles();
   const calendarRef = useRef();
   const iconRef = useRef();
@@ -42,8 +43,9 @@ const DateInput = (props) => {
       />
       <DatePicker
         type={type}
-        year={2023}
-        month={0}
+        year={valueAsDateObject.getFullYear()}
+        month={valueAsDateObject.getMonth()}
+        day={valueAsDateObject.getDate()}
         setValue={setValue}
         showPicker={showPicker}
         setShowPicker={setShowPicker}

@@ -25,8 +25,9 @@ export const useStyles = createUseStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '30px',
-    height: '30px',
+    margin: '1px',
+    width: '25px',
+    height: '25px',
   },
   headerDay: {
     extend: 'baseDay',
@@ -40,8 +41,11 @@ export const useStyles = createUseStyles((theme) => ({
       backgroundColor: theme.secondary.main,
     },
   },
-  activeDay: {
+  selectedDay: {
     extend: 'baseDay',
+    borderRadius: '50%',
+    cursor: 'pointer !important',
     backgroundColor: theme.primary.main,
+    color: theme.light.main,
   },
 }));
