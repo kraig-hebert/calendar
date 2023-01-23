@@ -6,13 +6,8 @@ import { useStyles } from './styles';
 import MonthSelector from './monthSelector/MonthSelector';
 
 const PickerHeader = (props) => {
-  const {
-    selectedMonth,
-    setSelectedMonth,
-    selectedYear,
-    setselectedYear,
-    setValue,
-  } = props;
+  const { selectedMonth, setSelectedMonth, selectedYear, setselectedYear } =
+    props;
   const classes = useStyles();
 
   const [optionsOpen, setOptionsOpen] = useState(false);
@@ -30,7 +25,6 @@ const PickerHeader = (props) => {
           setSelectedMonth={setSelectedMonth}
           optionsOpen={optionsOpen}
           setOptionsOpen={setOptionsOpen}
-          setValue={setValue}
         />
       </div>
       <div>
@@ -46,7 +40,6 @@ PickerHeader.propTypes = {
   setSelectedMonth: PropTypes.func,
   selectedYear: PropTypes.number,
   setSelectedYear: PropTypes.func,
-  setValue: PropTypes.func,
 };
 
 export default PickerHeader;

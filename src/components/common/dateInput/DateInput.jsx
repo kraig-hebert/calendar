@@ -38,11 +38,13 @@ const DateInput = (props) => {
         type={setInputType()}
         className={classes.dateInput}
         value={value}
+        onChange={() => {}}
       />
       <DatePicker
+        type={type}
         year={2023}
         month={0}
-        setvalue={setValue}
+        setValue={setValue}
         showPicker={showPicker}
         ref={calendarRef}
       />

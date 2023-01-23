@@ -1,12 +1,13 @@
-import React, { useState, forwardRef } from 'react';
+import React, { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getDay, getDaysInMonth, getWeeksInMonth } from 'date-fns';
+import { getDay, getDaysInMonth, getWeeksInMonth, setDate } from 'date-fns';
 
+import { setDateFormat } from '../../../helpers/dateHelpers';
 import { useStyles } from './styles';
 import PickerHeader from './pickerHeader/PickerHeader';
 
 const DatePicker = forwardRef((props, ref) => {
-  const { month, year, showPicker, setValue } = props;
+  const { month, year, showPicker, setValue, type } = props;
   const months = [
     'January',
     'February',
@@ -22,6 +23,7 @@ const DatePicker = forwardRef((props, ref) => {
     'December',
   ];
 
+  const [selectedDate, setSelectedDate] = useState(1);
   const [selectedMonth, setSelectedMonth] = useState(months[month]);
   const [selectedYear, setSelectedYear] = useState(year);
 
@@ -36,7 +38,7 @@ const DatePicker = forwardRef((props, ref) => {
     new Date(year, months.indexOf(selectedMonth), 1)
   );
 
-  const handleDayClick = () => {};
+  const handleDayClick = (day) => setSelectedDate(day);
 
   const setDatesOnCalendar = (renderedCalendar) => {
     const startDayOfMonth = getDay(
@@ -49,7 +51,7 @@ const DatePicker = forwardRef((props, ref) => {
       renderedCalendar.push(
         <div
           key={i + 6 + startDayOfMonth}
-          onClick={(e) => handleDayClick(e, i)}
+          onClick={() => handleDayClick(i)}
           className={classes.day}
         >
           {i}
@@ -65,6 +67,16 @@ const DatePicker = forwardRef((props, ref) => {
     ));
     return setDatesOnCalendar(renderedCalendarWithHeader);
   };
+
+  useEffect(() => {
+    if (type === 'date')
+      setValue(
+        setDateFormat(
+          new Date(selectedYear, months.indexOf(selectedMonth), selectedDate),
+          type
+        )
+      );
+  }, [selectedDate]);
 
   return (
     <div className={classes.picker} ref={ref}>
@@ -85,6 +97,7 @@ DatePicker.propTypes = {
   year: PropTypes.number,
   showPicker: PropTypes.bool,
   setValue: PropTypes.func,
+  type: PropTypes.string,
 };
 
 export default DatePicker;

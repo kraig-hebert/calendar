@@ -181,6 +181,22 @@
       "endTime": "2023-01-21T14:00:00.000Z",
       "allDay": false,
       "id": 40
+    },
+    {
+      "title": "Test",
+      "filter": "Stretch",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2023-01-07T05:00:00.000Z",
+      "allDay": true,
+      "id": 41
+    },
+    {
+      "title": "Test",
+      "filter": "Events",
+      "color": "rgb(0,0,0)",
+      "singleDate": "2023-01-24T05:00:00.000Z",
+      "allDay": true,
+      "id": 42
     }
   ]
 }

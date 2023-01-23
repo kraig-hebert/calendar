@@ -24,6 +24,7 @@ import UserConfirmDrawer from './userConfirmDrawer/UserConfirmDrawer';
 import UserAlertDrawer from './userAlertDrawer/UserAlertDrawer';
 import { useTheme } from 'react-jss';
 import IntertvalDrawer from './intervalDrawer/IntertvalDrawer';
+import { setDateFormat } from '../../../../helpers/dateHelpers';
 
 const EventModal = () => {
   const dispatch = useDispatch();
@@ -61,19 +62,16 @@ const EventModal = () => {
     return newDate;
   };
 
-  const setDateInputFormat = (date) => format(date, 'yyyy-MM-dd');
-  const setDateTimeInputFormat = (date) => {
-    const newDate = format(date, 'yyyy-MM-ddHH:mm:ss');
-    return newDate.slice(0, 10) + 'T' + newDate.slice(10);
-  };
-
-  const [singleDate, setSingleDate] = useState(setDateInputFormat(new Date()));
+  const [singleDate, setSingleDate] = useState(
+    setDateFormat(new Date(), 'date')
+  );
   const [startTime, setStartTime] = useState(
-    setDateTimeInputFormat(cleanUpTime(new Date()))
+    setDateFormat(cleanUpTime(new Date()), 'datetime')
   );
   const [endTime, setEndTime] = useState(
-    setDateTimeInputFormat(cleanUpTime(addHours(new Date(), 1)))
+    setDateFormat(cleanUpTime(addHours(new Date(), 1)), 'datetime')
   );
+
   const validateDateTimeValues = () => {
     if (isAfter(new Date(endTime), new Date(startTime))) return true;
     else return false;
@@ -89,9 +87,11 @@ const EventModal = () => {
       setInputValue('');
       setSelectedSwitch(false);
       setSelectedCalendar(defaultCalendars[0].title);
-      setSingleDate(setDateInputFormat(new Date()));
-      setStartTime(setDateTimeInputFormat(cleanUpTime(new Date())));
-      setEndTime(setDateTimeInputFormat(addHours(cleanUpTime(new Date()), 1)));
+      setSingleDate(setDateFormat(new Date(), 'date'));
+      setStartTime(setDateFormat(cleanUpTime(new Date()), 'datetime'));
+      setEndTime(
+        setDateFormat(addHours(cleanUpTime(new Date()), 1), 'datetime')
+      );
       setSavingAllowed(false);
       setUserAlertOpen(false);
       setUserConfirmOpen(false);
@@ -214,23 +214,25 @@ const EventModal = () => {
       titleRef.current.focus();
       if (eventForEdit.hasOwnProperty('singleDate')) {
         setSelectedSwitch(false);
-        setSingleDate(setDateInputFormat(eventForEdit.singleDate));
+        setSingleDate(setDateFormat(eventForEdit.singleDate, 'date'));
 
         setStartTime(
-          setDateTimeInputFormat(
-            cleanUpTime(new Date(eventForEdit.singleDate.setHours(12)))
+          setDateFormat(
+            cleanUpTime(new Date(eventForEdit.singleDate.setHours(12))),
+            'datetime'
           )
         );
         setEndTime(
-          setDateTimeInputFormat(
-            cleanUpTime(new Date(eventForEdit.singleDate.setHours(13)))
+          setDateFormat(
+            cleanUpTime(new Date(eventForEdit.singleDate.setHours(13))),
+            'datetime'
           )
         );
       } else {
         setSelectedSwitch(true);
-        setSingleDate(setDateInputFormat(eventForEdit.startTime));
-        setStartTime(setDateTimeInputFormat(eventForEdit.startTime));
-        setEndTime(setDateTimeInputFormat(eventForEdit.endTime));
+        setSingleDate(setDateFormat(eventForEdit.startTime, 'date'));
+        setStartTime(setDateFormat(eventForEdit.startTime, 'datetime'));
+        setEndTime(setDateFormat(eventForEdit.endTime, 'datetime'));
       }
     } else return;
   }, [eventForEdit, eventModalOpen]);
