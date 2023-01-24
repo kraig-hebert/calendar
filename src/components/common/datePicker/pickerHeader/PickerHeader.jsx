@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { TiArrowSortedDown } from 'react-icons/ti';
+import { TiArrowSortedDown, TiMinus, TiPlus } from 'react-icons/ti';
 
 import { useStyles } from './styles';
 import MonthSelector from './monthSelector/MonthSelector';
 
 const PickerHeader = (props) => {
-  const { selectedMonth, setSelectedMonth, selectedYear, setselectedYear } =
+  const { selectedMonth, setSelectedMonth, selectedYear, setSelectedYear } =
     props;
   const classes = useStyles();
 
   const [optionsOpen, setOptionsOpen] = useState(false);
+
+  const handleYearDecrement = () => setSelectedYear((prev) => prev - 1);
+  const handleYearIncrement = () => setSelectedYear((prev) => prev + 1);
 
   return (
     <div className={classes.pickerHeader}>
       <div className={classes.selectorContainer}>
         <p>{selectedMonth}</p>
         <TiArrowSortedDown
-          className={classes.downArrow}
+          className={classes.icon}
           onClick={() => setOptionsOpen(true)}
         />
         <MonthSelector
@@ -27,9 +30,10 @@ const PickerHeader = (props) => {
           setOptionsOpen={setOptionsOpen}
         />
       </div>
-      <div>
+      <div className={classes.selectorContainer}>
+        <TiMinus className={classes.icon} onClick={handleYearDecrement} />
         {selectedYear}
-        <TiArrowSortedDown />
+        <TiPlus className={classes.icon} onClick={handleYearIncrement} />
       </div>
     </div>
   );

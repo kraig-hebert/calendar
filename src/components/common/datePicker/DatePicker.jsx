@@ -23,22 +23,40 @@ const DatePicker = forwardRef((props, ref) => {
     'December',
   ];
 
+  const clearPicker = () => {
+    const date = new Date();
+    setShowPicker(false);
+    setSelectedDate(date.getDate());
+    setSelectedMonth(months[date.getMonth()]);
+    setSelectedYear(date.getFullYear());
+  };
+
   const [selectedDate, setSelectedDate] = useState(day);
   const [selectedMonth, setSelectedMonth] = useState(months[month]);
   const [selectedYear, setSelectedYear] = useState(year);
 
   const setCalendarRows = () =>
-    getWeeksInMonth(new Date(year, months.indexOf(selectedMonth), 1));
+    getWeeksInMonth(new Date(selectedYear, months.indexOf(selectedMonth), 1));
   const classes = useStyles({
     display: showPicker,
     rowTotal: setCalendarRows(),
   });
   const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const numberOfDaysInMonth = getDaysInMonth(
-    new Date(year, months.indexOf(selectedMonth), 1)
+    new Date(selectedYear, months.indexOf(selectedMonth), 1)
   );
 
-  const handleDayClick = (day) => setSelectedDate(day);
+  const handleDayClick = (day) => {
+    if (type === 'date') {
+      setValue(
+        setDateFormat(
+          new Date(selectedYear, months.indexOf(selectedMonth), day),
+          type
+        )
+      );
+      clearPicker();
+    } else setSelectedDate(day);
+  };
   const checkIfSelectedDay = (day) => {
     if (selectedDate === day) {
       if (months.indexOf(selectedMonth) === month && selectedYear === year)
@@ -49,7 +67,7 @@ const DatePicker = forwardRef((props, ref) => {
 
   const setDatesOnCalendar = (renderedCalendar) => {
     const startDayOfMonth = getDay(
-      new Date(year, months.indexOf(selectedMonth), 1)
+      new Date(selectedYear, months.indexOf(selectedMonth), 1)
     );
     for (let i = 0; i < startDayOfMonth; i++) {
       renderedCalendar.push(<div key={i + 7}></div>);
@@ -77,18 +95,6 @@ const DatePicker = forwardRef((props, ref) => {
     return setDatesOnCalendar(renderedCalendarWithHeader);
   };
 
-  useEffect(() => {
-    if (type === 'date') {
-      setShowPicker(false);
-      setValue(
-        setDateFormat(
-          new Date(selectedYear, months.indexOf(selectedMonth), selectedDate),
-          type
-        )
-      );
-    }
-  }, [selectedDate]);
-
   return (
     <div className={classes.picker} ref={ref}>
       <PickerHeader
@@ -96,7 +102,6 @@ const DatePicker = forwardRef((props, ref) => {
         setSelectedMonth={setSelectedMonth}
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
-        setValue={setValue}
       />
       <div className={classes.calendar}>{assembleCalendar()}</div>
     </div>

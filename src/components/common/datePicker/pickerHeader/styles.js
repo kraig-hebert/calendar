@@ -26,7 +26,8 @@ export const useStyles = createUseStyles((theme) => ({
       color: `${theme.light.main} !important`,
     },
   },
-  downArrow: {
+  icon: {
+    margin: '0 1px',
     cursor: 'pointer',
   },
 }));
