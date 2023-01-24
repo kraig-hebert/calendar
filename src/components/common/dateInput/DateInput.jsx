@@ -40,7 +40,9 @@ const DateInput = (props) => {
         type={setInputType()}
         className={classes.dateInput}
         value={value}
-        onChange={() => {}}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
       />
       <DatePicker
         type={type}

@@ -41,7 +41,7 @@ export const useStyles = createUseStyles((theme) => ({
       backgroundColor: theme.secondary.main,
     },
   },
-  selectedDay: {
+  currentDay: {
     extend: 'baseDay',
     borderRadius: '50%',
     cursor: 'pointer !important',

@@ -5,9 +5,11 @@ import { getDay, getDaysInMonth, getWeeksInMonth, setDate } from 'date-fns';
 import { setDateFormat } from '../../../helpers/dateHelpers';
 import { useStyles } from './styles';
 import PickerHeader from './pickerHeader/PickerHeader';
+import { selectCurrentDate } from '../../../reducers/appSettings';
 
 const DatePicker = forwardRef((props, ref) => {
   const { day, month, year, showPicker, setShowPicker, setValue, type } = props;
+  const currentDate = new Date();
   const months = [
     'January',
     'February',
@@ -59,8 +61,11 @@ const DatePicker = forwardRef((props, ref) => {
   };
   const checkIfSelectedDay = (day) => {
     if (selectedDate === day) {
-      if (months.indexOf(selectedMonth) === month && selectedYear === year)
-        return classes.selectedDay;
+      if (
+        months.indexOf(selectedMonth) === currentDate.getMonth() &&
+        selectedYear === currentDate.getFullYear()
+      )
+        return classes.currentDay;
       else return classes.day;
     } else return classes.day;
   };
