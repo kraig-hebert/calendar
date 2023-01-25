@@ -5,6 +5,7 @@ import { useStyles } from './styles';
 import { months } from '../../../../helpers/dateHelpers';
 import PickerHeader from './pickerHeader/PickerHeader';
 import CalendarPicker from './calendarPicker/CalendarPicker';
+import TimePicker from './timePicker/TimePicker';
 
 const DatePicker = forwardRef((props, ref) => {
   const { day, month, year, setShowPicker, setValue, type } = props;
@@ -39,6 +40,10 @@ const DatePicker = forwardRef((props, ref) => {
         selectedYear={selectedYear}
         clearPicker={clearPicker}
       />
+      {type === 'datetime' && <TimePicker />}
+      <div className={classes.buttonContainer}>
+        <button className={classes.button}>Submit</button>
+      </div>
     </div>
   );
 });
