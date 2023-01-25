@@ -2,7 +2,7 @@ import React, { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
-import { months } from '../../../../helpers/dateHelpers';
+import { months, setDateFormat } from '../../../../helpers/dateHelpers';
 import PickerHeader from './pickerHeader/PickerHeader';
 import CalendarPicker from './calendarPicker/CalendarPicker';
 import TimePicker from './timePicker/TimePicker';
@@ -23,6 +23,18 @@ const DatePicker = forwardRef((props, ref) => {
   const [selectedMonth, setSelectedMonth] = useState(months[month]);
   const [selectedYear, setSelectedYear] = useState(year);
 
+  const handleSubmit = () => {
+    if (type === 'date') {
+      setValue(
+        setDateFormat(
+          new Date(selectedYear, months.indexOf(selectedMonth), selectedDate),
+          type
+        )
+      );
+      clearPicker();
+    }
+  };
+
   return (
     <div className={classes.picker} ref={ref}>
       <PickerHeader
@@ -32,17 +44,16 @@ const DatePicker = forwardRef((props, ref) => {
         setSelectedYear={setSelectedYear}
       />
       <CalendarPicker
-        setValue={setValue}
-        type={type}
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
         selectedMonth={selectedMonth}
         selectedYear={selectedYear}
-        clearPicker={clearPicker}
       />
       {type === 'datetime' && <TimePicker />}
       <div className={classes.buttonContainer}>
-        <button className={classes.button}>Submit</button>
+        <button className={classes.button} onClick={handleSubmit}>
+          Submit
+        </button>
       </div>
     </div>
   );

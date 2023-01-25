@@ -2,19 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getDay, getDaysInMonth, getWeeksInMonth } from 'date-fns';
 
-import { months, setDateFormat } from '../../../../../helpers/dateHelpers';
+import { months } from '../../../../../helpers/dateHelpers';
 import { useStyles } from './styles';
 
 const CalendarPicker = (props) => {
-  const {
-    setValue,
-    type,
-    selectedDate,
-    setSelectedDate,
-    selectedMonth,
-    selectedYear,
-    clearPicker,
-  } = props;
+  const { selectedDate, setSelectedDate, selectedMonth, selectedYear } = props;
   const currentDate = new Date();
 
   const setCalendarRows = () =>
@@ -27,17 +19,7 @@ const CalendarPicker = (props) => {
     new Date(selectedYear, months.indexOf(selectedMonth), 1)
   );
 
-  const handleDayClick = (day) => {
-    if (type === 'date') {
-      setValue(
-        setDateFormat(
-          new Date(selectedYear, months.indexOf(selectedMonth), day),
-          type
-        )
-      );
-      clearPicker();
-    } else setSelectedDate(day);
-  };
+  const handleDayClick = (day) => setSelectedDate(day);
   const checkIfSelectedDay = (day) => {
     if (selectedDate === day) {
       if (
@@ -83,13 +65,10 @@ const CalendarPicker = (props) => {
 };
 
 CalendarPicker.propTypes = {
-  setValue: PropTypes.func,
-  type: PropTypes.string,
   selectedDate: PropTypes.number,
   setSelectedDate: PropTypes.func,
   selectedMonth: PropTypes.string,
   selectedYear: PropTypes.number,
-  clearPicker: PropTypes.func,
 };
 
 export default CalendarPicker;
