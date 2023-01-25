@@ -9,6 +9,5 @@ export const useStyles = createUseStyles((theme) => ({
     height: '25px',
     backgroundColor: theme.light.main,
     borderTop: `1px solid ${theme.primary.main}`,
-    borderBottom: `1px solid ${theme.primary.main}`,
   },
 }));

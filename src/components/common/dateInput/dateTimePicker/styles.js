@@ -19,6 +19,7 @@ export const useStyles = createUseStyles((theme) => ({
     alignItems: 'center',
     width: '100%',
     height: '25px',
+    borderTop: `1px solid ${theme.primary.main}`,
     backgroundColor: theme.light.main,
   },
   button: {
