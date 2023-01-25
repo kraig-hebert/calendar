@@ -4,7 +4,7 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 
 import { getDateFromFormat } from '../../../helpers/dateHelpers';
 import { useStyles } from './styles';
-import DatePicker from './datePicker/DatePicker';
+import DateTimePicker from './dateTimePicker/DateTimePicker';
 
 const DateInput = (props) => {
   const { value, setValue, type } = props;
@@ -44,16 +44,18 @@ const DateInput = (props) => {
           setValue(e.target.value);
         }}
       />
-      <DatePicker
-        type={type}
-        year={valueAsDateObject.getFullYear()}
-        month={valueAsDateObject.getMonth()}
-        day={valueAsDateObject.getDate()}
-        setValue={setValue}
-        showPicker={showPicker}
-        setShowPicker={setShowPicker}
-        ref={calendarRef}
-      />
+      {showPicker && (
+        <DateTimePicker
+          type={type}
+          year={valueAsDateObject.getFullYear()}
+          month={valueAsDateObject.getMonth()}
+          day={valueAsDateObject.getDate()}
+          setValue={setValue}
+          showPicker={showPicker}
+          setShowPicker={setShowPicker}
+          ref={calendarRef}
+        />
+      )}
       <FaRegCalendarAlt id="datePickerIcon" className={classes.icon} />
       <div
         className={classes.iconCover}

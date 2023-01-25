@@ -7,8 +7,8 @@ import PickerHeader from './pickerHeader/PickerHeader';
 import CalendarPicker from './calendarPicker/CalendarPicker';
 
 const DatePicker = forwardRef((props, ref) => {
-  const { day, month, year, showPicker, setShowPicker, setValue, type } = props;
-  const classes = useStyles({ display: showPicker });
+  const { day, month, year, setShowPicker, setValue, type } = props;
+  const classes = useStyles();
 
   const clearPicker = () => {
     const date = new Date();

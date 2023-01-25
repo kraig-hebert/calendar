@@ -5,7 +5,7 @@ export const useStyles = createUseStyles((theme) => ({
     position: 'absolute',
     top: '100%',
     left: '0',
-    display: props.display ? 'flex' : 'none',
+    display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
