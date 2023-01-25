@@ -4,7 +4,7 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 
 import { getDateFromFormat } from '../../../helpers/dateHelpers';
 import { useStyles } from './styles';
-import DatePicker from '../datePicker/DatePicker';
+import DatePicker from './datePicker/DatePicker';
 
 const DateInput = (props) => {
   const { value, setValue, type } = props;

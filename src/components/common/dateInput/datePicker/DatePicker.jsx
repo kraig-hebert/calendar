@@ -2,7 +2,7 @@ import React, { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
-import { months } from '../../../helpers/dateHelpers';
+import { months } from '../../../../helpers/dateHelpers';
 import PickerHeader from './pickerHeader/PickerHeader';
 import CalendarPicker from './calendarPicker/CalendarPicker';
 
@@ -31,7 +31,6 @@ const DatePicker = forwardRef((props, ref) => {
         setSelectedYear={setSelectedYear}
       />
       <CalendarPicker
-        showPicker={showPicker}
         setValue={setValue}
         type={type}
         selectedDate={selectedDate}

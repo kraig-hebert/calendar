@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { getDay, getDaysInMonth, getWeeksInMonth } from 'date-fns';
 
-import { months, setDateFormat } from '../../../../helpers/dateHelpers';
+import { months, setDateFormat } from '../../../../../helpers/dateHelpers';
 import { useStyles } from './styles';
 
 const CalendarPicker = (props) => {
