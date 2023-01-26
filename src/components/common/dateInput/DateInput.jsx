@@ -44,18 +44,14 @@ const DateInput = (props) => {
           setValue(e.target.value);
         }}
       />
-      {showPicker && (
-        <DateTimePicker
-          type={type}
-          year={valueAsDateObject.getFullYear()}
-          month={valueAsDateObject.getMonth()}
-          day={valueAsDateObject.getDate()}
-          setValue={setValue}
-          showPicker={showPicker}
-          setShowPicker={setShowPicker}
-          ref={calendarRef}
-        />
-      )}
+      <DateTimePicker
+        date={valueAsDateObject}
+        showPicker={showPicker}
+        setShowPicker={setShowPicker}
+        setValue={setValue}
+        type={type}
+        ref={calendarRef}
+      />
       <FaRegCalendarAlt id="datePickerIcon" className={classes.icon} />
       <div
         className={classes.iconCover}

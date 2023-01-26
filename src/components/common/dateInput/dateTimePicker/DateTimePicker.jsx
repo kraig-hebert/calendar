@@ -8,8 +8,8 @@ import CalendarPicker from './calendarPicker/CalendarPicker';
 import TimePicker from './timePicker/TimePicker';
 
 const DatePicker = forwardRef((props, ref) => {
-  const { day, month, year, setShowPicker, setValue, type } = props;
-  const classes = useStyles();
+  const { date, showPicker, setShowPicker, setValue, type } = props;
+  const classes = useStyles({ display: showPicker });
 
   const clearPicker = () => {
     const date = new Date();
@@ -19,9 +19,25 @@ const DatePicker = forwardRef((props, ref) => {
     setSelectedYear(date.getFullYear());
   };
 
-  const [selectedDate, setSelectedDate] = useState(day);
-  const [selectedMonth, setSelectedMonth] = useState(months[month]);
-  const [selectedYear, setSelectedYear] = useState(year);
+  const getHoursForDisplay = (hours) => {
+    if (hours > 11) return hours - 11;
+    else return hours + 1;
+  };
+
+  const getDayPeriodForDisplay = (hours) => {
+    if (hours < 12) return 'a.m.';
+    else return 'p.m';
+  };
+
+  const [selectedDate, setSelectedDate] = useState(date.getDate());
+  const [selectedMonth, setSelectedMonth] = useState(months[date.getMonth()]);
+  const [selectedYear, setSelectedYear] = useState(date.getFullYear());
+  const [selectedHour, setSelectedHour] = useState(
+    getHoursForDisplay(date.getHours())
+  );
+  const [selectedDayPeriod, setSelectedDayPeriod] = useState(
+    getDayPeriodForDisplay(date.getHours())
+  );
 
   const handleSubmit = () => {
     if (type === 'date') {
@@ -49,7 +65,14 @@ const DatePicker = forwardRef((props, ref) => {
         selectedMonth={selectedMonth}
         selectedYear={selectedYear}
       />
-      {type === 'datetime' && <TimePicker />}
+      {type === 'datetime' && (
+        <TimePicker
+          selectedHour={selectedHour}
+          setSelectedHour={setSelectedHour}
+          selectedDayPeriod={selectedDayPeriod}
+          setSelectedDayPeriod={setSelectedDayPeriod}
+        />
+      )}
       <div className={classes.buttonContainer}>
         <button className={classes.button} onClick={handleSubmit}>
           Submit
@@ -60,9 +83,7 @@ const DatePicker = forwardRef((props, ref) => {
 });
 
 DatePicker.propTypes = {
-  day: PropTypes.number,
-  month: PropTypes.number,
-  year: PropTypes.number,
+  date: PropTypes.objectOf(Date),
   showPicker: PropTypes.bool,
   setShowPicker: PropTypes.func,
   setValue: PropTypes.func,
