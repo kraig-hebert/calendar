@@ -11,7 +11,14 @@ const TimePicker = (props) => {
     setSelectedDayPeriod,
   } = props;
   const classes = useStyles();
-  return <div className={classes.timePicker}></div>;
+  return (
+    <div className={classes.timePicker}>
+      <div className={classes.selectable}>{selectedHour}</div>
+      <div>:</div>
+      <div>00</div>
+      <div className={classes.selectable}>{selectedDayPeriod}</div>
+    </div>
+  );
 };
 
 TimePicker.propTypes = {

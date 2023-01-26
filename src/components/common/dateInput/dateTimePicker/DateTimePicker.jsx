@@ -20,13 +20,13 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const getHoursForDisplay = (hours) => {
-    if (hours > 11) return hours - 11;
+    if (hours > 11) return hours - 12;
     else return hours + 1;
   };
 
   const getDayPeriodForDisplay = (hours) => {
-    if (hours < 12) return 'a.m.';
-    else return 'p.m';
+    if (hours < 12) return 'A.M.';
+    else return 'P.M';
   };
 
   const [selectedDate, setSelectedDate] = useState(date.getDate());
