@@ -25,8 +25,8 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const getDayPeriodForDisplay = (hours) => {
-    if (hours < 12) return 'A.M.';
-    else return 'P.M';
+    if (hours < 12) return 'AM';
+    else return 'PM';
   };
 
   const [selectedDate, setSelectedDate] = useState(date.getDate());

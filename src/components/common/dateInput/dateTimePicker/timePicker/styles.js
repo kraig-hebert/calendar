@@ -9,7 +9,7 @@ export const useStyles = createUseStyles((theme) => ({
     height: '35px',
     backgroundColor: theme.light.main,
     borderTop: `1px solid ${theme.primary.main}`,
-    '&  div': {
+    '& > div': {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -28,11 +28,25 @@ export const useStyles = createUseStyles((theme) => ({
     backgroundColor: theme.primary.main,
     color: theme.light.main,
     borderRadius: '5px',
-    padding: '0 3px',
+    overflow: 'scroll',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
     '&:hover': {
       backgroundColor: theme.primary.halfAlpha,
       color: theme.dark.main,
       cursor: 'pointer',
     },
+  },
+  selector: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  selectorOption: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 }));
