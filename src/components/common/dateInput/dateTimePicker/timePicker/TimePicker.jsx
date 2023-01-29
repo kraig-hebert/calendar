@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
@@ -11,38 +11,41 @@ const TimePicker = (props) => {
     setSelectedDayPeriod,
   } = props;
 
-  const [showHourSelector, setShowHourSelector] = useState(false);
-  const [showDayPeriodSelector, setShowDayPeriodSelector] = useState(false);
-
   const selectorOptions = {
-    hourOptions: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    hourOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     dayPeriodOptions: ['AM', 'PM'],
   };
 
-  const handleSelectableClick = (showType) => {
-    if (showType === 'hours') setShowHourSelector(true);
-    else setShowDayPeriodSelector(true);
-  };
+  const hourRef = useRef();
+  const dayPeriodRef = useRef();
 
-  const Selector = (props) => {
+  const classes = useStyles();
+
+  const Selector = forwardRef((props, ref) => {
     const renderedOptions = props.options.map((option, index) => (
       <div className={classes.selectorOption} key={index}>
         {option}
       </div>
     ));
-    return <div className={classes.selector}>{renderedOptions}</div>;
-  };
+    return (
+      <div className={classes.selector} ref={ref}>
+        {renderedOptions}
+      </div>
+    );
+  });
 
-  const classes = useStyles();
   return (
     <div className={classes.timePicker}>
-      <div className={classes.selectable}>
-        <Selector options={selectorOptions.hourOptions} />
+      <div className={classes.selectorContainer}>
+        <Selector options={selectorOptions.hourOptions} ref={hourRef} />
       </div>
-      <div>:</div>
-      <div>00</div>
-      <div className={classes.selectable}>
-        <Selector options={selectorOptions.dayPeriodOptions} />
+      <div className={classes.separator}>:</div>
+      <div className={classes.staticDigits}>00</div>
+      <div className={classes.selectorContainer}>
+        <Selector
+          options={selectorOptions.dayPeriodOptions}
+          ref={dayPeriodRef}
+        />
       </div>
     </div>
   );
