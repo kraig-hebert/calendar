@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from 'react';
+import React, { forwardRef, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
@@ -22,7 +22,8 @@ const TimePicker = (props) => {
   const classes = useStyles();
 
   const Selector = forwardRef((props, ref) => {
-    const renderedOptions = props.options.map((option, index) => (
+    const { options } = props;
+    const renderedOptions = options.map((option, index) => (
       <div className={classes.selectorOption} key={index}>
         {option}
       </div>
@@ -32,6 +33,44 @@ const TimePicker = (props) => {
         {renderedOptions}
       </div>
     );
+  });
+
+  const scrollUp = (ref) => {
+    console.log(ref.current.offsetTop);
+    const top = ref.current.offsetTop;
+    if (top + 25 >= 0) ref.current.style.top = '0px';
+    else ref.current.style.top = `${ref.current.offsetTop + 25}px`;
+  };
+  const scrollDown = (ref) => {
+    console.log(ref.current.offsetTop);
+    const top = ref.current.offsetTop;
+
+    if (top - 25 <= -275) ref.current.style.top = '-275px';
+    else ref.current.style.top = `${ref.current.offsetTop - 25}px`;
+  };
+
+  const scrollAction = (event, ref) => {
+    event.preventDefault();
+    if (
+      event.target.parentElement === ref.current ||
+      event.target === ref.current
+    ) {
+      if (event.deltaY < 0) scrollUp(ref);
+      else scrollDown(ref);
+    }
+  };
+
+  useEffect(() => {
+    hourRef.current.addEventListener('wheel', function (event) {
+      scrollAction(event, hourRef);
+    });
+    dayPeriodRef.current.addEventListener('wheel', function (event) {
+      scrollAction(event, dayPeriodRef);
+    });
+    return () => {
+      hourRef.current.removeEventListener('wheel', scrollAction);
+      dayPeriodRef.current.removeEventListener('wheel', scrollAction);
+    };
   });
 
   return (

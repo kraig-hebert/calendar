@@ -18,8 +18,9 @@ export const useStyles = createUseStyles((theme) => ({
     borderRadius: '5px',
   },
   selectorContainer: {
-    overflow: 'hidden',
     extend: 'divDefault',
+    overflow: 'hidden',
+    position: 'relative',
     width: '25px',
     margin: '0 1px',
     backgroundColor: theme.primary.main,
@@ -30,6 +31,9 @@ export const useStyles = createUseStyles((theme) => ({
     },
   },
   selector: (props) => ({
+    position: 'absolute',
+    left: '0',
+    top: '0px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -37,10 +41,7 @@ export const useStyles = createUseStyles((theme) => ({
     width: '100%',
     color: theme.light.main,
     zIndex: '6',
-    overflow: 'scroll',
-    '&::-webkit-scrollbar': {
-      display: 'none',
-    },
+    transition: '.35s',
   }),
   selectorOption: {
     display: 'flex',
