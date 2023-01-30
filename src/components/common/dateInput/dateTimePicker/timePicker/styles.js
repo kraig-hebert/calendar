@@ -19,11 +19,14 @@ export const useStyles = createUseStyles((theme) => ({
   },
   selectorContainer: {
     extend: 'divDefault',
-    overflow: 'hidden',
+    overflow: 'auto',
     position: 'relative',
     width: '25px',
     margin: '0 1px',
     backgroundColor: theme.primary.main,
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
     '&:hover': {
       backgroundColor: theme.primary.halfAlpha,
       color: theme.dark.main,
@@ -41,7 +44,6 @@ export const useStyles = createUseStyles((theme) => ({
     width: '100%',
     color: theme.light.main,
     zIndex: '6',
-    transition: '.35s',
   }),
   selectorOption: {
     display: 'flex',

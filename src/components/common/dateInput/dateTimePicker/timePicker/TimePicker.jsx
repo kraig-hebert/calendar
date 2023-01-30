@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useEffect } from 'react';
+import React, { forwardRef, useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
@@ -18,6 +18,7 @@ const TimePicker = (props) => {
 
   const hourRef = useRef();
   const dayPeriodRef = useRef();
+  const debouncing = useRef(false);
 
   const classes = useStyles();
 
@@ -28,63 +29,43 @@ const TimePicker = (props) => {
         {option}
       </div>
     ));
-    return (
-      <div className={classes.selector} ref={ref}>
-        {renderedOptions}
-      </div>
-    );
+    return <div className={classes.selector}>{renderedOptions}</div>;
   });
 
-  const scrollUp = (ref) => {
-    console.log(ref.current.offsetTop);
-    const top = ref.current.offsetTop;
-    if (top + 25 >= 0) ref.current.style.top = '0px';
-    else ref.current.style.top = `${ref.current.offsetTop + 25}px`;
-  };
-  const scrollDown = (ref) => {
-    console.log(ref.current.offsetTop);
-    const top = ref.current.offsetTop;
-
-    if (top - 25 <= -275) ref.current.style.top = '-275px';
-    else ref.current.style.top = `${ref.current.offsetTop - 25}px`;
-  };
-
-  const scrollAction = (event, ref) => {
+  const handleScrollAction = (event, ref) => {
     event.preventDefault();
-    if (
-      event.target.parentElement === ref.current ||
-      event.target === ref.current
-    ) {
-      if (event.deltaY < 0) scrollUp(ref);
-      else scrollDown(ref);
-    }
+    if (debouncing.current) return;
+    debouncing.current = true;
+
+    if (event.deltaY < 0) ref.current.scrollTop += 1;
+    else ref.current.scrollTop -= 1;
+    setTimeout(() => {
+      debouncing.current = false;
+    }, 100);
   };
 
   useEffect(() => {
     hourRef.current.addEventListener('wheel', function (event) {
-      scrollAction(event, hourRef);
+      handleScrollAction(event, hourRef);
     });
     dayPeriodRef.current.addEventListener('wheel', function (event) {
-      scrollAction(event, dayPeriodRef);
+      handleScrollAction(event, dayPeriodRef);
     });
     return () => {
-      hourRef.current.removeEventListener('wheel', scrollAction);
-      dayPeriodRef.current.removeEventListener('wheel', scrollAction);
+      hourRef.current.removeEventListener('wheel', handleScrollAction);
+      dayPeriodRef.current.removeEventListener('wheel', handleScrollAction);
     };
   });
 
   return (
     <div className={classes.timePicker}>
-      <div className={classes.selectorContainer}>
-        <Selector options={selectorOptions.hourOptions} ref={hourRef} />
+      <div className={classes.selectorContainer} ref={hourRef}>
+        <Selector options={selectorOptions.hourOptions} />
       </div>
       <div className={classes.separator}>:</div>
       <div className={classes.staticDigits}>00</div>
-      <div className={classes.selectorContainer}>
-        <Selector
-          options={selectorOptions.dayPeriodOptions}
-          ref={dayPeriodRef}
-        />
+      <div className={classes.selectorContainer} ref={dayPeriodRef}>
+        <Selector options={selectorOptions.dayPeriodOptions} />
       </div>
     </div>
   );
