@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
@@ -22,7 +22,7 @@ const TimePicker = (props) => {
 
   const classes = useStyles();
 
-  const Selector = forwardRef((props, ref) => {
+  const Selector = (props) => {
     const { options } = props;
     const renderedOptions = options.map((option, index) => (
       <div className={classes.selectorOption} key={index}>
@@ -30,18 +30,44 @@ const TimePicker = (props) => {
       </div>
     ));
     return <div className={classes.selector}>{renderedOptions}</div>;
-  });
+  };
 
-  const handleScrollAction = (event, ref) => {
+  const scrollUp = async (ref) => {
+    let currentPosition = ref.current.scrollTop;
+    const targetPosition = currentPosition + 25;
+    const step = 1;
+    console.log(currentPosition, targetPosition);
+
+    const scrollAnimation = setInterval(() => {
+      currentPosition += step;
+      ref.current.scrollTop = currentPosition;
+      if (currentPosition >= targetPosition) clearInterval(scrollAnimation);
+    }, 5);
+  };
+
+  const scrollDown = async (ref) => {
+    let currentPosition = ref.current.scrollTop;
+    const targetPosition = currentPosition - 25;
+    const step = 1;
+    console.log(currentPosition, targetPosition);
+
+    const scrollAnimation = setInterval(() => {
+      currentPosition -= step;
+      ref.current.scrollTop = currentPosition;
+      if (currentPosition <= targetPosition) clearInterval(scrollAnimation);
+    }, 5);
+  };
+
+  const handleScrollAction = async (event, ref) => {
     event.preventDefault();
     if (debouncing.current) return;
     debouncing.current = true;
+    if (event.deltaY < 0) await scrollUp(ref);
+    else await scrollDown(ref);
 
-    if (event.deltaY < 0) ref.current.scrollTop += 1;
-    else ref.current.scrollTop -= 1;
     setTimeout(() => {
       debouncing.current = false;
-    }, 100);
+    }, 400);
   };
 
   useEffect(() => {
