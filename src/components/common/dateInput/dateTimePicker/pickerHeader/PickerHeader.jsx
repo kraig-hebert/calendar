@@ -8,6 +8,7 @@ import MonthSelector from './monthSelector/MonthSelector';
 const PickerHeader = (props) => {
   const { selectedMonth, setSelectedMonth, selectedYear, setSelectedYear } =
     props;
+  console.log(selectedMonth);
   const classes = useStyles();
 
   const [optionsOpen, setOptionsOpen] = useState(false);

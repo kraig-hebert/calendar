@@ -10,6 +10,7 @@ const TimePicker = (props) => {
     selectedDayPeriod,
     setSelectedDayPeriod,
   } = props;
+  console.log(selectedHour);
 
   const selectorOptions = {
     hourOptions: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -32,38 +33,44 @@ const TimePicker = (props) => {
     return <div className={classes.selector}>{renderedOptions}</div>;
   };
 
-  const scrollUp = async (ref) => {
+  const scrollUp = (ref, type) => {
     let currentPosition = ref.current.scrollTop;
     const targetPosition = currentPosition + 25;
     const step = 1;
-    console.log(currentPosition, targetPosition);
 
     const scrollAnimation = setInterval(() => {
       currentPosition += step;
       ref.current.scrollTop = currentPosition;
-      if (currentPosition >= targetPosition) clearInterval(scrollAnimation);
+      if (currentPosition >= targetPosition) {
+        if (type === 'hour') setSelectedHour((prev) => (prev += 1));
+        else setSelectedDayPeriod('AM');
+        clearInterval(scrollAnimation);
+      }
     }, 5);
   };
 
-  const scrollDown = async (ref) => {
+  const scrollDown = (ref, type) => {
     let currentPosition = ref.current.scrollTop;
     const targetPosition = currentPosition - 25;
     const step = 1;
-    console.log(currentPosition, targetPosition);
 
     const scrollAnimation = setInterval(() => {
       currentPosition -= step;
       ref.current.scrollTop = currentPosition;
-      if (currentPosition <= targetPosition) clearInterval(scrollAnimation);
+      if (currentPosition <= targetPosition) {
+        if (type === 'hour') setSelectedHour((prev) => (prev -= 1));
+        else setSelectedDayPeriod('PM');
+        clearInterval(scrollAnimation);
+      }
     }, 5);
   };
 
-  const handleScrollAction = async (event, ref) => {
+  const handleScrollAction = (event, ref, type) => {
     event.preventDefault();
     if (debouncing.current) return;
     debouncing.current = true;
-    if (event.deltaY < 0) await scrollUp(ref);
-    else await scrollDown(ref);
+    if (event.deltaY < 0) scrollUp(ref, type);
+    else scrollDown(ref, type);
 
     setTimeout(() => {
       debouncing.current = false;
@@ -71,11 +78,17 @@ const TimePicker = (props) => {
   };
 
   useEffect(() => {
+    hourRef.current.scrollTop = (selectedHour - 1) * 25;
+    dayPeriodRef.current.scrollTop = () =>
+      selectedDayPeriod === 'AM' ? 0 : 25;
+  });
+
+  useEffect(() => {
     hourRef.current.addEventListener('wheel', function (event) {
-      handleScrollAction(event, hourRef);
+      handleScrollAction(event, hourRef, 'hour');
     });
     dayPeriodRef.current.addEventListener('wheel', function (event) {
-      handleScrollAction(event, dayPeriodRef);
+      handleScrollAction(event, dayPeriodRef, 'dayPeriod');
     });
     return () => {
       hourRef.current.removeEventListener('wheel', handleScrollAction);

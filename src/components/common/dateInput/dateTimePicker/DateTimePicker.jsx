@@ -12,16 +12,16 @@ const DatePicker = forwardRef((props, ref) => {
   const classes = useStyles({ display: showPicker });
 
   const clearPicker = () => {
-    const date = new Date();
+    const newDate = new Date();
     setShowPicker(false);
-    setSelectedDate(date.getDate());
-    setSelectedMonth(months[date.getMonth()]);
-    setSelectedYear(date.getFullYear());
+    setSelectedDate(newDate.getDate());
+    setSelectedMonth(months[newDate.getMonth()]);
+    setSelectedYear(newDate.getFullYear());
   };
 
   const getHoursForDisplay = (hours) => {
     if (hours > 11) return hours - 12;
-    else return hours + 1;
+    return hours;
   };
 
   const getDayPeriodForDisplay = (hours) => {
@@ -29,15 +29,11 @@ const DatePicker = forwardRef((props, ref) => {
     else return 'PM';
   };
 
-  const [selectedDate, setSelectedDate] = useState(date.getDate());
-  const [selectedMonth, setSelectedMonth] = useState(months[date.getMonth()]);
-  const [selectedYear, setSelectedYear] = useState(date.getFullYear());
-  const [selectedHour, setSelectedHour] = useState(
-    getHoursForDisplay(date.getHours())
-  );
-  const [selectedDayPeriod, setSelectedDayPeriod] = useState(
-    getDayPeriodForDisplay(date.getHours())
-  );
+  const [selectedDate, setSelectedDate] = useState();
+  const [selectedMonth, setSelectedMonth] = useState();
+  const [selectedYear, setSelectedYear] = useState();
+  const [selectedHour, setSelectedHour] = useState();
+  const [selectedDayPeriod, setSelectedDayPeriod] = useState();
 
   const handleSubmit = () => {
     if (type === 'date') {
@@ -48,8 +44,29 @@ const DatePicker = forwardRef((props, ref) => {
         )
       );
       clearPicker();
+    } else if (type === 'datetime') {
+      setValue(
+        setDateFormat(
+          new Date(
+            selectedYear,
+            months.indexOf(selectedMonth),
+            selectedDate,
+            selectedHour
+          ),
+          type
+        )
+      );
+      clearPicker();
     }
   };
+
+  useEffect(() => {
+    setSelectedDate(date.getDate());
+    setSelectedMonth(months[date.getMonth()]);
+    setSelectedYear(date.getFullYear());
+    setSelectedHour(date.getHours());
+    setSelectedDayPeriod(getDayPeriodForDisplay(date.getHours()));
+  }, [date]);
 
   return (
     <div className={classes.picker} ref={ref}>
