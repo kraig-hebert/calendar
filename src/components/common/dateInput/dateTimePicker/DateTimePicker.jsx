@@ -2,21 +2,17 @@ import React, { useState, forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
-import { months, setDateFormat } from '../../../../helpers/dateHelpers';
+import { setDateFormat } from '../../../../helpers/dateHelpers';
 import PickerHeader from './pickerHeader/PickerHeader';
 import CalendarPicker from './calendarPicker/CalendarPicker';
 import TimePicker from './timePicker/TimePicker';
 
 const DatePicker = forwardRef((props, ref) => {
-  const { date, showPicker, setShowPicker, setValue, type } = props;
+  const { value, showPicker, setShowPicker, setValue, type } = props;
   const classes = useStyles({ display: showPicker });
 
   const clearPicker = () => {
-    const newDate = new Date();
     setShowPicker(false);
-    setSelectedDate(newDate.getDate());
-    setSelectedMonth(months[newDate.getMonth()]);
-    setSelectedYear(newDate.getFullYear());
   };
 
   const getHoursForDisplay = (hours) => {
@@ -34,39 +30,29 @@ const DatePicker = forwardRef((props, ref) => {
   const [selectedYear, setSelectedYear] = useState();
   const [selectedHour, setSelectedHour] = useState();
   const [selectedDayPeriod, setSelectedDayPeriod] = useState();
+  const [pickerDate, setPickerDate] = useState();
 
   const handleSubmit = () => {
     if (type === 'date') {
-      setValue(
-        setDateFormat(
-          new Date(selectedYear, months.indexOf(selectedMonth), selectedDate),
-          type
-        )
-      );
+      setValue(setDateFormat(pickerDate, type));
       clearPicker();
     } else if (type === 'datetime') {
-      setValue(
-        setDateFormat(
-          new Date(
-            selectedYear,
-            months.indexOf(selectedMonth),
-            selectedDate,
-            selectedHour
-          ),
-          type
-        )
-      );
+      setValue(setDateFormat(pickerDate, type));
       clearPicker();
     }
   };
 
   useEffect(() => {
-    setSelectedDate(date.getDate());
-    setSelectedMonth(months[date.getMonth()]);
-    setSelectedYear(date.getFullYear());
-    setSelectedHour(date.getHours());
-    setSelectedDayPeriod(getDayPeriodForDisplay(date.getHours()));
-  }, [date]);
+    setPickerDate(new Date(selectedYear, selectedMonth, selectedDate));
+  }, [selectedDate, setPickerDate]);
+
+  useEffect(() => {
+    setSelectedDate(value.getDate());
+    setSelectedMonth(value.getMonth());
+    setSelectedYear(value.getFullYear());
+    setSelectedHour(value.getHours());
+    setSelectedDayPeriod(getDayPeriodForDisplay(value.getHours()));
+  }, [value]);
 
   return (
     <div className={classes.picker} ref={ref}>
@@ -76,19 +62,9 @@ const DatePicker = forwardRef((props, ref) => {
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
       />
-      <CalendarPicker
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        selectedMonth={selectedMonth}
-        selectedYear={selectedYear}
-      />
+      <CalendarPicker pickerDate={pickerDate} setPickerDate={setPickerDate} />
       {type === 'datetime' && (
-        <TimePicker
-          selectedHour={selectedHour}
-          setSelectedHour={setSelectedHour}
-          selectedDayPeriod={selectedDayPeriod}
-          setSelectedDayPeriod={setSelectedDayPeriod}
-        />
+        <TimePicker pickerDate={pickerDate} setPickerDate={setPickerDate} />
       )}
       <div className={classes.buttonContainer}>
         <button className={classes.button} onClick={handleSubmit}>
@@ -100,7 +76,7 @@ const DatePicker = forwardRef((props, ref) => {
 });
 
 DatePicker.propTypes = {
-  date: PropTypes.objectOf(Date),
+  value: PropTypes.objectOf(Date),
   showPicker: PropTypes.bool,
   setShowPicker: PropTypes.func,
   setValue: PropTypes.func,

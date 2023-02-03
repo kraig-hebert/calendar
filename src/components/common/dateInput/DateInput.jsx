@@ -45,7 +45,7 @@ const DateInput = (props) => {
         }}
       />
       <DateTimePicker
-        date={valueAsDateObject}
+        value={valueAsDateObject}
         showPicker={showPicker}
         setShowPicker={setShowPicker}
         setValue={setValue}

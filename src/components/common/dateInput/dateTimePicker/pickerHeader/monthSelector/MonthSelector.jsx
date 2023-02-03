@@ -2,30 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useStyles } from './styles';
+import { months } from '../../../../../../helpers/dateHelpers';
 
 const MonthSelector = (props) => {
   const { selectedMonth, setSelectedMonth, optionsOpen, setOptionsOpen } =
     props;
   const classes = useStyles({ display: optionsOpen });
 
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
   const handleMonthClick = (e) => {
     setOptionsOpen(false);
-    setSelectedMonth(e.target.textContent);
+    setSelectedMonth(months.indexOf(e.target.textContent));
   };
 
   const renderedMonthOptions = months.map((month, index) => (
@@ -38,8 +24,8 @@ const MonthSelector = (props) => {
 };
 
 MonthSelector.propTypes = {
-  activeMonth: PropTypes.string,
-  setActiveMonth: PropTypes.func,
+  pickerDate: PropTypes.objectOf(Date),
+  setPickerDate: PropTypes.func,
   optionsOpen: PropTypes.bool,
   setOptionsOpen: PropTypes.func,
 };
