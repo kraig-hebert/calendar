@@ -16,8 +16,14 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const getHoursForDisplay = (hours) => {
-    if (hours > 11) return hours - 12;
-    return hours;
+    if (hours > 12) return hours - 12;
+    else if (hours < 12 && hours > 0) return hours;
+    return 12;
+  };
+
+  const getHoursForSubmit = () => {
+    if (selectedDayPeriod === 'AM') return selectedHour - 1;
+    else if (selectedDayPeriod === 'PM') return selectedHour + 12;
   };
 
   const getDayPeriodForDisplay = (hours) => {
@@ -31,13 +37,17 @@ const DatePicker = forwardRef((props, ref) => {
   const [selectedHour, setSelectedHour] = useState();
   const [selectedDayPeriod, setSelectedDayPeriod] = useState();
   const [pickerDate, setPickerDate] = useState();
-  console.log(selectedHour, selectedDayPeriod);
 
   const handleSubmit = () => {
     if (type === 'date') {
       setValue(setDateFormat(pickerDate, type));
       clearPicker();
     } else if (type === 'datetime') {
+      const newDate = new Date(
+        pickerDate.getFullYear(),
+        pickerDate.getMonth(),
+        pickerDate.getDate()
+      );
       setValue(setDateFormat(pickerDate, type));
       clearPicker();
     }

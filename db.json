@@ -222,6 +222,15 @@
       "endTime": "2023-02-01T12:00:00.000Z",
       "allDay": false,
       "id": 45
+    },
+    {
+      "title": "Test",
+      "filter": "Events",
+      "color": "rgb(0,0,0)",
+      "startTime": "2023-02-03T05:00:00.000Z",
+      "endTime": "2023-02-03T21:00:00.000Z",
+      "allDay": false,
+      "id": 46
     }
   ]
 }
