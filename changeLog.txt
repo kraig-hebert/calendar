@@ -1,3 +1,10 @@
+2-3-2023
+--------
+DateTimePicker
+    - added ability to pick time
+    - updated logic to highlight chosen date on the CalendarPicker
+    - updated logic for displaying the details of an edited event when selected on a calendar
+
 1-23-2023
 ---------
 DateInput
