@@ -31,6 +31,7 @@ const DatePicker = forwardRef((props, ref) => {
   const [selectedHour, setSelectedHour] = useState();
   const [selectedDayPeriod, setSelectedDayPeriod] = useState();
   const [pickerDate, setPickerDate] = useState();
+  console.log(selectedHour, selectedDayPeriod);
 
   const handleSubmit = () => {
     if (type === 'date') {
@@ -50,7 +51,7 @@ const DatePicker = forwardRef((props, ref) => {
     setSelectedDate(value.getDate());
     setSelectedMonth(value.getMonth());
     setSelectedYear(value.getFullYear());
-    setSelectedHour(value.getHours());
+    setSelectedHour(getHoursForDisplay(value.getHours()));
     setSelectedDayPeriod(getDayPeriodForDisplay(value.getHours()));
   }, [value]);
 
@@ -69,7 +70,13 @@ const DatePicker = forwardRef((props, ref) => {
         selectedYear={selectedYear}
       />
       {type === 'datetime' && (
-        <TimePicker pickerDate={pickerDate} setPickerDate={setPickerDate} />
+        <TimePicker
+          pickerDate={pickerDate}
+          selectedHour={selectedHour}
+          setSelectedHour={setSelectedHour}
+          selectedDayPeriod={selectedDayPeriod}
+          setSelectedDayPeriod={setSelectedDayPeriod}
+        />
       )}
       <div className={classes.buttonContainer}>
         <button className={classes.button} onClick={handleSubmit}>

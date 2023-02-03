@@ -27,7 +27,6 @@ const CalendarPicker = (props) => {
     else return classes.day;
   };
 
-  console.log(pickerDate);
   const setDatesOnCalendar = (renderedCalendar) => {
     const startDayOfMonth = getDay(new Date(selectedYear, selectedMonth, 1));
     for (let i = 0; i < startDayOfMonth; i++) {

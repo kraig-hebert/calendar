@@ -5,6 +5,7 @@ import { useStyles } from './styles';
 
 const TimePicker = (props) => {
   const {
+    pickerDate,
     selectedHour,
     setSelectedHour,
     selectedDayPeriod,
@@ -32,8 +33,11 @@ const TimePicker = (props) => {
     return <div className={classes.selector}>{renderedOptions}</div>;
   };
 
-  const scrollUp = (ref, type) => {
+  const scrollDown = (ref, type) => {
     let currentPosition = ref.current.scrollTop;
+    if (currentPosition + ref.current.clientHeight === ref.current.scrollHeight)
+      return;
+
     const targetPosition = currentPosition + 25;
     const step = 1;
 
@@ -41,15 +45,17 @@ const TimePicker = (props) => {
       currentPosition += step;
       ref.current.scrollTop = currentPosition;
       if (currentPosition >= targetPosition) {
-        if (type === 'hour') setSelectedHour((prev) => (prev += 1));
-        else setSelectedDayPeriod('AM');
+        if (type === 'hour') setSelectedHour((prev) => prev + 1);
+        else setSelectedDayPeriod('PM');
         clearInterval(scrollAnimation);
       }
     }, 5);
   };
 
-  const scrollDown = (ref, type) => {
+  const scrollUp = (ref, type) => {
     let currentPosition = ref.current.scrollTop;
+    if (currentPosition <= 0) return;
+
     const targetPosition = currentPosition - 25;
     const step = 1;
 
@@ -57,8 +63,8 @@ const TimePicker = (props) => {
       currentPosition -= step;
       ref.current.scrollTop = currentPosition;
       if (currentPosition <= targetPosition) {
-        if (type === 'hour') setSelectedHour((prev) => (prev -= 1));
-        else setSelectedDayPeriod('PM');
+        if (type === 'hour') setSelectedHour((prev) => prev - 1);
+        else setSelectedDayPeriod('AM');
         clearInterval(scrollAnimation);
       }
     }, 5);
@@ -76,10 +82,11 @@ const TimePicker = (props) => {
     }, 400);
   };
 
+  const getDayPeriodForDisplay = () => (selectedDayPeriod === 'AM' ? 0 : 25);
+
   useEffect(() => {
     hourRef.current.scrollTop = (selectedHour - 1) * 25;
-    dayPeriodRef.current.scrollTop = () =>
-      selectedDayPeriod === 'AM' ? 0 : 25;
+    dayPeriodRef.current.scrollTop = getDayPeriodForDisplay();
   });
 
   useEffect(() => {
@@ -110,6 +117,7 @@ const TimePicker = (props) => {
 };
 
 TimePicker.propTypes = {
+  pickerDate: PropTypes.objectOf(Date),
   selectedHour: PropTypes.number,
   setSelectedHour: PropTypes.func,
   selectedDayPeriod: PropTypes.string,
