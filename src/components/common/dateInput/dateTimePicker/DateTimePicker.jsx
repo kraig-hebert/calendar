@@ -22,7 +22,12 @@ const DatePicker = forwardRef((props, ref) => {
   };
 
   const getHoursForSubmit = () => {
-    if (selectedDayPeriod === 'AM') return selectedHour - 1;
+    console.log(selectedHour);
+    if (selectedHour === 12) {
+      if (selectedDayPeriod === 'AM') return 0;
+      else if (selectedDayPeriod === 'PM') return 12;
+    }
+    if (selectedDayPeriod === 'AM') return selectedHour;
     else if (selectedDayPeriod === 'PM') return selectedHour + 12;
   };
 
@@ -46,9 +51,10 @@ const DatePicker = forwardRef((props, ref) => {
       const newDate = new Date(
         pickerDate.getFullYear(),
         pickerDate.getMonth(),
-        pickerDate.getDate()
+        pickerDate.getDate(),
+        getHoursForSubmit()
       );
-      setValue(setDateFormat(pickerDate, type));
+      setValue(setDateFormat(newDate, type));
       clearPicker();
     }
   };
