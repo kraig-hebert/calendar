@@ -62,7 +62,12 @@ const DatePicker = forwardRef((props, ref) => {
         selectedYear={selectedYear}
         setSelectedYear={setSelectedYear}
       />
-      <CalendarPicker pickerDate={pickerDate} setPickerDate={setPickerDate} />
+      <CalendarPicker
+        pickerDate={pickerDate}
+        setSelectedDate={setSelectedDate}
+        selectedMonth={selectedMonth}
+        selectedYear={selectedYear}
+      />
       {type === 'datetime' && (
         <TimePicker pickerDate={pickerDate} setPickerDate={setPickerDate} />
       )}
