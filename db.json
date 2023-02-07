@@ -199,7 +199,7 @@
       "id": 42
     },
     {
-      "title": "New Date",
+      "title": "Updated",
       "filter": "Runs",
       "color": "rgb(255,255,255)",
       "singleDate": "2023-01-26T05:00:00.000Z",
@@ -231,6 +231,22 @@
       "endTime": "2023-02-03T21:00:00.000Z",
       "allDay": false,
       "id": 46
+    },
+    {
+      "title": "Test",
+      "filter": "Chess Games",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2023-02-06T05:00:00.000Z",
+      "allDay": true,
+      "id": 47
+    },
+    {
+      "title": "fasdfasdf",
+      "filter": "Runs",
+      "color": "rgb(255,255,255)",
+      "singleDate": "2023-01-13T05:00:00.000Z",
+      "allDay": true,
+      "id": 48
     }
   ]
 }
