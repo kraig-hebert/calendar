@@ -67,7 +67,7 @@ export const useStyles = createUseStyles((theme) => ({
   },
   placeholder: {
     position: 'absolute',
-    left: '20px',
+    left: '0px',
     top: '50%',
     transform: 'translateY(-50%)',
     color: theme.dark.halfAlpha,

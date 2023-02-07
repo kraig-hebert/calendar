@@ -20,7 +20,7 @@ export const useStyles = createUseStyles((theme) => ({
     width: '100%',
     height: '30px',
     borderTop: `1px solid ${theme.primary.main}`,
-    backgroundColor: theme.light.main,
+    backgroundColor: theme.secondary.main,
   },
   button: {
     width: '100px',

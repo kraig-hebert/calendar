@@ -8,7 +8,7 @@ export const useStyles = createUseStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'flex-start',
     flexDirection: 'column',
-    zIndex: '5',
+    zIndex: '7',
     boxShadow: `0px 0px 3px ${theme.dark.main}`,
   }),
   monthOption: {
