@@ -12,6 +12,7 @@ export const useStyles = createUseStyles({
     borderRadius: '5px',
     cursor: props.cursor,
     margin: '1px 0px',
+    fontSize: '.9rem',
   }),
   eventInfo: {
     margin: '0 3px',

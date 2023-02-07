@@ -1,11 +1,11 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles((theme) => ({
-  inputContainer: {
+  inputContainer: (props) => ({
     position: 'relative',
-    width: '60%',
+    width: props.type === 'date' ? '60%' : '70%',
     height: '100%',
-  },
+  }),
   dateInput: {
     width: '100%',
     height: '35px',

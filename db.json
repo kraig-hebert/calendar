@@ -139,15 +139,6 @@
       "id": 35
     },
     {
-      "title": "Legs",
-      "filter": "Stretch",
-      "color": "rgb(255,255,255)",
-      "startTime": "2023-01-16T23:00:00.000Z",
-      "endTime": "2023-01-17T00:00:00.000Z",
-      "allDay": false,
-      "id": 36
-    },
-    {
       "title": "5 miles",
       "filter": "Runs",
       "color": "rgb(255,255,255)",
@@ -165,15 +156,6 @@
       "id": 38
     },
     {
-      "title": "Tester",
-      "filter": "Stretch",
-      "color": "rgb(255,255,255)",
-      "startTime": "2023-01-20T02:00:00.000Z",
-      "endTime": "2023-01-20T03:00:00.000Z",
-      "allDay": false,
-      "id": 39
-    },
-    {
       "title": "sASSD",
       "filter": "Events",
       "color": "rgb(0,0,0)",
@@ -181,14 +163,6 @@
       "endTime": "2023-01-21T14:00:00.000Z",
       "allDay": false,
       "id": 40
-    },
-    {
-      "title": "Test",
-      "filter": "Stretch",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2023-01-07T05:00:00.000Z",
-      "allDay": true,
-      "id": 41
     },
     {
       "title": "Test",
@@ -231,14 +205,6 @@
       "endTime": "2023-02-03T21:00:00.000Z",
       "allDay": false,
       "id": 46
-    },
-    {
-      "title": "Test",
-      "filter": "Chess Games",
-      "color": "rgb(255,255,255)",
-      "singleDate": "2023-02-06T05:00:00.000Z",
-      "allDay": true,
-      "id": 47
     },
     {
       "title": "fasdfasdf",

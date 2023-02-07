@@ -18,12 +18,12 @@ export const useStyles = createUseStyles((theme) => ({
     overflow: 'hidden',
     transition: '.25s',
     '& h2': {
-      height: '20px',
       width: '100%',
-      paddingTop: '10px',
+      padding: '5px 0px',
       backgroundColor: theme.primary.main,
       color: theme.light.main,
       textAlign: 'center',
+      fontSize: '1rem',
     },
     '& input': {
       width: '155px',

@@ -101,9 +101,7 @@ const CalendarForm = (props) => {
   }, [calendarForEdit, calendarFormOpen]);
   return (
     <div className={classes.newCalendarForm}>
-      <h2>
-        {calendarFormOpen !== 'edit' ? 'Add New Calendar' : 'Edit Calendar'}
-      </h2>
+      <h2>{calendarFormOpen !== 'edit' ? 'Add Calendar' : 'Edit Calendar'}</h2>
       <input
         type="text"
         name="title"

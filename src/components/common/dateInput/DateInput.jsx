@@ -9,7 +9,7 @@ import DateTimePicker from './dateTimePicker/DateTimePicker';
 const DateInput = (props) => {
   const { value, setValue, type } = props;
   const valueAsDateObject = getDateFromFormat(value, type);
-  const classes = useStyles();
+  const classes = useStyles({ type });
   const calendarRef = useRef();
   const iconRef = useRef();
   const [showPicker, setShowPicker] = useState(false);
