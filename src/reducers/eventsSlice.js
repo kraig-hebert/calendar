@@ -241,4 +241,14 @@ export const selectMonthFilteredEvents = createSelector(
   }
 );
 
+// return the groupedEvents based on the next 6 months
+export const selectScheduleFilteredEvents = createSelector(
+  selectEvents,
+  selectCurrentDate,
+  selectActiveFilters,
+  (events, currentDate, activeFilters) => {
+    return events;
+  }
+);
+
 export default eventsSlice.reducer;

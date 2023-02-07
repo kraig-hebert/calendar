@@ -7,7 +7,7 @@ export const useStyles = createUseStyles((theme) => ({
     alignItems: 'center',
     width: '300px',
     paddingTop: '10px',
-    borderRight: '1px solid ' + theme.primary.main,
+    borderRight: `1px solid ${theme.dark.quarterAlpha}`,
     overflow: 'hidden',
   },
   iconContainer: {

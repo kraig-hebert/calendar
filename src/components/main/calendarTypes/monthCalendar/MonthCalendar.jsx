@@ -8,7 +8,6 @@ import {
   calendarDaySelected,
 } from '../../../../reducers/appSettings';
 import { selectMonthFilteredEvents } from '../../../../reducers/eventsSlice';
-
 import { useStyles } from './styles';
 import OverflowEvents from '../../../common/overflowEvents/OverflowEvents';
 import AllDayEvent from '../../../common/eventBlocks/AllDayEvent';
