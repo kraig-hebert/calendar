@@ -11,7 +11,7 @@ export const useStyles = createUseStyles((theme) => ({
   miniCalendar: {
     alignSelf: 'center',
     justifySelf: 'center',
-    width: '80%',
+    width: '70%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
