@@ -221,6 +221,14 @@
       "singleDate": "2023-01-06T05:00:00.000Z",
       "allDay": true,
       "id": 49
+    },
+    {
+      "title": "Test Schedule",
+      "filter": "Events",
+      "color": "rgb(0,0,0)",
+      "singleDate": "2023-02-10T05:00:00.000Z",
+      "allDay": true,
+      "id": 50
     }
   ]
 }

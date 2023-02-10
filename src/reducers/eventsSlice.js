@@ -3,7 +3,14 @@ import {
   createSlice,
   createAsyncThunk,
 } from '@reduxjs/toolkit';
-import { isSameWeek, getDay, isSameDay, isSameMonth } from 'date-fns';
+import {
+  isSameWeek,
+  getDay,
+  isSameDay,
+  isSameMonth,
+  addMonths,
+  isWithinInterval,
+} from 'date-fns';
 
 import * as client from '../api/client';
 import { selectCurrentDate, selectActiveFilters } from './appSettings';
@@ -244,9 +251,27 @@ export const selectMonthFilteredEvents = createSelector(
 // return the groupedEvents based on the next 6 months
 export const selectScheduleFilteredEvents = createSelector(
   selectEvents,
-  selectCurrentDate,
   selectActiveFilters,
-  (events, currentDate, activeFilters) => {
+  (events, activeFilters) => {
+    const date = new Date();
+    const endDate = addMonths(new Date(), 6);
+    const filteredEvents = events
+      .filter((event) => {
+        if (event.hasOwnProperty('singleDate'))
+          return isWithinInterval(event.singleDate, {
+            start: date,
+            end: endDate,
+          });
+        else
+          return isWithinInterval(event.startTime, {
+            start: date,
+            end: endDate,
+          });
+      })
+      .filter((event) => activeFilters.includes(event.filter));
+    console.log(filteredEvents);
+    console.log(date, endDate);
+
     return events;
   }
 );

@@ -10,7 +10,6 @@ const ScheduleCalendar = () => {
   const dispatch = useDispatch();
   const scheduleFilteredEvents = useSelector(selectScheduleFilteredEvents);
   const allCalendars = useSelector(selectAllCalendars);
-  console.log(allCalendars);
   const today = new Date();
   const classes = useStyles();
   console.log(scheduleFilteredEvents);
