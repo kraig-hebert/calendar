@@ -31,3 +31,10 @@ export const getDateFromFormat = (value, type) => {
     return new Date(dateValue[0], dateValue[1] - 1, dateValue[2]);
   } else return new Date(value);
 };
+
+export const getDateObject = (dateTimeObject) =>
+  new Date(
+    dateTimeObject.getFullYear(),
+    dateTimeObject.getMonth(),
+    dateTimeObject.getDate()
+  );

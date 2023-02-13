@@ -46,7 +46,7 @@ const ScheduleCalendar = () => {
     return (
       <div className={classes.dayContainer} key={key}>
         <div className={classes.dateContainer}>
-          {format(date, 'd LLL, EEE')}
+          {format(date, 'dd LLL, EEE')}
         </div>
         <div className={classes.eventsContainer}>
           {events.map((event, index) => (

@@ -16,7 +16,7 @@ import {
 import * as client from '../api/client';
 import { selectCurrentDate, selectActiveFilters } from './appSettings';
 import holidayFactory from '../utils/holidayFactory';
-import { months } from '../helpers/dateHelpers';
+import { getDateObject, months } from '../helpers/dateHelpers';
 
 const initialState = {
   entities: {},
@@ -255,7 +255,8 @@ export const selectScheduleFilteredEvents = createSelector(
   selectEvents,
   selectActiveFilters,
   (events, activeFilters) => {
-    const date = new Date();
+    const date = getDateObject(new Date());
+    console.log(date);
     const endDate = addMonths(new Date(), 5);
     const eventsByMonth = {};
 
