@@ -256,7 +256,6 @@ export const selectScheduleFilteredEvents = createSelector(
   selectActiveFilters,
   (events, activeFilters) => {
     const date = getDateObject(new Date());
-    console.log(date);
     const endDate = addMonths(new Date(), 5);
     const eventsByMonth = {};
 
@@ -301,7 +300,6 @@ export const selectScheduleFilteredEvents = createSelector(
           eventsByMonth[monthName][date].push(event);
         }
       });
-    console.log(eventsByMonth);
     return eventsByMonth;
   }
 );

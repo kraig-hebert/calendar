@@ -78,7 +78,6 @@ const ScheduleCalendar = () => {
           );
       }
     }
-    console.log(renderedDayBlocks);
     return renderedDayBlocks;
   };
 
