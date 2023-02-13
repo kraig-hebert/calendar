@@ -300,6 +300,7 @@ export const selectScheduleFilteredEvents = createSelector(
           eventsByMonth[monthName][date].push(event);
         }
       });
+    console.log(eventsByMonth);
     return eventsByMonth;
   }
 );

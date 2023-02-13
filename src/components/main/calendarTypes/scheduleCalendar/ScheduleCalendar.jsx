@@ -13,7 +13,7 @@ const ScheduleCalendar = () => {
   const allCalendars = useSelector(selectAllCalendars);
   const today = new Date();
   const classes = useStyles();
-  console.log(scheduleFilteredEvents);
+  // console.log(scheduleFilteredEvents);
 
   const getEventTimeFormat = (event) => {
     if (event.hasOwnProperty('singleDate')) return 'All Day';
