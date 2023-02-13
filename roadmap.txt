@@ -16,4 +16,5 @@ REFRACTOR/FIXES
 - move <EventListPopUp/> inside of <OverflowEvents/>
 - on weekCalendar the title can go outside its eventBox
 - on week/day calendar add the total hours underneath the time to save the user 1 second to do mental math
+- change the singleDate to startTime do you can remote the event.hasOwnProperty() usage everywhere to shorten code
 *******************************************************************

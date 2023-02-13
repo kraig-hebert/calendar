@@ -10,11 +10,13 @@ import {
   isSameMonth,
   addMonths,
   isWithinInterval,
+  getDaysInMonth,
 } from 'date-fns';
 
 import * as client from '../api/client';
 import { selectCurrentDate, selectActiveFilters } from './appSettings';
 import holidayFactory from '../utils/holidayFactory';
+import { months } from '../helpers/dateHelpers';
 
 const initialState = {
   entities: {},
@@ -254,8 +256,26 @@ export const selectScheduleFilteredEvents = createSelector(
   selectActiveFilters,
   (events, activeFilters) => {
     const date = new Date();
-    const endDate = addMonths(new Date(), 6);
-    const filteredEvents = events
+    const endDate = addMonths(new Date(), 5);
+    const eventsByMonth = {};
+
+    /* 
+      returns eventsByMonth structured as {january: {1: [events], 2: [events].......}}
+    */
+    months
+      .slice(date.getMonth(), endDate.getMonth() + 1)
+      .forEach((month) => (eventsByMonth[month] = {}));
+    Object.keys(eventsByMonth).forEach((month) => {
+      const numberOfDaysInMonth = getDaysInMonth(
+        date.getFullYear(),
+        months.indexOf(month)
+      );
+      for (let i = 1; i <= numberOfDaysInMonth; i++) {
+        eventsByMonth[month][i] = [];
+      }
+    });
+
+    events
       .filter((event) => {
         if (event.hasOwnProperty('singleDate'))
           return isWithinInterval(event.singleDate, {
@@ -268,11 +288,19 @@ export const selectScheduleFilteredEvents = createSelector(
             end: endDate,
           });
       })
-      .filter((event) => activeFilters.includes(event.filter));
-    console.log(filteredEvents);
-    console.log(date, endDate);
-
-    return events;
+      .filter((event) => activeFilters.includes(event.filter))
+      .forEach((event) => {
+        if (event.hasOwnProperty('singleDate')) {
+          const monthName = months[event.singleDate.getMonth()];
+          const date = event.singleDate.getDate();
+          eventsByMonth[monthName][date].push(event);
+        } else {
+          const monthName = months[event.startTime.getMonth()];
+          const date = event.startTime.getDate();
+          eventsByMonth[monthName][date].push(event);
+        }
+      });
+    return eventsByMonth;
   }
 );
 
