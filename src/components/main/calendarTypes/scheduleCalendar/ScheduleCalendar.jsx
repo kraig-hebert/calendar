@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { useStyles } from './styles';
 import { selectScheduleFilteredEvents } from '../../../../reducers/eventsSlice';
 import { selectAllCalendars } from '../../../../reducers/appSettings';
+import { months } from '../../../../helpers/dateHelpers';
 
 const ScheduleCalendar = () => {
   const dispatch = useDispatch();
@@ -14,11 +15,6 @@ const ScheduleCalendar = () => {
   const classes = useStyles();
   console.log(scheduleFilteredEvents);
 
-  const getEventDateFormat = (event) => {
-    if (event.hasOwnProperty('singleDate'))
-      return format(event.singleDate, 'd LLL, EEE');
-    else return format(event.startTime, 'd LLL, EEE');
-  };
   const getEventTimeFormat = (event) => {
     if (event.hasOwnProperty('singleDate')) return 'All Day';
     else {
@@ -46,22 +42,47 @@ const ScheduleCalendar = () => {
     };
   };
 
-  const renderedDayBlocks = scheduleFilteredEvents.map((event, index) => (
-    <div className={classes.dayContainer} key={index}>
-      <div className={classes.dateContainer}>{getEventDateFormat(event)}</div>
-      <div className={classes.eventsContainer}>
-        <div className={classes.event}>
-          <div className={classes.eventTime}>
-            <div style={setDotStyles(event.filter)}></div>
-            {getEventTimeFormat(event)}
-          </div>
-          <div className={classes.eventTitle}>{event.title}</div>
+  const createDayBlock = (events, date, key) => {
+    return (
+      <div className={classes.dayContainer} key={key}>
+        <div className={classes.dateContainer}>
+          {format(date, 'd LLL, EEE')}
+        </div>
+        <div className={classes.eventsContainer}>
+          {events.map((event, index) => (
+            <div className={classes.event} key={index}>
+              <div className={classes.eventTime}>
+                <div style={setDotStyles(event.filter)}></div>
+                {getEventTimeFormat(event)}
+              </div>
+              <div className={classes.eventTitle}>{event.title}</div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  ));
+    );
+  };
 
-  return <div className={classes.scheduleCalendar}>{renderedDayBlocks}</div>;
+  const renderDayBlocks = () => {
+    const renderedDayBlocks = [];
+    for (const month in scheduleFilteredEvents) {
+      for (const day in scheduleFilteredEvents[month]) {
+        if (scheduleFilteredEvents[month][day].length < 1) continue;
+        else
+          renderedDayBlocks.push(
+            createDayBlock(
+              scheduleFilteredEvents[month][day],
+              new Date(today.getFullYear(), months.indexOf(month), day),
+              `${month}_${day}`
+            )
+          );
+      }
+    }
+    console.log(renderedDayBlocks);
+    return renderedDayBlocks;
+  };
+
+  return <div className={classes.scheduleCalendar}>{renderDayBlocks()}</div>;
 };
 
 export default ScheduleCalendar;

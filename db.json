@@ -229,6 +229,14 @@
       "singleDate": "2023-02-10T05:00:00.000Z",
       "allDay": true,
       "id": 50
+    },
+    {
+      "title": "Test",
+      "filter": "Events",
+      "color": "rgb(0,0,0)",
+      "singleDate": "2023-02-13T05:00:00.000Z",
+      "allDay": true,
+      "id": 51
     }
   ]
 }
