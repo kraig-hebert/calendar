@@ -177,6 +177,7 @@ const groupFilteredEvents = (filteredEvents) => {
     if (event.allDay) eventsDict.allDay.push(event);
     else eventsDict.timed.push(event);
   });
+  eventsDict.timed.sort((a, b) => a.startTime - b.startTime);
   return eventsDict;
 };
 

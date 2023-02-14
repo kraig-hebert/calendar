@@ -58,13 +58,12 @@ const ScheduleCalendar = () => {
         </div>
         <div className={classes.eventsContainer}>
           {events.map((event, index) => (
-            <div className={classes.eventContainer}>
+            <div className={classes.eventContainer} key={index}>
               <div
                 className={
                   event.notEditable ? classes.event : classes.selectableEvent
                 }
                 onClick={() => handleEventClick(event)}
-                key={index}
               >
                 <div className={classes.eventTime}>
                   <div style={setDotStyles(event.filter)}></div>
@@ -84,7 +83,7 @@ const ScheduleCalendar = () => {
     for (const month in scheduleFilteredEvents) {
       for (const day in scheduleFilteredEvents[month]) {
         if (scheduleFilteredEvents[month][day].length < 1) continue;
-        else
+        else {
           renderedDayBlocks.push(
             createDayBlock(
               scheduleFilteredEvents[month][day],
@@ -92,6 +91,7 @@ const ScheduleCalendar = () => {
               `${month}_${day}`
             )
           );
+        }
       }
     }
     return renderedDayBlocks;

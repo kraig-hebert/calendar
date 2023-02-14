@@ -75,9 +75,9 @@ const MonthCalendar = (props) => {
     const allDayEventsList = monthFilteredEvents.allDay.filter(
       (event) => event.singleDate.getDate() === i
     );
-    const timedEventsList = monthFilteredEvents.timed
-      .filter((event) => event.startTime.getDate() === i)
-      .sort((eventA, eventB) => eventA.startTime - eventB.startTime);
+    const timedEventsList = monthFilteredEvents.timed.filter(
+      (event) => event.startTime.getDate() === i
+    );
 
     const todaysEventsList = allDayEventsList.concat(timedEventsList);
     let eventListForRender;
