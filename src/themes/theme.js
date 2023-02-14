@@ -12,6 +12,7 @@ export const theme = {
     threeQuarterAlpha: 'rgba(0,0,0,.75)',
     halfAlpha: 'rgba(0,0,0,.5)',
     quarterAlpha: 'rgba(0,0,0,.25)',
+    eighthAlpha: 'rgba(0,0,0,.125)',
   },
   light: {
     main: 'rgb(255,255,255)',

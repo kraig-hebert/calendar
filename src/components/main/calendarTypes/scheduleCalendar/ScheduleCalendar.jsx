@@ -4,7 +4,10 @@ import { format } from 'date-fns';
 
 import { useStyles } from './styles';
 import { selectScheduleFilteredEvents } from '../../../../reducers/eventsSlice';
-import { selectAllCalendars } from '../../../../reducers/appSettings';
+import {
+  selectAllCalendars,
+  eventClicked,
+} from '../../../../reducers/appSettings';
 import { months } from '../../../../helpers/dateHelpers';
 
 const ScheduleCalendar = () => {
@@ -32,7 +35,7 @@ const ScheduleCalendar = () => {
   const setDotStyles = (filter) => {
     return {
       position: 'absolute',
-      left: '0',
+      left: '10px',
       top: '50%',
       transform: 'translateY(-50%)',
       height: '10px',
@@ -40,6 +43,11 @@ const ScheduleCalendar = () => {
       borderRadius: '50%',
       backgroundColor: getBackgroundColorFromFilter(filter),
     };
+  };
+
+  const handleEventClick = (event) => {
+    if (event.notEditable) return;
+    dispatch(eventClicked(event.id));
   };
 
   const createDayBlock = (events, date, key) => {
@@ -50,12 +58,20 @@ const ScheduleCalendar = () => {
         </div>
         <div className={classes.eventsContainer}>
           {events.map((event, index) => (
-            <div className={classes.event} key={index}>
-              <div className={classes.eventTime}>
-                <div style={setDotStyles(event.filter)}></div>
-                {getEventTimeFormat(event)}
+            <div className={classes.eventContainer}>
+              <div
+                className={
+                  event.notEditable ? classes.event : classes.selectableEvent
+                }
+                onClick={() => handleEventClick(event)}
+                key={index}
+              >
+                <div className={classes.eventTime}>
+                  <div style={setDotStyles(event.filter)}></div>
+                  {getEventTimeFormat(event)}
+                </div>
+                <div className={classes.eventTitle}>{event.title}</div>
               </div>
-              <div className={classes.eventTitle}>{event.title}</div>
             </div>
           ))}
         </div>

@@ -256,8 +256,8 @@
     },
     {
       "title": "Timed Event",
-      "filter": "Birthdays",
-      "color": "rgb(0,0,0)",
+      "filter": "Biking",
+      "color": "rgb(255,255,255)",
       "startTime": "2023-02-16T22:00:00.000Z",
       "endTime": "2023-02-16T23:00:00.000Z",
       "allDay": false,
@@ -265,7 +265,7 @@
     },
     {
       "title": "Wuick Game",
-      "filter": "Chess Games",
+      "filter": "Biking",
       "color": "rgb(255,255,255)",
       "startTime": "2023-02-16T18:00:00.000Z",
       "endTime": "2023-02-16T19:00:00.000Z",
