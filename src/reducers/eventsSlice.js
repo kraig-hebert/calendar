@@ -143,7 +143,7 @@ export const selectEvents = createSelector(
         if (event.allDay)
           return {
             ...event,
-            singleDate: new Date(event.singleDate),
+            startTime: new Date(event.singleDate),
           };
         else
           return {
@@ -156,7 +156,7 @@ export const selectEvents = createSelector(
     holidayFactory(currentDate.getFullYear(), 'all').forEach((holiday) => {
       sortedEventListWithDateObjects.push({
         title: holiday.title,
-        singleDate: new Date(holiday.singleDate),
+        startTime: new Date(holiday.singleDate),
         allDay: true,
         filter: 'Holidays',
         color: 'rgb(0,0,0)',
@@ -188,13 +188,7 @@ export const selectDayFilteredEvents = createSelector(
   selectActiveFilters,
   (events, currentDate, activeFilters) => {
     const filteredEvents = events
-      .filter(
-        (event) =>
-          (event.hasOwnProperty('startTime') &&
-            isSameDay(event.startTime, currentDate)) |
-          (event.hasOwnProperty('singleDate') &&
-            isSameDay(event.singleDate, currentDate))
-      )
+      .filter((event) => isSameDay(event.startTime, currentDate))
       .filter((event) => activeFilters.includes(event.filter));
     return groupFilteredEvents(filteredEvents);
   }
@@ -212,21 +206,13 @@ export const selectWeekFilteredEvents = createSelector(
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const filteredEventsByDay = {};
     const filteredEvents = events
-      .filter((event) => {
-        if (event.hasOwnProperty('startTime')) {
-          if (isSameWeek(event.startTime, currentDate)) return true;
-        } else if (isSameWeek(event.singleDate, currentDate)) return true;
-        return false;
-      })
+      .filter((event) => isSameWeek(event.startTime, currentDate))
       .filter((event) => activeFilters.includes(event.filter));
 
     days.forEach((day, index) => {
-      const dayEvents = filteredEvents.filter((event) => {
-        if (event.hasOwnProperty('startTime')) {
-          if (getDay(event.startTime) === index) return true;
-        } else if (getDay(event.singleDate) === index) return true;
-        return false;
-      });
+      const dayEvents = filteredEvents.filter(
+        (event) => getDay(event.startTime) === index
+      );
       filteredEventsByDay[days[index]] = groupFilteredEvents(dayEvents);
     });
     return filteredEventsByDay;
@@ -240,12 +226,7 @@ export const selectMonthFilteredEvents = createSelector(
   selectActiveFilters,
   (events, currentDate, activeFilters) => {
     const filteredEvents = events
-      .filter((event) => {
-        if (event.hasOwnProperty('startTime')) {
-          if (isSameMonth(event.startTime, currentDate)) return true;
-        } else if (isSameMonth(event.singleDate, currentDate)) return true;
-        return false;
-      })
+      .filter((event) => isSameMonth(event.startTime, currentDate))
       .filter((event) => activeFilters.includes(event.filter));
     return groupFilteredEvents(filteredEvents);
   }
@@ -277,29 +258,17 @@ export const selectScheduleFilteredEvents = createSelector(
     });
 
     events
-      .filter((event) => {
-        if (event.hasOwnProperty('singleDate'))
-          return isWithinInterval(event.singleDate, {
-            start: date,
-            end: endDate,
-          });
-        else
-          return isWithinInterval(event.startTime, {
-            start: date,
-            end: endDate,
-          });
-      })
+      .filter((event) =>
+        isWithinInterval(event.startTime, {
+          start: date,
+          end: endDate,
+        })
+      )
       .filter((event) => activeFilters.includes(event.filter))
       .forEach((event) => {
-        if (event.hasOwnProperty('singleDate')) {
-          const monthName = months[event.singleDate.getMonth()];
-          const date = event.singleDate.getDate();
-          eventsByMonth[monthName][date].push(event);
-        } else {
-          const monthName = months[event.startTime.getMonth()];
-          const date = event.startTime.getDate();
-          eventsByMonth[monthName][date].push(event);
-        }
+        const monthName = months[event.startTime.getMonth()];
+        const date = event.startTime.getDate();
+        eventsByMonth[monthName][date].push(event);
       });
     return eventsByMonth;
   }
