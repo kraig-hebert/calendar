@@ -19,7 +19,7 @@ const ScheduleCalendar = () => {
   // console.log(scheduleFilteredEvents);
 
   const getEventTimeFormat = (event) => {
-    if (event.hasOwnProperty('singleDate')) return 'All Day';
+    if (event.allDay) return 'All Day';
     else {
       const startTime = format(event.startTime, 'haaa');
       const endTime = format(event.endTime, 'haaa');
@@ -51,6 +51,7 @@ const ScheduleCalendar = () => {
   };
 
   const createDayBlock = (events, date, key) => {
+    events.sort((a, b) => a.startTime - b.startTime);
     return (
       <div className={classes.dayContainer} key={key}>
         <div className={classes.dateContainer}>

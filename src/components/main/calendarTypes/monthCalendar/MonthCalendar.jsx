@@ -73,7 +73,7 @@ const MonthCalendar = (props) => {
 
   const renderEvents = (i) => {
     const allDayEventsList = monthFilteredEvents.allDay.filter(
-      (event) => event.singleDate.getDate() === i
+      (event) => event.startTime.getDate() === i
     );
     const timedEventsList = monthFilteredEvents.timed.filter(
       (event) => event.startTime.getDate() === i

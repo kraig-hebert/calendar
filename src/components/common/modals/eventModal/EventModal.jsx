@@ -142,7 +142,7 @@ const EventModal = () => {
         title: inputValue.trim(),
         filter: selectedCalendar,
         color: setColor(),
-        singleDate: setDate(),
+        startTime: setDate(),
         allDay: true,
       };
     } else {
@@ -214,17 +214,17 @@ const EventModal = () => {
       titleRef.current.focus();
       if (eventForEdit.hasOwnProperty('singleDate')) {
         setSelectedSwitch(false);
-        setSingleDate(setDateFormat(eventForEdit.singleDate, 'date'));
+        setSingleDate(setDateFormat(eventForEdit.startTime, 'date'));
 
         setStartTime(
           setDateFormat(
-            cleanUpTime(new Date(eventForEdit.singleDate.setHours(12))),
+            cleanUpTime(new Date(eventForEdit.startTime.setHours(12))),
             'datetime'
           )
         );
         setEndTime(
           setDateFormat(
-            cleanUpTime(new Date(eventForEdit.singleDate.setHours(13))),
+            cleanUpTime(new Date(eventForEdit.startTime.setHours(13))),
             'datetime'
           )
         );

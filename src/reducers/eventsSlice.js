@@ -143,7 +143,7 @@ export const selectEvents = createSelector(
         if (event.allDay)
           return {
             ...event,
-            startTime: new Date(event.singleDate),
+            startTime: new Date(event.startTime),
           };
         else
           return {
