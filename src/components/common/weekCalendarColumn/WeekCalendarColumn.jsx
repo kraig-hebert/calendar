@@ -67,6 +67,7 @@ const WeekCalendarColumn = (props) => {
         padding: '1px',
         backgroundColor: calendar.length ? calendar[0].filter : 'none',
         color: event.color,
+        fontSize: '.9rem',
         zIndex: '2',
         cursor: 'pointer',
       };
