@@ -25,7 +25,7 @@ const EventListPopUp = (props) => {
 
   const eventListForRender = events.map((event, index) => {
     if (event.allDay)
-      return <AllDayEvent event={event} length={18} key={index} />;
+      return <AllDayEvent event={event} length={15} key={index} />;
     else return <TimedEvent event={event} length={13} key={index} />;
   });
   return (

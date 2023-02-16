@@ -99,7 +99,7 @@ const WeekCalendarColumn = (props) => {
             <AllDayEvent
               event={event}
               width={calendarWidthValue - 10}
-              length={20}
+              length={17}
               key={index}
             />
           </div>
