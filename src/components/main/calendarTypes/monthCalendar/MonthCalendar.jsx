@@ -83,10 +83,10 @@ const MonthCalendar = (props) => {
     let eventListForRender;
     switch (numberOfCalendarRows) {
       case 5:
-        eventListForRender = finalizeEventList(todaysEventsList, 4);
+        eventListForRender = finalizeEventList(todaysEventsList, 3);
         break;
       case 6:
-        eventListForRender = finalizeEventList(todaysEventsList, 3);
+        eventListForRender = finalizeEventList(todaysEventsList, 2);
         break;
     }
     return eventListForRender.map((event, index) => {
