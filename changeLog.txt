@@ -1,3 +1,19 @@
+2-15-2023
+---------
+Stylings
+    - updated header height for the main page to allow space for lower calendars
+    - changed some font sizes to fix spacing
+    - updated allDayEvents header height to stabalize UI when switching between dates
+    - updated useSetEventTitle logic to fix overflow issues
+
+
+2-14-2023
+---------
+ScheduleCalendar
+    - added the schedule calendar to show all events within the next 6 months
+    - events are sorted by start time
+    - list reflects the filter colors with small dot in front of date
+
 2-3-2023
 --------
 DateTimePicker
