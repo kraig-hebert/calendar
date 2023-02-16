@@ -24,7 +24,8 @@ const EventListPopUp = (props) => {
   const classes = useStyles({ ...props, ...setTransitionProps() });
 
   const eventListForRender = events.map((event, index) => {
-    if (event.allDay) return <AllDayEvent event={event} key={index} />;
+    if (event.allDay)
+      return <AllDayEvent event={event} length={18} key={index} />;
     else return <TimedEvent event={event} length={13} key={index} />;
   });
   return (
