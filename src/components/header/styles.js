@@ -5,7 +5,7 @@ export const useStyles = createUseStyles((theme) => ({
     position: 'sticky',
     top: '0',
     width: '100%',
-    height: '50px',
+    height: '35px',
     backgroundColor: theme.primary.main,
     boxShadow: '2px 0px 5px 2px ' + theme.dark.main,
     fontSize: '1.5rem',
