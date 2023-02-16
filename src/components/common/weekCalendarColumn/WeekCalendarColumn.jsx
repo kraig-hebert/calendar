@@ -174,7 +174,7 @@ const WeekCalendarColumn = (props) => {
   }
   useLayoutEffect(() => {
     setCalendarWidthValue(ref.current.offsetWidth);
-  });
+  }, [setCalendarWidthValue]);
 
   return (
     <div className={classes.dayCalendar} ref={ref}>

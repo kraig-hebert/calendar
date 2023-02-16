@@ -14,7 +14,7 @@ import {
   selectEvents,
   deleteEvent,
 } from '../../../../reducers/eventsSlice';
-import { format, isAfter, addHours } from 'date-fns';
+import { isAfter, addHours } from 'date-fns';
 import { useStyles } from './styles';
 import ModalHeader from './modalHeader/ModalHeader';
 import SwitchSelectors from './switchSelectors/SwitchSelectors';
@@ -162,7 +162,7 @@ const EventModal = () => {
   };
 
   const handleDelete = () => {
-    if (eventModalOpen == 'edit') dispatch(deleteEvent(eventForEdit.id));
+    if (eventModalOpen === 'edit') dispatch(deleteEvent(eventForEdit.id));
     clearModal();
   };
 
@@ -197,6 +197,7 @@ const EventModal = () => {
   };
 
   useEffect(() => {
+    console.log('render');
     if (selectedSwitch) {
       if (validateDateTimeValues() && validateInputValue()) {
         handleSavingAllowed();

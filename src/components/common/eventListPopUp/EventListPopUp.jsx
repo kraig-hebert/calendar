@@ -42,7 +42,7 @@ EventListPopUp.propTypes = {
   width: PropTypes.number,
   display: PropTypes.bool,
   events: PropTypes.array,
-  setOverflowEventsOpen: PropTypes.bool,
+  overflowEventsOpen: PropTypes.bool,
   setOverflowEventsOpen: PropTypes.func,
   top: PropTypes.number,
   bottom: PropTypes.bool,

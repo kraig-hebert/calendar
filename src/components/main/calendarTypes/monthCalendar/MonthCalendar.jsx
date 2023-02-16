@@ -88,6 +88,8 @@ const MonthCalendar = (props) => {
       case 6:
         eventListForRender = finalizeEventList(todaysEventsList, 2);
         break;
+      default:
+        eventListForRender = todaysEventsList;
     }
     return eventListForRender.map((event, index) => {
       if (event.allDay)

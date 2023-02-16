@@ -11,7 +11,6 @@ const WeekCalendar = () => {
   const classes = useStyles();
   const weekFilteredEvents = useSelector(selectWeekFilteredEvents);
   const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const MAX_ALL_DAY_EVENTS = 3;
 
   const currentDate = useSelector(selectCurrentDate);
   const startDateofWeek = startOfWeek(currentDate);
