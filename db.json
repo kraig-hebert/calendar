@@ -2,14 +2,6 @@
   "events": [
     {
       "title": "Test",
-      "filter": "Chess Games",
-      "color": "rgb(255,255,255)",
-      "startTime": "2023-02-14T05:00:00.000Z",
-      "allDay": true,
-      "id": 1
-    },
-    {
-      "title": "Test",
       "filter": "Events",
       "color": "rgb(0,0,0)",
       "startTime": "2023-02-15T02:00:00.000Z",
@@ -18,13 +10,39 @@
       "id": 2
     },
     {
-      "title": "Time Order Test",
+      "title": "Time Order Test for length of timed",
       "filter": "Birthdays",
       "color": "rgb(0,0,0)",
       "startTime": "2023-02-14T23:00:00.000Z",
       "endTime": "2023-02-15T00:00:00.000Z",
       "allDay": false,
       "id": 3
+    },
+    {
+      "title": "lnegth test for the eventBlocks",
+      "filter": "Birthdays",
+      "color": "rgb(0,0,0)",
+      "startTime": "2023-02-15T05:00:00.000Z",
+      "allDay": true,
+      "id": 4
+    },
+    {
+      "title": "Test",
+      "filter": "Runs",
+      "color": "rgb(255,255,255)",
+      "startTime": "2023-02-15T01:00:00.000Z",
+      "endTime": "2023-02-15T02:00:00.000Z",
+      "allDay": false,
+      "id": 5
+    },
+    {
+      "title": "afsdfsdf",
+      "filter": "Reminders",
+      "color": "rgb(0,0,0)",
+      "startTime": "2023-02-15T01:00:00.000Z",
+      "endTime": "2023-02-15T02:00:00.000Z",
+      "allDay": false,
+      "id": 6
     }
   ]
 }

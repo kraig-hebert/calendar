@@ -10,7 +10,7 @@ import useSetEventTitle from '../../../utils/useSetEventTitle';
 import { useStyles } from './styles';
 
 const AllDayEvent = (props) => {
-  const { event, width } = props;
+  const { event, width, length } = props;
   const dispatch = useDispatch();
   const allCalendars = useSelector(selectAllCalendars);
   const calendar = allCalendars.filter(
@@ -30,8 +30,10 @@ const AllDayEvent = (props) => {
 
   return (
     <div className={classes.eventContainer} onClick={handleEventClick}>
+      <div className={classes.eventInfo}>All Day -</div>
+
       <div className={classes.eventInfo}>
-        {useSetEventTitle({ title: event.title, length: 20 })}
+        {useSetEventTitle({ title: event.title, length })}
       </div>
     </div>
   );
@@ -40,6 +42,7 @@ const AllDayEvent = (props) => {
 AllDayEvent.propTypes = {
   event: PropTypes.object,
   width: PropTypes.number,
+  length: PropTypes.number,
 };
 
 export default AllDayEvent;

@@ -90,8 +90,10 @@ const MonthCalendar = (props) => {
         break;
     }
     return eventListForRender.map((event, index) => {
-      if (event.allDay) return <AllDayEvent event={event} key={index} />;
-      else if (event.startTime) return <TimedEvent event={event} key={index} />;
+      if (event.allDay)
+        return <AllDayEvent event={event} length={21} key={index} />;
+      else if (event.startTime)
+        return <TimedEvent event={event} length={17} key={index} />;
       else
         return (
           <OverflowEvents

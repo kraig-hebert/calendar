@@ -54,10 +54,9 @@ export const useStyles = createUseStyles((theme) => ({
         display: 'grid',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '20px',
-        height: '25px',
+        width: '30px',
+        height: '35px',
         marginTop: '10px',
-        marginBottom: '10px',
         '&:hover': {
           borderRadius: '50%',
           backgroundColor: theme.secondary.main,

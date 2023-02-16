@@ -212,10 +212,9 @@ const EventModal = () => {
       setInputValue(eventForEdit.title);
       setSelectedCalendar(eventForEdit.filter);
       titleRef.current.focus();
-      if (eventForEdit.hasOwnProperty('singleDate')) {
+      if (eventForEdit.allDay) {
         setSelectedSwitch(false);
         setSingleDate(setDateFormat(eventForEdit.startTime, 'date'));
-
         setStartTime(
           setDateFormat(
             cleanUpTime(new Date(eventForEdit.startTime.setHours(12))),
