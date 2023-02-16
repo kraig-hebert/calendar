@@ -19,15 +19,6 @@ const WeekCalendar = () => {
   for (let i = 0; i < 7; i++) {
     dates.push(addDays(startDateofWeek, i));
   }
-  const setHeight = () => {
-    const heightList = Object.values(weekFilteredEvents).map(
-      (dayEvents) => dayEvents.allDay.length
-    );
-    if (Math.max(...heightList) > MAX_ALL_DAY_EVENTS)
-      return ((MAX_ALL_DAY_EVENTS + 1) * 21).toString() + 'px';
-    else return `${Math.max(...heightList) * 21}px`;
-  };
-
   const setBorderRight = (index) => {
     if (index === days.length - 1) return true;
     else return false;
@@ -44,7 +35,6 @@ const WeekCalendar = () => {
           displayTime={day === 'Sun' ? true : false}
           borderRight={setBorderRight(index)}
           dayFilteredEvents={dayFilteredEvents}
-          height={setHeight()}
           maxAllDayEvents={3}
           width="100%"
         />

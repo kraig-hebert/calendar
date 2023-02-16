@@ -13,7 +13,7 @@ export const useStyles = createUseStyles((theme) => ({
     justifyContent: 'flex-end',
     alignItems: 'center',
     width: props.calendarWidth,
-    height: props.height,
+    height: '90px',
   }),
   eventBorder: {
     height: '1px',

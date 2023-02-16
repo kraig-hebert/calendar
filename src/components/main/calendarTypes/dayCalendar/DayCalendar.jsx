@@ -15,7 +15,7 @@ const DayCalendar = () => {
         displayTime={true}
         borderRight={true}
         dayFilteredEvents={dayFilteredEvents}
-        maxAllDayEvents={4}
+        maxAllDayEvents={3}
         width="90%"
       />
     </div>
