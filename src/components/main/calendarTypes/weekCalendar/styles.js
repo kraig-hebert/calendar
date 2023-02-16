@@ -15,6 +15,6 @@ export const useStyles = createUseStyles({
   dayName: {
     width: '100%',
     textAlign: 'center',
-    fontSize: '1.25rem',
+    fontSize: '1rem',
   },
 });

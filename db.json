@@ -39,6 +39,15 @@
       "startTime": "2023-02-15T05:00:00.000Z",
       "allDay": true,
       "id": 12
+    },
+    {
+      "title": "Test",
+      "filter": "Reminders",
+      "color": "rgb(0,0,0)",
+      "startTime": "2023-02-16T13:00:00.000Z",
+      "endTime": "2023-02-16T14:00:00.000Z",
+      "allDay": false,
+      "id": 13
     }
   ]
 }

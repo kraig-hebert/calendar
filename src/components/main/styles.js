@@ -16,7 +16,7 @@ export const useStyles = createUseStyles((theme) => ({
     justifySelf: 'center',
     width: '90%',
     paddingTop: '5px',
-    fontSize: '1.60rem',
+    fontSize: '1.25rem',
     overflow: 'hidden',
   },
   headerIconButton: {
